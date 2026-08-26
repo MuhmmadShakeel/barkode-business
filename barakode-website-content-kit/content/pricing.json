@@ -1,0 +1,152 @@
+{
+  "_note": "TWO pricing systems exist. (1) PRICING_PLANS — the two project-level plans on /pricing. (2) Per-service hourly + monthly rates on SERVICES[], expanded into Starter/Professional/Enterprise tiers (see services.json → services[].plans).",
+  "pricingPagePlans": [
+    {
+      "tag": "Standard",
+      "duration": "4-6 Week",
+      "title": "Standard Plan",
+      "tagline": "Have clear requirements and a focused scope? This plan gets you moving fast.",
+      "badge": "Popular",
+      "price": "500",
+      "items": [
+        "Requirements & scope definition",
+        "UI/UX design in Figma",
+        "Development in React or WordPress",
+        "Remote & online collaboration",
+        "Delivery within business days, no weekends"
+      ]
+    },
+    {
+      "tag": "Custom",
+      "duration": "4-12 Week",
+      "title": "Premium Plan",
+      "tagline": "For complex projects requiring full-cycle development from strategy to launch.",
+      "badge": "Exculvsive",
+      "price": "1000",
+      "items": [
+        "Full discovery & architecture planning",
+        "Custom UI/UX design in Figma",
+        "Advanced development in React, Node.js, or Flutter",
+        "Cloud deployment & DevOps setup",
+        "Fully responsive & performance optimized",
+        "Dedicated project manager & weekly reports"
+      ]
+    }
+  ],
+  "pricingPageHero": {
+    "sectionLabel": "ABOUT US",
+    "whiteText": "Pick Your",
+    "goldText": "Pricing",
+    "trailingText": "Option",
+    "glow": "strong",
+    "compact": true,
+    "_note": "The eyebrow really does read 'ABOUT US' on the pricing page in the source — likely a copy bug."
+  },
+  "pricingSectionHeading": {
+    "label": "PRICING PLAN",
+    "white": "Explore",
+    "gold": "Pricing",
+    "align": "left"
+  },
+  "priceDisplay": "Number counts up from 0 with GSAP (0.9s power3.out) then a gold '$' suffix is appended — e.g. '500$'.",
+  "perServiceRates": [
+    {
+      "slug": "web-development",
+      "title": "Web Development",
+      "domain": "Development",
+      "hourly": "$25",
+      "starterMonthly": "$2,000",
+      "proMonthly": "$4,000",
+      "enterprise": {
+        "hourly": "Custom",
+        "monthly": "Quote"
+      }
+    },
+    {
+      "slug": "mobile-development",
+      "title": "Mobile Development",
+      "domain": "Development",
+      "hourly": "$20",
+      "starterMonthly": "$1,600",
+      "proMonthly": "$3,200",
+      "enterprise": {
+        "hourly": "Custom",
+        "monthly": "Quote"
+      }
+    },
+    {
+      "slug": "ui-ux-design",
+      "title": "UI/UX Design",
+      "domain": "Design",
+      "hourly": "$15",
+      "starterMonthly": "$1,200",
+      "proMonthly": "$2,400",
+      "enterprise": {
+        "hourly": "Custom",
+        "monthly": "Quote"
+      }
+    },
+    {
+      "slug": "ai-ml-development",
+      "title": "AI/ML Development",
+      "domain": "Development",
+      "hourly": "$25",
+      "starterMonthly": "$2,000",
+      "proMonthly": "$4,000",
+      "enterprise": {
+        "hourly": "Custom",
+        "monthly": "Quote"
+      }
+    },
+    {
+      "slug": "cloud-development",
+      "title": "Cloud Development",
+      "domain": "Development",
+      "hourly": "$20",
+      "starterMonthly": "$1,600",
+      "proMonthly": "$3,200",
+      "enterprise": {
+        "hourly": "Custom",
+        "monthly": "Quote"
+      }
+    },
+    {
+      "slug": "qa-testing",
+      "title": "QA & Testing",
+      "domain": "Testing",
+      "hourly": "$15",
+      "starterMonthly": "$1,200",
+      "proMonthly": "$2,400",
+      "enterprise": {
+        "hourly": "Custom",
+        "monthly": "Quote"
+      }
+    }
+  ],
+  "planTemplates": {
+    "starter": {
+      "name": "Starter Plan",
+      "label": "Great for Small Projects",
+      "ideal": "Ideal for startups, MVPs, or short-term projects",
+      "hours": "20 Hours per week"
+    },
+    "professional": {
+      "name": "Professional Plan",
+      "label": "For Growing Teams",
+      "ideal": "Ideal for scaling products or ongoing development",
+      "hours": "40 Hours per week"
+    },
+    "enterprise": {
+      "name": "Enterprise Plan",
+      "label": "End-to-End Support",
+      "ideal": "Ideal for enterprise-scale or mission-critical projects",
+      "hours": null
+    }
+  },
+  "legacyPricesFoundInLlmsTxt": {
+    "_note": "public/llms.txt advertises 'starts from' prices that do NOT appear in lib/data.ts. Treat data.ts as authoritative; see gaps-and-conflicts.md.",
+    "Full-Stack Development": "from $3,599",
+    "Cloud & DevOps": "from $1,399",
+    "UI/UX & Product Design": "from $599"
+  }
+}

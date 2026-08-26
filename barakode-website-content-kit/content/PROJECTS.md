@@ -1,0 +1,174 @@
+# Projects
+
+Structured data: [`projects.json`](projects.json) · Images: `../images/projects/`
+
+Section eyebrow: **PROJECT** · Heading: *"View Our / Works"* · Card hover tag: *"Engineered for scale"*
+
+Three client projects, each with a full case-study page at `/projects/[slug]`.
+
+---
+
+## Gman Stitching Platform
+
+`/projects/gman-stitching-platform` · Development · 2023 — by Barakode
+
+| | |
+|---|---|
+| Card image | `images/projects/gman.png` |
+| Card theme | dark · dominant `#1a2330` |
+| Live URL | https://gman.barakodetechnologies.com/ |
+| Timeline | January 2023 – March 2023 |
+
+**Summary**
+
+A full-cycle tailoring and order-management platform for a stitching business, rebuilt from a failing legacy system into a fast, reliable product that handles orders, measurements, and customer records end to end.
+
+**Stack (card)** — Node.js, React, Prisma, Docker, MySQL
+
+**Outcome** — Replaced a struggling PHP/Laravel codebase and delivered roughly a 70% improvement in response time, with a maintainable architecture the team can build on.
+
+**Client**
+
+Gman is a growing tailoring business managing customer measurements, fabric inventory, order tracking, and financial operations across multiple locations.
+
+**Category**
+
+Full-stack business management platform combining order management, customer profiles, accounting module, and Docker-based VPS deployment.
+
+**Full stack** — Node.js · Express.js · React.js · Prisma ORM · Docker · MySQL · Ant Design · Redux · JWT
+
+### Project overview
+
+Gman is a full-stack tailoring management platform built to replace a failing legacy system. The client's existing PHP/Laravel and Vue.js application was experiencing severe performance issues and had become impossible to maintain. Barakode delivered a complete technology modernization — rebuilding the entire stack with Node.js, React.js, and Docker deployment on VPS, resulting in a 70% improvement in application response time.
+
+The primary purpose of Gman was to eliminate the operational bottlenecks caused by an outdated, rigid system. The client needed a platform that could independently manage customers, orders, inventory, billing, and accounting — without requiring constant developer intervention for every business change. Barakode architected a modular, scalable solution that gave the business full control over its own data and workflows.
+
+Gman operates within the Tailoring and Fashion Retail industry, providing a comprehensive business management solution for growing stitching businesses managing multiple customers, orders, staff, and financial operations simultaneously.
+
+### Barakode's role
+
+Barakode led the complete end-to-end development of the Gman platform — from initial system analysis and architecture planning through to deployment and client handover. Our team handled every layer of the stack, replacing a broken legacy system with a modern, scalable, and maintainable application that the client could independently operate and grow.
+
+We conducted a thorough analysis of the existing PHP/Laravel system to identify all pain points, performance bottlenecks, and missing functionality. Working closely with the client, we mapped every business process — customer profiles, order workflows, inventory tracking, and financial reporting — into a clear technical specification before writing a single line of code.
+
+The frontend was redesigned from scratch using React.js and the Ant Design framework, delivering a professional and consistent interface across all modules. Every screen was built mobile-first with responsive layouts, interactive reporting dashboards, and intuitive navigation — ensuring staff at every level could use the system without training overhead.
+
+The backend was rebuilt using Node.js and Express.js with a RESTful API architecture, Prisma ORM for type-safe database queries, and JWT authentication for secure role-based access control. The database was completely restructured with a normalized schema, referential integrity, and dynamic configuration capabilities. Docker containerization was implemented for consistent deployment across all environments.
+
+Throughout the project, Barakode maintained continuous communication with the client — providing weekly progress updates, live staging previews, and hands-on walkthroughs of each completed module. Feedback was incorporated through structured sprint reviews, ensuring the final product aligned precisely with the client's operational needs and business goals.
+
+Gman Stitching Platform is fully deployed and live on the client's VPS infrastructure. The system is actively used across customer management, order processing, inventory, billing, and accounting operations. Post-launch performance metrics show a 70% reduction in response times, and the client now independently manages all business configurations without developer assistance. Barakode continues to provide ongoing support and feature enhancements as the business scales.
+
+**Detail image** — `images/projects/gman-detail.webp`
+
+> Gman manufacturing summary dashboard — order, inventory, and performance analytics
+
+---
+
+## Beyut Libya — Real Estate Platform
+
+`/projects/beyut-libya-real-estate-platform` · Development · 2025 — by Barakode
+
+| | |
+|---|---|
+| Card image | `images/projects/beyut-libya.jpg` |
+| Card theme | light · dominant `#F0EDE8` |
+| Live URL | https://www.beyutlibya.com/en |
+| Timeline | October 2024 – January 2025 |
+
+**Summary**
+
+A real-estate listing and management platform for the Libyan market — property search and filtering, rich listings, and tooling for agents to publish and manage inventory.
+
+**Client**
+
+Beyut Libya is a premier real estate platform connecting buyers, sellers, and agents across Libya with verified property listings and advanced search tools.
+
+**Category**
+
+Bilingual real estate marketplace with advanced property search, verified listings, secure authentication, and nationwide coverage across 15+ Libyan cities.
+
+**Full stack** — Next.js · Node.js · React.js · MySQL · REST API · JWT Authentication · i18n Localization · Vercel
+
+### Project overview
+
+Beyut Libya is a bilingual real estate platform built for the Libyan property market, serving buyers, sellers, and agents across 15+ cities nationwide. The platform supports Arabic and English, features advanced property search with live filters, verified listings, and a secure user authentication system. Built to handle 1,200+ active property listings with 500+ satisfied clients since launch.
+
+The primary purpose of Beyut Libya was to modernize property discovery in Libya — a market previously reliant on informal networks and unverified listings. Barakode built a trusted, structured platform where buyers can search verified properties instantly, sellers can list with confidence, and agents can manage their portfolios professionally. The platform directly addresses the lack of a reliable, digital-first real estate solution in the Libyan market.
+
+Beyut Libya operates within the Real Estate industry, serving the Libyan property market with a nationwide platform covering residential and commercial listings across 15+ cities including Tripoli.
+
+### Barakode's role
+
+Barakode designed and developed the complete Beyut Libya platform from concept to deployment — handling architecture, frontend, backend, bilingual localization, and ongoing support. Our team built a production-ready real estate marketplace capable of serving thousands of users across Libya with verified listings and real-time search.
+
+We analyzed the Libyan real estate market to understand how buyers and sellers currently interact, identifying key pain points around trust, property verification, and search accessibility. Requirements were mapped into a clear product specification covering bilingual support, advanced search filters, property types, location-based browsing, and secure user accounts.
+
+The interface was designed to serve both Arabic and English users seamlessly — with full RTL support for Arabic and LTR for English. The design prioritized clarity, fast property discovery, and mobile responsiveness across all screen sizes. Property cards, search filters, and listing pages were all optimized for conversion and ease of use.
+
+The platform was built with a modern frontend framework paired with a robust REST API backend and MySQL database. JWT authentication handles secure user sessions for buyers, sellers, and agents. The property search engine supports live filtering by type, location, and price range. i18n localization was implemented throughout to support seamless language switching.
+
+Barakode worked closely with the Beyut Libya team throughout development — conducting regular reviews of search functionality, listing workflows, and user account features. Feedback from early users in Tripoli was incorporated into iterative improvements before the full nationwide launch.
+
+Beyut Libya is fully live and actively serving the Libyan real estate market at beyutlibya.com. The platform currently hosts 1,200+ verified property listings across 15+ cities with 500+ registered clients. The platform operates 24/7 with full support available and continues to grow its listings database and user base across Libya.
+
+**Gallery**
+
+- `images/projects/beyut-admin-categories.jpg` — Beyut Libya admin panel — property categories management dashboard *(caption: Admin dashboard — category & listing management)*
+- `images/projects/beyut-admin-profile.jpg` — Beyut Libya admin panel — user profile and verification *(caption: User profile — verification & listing limits)*
+
+---
+
+## OpenInterview — Video Interview Platform
+
+`/projects/openinterview-video-platform` · Development · 2025 — by Barakode
+
+| | |
+|---|---|
+| Card image | `images/projects/openinterview.jpg` |
+| Card theme | dark · dominant `#2a2a2a` |
+| Live URL | https://openinterview.me/home.html |
+| Timeline | August 2024 – November 2024 |
+
+**Summary**
+
+A video-interview platform that lets hiring teams record, review, and score candidate interviews asynchronously, streamlining screening for distributed teams.
+
+**Client**
+
+OpenInterview is a US-based HR technology startup helping job seekers stand out from application piles by sharing professional video interview profiles directly with recruiters.
+
+**Category**
+
+Full-stack SaaS platform featuring AI resume processing, video upload infrastructure, shareable candidate profiles, and Stripe-powered subscription billing.
+
+**Full stack** — React.js · Node.js · REST API · Cloud Storage · JWT Authentication · AI Resume Processing · Video Streaming · Stripe Payments
+
+### Project overview
+
+OpenInterview is a modern video interview platform that allows job seekers to create and share professional video profiles with recruiters in minutes. By uploading a resume, candidates instantly generate a recruiter-ready profile — complete with video introduction, availability, and a shareable link. The platform serves thousands of job seekers worldwide, helping them stand out beyond a traditional resume and land interviews faster.
+
+The primary purpose of OpenInterview was to solve one of the biggest problems in modern hiring — candidates getting lost in application piles. Barakode built a platform that gives job seekers a powerful first impression tool: a single professional link containing their video introduction, resume, and availability that can be shared directly with recruiters via email or DM. The goal was to eliminate back-and-forth communication and replace it with one clean, shareable profile.
+
+OpenInterview operates within the HR Technology and Recruitment industry, serving job seekers, recruiters, and hiring managers globally. The platform targets professionals across all industries — from software engineers and designers to sales executives and customer service professionals.
+
+### Barakode's role
+
+Barakode engineered the complete OpenInterview platform — from resume processing and video upload infrastructure to the shareable profile system and recruiter-facing interface. Our team built a production-ready SaaS product with a freemium pricing model, secure cloud storage, and AI-powered resume parsing that generates candidate profiles automatically in seconds.
+
+We worked closely with the OpenInterview team to map the full candidate and recruiter journey — from resume upload through profile creation to final share. Key requirements included instant resume processing, video upload and playback, clean shareable profile URLs, calendar-based availability display, and a frictionless onboarding flow that required zero technical setup from the user.
+
+The interface was designed around simplicity and speed — a job seeker should be able to create and share their profile in under 3 minutes. The design features a clean, modern aesthetic with drag-and-drop resume upload, step-by-step profile building, and a professional shareable profile page optimized for recruiter viewing on any device. The Wall of Love testimonials section and pricing page were also designed to drive conversion.
+
+The backend was built to handle secure resume uploads to cloud storage, AI-powered resume parsing to auto-generate profile data, and video file processing for smooth playback. JWT authentication manages secure user sessions across the free and paid tiers. Stripe integration handles subscription payments for premium plan users. The shareable profile system generates unique URLs like openinterview.me/username for every candidate.
+
+Barakode collaborated closely with the OpenInterview founders throughout the build — conducting weekly reviews of core user flows, testing the resume upload and video processing pipeline with real users, and iterating on the profile sharing experience based on recruiter feedback. The AI transparency page and legal documentation were also developed as part of the full product delivery.
+
+OpenInterview is fully live and actively serving job seekers worldwide at openinterview.me. The platform is in active use with thousands of candidates creating and sharing video profiles with recruiters globally. The free plan allows unlimited sharing, with premium features available via subscription. The platform continues to grow its user base across the USA and international markets with ongoing feature development and AI improvements.
+
+**Detail image** — `images/projects/openinterview-detail.jpg`
+
+> OpenInterview candidate landing page — upload a resume to generate a shareable video profile
+
+---
+

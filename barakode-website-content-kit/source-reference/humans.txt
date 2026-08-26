@@ -1,0 +1,22 @@
+/* humanstxt.org — the humans behind Barakode Technologies */
+
+/* TEAM */
+   Company: Barakode Technologies
+   Role: Full-cycle software development agency
+   Site: https://barakode.com
+   Contact: https://barakode.com/contact
+   Location: Pakistan — serving clients worldwide (incl. USA & Saudi Arabia)
+   Social: @barakodetechnologies (Instagram, LinkedIn, YouTube), @barakode1 (X)
+
+/* THANKS */
+   To our clients, partners, and the open-source community.
+
+/* SITE */
+   Last update: 2026-06-10
+   Language: English / Arabic (RTL)
+   Doctype: HTML5
+   Standards: HTML5, CSS3, JSON-LD (schema.org), Open Graph, llms.txt
+
+/* TECHNOLOGY */
+   Next.js 14 (App Router) · React 18 · TypeScript · Tailwind CSS
+   GSAP + ScrollTrigger · Framer Motion · Lenis · Three.js / Spline

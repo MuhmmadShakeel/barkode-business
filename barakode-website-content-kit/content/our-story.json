@@ -1,0 +1,19 @@
+{
+  "_note": "The 'Our Story' section on /about — a scroll-pinned stack of frosted-glass chapter cards. Sticky heading on the left, chapters pile on top of one another as the reader scrolls.",
+  "label": "WHO WE ARE",
+  "heading": { "white": "The Barakode", "gold": "Story", "align": "left" },
+  "intro": "From a bold idea in Pakistan to enterprise-grade products shipping worldwide — here's how Barakode became the partner teams trust to build, scale, and support what matters most.",
+  "chapters": [
+    { "id": "origin",  "number": "01", "title": "Born in Pakistan, Built for the World", "description": "Barakode began in 2025 with a single conviction: world-class software shouldn't be bound by geography. We set out to engineer enterprise-grade products that hold their own on any stage — shipped from Pakistan, built for the world." },
+    { "id": "mission", "number": "02", "title": "A Full-Cycle Mission", "description": "We exist to turn ambitious ideas into reliable, scalable products. From a startup's first users to an enterprise modernizing at scale, we engineer the digital foundations that businesses are built to grow on." },
+    { "id": "craft",   "number": "03", "title": "Precision as a Default", "description": "Clean architecture, rigorous testing, and an obsession with the details are non-negotiable. We build it right the first time — because software engineered with precision is software that lasts." },
+    { "id": "reach",   "number": "04", "title": "Trusted Across Borders", "description": "From Pakistan to the USA and Saudi Arabia, our work crosses continents. We partner with founders and teams worldwide, delivering full-cycle web, mobile, AI, and cloud solutions end to end." },
+    { "id": "vision",  "number": "05", "title": "Engineering What's Next", "description": "We're building the agency we always wanted to hire — transparent, relentless, and invested in outcomes. As technology shifts, we stay at the frontier, so the partners who trust us always do too." }
+  ],
+  "styling": {
+    "card": "rounded-2xl, border white/12%, bg white/6%, backdrop-blur-2xl + saturate-150, shadow 0 18px 55px -12px rgba(0,0,0,.8)",
+    "sheen": "linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.02) 45%, rgba(200,146,42,0.05) 100%)",
+    "ambientGlow": "radial-gradient(circle, #C8922A 0%, transparent 70%) — 520px, opacity .14, blur 120px, top-right",
+    "warning": "The section must NOT have overflow-hidden — a clipped ancestor kills position:sticky and the cards stop stacking."
+  }
+}

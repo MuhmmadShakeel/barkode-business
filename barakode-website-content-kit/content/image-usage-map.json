@@ -1,0 +1,714 @@
+{
+  "images": [
+    {
+      "file": "images/about/about-1.jpg",
+      "publicPath": "/images/about/about-1.jpg",
+      "sizeKB": 359,
+      "usedFor": []
+    },
+    {
+      "file": "images/about/about-2.jpg",
+      "publicPath": "/images/about/about-2.jpg",
+      "sizeKB": 200,
+      "usedFor": [
+        "About photo tile 2 (below Stats counters)"
+      ]
+    },
+    {
+      "file": "images/about/about-3.jpg",
+      "publicPath": "/images/about/about-3.jpg",
+      "sizeKB": 551,
+      "usedFor": [
+        "About photo tile 3 (below Stats counters)"
+      ]
+    },
+    {
+      "file": "images/about/Barakode_brochure_updated.jpg",
+      "publicPath": "/images/about/Barakode_brochure_updated.jpg",
+      "sizeKB": 169,
+      "usedFor": [
+        "About photo tile 1 (below Stats counters)"
+      ]
+    },
+    {
+      "file": "images/blog/roadmap-schema.jpg",
+      "publicPath": "/images/blog/roadmap-schema.jpg",
+      "sizeKB": 32,
+      "usedFor": [
+        "Blog body image — why-every-project-needs-a-technical-roadmap"
+      ]
+    },
+    {
+      "file": "images/blog/roadmap-tc-billboard.png",
+      "publicPath": "/images/blog/roadmap-tc-billboard.png",
+      "sizeKB": 656,
+      "usedFor": [
+        "Blog body image — why-every-project-needs-a-technical-roadmap"
+      ]
+    },
+    {
+      "file": "images/blog/technical-roadmap.jpeg",
+      "publicPath": "/images/blog/technical-roadmap.jpeg",
+      "sizeKB": 203,
+      "usedFor": [
+        "Blog cover — Why Every Project Needs a Technical Roadmap"
+      ]
+    },
+    {
+      "file": "images/case-studies/alexnet-cifar10-classification/fig-1.webp",
+      "publicPath": "/images/case-studies/alexnet-cifar10-classification/fig-1.webp",
+      "sizeKB": 29,
+      "usedFor": [
+        "Case study card cover (figure) — alexnet-cifar10-classification",
+        "Case study figure 1 — alexnet-cifar10-classification: Confusion matrix — CIFAR-10 classification with AlexNet"
+      ]
+    },
+    {
+      "file": "images/case-studies/blockchain-remote-code-execution/cover.webp",
+      "publicPath": "/images/case-studies/blockchain-remote-code-execution/cover.webp",
+      "sizeKB": 108,
+      "usedFor": [
+        "Case study card cover (design) — blockchain-remote-code-execution"
+      ]
+    },
+    {
+      "file": "images/case-studies/botnist-support-chatbot/cover.webp",
+      "publicPath": "/images/case-studies/botnist-support-chatbot/cover.webp",
+      "sizeKB": 121,
+      "usedFor": [
+        "Case study card cover (design) — botnist-support-chatbot"
+      ]
+    },
+    {
+      "file": "images/case-studies/bovw-image-classification/fig-1.webp",
+      "publicPath": "/images/case-studies/bovw-image-classification/fig-1.webp",
+      "sizeKB": 21,
+      "usedFor": [
+        "Case study card cover (figure) — bovw-image-classification",
+        "Case study figure 1 — bovw-image-classification: Bag-of-Visual-Words classification result (1)"
+      ]
+    },
+    {
+      "file": "images/case-studies/bovw-image-classification/fig-2.webp",
+      "publicPath": "/images/case-studies/bovw-image-classification/fig-2.webp",
+      "sizeKB": 32,
+      "usedFor": [
+        "Case study figure 2 — bovw-image-classification: Bag-of-Visual-Words classification result (2)"
+      ]
+    },
+    {
+      "file": "images/case-studies/brickbreaker-x86-assembly/cover.webp",
+      "publicPath": "/images/case-studies/brickbreaker-x86-assembly/cover.webp",
+      "sizeKB": 118,
+      "usedFor": [
+        "Case study card cover (design) — brickbreaker-x86-assembly"
+      ]
+    },
+    {
+      "file": "images/case-studies/glaucoma-detection-unet/fig-1.webp",
+      "publicPath": "/images/case-studies/glaucoma-detection-unet/fig-1.webp",
+      "sizeKB": 28,
+      "usedFor": [
+        "Case study card cover (figure) — glaucoma-detection-unet",
+        "Case study figure 1 — glaucoma-detection-unet: U-Net architecture for optic cup & disc segmentation"
+      ]
+    },
+    {
+      "file": "images/case-studies/glaucoma-detection-unet/fig-2.webp",
+      "publicPath": "/images/case-studies/glaucoma-detection-unet/fig-2.webp",
+      "sizeKB": 31,
+      "usedFor": [
+        "Case study figure 2 — glaucoma-detection-unet: Predicted vs original cup/disc masks"
+      ]
+    },
+    {
+      "file": "images/case-studies/glaucoma-detection-unet/fig-3.webp",
+      "publicPath": "/images/case-studies/glaucoma-detection-unet/fig-3.webp",
+      "sizeKB": 28,
+      "usedFor": [
+        "Case study figure 3 — glaucoma-detection-unet: Segmentation metrics with predicted masks"
+      ]
+    },
+    {
+      "file": "images/case-studies/glaucoma-detection-unet/fig-4.webp",
+      "publicPath": "/images/case-studies/glaucoma-detection-unet/fig-4.webp",
+      "sizeKB": 30,
+      "usedFor": [
+        "Case study figure 4 — glaucoma-detection-unet: Predicted vs original masks (sample 2)"
+      ]
+    },
+    {
+      "file": "images/case-studies/glaucoma-detection-unet/fig-5.webp",
+      "publicPath": "/images/case-studies/glaucoma-detection-unet/fig-5.webp",
+      "sizeKB": 27,
+      "usedFor": [
+        "Case study figure 5 — glaucoma-detection-unet: Predicted vs original masks (sample 3)"
+      ]
+    },
+    {
+      "file": "images/case-studies/glaucoma-detection-unet/fig-6.webp",
+      "publicPath": "/images/case-studies/glaucoma-detection-unet/fig-6.webp",
+      "sizeKB": 31,
+      "usedFor": [
+        "Case study figure 6 — glaucoma-detection-unet: Predicted vs original masks (sample 4)"
+      ]
+    },
+    {
+      "file": "images/case-studies/intel-image-classifier/cover.webp",
+      "publicPath": "/images/case-studies/intel-image-classifier/cover.webp",
+      "sizeKB": 292,
+      "usedFor": [
+        "Case study card cover (design) — intel-image-classifier"
+      ]
+    },
+    {
+      "file": "images/case-studies/mentorme-hiring-app/cover.webp",
+      "publicPath": "/images/case-studies/mentorme-hiring-app/cover.webp",
+      "sizeKB": 350,
+      "usedFor": [
+        "Case study card cover (design) — mentorme-hiring-app"
+      ]
+    },
+    {
+      "file": "images/case-studies/pdf-chatbot-llama2-rag/cover.webp",
+      "publicPath": "/images/case-studies/pdf-chatbot-llama2-rag/cover.webp",
+      "sizeKB": 271,
+      "usedFor": [
+        "Case study card cover (design) — pdf-chatbot-llama2-rag"
+      ]
+    },
+    {
+      "file": "images/case-studies/rushhour-cpp-game/cover.webp",
+      "publicPath": "/images/case-studies/rushhour-cpp-game/cover.webp",
+      "sizeKB": 227,
+      "usedFor": [
+        "Case study card cover (design) — rushhour-cpp-game"
+      ]
+    },
+    {
+      "file": "images/case-studies/satellite-image-matcher/cover.webp",
+      "publicPath": "/images/case-studies/satellite-image-matcher/cover.webp",
+      "sizeKB": 237,
+      "usedFor": [
+        "Case study card cover (design) — satellite-image-matcher"
+      ]
+    },
+    {
+      "file": "images/case-studies/signature-recognition-cnn/fig-1.webp",
+      "publicPath": "/images/case-studies/signature-recognition-cnn/fig-1.webp",
+      "sizeKB": 25,
+      "usedFor": [
+        "Case study card cover (figure) — signature-recognition-cnn",
+        "Case study figure 1 — signature-recognition-cnn: Confusion matrix — signature recognition (1)"
+      ]
+    },
+    {
+      "file": "images/case-studies/signature-recognition-cnn/fig-2.webp",
+      "publicPath": "/images/case-studies/signature-recognition-cnn/fig-2.webp",
+      "sizeKB": 24,
+      "usedFor": [
+        "Case study figure 2 — signature-recognition-cnn: Confusion matrix — signature recognition (2)"
+      ]
+    },
+    {
+      "file": "images/case-studies/sketch-to-photo-gan/cover.webp",
+      "publicPath": "/images/case-studies/sketch-to-photo-gan/cover.webp",
+      "sizeKB": 206,
+      "usedFor": [
+        "Case study card cover (design) — sketch-to-photo-gan"
+      ]
+    },
+    {
+      "file": "images/case-studies/vae-gan-signature-generation/fig-1.webp",
+      "publicPath": "/images/case-studies/vae-gan-signature-generation/fig-1.webp",
+      "sizeKB": 85,
+      "usedFor": [
+        "Case study card cover (figure) — vae-gan-signature-generation",
+        "Case study figure 1 — vae-gan-signature-generation: Generated signature samples (1)"
+      ]
+    },
+    {
+      "file": "images/case-studies/vae-gan-signature-generation/fig-2.webp",
+      "publicPath": "/images/case-studies/vae-gan-signature-generation/fig-2.webp",
+      "sizeKB": 27,
+      "usedFor": [
+        "Case study figure 2 — vae-gan-signature-generation: Generated signature samples (2)"
+      ]
+    },
+    {
+      "file": "images/case-studies/vae-gan-signature-generation/fig-3.webp",
+      "publicPath": "/images/case-studies/vae-gan-signature-generation/fig-3.webp",
+      "sizeKB": 28,
+      "usedFor": [
+        "Case study figure 3 — vae-gan-signature-generation: Generated signature samples (3)"
+      ]
+    },
+    {
+      "file": "images/case-studies/vae-gan-signature-generation/fig-4.webp",
+      "publicPath": "/images/case-studies/vae-gan-signature-generation/fig-4.webp",
+      "sizeKB": 21,
+      "usedFor": [
+        "Case study figure 4 — vae-gan-signature-generation: Generated signature samples (4)"
+      ]
+    },
+    {
+      "file": "images/case-studies/vae-gan-signature-generation/fig-5.webp",
+      "publicPath": "/images/case-studies/vae-gan-signature-generation/fig-5.webp",
+      "sizeKB": 26,
+      "usedFor": [
+        "Case study figure 5 — vae-gan-signature-generation: Generated signature samples (5)"
+      ]
+    },
+    {
+      "file": "images/case-studies/voc-segmentation-unet/cover.webp",
+      "publicPath": "/images/case-studies/voc-segmentation-unet/cover.webp",
+      "sizeKB": 216,
+      "usedFor": [
+        "Case study card cover (design) — voc-segmentation-unet"
+      ]
+    },
+    {
+      "file": "images/case-studies/webweave-semantic-crawler/cover.webp",
+      "publicPath": "/images/case-studies/webweave-semantic-crawler/cover.webp",
+      "sizeKB": 268,
+      "usedFor": [
+        "Case study card cover (design) — webweave-semantic-crawler"
+      ]
+    },
+    {
+      "file": "images/case-studies/word-completion-lstm/fig-1.webp",
+      "publicPath": "/images/case-studies/word-completion-lstm/fig-1.webp",
+      "sizeKB": 12,
+      "usedFor": [
+        "Case study card cover (figure) — word-completion-lstm",
+        "Case study figure 1 — word-completion-lstm: Word completion interface (1)"
+      ]
+    },
+    {
+      "file": "images/case-studies/word-completion-lstm/fig-2.webp",
+      "publicPath": "/images/case-studies/word-completion-lstm/fig-2.webp",
+      "sizeKB": 13,
+      "usedFor": [
+        "Case study figure 2 — word-completion-lstm: Word completion interface (2)"
+      ]
+    },
+    {
+      "file": "images/case-studies/word-completion-lstm/fig-3.webp",
+      "publicPath": "/images/case-studies/word-completion-lstm/fig-3.webp",
+      "sizeKB": 12,
+      "usedFor": [
+        "Case study figure 3 — word-completion-lstm: Word completion interface (3)"
+      ]
+    },
+    {
+      "file": "images/case-studies/workwise-freelancing-app/cover.webp",
+      "publicPath": "/images/case-studies/workwise-freelancing-app/cover.webp",
+      "sizeKB": 408,
+      "usedFor": [
+        "Case study card cover (design) — workwise-freelancing-app"
+      ]
+    },
+    {
+      "file": "images/contact/roadmap.jpg",
+      "publicPath": "/images/contact/roadmap.jpg",
+      "sizeKB": 107,
+      "usedFor": [
+        "CTAContact 3D visual"
+      ]
+    },
+    {
+      "file": "images/decor/circle-glow.png",
+      "publicPath": "/images/decor/circle-glow.png",
+      "sizeKB": 149,
+      "usedFor": []
+    },
+    {
+      "file": "images/decor/hero-bg.svg",
+      "publicPath": "/images/decor/hero-bg.svg",
+      "sizeKB": 221,
+      "usedFor": [
+        "Hero background pattern overlay"
+      ]
+    },
+    {
+      "file": "images/decor/line.svg",
+      "publicPath": "/images/decor/line.svg",
+      "sizeKB": 0,
+      "usedFor": []
+    },
+    {
+      "file": "images/decor/world-map.svg",
+      "publicPath": "/images/decor/world-map.svg",
+      "sizeKB": 1171,
+      "usedFor": []
+    },
+    {
+      "file": "images/logo/chevron-left.png",
+      "publicPath": "/images/logo/chevron-left.png",
+      "sizeKB": 149,
+      "usedFor": [
+        "LogoMarquee — left half of the split chevron animation"
+      ]
+    },
+    {
+      "file": "images/logo/chevron-right.png",
+      "publicPath": "/images/logo/chevron-right.png",
+      "sizeKB": 149,
+      "usedFor": [
+        "LogoMarquee — right half of the split chevron animation"
+      ]
+    },
+    {
+      "file": "images/logo/logo-3d.png",
+      "publicPath": "/images/logo/logo-3d.png",
+      "sizeKB": 149,
+      "usedFor": [
+        "Hero visual, CTAContact background, Team section background, 404 page"
+      ]
+    },
+    {
+      "file": "images/process/development.jpg",
+      "publicPath": "/images/process/development.jpg",
+      "sizeKB": 139,
+      "usedFor": [
+        "Process step — Development"
+      ]
+    },
+    {
+      "file": "images/process/discovery.jpg",
+      "publicPath": "/images/process/discovery.jpg",
+      "sizeKB": 126,
+      "usedFor": [
+        "Process step — Discovery"
+      ]
+    },
+    {
+      "file": "images/process/qa-delivery.jpg",
+      "publicPath": "/images/process/qa-delivery.jpg",
+      "sizeKB": 144,
+      "usedFor": [
+        "Process step — QA & Delivery"
+      ]
+    },
+    {
+      "file": "images/process/support-growth.jpg",
+      "publicPath": "/images/process/support-growth.jpg",
+      "sizeKB": 152,
+      "usedFor": [
+        "Process step — Support & Growth"
+      ]
+    },
+    {
+      "file": "images/projects/beyut-admin-categories.jpg",
+      "publicPath": "/images/projects/beyut-admin-categories.jpg",
+      "sizeKB": 148,
+      "usedFor": [
+        "Project gallery 1 — beyut-libya-real-estate-platform"
+      ]
+    },
+    {
+      "file": "images/projects/beyut-admin-profile.jpg",
+      "publicPath": "/images/projects/beyut-admin-profile.jpg",
+      "sizeKB": 102,
+      "usedFor": [
+        "Project gallery 2 — beyut-libya-real-estate-platform"
+      ]
+    },
+    {
+      "file": "images/projects/beyut-libya.jpg",
+      "publicPath": "/images/projects/beyut-libya.jpg",
+      "sizeKB": 491,
+      "usedFor": [
+        "Project card — Beyut Libya — Real Estate Platform"
+      ]
+    },
+    {
+      "file": "images/projects/gman-detail.webp",
+      "publicPath": "/images/projects/gman-detail.webp",
+      "sizeKB": 163,
+      "usedFor": [
+        "Project detail hero — gman-stitching-platform"
+      ]
+    },
+    {
+      "file": "images/projects/gman.png",
+      "publicPath": "/images/projects/gman.png",
+      "sizeKB": 1475,
+      "usedFor": [
+        "Project card — Gman Stitching Platform"
+      ]
+    },
+    {
+      "file": "images/projects/openinterview-detail.jpg",
+      "publicPath": "/images/projects/openinterview-detail.jpg",
+      "sizeKB": 72,
+      "usedFor": [
+        "Project detail hero — openinterview-video-platform"
+      ]
+    },
+    {
+      "file": "images/projects/openinterview.jpg",
+      "publicPath": "/images/projects/openinterview.jpg",
+      "sizeKB": 1211,
+      "usedFor": [
+        "Project card — OpenInterview — Video Interview Platform"
+      ]
+    },
+    {
+      "file": "images/projects/originals/beyut-cover.jpg",
+      "publicPath": "/images/projects/originals/beyut-cover.jpg",
+      "sizeKB": 491,
+      "usedFor": []
+    },
+    {
+      "file": "images/projects/originals/gman-cover.png",
+      "publicPath": "/images/projects/originals/gman-cover.png",
+      "sizeKB": 1475,
+      "usedFor": []
+    },
+    {
+      "file": "images/projects/originals/gman-dashboard.webp",
+      "publicPath": "/images/projects/originals/gman-dashboard.webp",
+      "sizeKB": 163,
+      "usedFor": []
+    },
+    {
+      "file": "images/projects/originals/openinterview-cover.jpg",
+      "publicPath": "/images/projects/originals/openinterview-cover.jpg",
+      "sizeKB": 1211,
+      "usedFor": []
+    },
+    {
+      "file": "images/projects/originals/openinterview-landing.jpg",
+      "publicPath": "/images/projects/originals/openinterview-landing.jpg",
+      "sizeKB": 72,
+      "usedFor": []
+    },
+    {
+      "file": "images/stats/city-bg.jpeg",
+      "publicPath": "/images/stats/city-bg.jpeg",
+      "sizeKB": 1001,
+      "usedFor": [
+        "Stats section background photo"
+      ]
+    },
+    {
+      "file": "images/team/burhan.png",
+      "publicPath": "/images/team/burhan.png",
+      "sizeKB": 120,
+      "usedFor": [
+        "Team member portrait — Burhan Tariq (BD Manager)"
+      ]
+    },
+    {
+      "file": "images/team/humayon.png",
+      "publicPath": "/images/team/humayon.png",
+      "sizeKB": 162,
+      "usedFor": [
+        "Team member portrait — Humayon Abdullah (Full-Stack Developer)"
+      ]
+    },
+    {
+      "file": "images/team/safdar.png",
+      "publicPath": "/images/team/safdar.png",
+      "sizeKB": 331,
+      "usedFor": [
+        "Team member portrait — Safdar Iqbal (CEO Founder)"
+      ]
+    },
+    {
+      "file": "images/testimonials/adam-lewis.svg",
+      "publicPath": "/images/testimonials/adam-lewis.svg",
+      "sizeKB": 3039,
+      "usedFor": [
+        "Testimonial avatar — Adam Lewis"
+      ]
+    },
+    {
+      "file": "images/testimonials/adrian-chen.svg",
+      "publicPath": "/images/testimonials/adrian-chen.svg",
+      "sizeKB": 3471,
+      "usedFor": [
+        "Testimonial avatar — Adrian Chen"
+      ]
+    },
+    {
+      "file": "images/testimonials/james-thornton.svg",
+      "publicPath": "/images/testimonials/james-thornton.svg",
+      "sizeKB": 5314,
+      "usedFor": [
+        "Testimonial avatar — James Thornton"
+      ]
+    },
+    {
+      "file": "images/testimonials/marcus-webb.svg",
+      "publicPath": "/images/testimonials/marcus-webb.svg",
+      "sizeKB": 254,
+      "usedFor": [
+        "Testimonial avatar — Marcus Webb"
+      ]
+    },
+    {
+      "file": "images/testimonials/sarah-mitchell.svg",
+      "publicPath": "/images/testimonials/sarah-mitchell.svg",
+      "sizeKB": 417,
+      "usedFor": [
+        "Testimonial avatar — Sarah Mitchell"
+      ]
+    }
+  ],
+  "pdfs": [
+    {
+      "file": "assets-pdfs/alexnet-cifar10-classification.pdf",
+      "publicPath": "/case-studies/alexnet-cifar10-classification.pdf",
+      "sizeKB": 197,
+      "usedFor": [
+        "Downloadable full case-study report — alexnet-cifar10-classification"
+      ]
+    },
+    {
+      "file": "assets-pdfs/blockchain-remote-code-execution.pdf",
+      "publicPath": "/case-studies/blockchain-remote-code-execution.pdf",
+      "sizeKB": 2225,
+      "usedFor": [
+        "Downloadable full case-study report — blockchain-remote-code-execution"
+      ]
+    },
+    {
+      "file": "assets-pdfs/botnist-support-chatbot.pdf",
+      "publicPath": "/case-studies/botnist-support-chatbot.pdf",
+      "sizeKB": 325,
+      "usedFor": [
+        "Downloadable full case-study report — botnist-support-chatbot"
+      ]
+    },
+    {
+      "file": "assets-pdfs/bovw-image-classification.pdf",
+      "publicPath": "/case-studies/bovw-image-classification.pdf",
+      "sizeKB": 393,
+      "usedFor": [
+        "Downloadable full case-study report — bovw-image-classification"
+      ]
+    },
+    {
+      "file": "assets-pdfs/brickbreaker-x86-assembly.pdf",
+      "publicPath": "/case-studies/brickbreaker-x86-assembly.pdf",
+      "sizeKB": 430,
+      "usedFor": [
+        "Downloadable full case-study report — brickbreaker-x86-assembly"
+      ]
+    },
+    {
+      "file": "assets-pdfs/glaucoma-detection-unet.pdf",
+      "publicPath": "/case-studies/glaucoma-detection-unet.pdf",
+      "sizeKB": 514,
+      "usedFor": [
+        "Downloadable full case-study report — glaucoma-detection-unet"
+      ]
+    },
+    {
+      "file": "assets-pdfs/hallucination-detection-logistic-regression.pdf",
+      "publicPath": "/case-studies/hallucination-detection-logistic-regression.pdf",
+      "sizeKB": 45,
+      "usedFor": [
+        "Downloadable full case-study report — hallucination-detection-logistic-regression"
+      ]
+    },
+    {
+      "file": "assets-pdfs/intel-image-classifier.pdf",
+      "publicPath": "/case-studies/intel-image-classifier.pdf",
+      "sizeKB": 773,
+      "usedFor": [
+        "Downloadable full case-study report — intel-image-classifier"
+      ]
+    },
+    {
+      "file": "assets-pdfs/mentorme-hiring-app.pdf",
+      "publicPath": "/case-studies/mentorme-hiring-app.pdf",
+      "sizeKB": 1231,
+      "usedFor": [
+        "Downloadable full case-study report — mentorme-hiring-app"
+      ]
+    },
+    {
+      "file": "assets-pdfs/pdf-chatbot-llama2-rag.pdf",
+      "publicPath": "/case-studies/pdf-chatbot-llama2-rag.pdf",
+      "sizeKB": 961,
+      "usedFor": [
+        "Downloadable full case-study report — pdf-chatbot-llama2-rag"
+      ]
+    },
+    {
+      "file": "assets-pdfs/rushhour-cpp-game.pdf",
+      "publicPath": "/case-studies/rushhour-cpp-game.pdf",
+      "sizeKB": 780,
+      "usedFor": [
+        "Downloadable full case-study report — rushhour-cpp-game"
+      ]
+    },
+    {
+      "file": "assets-pdfs/satellite-image-matcher.pdf",
+      "publicPath": "/case-studies/satellite-image-matcher.pdf",
+      "sizeKB": 780,
+      "usedFor": [
+        "Downloadable full case-study report — satellite-image-matcher"
+      ]
+    },
+    {
+      "file": "assets-pdfs/signature-recognition-cnn.pdf",
+      "publicPath": "/case-studies/signature-recognition-cnn.pdf",
+      "sizeKB": 202,
+      "usedFor": [
+        "Downloadable full case-study report — signature-recognition-cnn"
+      ]
+    },
+    {
+      "file": "assets-pdfs/sketch-to-photo-gan.pdf",
+      "publicPath": "/case-studies/sketch-to-photo-gan.pdf",
+      "sizeKB": 711,
+      "usedFor": [
+        "Downloadable full case-study report — sketch-to-photo-gan"
+      ]
+    },
+    {
+      "file": "assets-pdfs/vae-gan-signature-generation.pdf",
+      "publicPath": "/case-studies/vae-gan-signature-generation.pdf",
+      "sizeKB": 358,
+      "usedFor": [
+        "Downloadable full case-study report — vae-gan-signature-generation"
+      ]
+    },
+    {
+      "file": "assets-pdfs/voc-segmentation-unet.pdf",
+      "publicPath": "/case-studies/voc-segmentation-unet.pdf",
+      "sizeKB": 735,
+      "usedFor": [
+        "Downloadable full case-study report — voc-segmentation-unet"
+      ]
+    },
+    {
+      "file": "assets-pdfs/webweave-semantic-crawler.pdf",
+      "publicPath": "/case-studies/webweave-semantic-crawler.pdf",
+      "sizeKB": 926,
+      "usedFor": [
+        "Downloadable full case-study report — webweave-semantic-crawler"
+      ]
+    },
+    {
+      "file": "assets-pdfs/word-completion-lstm.pdf",
+      "publicPath": "/case-studies/word-completion-lstm.pdf",
+      "sizeKB": 207,
+      "usedFor": [
+        "Downloadable full case-study report — word-completion-lstm"
+      ]
+    },
+    {
+      "file": "assets-pdfs/workwise-freelancing-app.pdf",
+      "publicPath": "/case-studies/workwise-freelancing-app.pdf",
+      "sizeKB": 1383,
+      "usedFor": [
+        "Downloadable full case-study report — workwise-freelancing-app"
+      ]
+    }
+  ]
+}

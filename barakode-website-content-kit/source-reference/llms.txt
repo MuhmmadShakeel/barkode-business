@@ -1,0 +1,67 @@
+# Barakode Technologies
+
+> Barakode Technologies is a full-cycle software development agency engineering web, mobile, AI, and cloud products for startups and enterprises worldwide. Engineering Solutions. Delivering Results.
+
+## About
+
+Barakode Technologies (also called "Barakode") is a software development agency based in Pakistan, serving clients worldwide. The company offers full-stack development, cloud and DevOps, UI/UX design, and staff augmentation services.
+
+## Core services
+
+- **Full-Stack Development** — React, Next.js, Node.js, Express, REST APIs, enterprise applications. Starts from $3,599.
+- **Cloud & DevOps** — AWS, GCP, Azure, CI/CD pipelines, infrastructure as code. Starts from $1,399.
+- **UI/UX & Product Design** — research-driven design, Figma prototyping, design systems. Starts from $599.
+- **Mobile App Development** — React Native, Flutter, iOS, Android, cross-platform apps.
+- **AI / Machine Learning** — LLM integration, computer vision, recommendation engines.
+
+## Pricing plans
+
+- **Standard Plan** — $500 per project. 4-6 week delivery. Clear scope, focused requirements.
+- **Premium Plan** — $1,000 per project. 4-12 week delivery. Full-cycle development with dedicated project manager.
+
+## Key facts
+
+- 98+ happy clients served
+- 20M+ lines of production code shipped
+- 98% on-time delivery rate
+- Awards: Clutch Top Software Development Company 2024, GoodFirms Best Web & Mobile App Development Agency 2024, Awwwards Site of the Day, Deloitte Technology Fast 500, Forbes Top 10 Emerging Software Agencies USA 2023
+
+## Pages
+
+- /              — Homepage
+- /services      — Service offerings and pricing
+- /pricing       — Pricing plans (Standard and Premium)
+- /projects      — Case studies and recent work
+- /about         — Team, story, and company values
+- /contact       — Contact form
+- /blogs         — Engineering insights and articles
+- /privacy-policy — Privacy policy
+
+## Featured projects
+
+- **Gman Stitching Platform** (2023) — Full-stack tailoring management platform built with Node.js, React, Prisma, Docker, MySQL. Replaced a failing PHP/Laravel legacy system, achieving a 70% improvement in response time.
+- **Beyut Libya — Real Estate Platform** (2025) — Real estate listing and management platform.
+- **OpenInterview — Video Interview Platform** (2025) — Video interviewing platform for hiring teams.
+
+## Featured article
+
+- **Why Every Project Needs a Technical Roadmap** — On using architecture decisions, technology choices, and delivery milestones to coordinate multi-stakeholder software projects.
+
+## Contact
+
+Send a project brief through the contact form at /contact. Barakode responds within 24 hours with a clear plan, honest timeline, and competitive quote.
+
+- WhatsApp: +92 332 2060667
+- Instagram: https://www.instagram.com/barakodetechnologies
+- LinkedIn: https://www.linkedin.com/company/barakode-technologies/
+- YouTube: https://youtube.com/@barakodetechnologies
+- Facebook: https://www.facebook.com/profile.php?id=61581226034652
+- X (Twitter): https://x.com/barakode1
+
+## Detailed profile
+
+For the full company profile — detailed services, FAQs, pricing, selected work, and citation guidance — see /llms-full.txt.
+
+## Crawler policy
+
+This site explicitly welcomes AI / answer-engine crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended, CCBot, and others). See /robots.txt for the full list.

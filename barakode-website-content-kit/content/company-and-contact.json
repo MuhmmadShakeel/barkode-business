@@ -1,0 +1,79 @@
+{
+  "identity": {
+    "name": "Barakode Technologies",
+    "alternateName": "Barakode",
+    "legalName": "Barakode Technologies",
+    "tagline": "Software Development Agency",
+    "slogan": "Engineering Solutions. Delivering Results.",
+    "description": "Barakode Technologies is a full-cycle software development agency engineering web, mobile, AI, and cloud products for startups and enterprises worldwide.",
+    "shortDescription": "A full-cycle software development agency engineering web, mobile, AI, and cloud products for startups and enterprises worldwide.",
+    "foundingDate": "2023",
+    "foundingNarrative": "Barakode began in 2025 with a single conviction: world-class software shouldn't be bound by geography. (NOTE: schema.org foundingDate says 2023 while the Our Story copy says 2025 — see gaps-and-conflicts.md.)",
+    "siteUrl": "https://barakode.com",
+    "category": "technology",
+    "languages": ["English", "Arabic (RTL)"],
+    "availabilityPill": "Available for new projects"
+  },
+  "contact": {
+    "primaryChannel": "Contact form at /contact",
+    "responsePromise": "We respond within 24 hours with a clear plan, honest timeline, and a competitive quote.",
+    "whatsapp": {
+      "displayNumber": "+92 332 2060667",
+      "e164": "+923322060667",
+      "link": "https://api.whatsapp.com/send/?phone=923322060667&text&type=phone_number&app_absent=0"
+    },
+    "telephoneSchema": "+92-332-2060667",
+    "email": null,
+    "emailNote": "No public email address exists anywhere in the source. Add one before rebuilding if you want an email CTA.",
+    "address": {
+      "streetAddress": null,
+      "city": null,
+      "country": "Pakistan",
+      "countryCode": "PK",
+      "note": "Only the country is recorded in the Organization schema. No street address or city anywhere in the source."
+    },
+    "location": "Pakistan — serving clients worldwide (incl. USA & Saudi Arabia)",
+    "areaServed": "Worldwide",
+    "availableLanguages": ["English", "Arabic"],
+    "securityContact": ["https://barakode.com/contact", "https://api.whatsapp.com/send/?phone=923322060667"],
+    "formFields": [
+      { "name": "name",    "label": "Your Name",             "type": "text",     "placeholder": "Your full name",         "required": true,  "error": "Please add your name." },
+      { "name": "email",   "label": "Enter the Email",       "type": "email",    "placeholder": "name@company.com",       "required": true,  "error": "Please add your email. / Please use a valid email address." },
+      { "name": "phone",   "label": "Your Phone",            "type": "tel",      "placeholder": "Enter your phone number","required": false },
+      { "name": "service", "label": "I'm interested in...",  "type": "select",   "placeholder": "Select",                 "required": false },
+      { "name": "message", "label": "More About The Project","type": "textarea", "placeholder": "Type Here...",           "required": false, "rows": 6 }
+    ],
+    "formSubmitLabel": "Submit",
+    "formSubmittingLabel": "Sending...",
+    "interestOptions": [
+      "Web Development",
+      "Mobile App Development",
+      "AI & Machine Learning",
+      "Cloud & DevOps",
+      "Enterprise Software",
+      "UI/UX Design",
+      "Staff Augmentation",
+      "Other"
+    ]
+  },
+  "socialLinks": [
+    { "label": "Instagram", "icon": "instagram", "handle": "@barakodetechnologies", "href": "https://www.instagram.com/barakodetechnologies?igsh=MWkya3dqZTJjYmhkdg==", "cleanHref": "https://www.instagram.com/barakodetechnologies" },
+    { "label": "LinkedIn",  "icon": "linkedin",  "handle": "barakode-technologies", "href": "https://www.linkedin.com/company/barakode-technologies/", "cleanHref": "https://www.linkedin.com/company/barakode-technologies/" },
+    { "label": "YouTube",   "icon": "youtube",   "handle": "@barakodetechnologies", "href": "https://youtube.com/@barakodetechnologies?si=rdoUX3csL5xMWWXH", "cleanHref": "https://youtube.com/@barakodetechnologies" },
+    { "label": "Facebook",  "icon": "facebook",  "handle": "profile id 61581226034652", "href": "https://www.facebook.com/profile.php?id=61581226034652", "cleanHref": "https://www.facebook.com/profile.php?id=61581226034652" },
+    { "label": "X",         "icon": "x",         "handle": "@barakode1",              "href": "https://x.com/barakode1?s=20", "cleanHref": "https://x.com/barakode1" },
+    { "label": "WhatsApp",  "icon": "whatsapp",  "handle": "+92 332 2060667",         "href": "https://api.whatsapp.com/send/?phone=923322060667&text&type=phone_number&app_absent=0", "cleanHref": "https://wa.me/923322060667" }
+  ],
+  "knowsAbout": [
+    "Web Development", "Mobile App Development", "Cloud Computing", "DevOps",
+    "Artificial Intelligence", "Machine Learning", "UI/UX Design",
+    "Enterprise Software", "Staff Augmentation"
+  ],
+  "seoKeywords": [
+    "software development agency", "web development", "mobile app development",
+    "Next.js development", "React development", "cloud and DevOps", "UI/UX design",
+    "AI integration", "enterprise software", "staff augmentation", "Barakode",
+    "Barakode Technologies"
+  ],
+  "copyright": "© 2026 Barakode Technologies. All rights reserved."
+}

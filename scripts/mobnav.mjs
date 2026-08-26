@@ -1,0 +1,10 @@
+import { chromium } from "playwright";
+const out = process.argv[2];
+const b = await chromium.launch();
+const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
+const p = await ctx.newPage();
+await p.goto("http://localhost:3000/", { waitUntil: "networkidle" });
+await p.click('button[aria-controls="mobile-nav"]');
+await p.waitForTimeout(600);
+await p.screenshot({ path: `${out}/mobile-nav-closed-state.png` });
+await b.close();

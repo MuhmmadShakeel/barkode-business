@@ -1,0 +1,622 @@
+{
+  "_note": "SERVICES[] drives the /services listing and each /services/[slug] detail page. `plans` is materialised here from the servicePlans() generator in lib/data.ts so you get the exact per-service Starter/Professional/Enterprise tiers without re-implementing the function. SERVICE_DETAILS is keyed by a DIFFERENT slug set than SERVICES — see gaps-and-conflicts.md.",
+  "sectionCopy": {
+    "homeHeading": {
+      "white": "What",
+      "gold": "we do",
+      "align": "right",
+      "limit": 3
+    },
+    "servicesPageHeading": {
+      "white": "The roles",
+      "gold": "we offer",
+      "align": "right"
+    },
+    "servicesPageHero": {
+      "sectionLabel": "OUR SERVICES",
+      "whiteText": "What",
+      "goldText": "We Build",
+      "trailingText": "Best",
+      "body": "From web and mobile to AI/ML, cloud, design and QA — explore each service, the stack we use, and how we engage."
+    },
+    "watermark": "Engineered for Results"
+  },
+  "services": [
+    {
+      "slug": "web-development",
+      "n": "01",
+      "title": "Web Development",
+      "tagline": "Build modern, responsive websites and web applications that captivate audiences and drive results.",
+      "tags": "React, Next.js, Node.js, TypeScript, AWS",
+      "overview": "Our web development services encompass the full spectrum of digital solutions, from sleek landing pages to complex web applications. We combine cutting-edge technologies with user-centered design principles to create websites that not only look stunning but also perform exceptionally. Our team specializes in responsive design, e-commerce solutions, content management systems, and progressive web apps that deliver seamless experiences across all devices and browsers.",
+      "technologies": {
+        "languages": [
+          "JavaScript",
+          "TypeScript",
+          "HTML5",
+          "CSS3",
+          "Python",
+          "PHP"
+        ],
+        "frameworks": [
+          "React",
+          "Next.js",
+          "Vue.js",
+          "Angular",
+          "Node.js",
+          "Express"
+        ],
+        "platforms": [
+          "AWS",
+          "Vercel",
+          "Netlify",
+          "Firebase",
+          "Docker",
+          "GitHub Actions"
+        ]
+      },
+      "icon": "Code2",
+      "domain": "Development",
+      "hourly": "$25",
+      "starterMonthly": "$2,000",
+      "proMonthly": "$4,000",
+      "plans": [
+        {
+          "name": "Starter Plan",
+          "label": "Great for Small Projects",
+          "ideal": "Ideal for startups, MVPs, or short-term projects",
+          "hours": "20 Hours per week",
+          "features": [
+            "Development & basic maintenance",
+            "Standard communication (email & chat)",
+            "Basic code review & documentation"
+          ],
+          "hourly": "$25",
+          "monthly": "$2,000"
+        },
+        {
+          "name": "Professional Plan",
+          "label": "For Growing Teams",
+          "ideal": "Ideal for scaling products or ongoing development",
+          "hours": "40 Hours per week",
+          "features": [
+            "Advanced development & architecture planning",
+            "Priority communication channels (Slack, Zoom)",
+            "Full code review, testing & documentation",
+            "Dedicated project manager (optional)"
+          ],
+          "hourly": "$25",
+          "monthly": "$4,000"
+        },
+        {
+          "name": "Enterprise Plan",
+          "label": "End-to-End Support",
+          "ideal": "Ideal for enterprise-scale or mission-critical projects",
+          "features": [
+            "Dedicated developer / team",
+            "Unlimited consultation hours",
+            "Custom architecture & infrastructure support",
+            "Continuous integration / deployment setup",
+            "Premium support & 24/7 availability",
+            "Regular performance reviews and optimizations"
+          ],
+          "hourly": "Custom",
+          "monthly": "Quote"
+        }
+      ]
+    },
+    {
+      "slug": "mobile-development",
+      "n": "02",
+      "title": "Mobile Development",
+      "tagline": "Create powerful, intuitive mobile applications that engage users and drive business growth.",
+      "tags": "React Native, Flutter, Swift, Kotlin",
+      "overview": "Our mobile development services deliver high-performance, cross-platform applications that provide seamless user experiences across all devices. We specialize in building native and hybrid mobile solutions for iOS and Android platforms, focusing on intuitive design, robust functionality, and scalable architecture. From concept to deployment, we ensure your mobile application stands out in the competitive app marketplace while meeting your business objectives.",
+      "technologies": {
+        "languages": [
+          "Swift",
+          "Kotlin",
+          "Java",
+          "Objective-C",
+          "JavaScript",
+          "TypeScript"
+        ],
+        "frameworks": [
+          "React Native",
+          "Flutter",
+          "Xamarin",
+          "Ionic",
+          "NativeScript",
+          "Expo"
+        ],
+        "platforms": [
+          "App Store",
+          "Google Play",
+          "Firebase",
+          "AWS Mobile",
+          "Docker",
+          "Fastlane"
+        ]
+      },
+      "icon": "Smartphone",
+      "domain": "Development",
+      "hourly": "$20",
+      "starterMonthly": "$1,600",
+      "proMonthly": "$3,200",
+      "plans": [
+        {
+          "name": "Starter Plan",
+          "label": "Great for Small Projects",
+          "ideal": "Ideal for startups, MVPs, or short-term projects",
+          "hours": "20 Hours per week",
+          "features": [
+            "Development & basic maintenance",
+            "Standard communication (email & chat)",
+            "Basic code review & documentation"
+          ],
+          "hourly": "$20",
+          "monthly": "$1,600"
+        },
+        {
+          "name": "Professional Plan",
+          "label": "For Growing Teams",
+          "ideal": "Ideal for scaling products or ongoing development",
+          "hours": "40 Hours per week",
+          "features": [
+            "Advanced development & architecture planning",
+            "Priority communication channels (Slack, Zoom)",
+            "Full code review, testing & documentation",
+            "Dedicated project manager (optional)"
+          ],
+          "hourly": "$20",
+          "monthly": "$3,200"
+        },
+        {
+          "name": "Enterprise Plan",
+          "label": "End-to-End Support",
+          "ideal": "Ideal for enterprise-scale or mission-critical projects",
+          "features": [
+            "Dedicated developer / team",
+            "Unlimited consultation hours",
+            "Custom architecture & infrastructure support",
+            "Continuous integration / deployment setup",
+            "Premium support & 24/7 availability",
+            "Regular performance reviews and optimizations"
+          ],
+          "hourly": "Custom",
+          "monthly": "Quote"
+        }
+      ]
+    },
+    {
+      "slug": "ui-ux-design",
+      "n": "03",
+      "title": "UI/UX Design",
+      "tagline": "Create intuitive, engaging interfaces that delight users and drive conversions.",
+      "tags": "Figma, Adobe XD, Design Systems, Prototyping",
+      "overview": "Our UI/UX design services focus on creating exceptional digital experiences that combine aesthetic appeal with functional excellence. We employ user-centered design principles to craft interfaces that are not only visually stunning but also intuitive and accessible. From wireframing and prototyping to high-fidelity designs and design systems, our team ensures every touchpoint reflects your brand identity while optimizing user engagement and satisfaction. We transform complex ideas into simple, elegant solutions that resonate with your target audience.",
+      "technologies": {
+        "languages": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "TypeScript",
+          "JSON",
+          "Markdown"
+        ],
+        "frameworks": [
+          "Figma",
+          "Sketch",
+          "Adobe XD",
+          "InVision",
+          "Zeplin",
+          "Framer"
+        ],
+        "platforms": [
+          "Dribbble",
+          "Behance",
+          "Abstract",
+          "Zeroheight",
+          "Storybook",
+          "Notion"
+        ]
+      },
+      "icon": "Palette",
+      "domain": "Design",
+      "hourly": "$15",
+      "starterMonthly": "$1,200",
+      "proMonthly": "$2,400",
+      "plans": [
+        {
+          "name": "Starter Plan",
+          "label": "Great for Small Projects",
+          "ideal": "Ideal for startups, MVPs, or short-term projects",
+          "hours": "20 Hours per week",
+          "features": [
+            "Design & basic prototyping",
+            "Standard communication (email & chat)",
+            "Basic design review & documentation"
+          ],
+          "hourly": "$15",
+          "monthly": "$1,200"
+        },
+        {
+          "name": "Professional Plan",
+          "label": "For Growing Teams",
+          "ideal": "Ideal for scaling products or ongoing development",
+          "hours": "40 Hours per week",
+          "features": [
+            "Advanced design & user research",
+            "Priority communication channels (Slack, Zoom)",
+            "Full design review, testing & documentation",
+            "Dedicated project manager (optional)"
+          ],
+          "hourly": "$15",
+          "monthly": "$2,400"
+        },
+        {
+          "name": "Enterprise Plan",
+          "label": "End-to-End Support",
+          "ideal": "Ideal for enterprise-scale or mission-critical projects",
+          "features": [
+            "Dedicated designer / team",
+            "Unlimited consultation hours",
+            "Custom architecture & infrastructure support",
+            "Continuous integration / deployment setup",
+            "Premium support & 24/7 availability",
+            "Regular performance reviews and optimizations"
+          ],
+          "hourly": "Custom",
+          "monthly": "Quote"
+        }
+      ]
+    },
+    {
+      "slug": "ai-ml-development",
+      "n": "04",
+      "title": "AI/ML Development",
+      "tagline": "Transform your business with intelligent solutions powered by artificial intelligence and machine learning.",
+      "tags": "Python, TensorFlow, PyTorch, NLP, Computer Vision",
+      "overview": "Our AI/ML development services help businesses harness the power of artificial intelligence to solve complex problems, automate processes, and gain valuable insights from data. We specialize in creating custom machine learning models, natural language processing systems, computer vision applications, and predictive analytics solutions that drive innovation and competitive advantage. From conceptualization to deployment, our team of experts ensures that your AI initiatives deliver measurable business value.",
+      "technologies": {
+        "languages": [
+          "Python",
+          "R",
+          "Julia",
+          "Scala",
+          "Java",
+          "C++"
+        ],
+        "frameworks": [
+          "TensorFlow",
+          "PyTorch",
+          "Scikit-learn",
+          "Keras",
+          "OpenCV",
+          "NLTK"
+        ],
+        "platforms": [
+          "Google AI Platform",
+          "AWS SageMaker",
+          "Azure ML",
+          "Hugging Face",
+          "Docker",
+          "Kubernetes"
+        ]
+      },
+      "icon": "BrainCircuit",
+      "domain": "Development",
+      "hourly": "$25",
+      "starterMonthly": "$2,000",
+      "proMonthly": "$4,000",
+      "plans": [
+        {
+          "name": "Starter Plan",
+          "label": "Great for Small Projects",
+          "ideal": "Ideal for startups, MVPs, or short-term projects",
+          "hours": "20 Hours per week",
+          "features": [
+            "Development & basic maintenance",
+            "Standard communication (email & chat)",
+            "Basic code review & documentation"
+          ],
+          "hourly": "$25",
+          "monthly": "$2,000"
+        },
+        {
+          "name": "Professional Plan",
+          "label": "For Growing Teams",
+          "ideal": "Ideal for scaling products or ongoing development",
+          "hours": "40 Hours per week",
+          "features": [
+            "Advanced development & architecture planning",
+            "Priority communication channels (Slack, Zoom)",
+            "Full code review, testing & documentation",
+            "Dedicated project manager (optional)"
+          ],
+          "hourly": "$25",
+          "monthly": "$4,000"
+        },
+        {
+          "name": "Enterprise Plan",
+          "label": "End-to-End Support",
+          "ideal": "Ideal for enterprise-scale or mission-critical projects",
+          "features": [
+            "Dedicated developer / team",
+            "Unlimited consultation hours",
+            "Custom architecture & infrastructure support",
+            "Continuous integration / deployment setup",
+            "Premium support & 24/7 availability",
+            "Regular performance reviews and optimizations"
+          ],
+          "hourly": "Custom",
+          "monthly": "Quote"
+        }
+      ]
+    },
+    {
+      "slug": "cloud-development",
+      "n": "05",
+      "title": "Cloud Development",
+      "tagline": "Scale your infrastructure with secure, reliable, and cost-effective cloud solutions.",
+      "tags": "AWS, Azure, Docker, Kubernetes, Terraform",
+      "overview": "Our cloud development services help businesses leverage the power of cloud computing to build scalable, secure, and cost-effective solutions. We specialize in cloud migration, infrastructure as code, serverless architectures, and cloud-native application development. Our team ensures seamless deployment, monitoring, and optimization of your cloud infrastructure across major platforms like AWS, Azure, and Google Cloud, enabling you to focus on innovation while we handle the complexity.",
+      "technologies": {
+        "languages": [
+          "Python",
+          "Go",
+          "Java",
+          "Node.js",
+          "Terraform",
+          "YAML"
+        ],
+        "frameworks": [
+          "Docker",
+          "Kubernetes",
+          "Serverless Framework",
+          "Terraform",
+          "Ansible",
+          "Pulumi"
+        ],
+        "platforms": [
+          "AWS",
+          "Azure",
+          "Google Cloud",
+          "Heroku",
+          "DigitalOcean",
+          "Cloudflare"
+        ]
+      },
+      "icon": "Cloud",
+      "domain": "Development",
+      "hourly": "$20",
+      "starterMonthly": "$1,600",
+      "proMonthly": "$3,200",
+      "plans": [
+        {
+          "name": "Starter Plan",
+          "label": "Great for Small Projects",
+          "ideal": "Ideal for startups, MVPs, or short-term projects",
+          "hours": "20 Hours per week",
+          "features": [
+            "Development & basic maintenance",
+            "Standard communication (email & chat)",
+            "Basic code review & documentation"
+          ],
+          "hourly": "$20",
+          "monthly": "$1,600"
+        },
+        {
+          "name": "Professional Plan",
+          "label": "For Growing Teams",
+          "ideal": "Ideal for scaling products or ongoing development",
+          "hours": "40 Hours per week",
+          "features": [
+            "Advanced development & architecture planning",
+            "Priority communication channels (Slack, Zoom)",
+            "Full code review, testing & documentation",
+            "Dedicated project manager (optional)"
+          ],
+          "hourly": "$20",
+          "monthly": "$3,200"
+        },
+        {
+          "name": "Enterprise Plan",
+          "label": "End-to-End Support",
+          "ideal": "Ideal for enterprise-scale or mission-critical projects",
+          "features": [
+            "Dedicated developer / team",
+            "Unlimited consultation hours",
+            "Custom architecture & infrastructure support",
+            "Continuous integration / deployment setup",
+            "Premium support & 24/7 availability",
+            "Regular performance reviews and optimizations"
+          ],
+          "hourly": "Custom",
+          "monthly": "Quote"
+        }
+      ]
+    },
+    {
+      "slug": "qa-testing",
+      "n": "06",
+      "title": "QA & Testing",
+      "tagline": "Ensure flawless performance and reliability with our comprehensive testing solutions.",
+      "tags": "Selenium, Cypress, Jest, Automation, Manual Testing",
+      "overview": "Our QA and testing services are designed to ensure your software meets the highest standards of quality, performance, and reliability. We provide end-to-end testing solutions including manual and automated testing, performance testing, security testing, and user acceptance testing. Our experienced QA engineers work closely with your development team to identify and resolve issues early in the development cycle, reducing costs and accelerating time-to-market. With a combination of industry best practices and cutting-edge tools, we help you deliver robust, bug-free applications that exceed user expectations.",
+      "technologies": {
+        "languages": [
+          "Python",
+          "Java",
+          "JavaScript",
+          "C#",
+          "Ruby",
+          "SQL"
+        ],
+        "frameworks": [
+          "Selenium",
+          "Cypress",
+          "Jest",
+          "TestCafe",
+          "Postman",
+          "Appium"
+        ],
+        "platforms": [
+          "JIRA",
+          "TestRail",
+          "BrowserStack",
+          "Sauce Labs",
+          "Docker",
+          "Jenkins"
+        ]
+      },
+      "icon": "ShieldCheck",
+      "domain": "Testing",
+      "hourly": "$15",
+      "starterMonthly": "$1,200",
+      "proMonthly": "$2,400",
+      "plans": [
+        {
+          "name": "Starter Plan",
+          "label": "Great for Small Projects",
+          "ideal": "Ideal for startups, MVPs, or short-term projects",
+          "hours": "20 Hours per week",
+          "features": [
+            "Manual testing & basic automation",
+            "Standard communication (email & chat)",
+            "Basic test review & documentation"
+          ],
+          "hourly": "$15",
+          "monthly": "$1,200"
+        },
+        {
+          "name": "Professional Plan",
+          "label": "For Growing Teams",
+          "ideal": "Ideal for scaling products or ongoing development",
+          "hours": "40 Hours per week",
+          "features": [
+            "Advanced testing & test automation",
+            "Priority communication channels (Slack, Zoom)",
+            "Full test review, testing & documentation",
+            "Dedicated project manager (optional)"
+          ],
+          "hourly": "$15",
+          "monthly": "$2,400"
+        },
+        {
+          "name": "Enterprise Plan",
+          "label": "End-to-End Support",
+          "ideal": "Ideal for enterprise-scale or mission-critical projects",
+          "features": [
+            "Dedicated QA engineer / team",
+            "Unlimited consultation hours",
+            "Custom architecture & infrastructure support",
+            "Continuous integration / deployment setup",
+            "Premium support & 24/7 availability",
+            "Regular performance reviews and optimizations"
+          ],
+          "hourly": "Custom",
+          "monthly": "Quote"
+        }
+      ]
+    }
+  ],
+  "serviceDetailsLongForm": {
+    "full-stack-development": {
+      "overview": [
+        "We build scalable, high-performance web applications powered by clean architecture, modern frameworks, and enterprise-grade engineering — from greenfield products to full legacy modernization.",
+        "Our full-stack teams own every layer of the delivery: the data model, the APIs, the frontend, and the deployment pipeline — shipping reviewable increments every sprint so you always see progress."
+      ],
+      "deliverables": [
+        "Responsive web apps in React.js / Next.js",
+        "Typed or RESTful API architecture",
+        "Database design, migration & integration",
+        "Authentication & role-based access control",
+        "CI/CD pipelines and cloud deployment",
+        "Full source code & IP transfer on delivery"
+      ],
+      "process": [
+        {
+          "title": "Discovery",
+          "description": "We map requirements and turn them into a clear technical specification before any code is written."
+        },
+        {
+          "title": "Architecture",
+          "description": "We lock the stack, define the data model and API contracts, and agree on milestones."
+        },
+        {
+          "title": "Development",
+          "description": "Sprint-based engineering with weekly demos and reviewable increments."
+        },
+        {
+          "title": "QA & Launch",
+          "description": "Automated and manual QA across browsers and devices, then a structured, low-risk launch."
+        }
+      ]
+    },
+    "cloud-devops": {
+      "overview": [
+        "We architect and manage your entire cloud infrastructure — from CI/CD pipelines to AWS environments — ensuring maximum uptime, bulletproof security, and seamless scalability across every layer of your stack.",
+        "Whether you're migrating off legacy servers or scaling an existing platform, we make your infrastructure reproducible, observable, and resilient."
+      ],
+      "deliverables": [
+        "Cloud architecture on AWS, GCP or Azure",
+        "CI/CD pipelines & automated releases",
+        "Infrastructure as Code (reproducible environments)",
+        "Monitoring, logging & alerting",
+        "Security hardening & access management",
+        "Legacy modernization & zero-downtime migration"
+      ],
+      "process": [
+        {
+          "title": "Infrastructure Audit",
+          "description": "We assess your current stack, costs, bottlenecks and risks."
+        },
+        {
+          "title": "Architecture Design",
+          "description": "We design a scalable, secure cloud topology mapped to your workloads."
+        },
+        {
+          "title": "Implementation",
+          "description": "We build pipelines and provision environments as code."
+        },
+        {
+          "title": "Monitoring & Handover",
+          "description": "Dashboards, alerts and documentation so your team can operate confidently."
+        }
+      ]
+    },
+    "ui-ux-product-design": {
+      "overview": [
+        "We define your product's experience — its flow, feel, and function — through research-driven design that turns first-time visitors into loyal users.",
+        "From the first wireframe to a complete design system, every screen is built mobile-first and optimized for clarity, speed, and conversion."
+      ],
+      "deliverables": [
+        "UX research, personas & user flows",
+        "Wireframes & interactive prototypes in Figma",
+        "High-fidelity UI design",
+        "Reusable design system & components",
+        "Mobile-first, responsive layouts",
+        "Clean developer handoff with specs"
+      ],
+      "process": [
+        {
+          "title": "Research",
+          "description": "We study your users, market and goals to ground the design in real needs."
+        },
+        {
+          "title": "Wireframing",
+          "description": "We shape flows and low-fidelity prototypes to validate structure early."
+        },
+        {
+          "title": "Visual Design",
+          "description": "We craft the high-fidelity UI and systemize it into reusable components."
+        },
+        {
+          "title": "Handoff",
+          "description": "We deliver developer-ready specs and iterate on feedback."
+        }
+      ]
+    }
+  }
+}

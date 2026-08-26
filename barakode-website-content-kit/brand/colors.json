@@ -1,0 +1,70 @@
+{
+  "brand": "Barakode Technologies",
+  "note": "The site ships TWO complete palettes driven by CSS variables. The <html> element carries data-theme=\"dark\" in app/layout.tsx, so DARK is what actually renders in production. LIGHT is defined on bare :root and is the documented alternate. Tailwind maps every semantic token to rgb(var(--c-*) / <alpha-value>) so opacity modifiers keep working.",
+  "primary": {
+    "gold": "#C8922A",
+    "goldLight": "#D4A843",
+    "goldDeep": "#A87820",
+    "bronzeCore": "#7A5320",
+    "glowWarm": "#8B6914",
+    "glowAmberStrong": "#8B5E1A"
+  },
+  "themes": {
+    "dark": {
+      "status": "ACTIVE — rendered in production (html[data-theme=\"dark\"])",
+      "tokens": {
+        "canvas":   { "hex": "#0A0A0A", "rgb": "10 10 10",     "role": "page background" },
+        "surface":  { "hex": "#111111", "rgb": "17 17 17",     "role": "raised panels / pills / inputs" },
+        "panel":    { "hex": "#0D0D0D", "rgb": "13 13 13",     "role": "alt sections / menu drawer" },
+        "card":     { "hex": "#141414", "rgb": "20 20 20",     "role": "cards" },
+        "ink":      { "hex": "#FFFFFF", "rgb": "255 255 255",  "role": "primary text" },
+        "muted":    { "hex": "#888888", "rgb": "136 136 136",  "role": "body / secondary text" },
+        "faint":    { "hex": "#6B6B6B", "rgb": "107 107 107",  "role": "labels, captions, eyebrows" },
+        "hair":     { "hex": "#1F1F1F", "rgb": "31 31 31",     "role": "hairline borders / dividers" },
+        "hairalt":  { "hex": "#1A1A1A", "rgb": "26 26 26",     "role": "navbar divider" },
+        "accent":   { "hex": "#C8922A", "rgb": "200 146 42",   "role": "brand gold — primary accent" },
+        "accenthi": { "hex": "#D4A843", "rgb": "212 168 67",   "role": "gold, lighter (hover)" },
+        "accentlo": { "hex": "#A87820", "rgb": "168 120 32",   "role": "gold, deeper (active)" },
+        "ghost":    { "hex": "#1C1C1C", "rgb": "28 28 28",     "role": "giant ghost BARAKODE wordmark in footer" },
+        "danger":   { "hex": "#E24B4A", "rgb": "226 75 74",    "role": "form validation errors" }
+      }
+    },
+    "light": {
+      "status": "Alternate — defined on bare :root in globals.css",
+      "tokens": {
+        "canvas":   { "hex": "#F7F7F5", "rgb": "247 247 245" },
+        "surface":  { "hex": "#FFFFFF", "rgb": "255 255 255" },
+        "panel":    { "hex": "#F0EFEA", "rgb": "240 239 234" },
+        "card":     { "hex": "#FFFFFF", "rgb": "255 255 255" },
+        "ink":      { "hex": "#181A1F", "rgb": "24 26 31" },
+        "muted":    { "hex": "#545961", "rgb": "84 89 97" },
+        "faint":    { "hex": "#6E737C", "rgb": "110 115 124" },
+        "hair":     { "hex": "#E2E0DA", "rgb": "226 224 218" },
+        "hairalt":  { "hex": "#E8E6E0", "rgb": "232 230 224" },
+        "accent":   { "hex": "#A6781C", "rgb": "166 120 28" },
+        "accenthi": { "hex": "#B98A2E", "rgb": "185 138 46" },
+        "accentlo": { "hex": "#8A6314", "rgb": "138 99 20" },
+        "ghost":    { "hex": "#EBE9E3", "rgb": "235 233 227" },
+        "danger":   { "hex": "#E24B4A", "rgb": "226 75 74" }
+      }
+    }
+  },
+  "extras": {
+    "bgLight": { "hex": "#F0EDE8", "role": "light card variant — used on the Beyut Libya real-estate project card" },
+    "themeColorMeta": "#0A0A0A",
+    "manifestBackgroundColor": "#0A0A0A",
+    "projectDominantColors": {
+      "gman-stitching-platform": "#1a2330",
+      "beyut-libya-real-estate-platform": "#F0EDE8",
+      "openinterview-video-platform": "#2a2a2a"
+    },
+    "teamCardColors": {
+      "safdar-iqbal": "#2a2a2a",
+      "humayon-abdullah": "#1f1f1f",
+      "burhan-tariq": "#252525"
+    },
+    "selection": { "background": "var(--accent-gold)", "color": "var(--bg-primary)" },
+    "scrollbar": { "width": "10px", "track": "var(--bg-primary)", "thumb": "var(--border-divider)", "thumbHover": "var(--accent-gold)" },
+    "ambientGlow": "radial-gradient(circle, #C8922A 0%, transparent 70%) at 0.14 opacity, blur 120px"
+  }
+}

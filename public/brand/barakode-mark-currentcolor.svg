@@ -1,0 +1,24 @@
+<!-- Barakode mark, tintable version. Strokes/fills use currentColor so you can
+     recolour it in CSS (e.g. class="text-accent"). Centre node stays bronze. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none" role="img" aria-label="Barakode">
+  <defs>
+    <mask id="holes2">
+      <rect width="200" height="200" fill="#fff"/>
+      <circle cx="100" cy="30" r="4.6" fill="#000"/><circle cx="160.6" cy="65" r="4.6" fill="#000"/>
+      <circle cx="160.6" cy="135" r="4.6" fill="#000"/><circle cx="100" cy="170" r="4.6" fill="#000"/>
+      <circle cx="39.4" cy="135" r="4.6" fill="#000"/><circle cx="39.4" cy="65" r="4.6" fill="#000"/>
+      <circle cx="100" cy="100" r="5" fill="#000"/>
+    </mask>
+  </defs>
+  <g mask="url(#holes2)">
+    <path d="M100 30 L160.6 65 L160.6 135 L100 170 L39.4 135 L39.4 65 Z" stroke="currentColor" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <g stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1.5 9">
+      <line x1="100" y1="100" x2="160.6" y2="65"/><line x1="100" y1="100" x2="160.6" y2="135"/>
+    </g>
+    <g fill="currentColor">
+      <circle cx="100" cy="30" r="10.5"/><circle cx="160.6" cy="65" r="10.5"/><circle cx="160.6" cy="135" r="10.5"/>
+      <circle cx="100" cy="170" r="10.5"/><circle cx="39.4" cy="135" r="10.5"/><circle cx="39.4" cy="65" r="10.5"/>
+    </g>
+    <circle cx="100" cy="100" r="13" fill="#7A5320"/>
+  </g>
+</svg>

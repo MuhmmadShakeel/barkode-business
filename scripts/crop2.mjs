@@ -1,0 +1,12 @@
+import { chromium } from "playwright";
+const [file, w, h, y] = process.argv.slice(2);
+const b = await chromium.launch();
+const ctx = await b.newContext({ viewport: { width: +w, height: +h }, reducedMotion: "reduce" });
+const p = await ctx.newPage();
+await p.goto("http://localhost:3000/contact", { waitUntil: "networkidle" });
+await p.click('button[type="submit"]');
+await p.waitForTimeout(400);
+await p.evaluate((yy) => window.scrollTo(0, yy), Number(y));
+await p.waitForTimeout(200);
+await p.screenshot({ path: file });
+await b.close();

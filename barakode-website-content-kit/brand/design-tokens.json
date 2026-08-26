@@ -1,0 +1,100 @@
+{
+  "typography": {
+    "fontFamilies": {
+      "latin":  { "name": "Inter",  "source": "next/font/google", "cssVar": "--font-inter",  "stack": "var(--font-inter), system-ui, sans-serif", "subsets": ["latin"], "display": "swap" },
+      "arabic": { "name": "Cairo",  "source": "next/font/google", "cssVar": "--font-arabic", "stack": "var(--font-arabic), var(--font-inter), system-ui, sans-serif", "subsets": ["arabic", "latin"], "display": "swap", "appliedWhen": "html[lang=\"ar\"][dir=\"rtl\"]" }
+    },
+    "scale": [
+      { "role": "Hero display",           "sizePx": "96–120", "weight": "400–500" },
+      { "role": "Section heading",        "sizePx": "64–72",  "weight": "400", "note": "white + gold split (GoldSplitHeading)" },
+      { "role": "CTA heading",            "sizePx": "~80",    "weight": "400", "note": "white + gold split" },
+      { "role": "Service / pricing title","sizePx": "52–60",  "weight": "700" },
+      { "role": "Process step title",     "sizePx": "40–48",  "weight": "500", "note": "gold" },
+      { "role": "Stats numbers",          "sizePx": "80–90",  "weight": "700" },
+      { "role": "Pricing prices",         "sizePx": "~80",    "weight": "700", "note": "gold" },
+      { "role": "FAQ question",           "sizePx": "22–24",  "weight": "400" },
+      { "role": "Footer link",            "sizePx": "18–20",  "weight": "400" },
+      { "role": "Form input",             "sizePx": "16",     "weight": "400" },
+      { "role": "Form label",             "sizePx": "13",     "weight": "500", "note": "uppercase, wide tracking" },
+      { "role": "Body",                   "sizePx": "14–15",  "weight": "400", "note": "muted #888" },
+      { "role": "SectionLabel (eyebrow)", "sizePx": "11",     "weight": "500", "note": "uppercase, letter-spacing 0.22em" }
+    ],
+    "letterSpacing": { "widest2": "0.22em", "wordmark": "0.16em uppercase", "wordmarkSub": "0.34em uppercase" },
+    "arabicOverride": "html[lang=\"ar\"] h1,h2,h3 { line-height: 1.25 } — extra leading so diacritics are not clipped"
+  },
+  "layout": {
+    "maxContentWidth": "1440px",
+    "sectionPaddingY": { "section": "120px", "sectionLg": "160px" },
+    "horizontalPadding": "24px (px-6) mobile / 40px (lg:px-10) desktop",
+    "breakpoints": { "mobile": 375, "tablet": 768, "desktop": 1280, "wide": 1440 }
+  },
+  "motion": {
+    "durations": { "micro": 0.2, "fast": 0.3, "base": 0.5, "slow": 0.7, "hero": 0.8 },
+    "easings": {
+      "inOut": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "out":   "cubic-bezier(0.16, 1, 0.3, 1)",
+      "signature": "cubic-bezier(0.32, 0.72, 0, 1)"
+    },
+    "viewport": { "once": true, "margin": "-80px" },
+    "variants": {
+      "fadeUp":         { "hidden": { "opacity": 0, "y": 40 },  "visible": { "opacity": 1, "y": 0, "duration": 0.6, "ease": "inOut" } },
+      "fadeIn":         { "hidden": { "opacity": 0 },           "visible": { "opacity": 1, "duration": 0.6, "ease": "inOut" } },
+      "slideFromLeft":  { "hidden": { "opacity": 0, "x": -40 }, "visible": { "opacity": 1, "x": 0, "duration": 0.5, "ease": "out" } },
+      "slideFromRight": { "hidden": { "opacity": 0, "x": 40 },  "visible": { "opacity": 1, "x": 0, "duration": 0.5, "ease": "out" } },
+      "staggerContainer": { "staggerChildren": 0.1 },
+      "staggerTight":     { "staggerChildren": 0.08 },
+      "projectCard":    { "hidden": { "opacity": 0, "y": 80 },  "visible": { "opacity": 1, "y": 0, "duration": 0.7, "ease": "out" } }
+    },
+    "keyframes": {
+      "float":       "translateY(0→-8px→0) rotate(0→2deg→0), 4s ease-in-out infinite",
+      "glowPulse":   "opacity 0.15 ↔ 0.28, 4s ease-in-out infinite",
+      "marquee":     "translateX(0 → -50%), 28s linear infinite (pause on hover)",
+      "shimmer":     "translateX(-120% → 120%), 6s ease-in-out infinite",
+      "drawLine":    "height 0 → 60px, opacity 0 → 1, 1s ease-out forwards",
+      "pulseSubtle": "opacity 0.5 ↔ 1, 1.5s ease-in-out infinite",
+      "spotlight":   "opacity 0→1, translate(-72%,-62%) scale(.5) → translate(-50%,-40%) scale(1), 2s ease, delay .75s"
+    },
+    "catalog": [
+      "Navbar entry — translateY(-100%)→0, 0.5s ease-out",
+      "Hero 3D logo — float 4s infinite ±8px / 2°",
+      "Hero glow — opacity pulse 0.15↔0.28 over 4s",
+      "Hero word 1 'Software' — x:-60→0, opacity 0→1, 0.8s ease-out, delay 0.2s",
+      "Hero word 2 'Development' — x:60→0, 0.8s ease-out, delay 0.5s",
+      "Hero word 3 'Agency' — x:60→0, 0.8s ease-out, delay 0.8s",
+      "Hero subtitle — opacity 0→1, 0.6s, delay 1.0s",
+      "Hero body — opacity 0→1, 0.6s, delay 1.2s",
+      "Scroll indicator — drawLine + pulse, fades past 120px",
+      "Menu drawer open — x:-100%→0, 0.4s cubic-bezier(.4,0,.2,1); items y:20→0 stagger 50ms",
+      "Hamburger morph — ≡ → ✕ rotate 180°, 0.3s",
+      "Logo marquee — x:0→-50%, 20–28s linear infinite, pause on hover",
+      "Service row hover — bg→#141414, title x:-10, arrow opacity + scale 0.8→1, 0.3s",
+      "Project card hover — scale 1→1.02, arrow fades in, 0.4s ease",
+      "Stats counter — requestAnimationFrame 0→target, ease-out cubic, 1.8s",
+      "Awards row hover — prize text fills to #C8922A, 0.2s",
+      "Team carousel — AnimatePresence wait mode, x:-60↔60 + opacity, 0.4s",
+      "Process title — y:30→0 + opacity, 0.5s on viewport enter",
+      "Process image — x:-30→0 + opacity, 0.5s on viewport enter",
+      "FAQ accordion — height 0↔auto + opacity, 0.35s easeInOut",
+      "Contact heading — blur(8px)→0 + opacity, 0.6s ease-out",
+      "Input focus — bottom border #1F1F1F → #C8922A, 0.2s",
+      "Pricing cards — y:80→0, scale .94→1, rotateY -14°→0, blur(10px)→0, 1.05s power3.out, stagger 0.15",
+      "Our Story — scroll-pinned frosted-glass card stack (CardSticky, incrementY 22)",
+      "Standard scroll entry — y:40→0, opacity 0→1, 0.6s [0.4,0,0.2,1], viewport margin -80px"
+    ]
+  },
+  "iconLibrary": {
+    "ui": "lucide-react (line/outline)",
+    "social": "react-icons/fa6 (FaInstagram, FaLinkedinIn, FaYoutube, FaFacebookF, FaXTwitter, FaWhatsapp)",
+    "serviceIcons": { "web-development": "Code2", "mobile-development": "Smartphone", "ui-ux-design": "Palette", "ai-ml-development": "BrainCircuit", "cloud-development": "Cloud", "qa-testing": "ShieldCheck" }
+  },
+  "techStackOfOriginalSite": {
+    "framework": "Next.js 14.2.5 (App Router)",
+    "ui": "React 18 + TypeScript 5",
+    "styling": "Tailwind CSS 3.4 + CSS custom properties",
+    "animation": ["framer-motion 11", "gsap 3 + ScrollTrigger + @gsap/react", "lenis (smooth scroll)", "split-type"],
+    "3d": ["@splinetool/react-spline", "@react-three/fiber", "@react-three/drei", "three"],
+    "particles": "@tsparticles/react + slim",
+    "icons": ["lucide-react", "react-icons"],
+    "splineScene": "https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+  }
+}

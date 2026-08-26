@@ -1,0 +1,228 @@
+{
+  "_note": "Every page's hero copy, SEO metadata, and section order, exactly as it appears in app/**/page.tsx. Heroes use the SplineHero component: an eyebrow label, then a 3-part headline where whiteText is ink-coloured, goldText is brand gold, and trailingText returns to ink.",
+  "heroPattern": {
+    "component": "SplineHero",
+    "props": ["sectionLabel", "whiteText", "goldText", "trailingText", "body", "primaryCta", "secondaryCta", "compact", "glow"],
+    "scene3d": "https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode — a floating robot, preloaded in the document head and reused across routes"
+  },
+  "pages": [
+    {
+      "route": "/",
+      "title": "Barakode Technologies — Software Development Agency",
+      "metaDescription": "Barakode Technologies is a full-cycle software development agency engineering web, mobile, AI, and cloud products for startups and enterprises worldwide.",
+      "hero": {
+        "sectionLabel": "SOFTWARE AGENCY",
+        "whiteText": "Software",
+        "goldText": "Development",
+        "trailingText": "Agency",
+        "body": "Barakode Technology is a full-cycle software development agency. We build web, mobile, AI, and cloud products for startups and enterprises worldwide."
+      },
+      "sections": [
+        "SplineHero",
+        "LogoMarquee",
+        "Services (limit 3, heading: What we do)",
+        "WatermarkText: Built Different",
+        "Projects",
+        "Stats",
+        "Awards",
+        "CaseStudyShowcase",
+        "Team",
+        "Process",
+        "Testimonials",
+        "FAQ",
+        "CTAContact"
+      ]
+    },
+    {
+      "route": "/services",
+      "title": "Services — Barakode Technologies",
+      "metaDescription": "Barakode services — web & mobile development, UI/UX design, AI/ML, cloud, and QA & testing. Explore each service, our stack, and engagement plans.",
+      "hero": {
+        "compact": true,
+        "sectionLabel": "OUR SERVICES",
+        "whiteText": "What",
+        "goldText": "We Build",
+        "trailingText": "Best",
+        "body": "From web and mobile to AI/ML, cloud, design and QA — explore each service, the stack we use, and how we engage."
+      },
+      "sections": [
+        "SplineHero",
+        "Services (heading: The roles we offer)",
+        "WatermarkText: Engineered for Results",
+        "FAQ",
+        "CTAContact"
+      ]
+    },
+    {
+      "route": "/pricing",
+      "title": "Pricing — Barakode Technologies",
+      "metaDescription": "Choose Barakode's Standard ($500/project, 4-6 weeks) or Premium ($1,000/project, 4-12 weeks) software development plans — clear scope, honest timelines, no surprises.",
+      "hero": {
+        "compact": true,
+        "glow": "strong",
+        "sectionLabel": "ABOUT US",
+        "whiteText": "Pick Your",
+        "goldText": "Pricing",
+        "trailingText": "Option",
+        "_note": "The eyebrow literally reads ABOUT US on the pricing page in the source. Almost certainly a copy bug — consider PRICING on rebuild."
+      },
+      "sections": ["SplineHero", "PricingPlans", "Testimonials", "FAQ", "CTAContact"]
+    },
+    {
+      "route": "/projects",
+      "title": "Projects — Barakode Technologies",
+      "metaDescription": "Selected case studies from recent engineering and design work.",
+      "hero": {
+        "sectionLabel": "PROJECT",
+        "whiteText": "Featured",
+        "goldText": "Works",
+        "trailingText": "Barakode",
+        "body": "Selected case studies from our recent engineering and design work."
+      },
+      "sections": ["SplineHero", "Projects", "FAQ", "CTAContact"]
+    },
+    {
+      "route": "/case-studies",
+      "title": "Case Studies — Barakode Technologies",
+      "metaDescription": "In-depth engineering case studies across AI, vision, NLP, and systems.",
+      "hero": {
+        "sectionLabel": "CASE STUDIES",
+        "whiteText": "Engineering",
+        "goldText": "in depth",
+        "trailingText": "Barakode",
+        "body": "A deeper look at how we build — across deep learning, computer vision, NLP, generative AI, LLM/RAG systems, mobile apps, and low-level engineering."
+      },
+      "sections": ["SplineHero", "CaseStudies (filterable grid)", "CTAContact"]
+    },
+    {
+      "route": "/about",
+      "title": "About — Barakode Technologies",
+      "metaDescription": "Driven by precision. Meet the team behind Barakode Technologies — full-stack engineers, designers, and product leaders delivering clean code and real results.",
+      "hero": {
+        "compact": true,
+        "sectionLabel": "DRIVEN BY PRECISION",
+        "whiteText": "Start With",
+        "goldText": "Barakode",
+        "trailingText": "Today",
+        "body": "A full-cycle software development agency building web, mobile, AI and cloud products worldwide."
+      },
+      "philosophySection": {
+        "label": "OUR PHILOSOPHY",
+        "heading": { "white": "Clean Code", "gold": "& Real Results", "align": "left" },
+        "body": "We are a full-cycle software development agency that turns ambitious ideas into reliable, scalable products. From first discovery call to launch and beyond, we obsess over architecture, performance, and the details that make software feel effortless to use."
+      },
+      "sections": [
+        "SplineHero",
+        "Philosophy",
+        "WatermarkText: Driven by Precision",
+        "Stats",
+        "Awards",
+        "Team",
+        "OurStory",
+        "CTAContact"
+      ]
+    },
+    {
+      "route": "/team",
+      "title": "Team — Barakode Technologies",
+      "hero": {
+        "sectionLabel": "OUR TEAM",
+        "whiteText": "The minds",
+        "goldText": "behind Barakode",
+        "body": "Engineers, strategists, and partners — the people who turn ambitious ideas into reliable, scalable products. Get to know who you'll be working with."
+      },
+      "rosterLabel": "MEET THE TEAM",
+      "sections": ["SplineHero", "TeamRoster", "CTAContact"]
+    },
+    {
+      "route": "/contact",
+      "title": "Contact — Barakode Technologies",
+      "metaDescription": "Start with Barakode today. Share your project brief and we'll respond within 24 hours with a clear plan, honest timeline, and competitive quote.",
+      "hero": {
+        "compact": true,
+        "glow": "strong",
+        "sectionLabel": "DRIVEN BY PRECISION",
+        "whiteText": "Start With",
+        "goldText": "Barakode",
+        "trailingText": "Today",
+        "body": "Tell us about your project and we'll respond within 24 hours with a clear plan, honest timeline, and a competitive quote.",
+        "primaryCta": { "label": "View Our Work", "href": "/projects" },
+        "secondaryCta": null
+      },
+      "sections": ["SplineHero", "ContactForm", "FAQ", "CTAContact"]
+    },
+    {
+      "route": "/blogs",
+      "title": "Blog — Barakode Technologies",
+      "metaDescription": "Engineering insights, technical roadmaps, and product thinking.",
+      "hero": {
+        "sectionLabel": "BLOG INSIGHTS",
+        "whiteText": "Explore",
+        "goldText": "Blog",
+        "trailingText": "Insights"
+      },
+      "sections": ["SplineHero", "BlogCards", "CTAContact"]
+    },
+    {
+      "route": "/privacy-policy",
+      "title": "Privacy Policy — Barakode Technologies",
+      "metaDescription": "How Barakode Technologies collects, uses, and protects personal information in compliance with applicable data protection laws.",
+      "robots": "index, nofollow",
+      "hero": {
+        "compact": true,
+        "primaryCta": null,
+        "secondaryCta": null,
+        "sectionLabel": "PRIVACY POLICY",
+        "whiteText": "Privacy",
+        "goldText": "Policy",
+        "trailingText": "Outline"
+      },
+      "lastUpdated": "30th June 2025",
+      "intro": "Your privacy is important to us. This Privacy Policy outlines how Barakode Technologies collects, uses, and protects your personal information when you interact with our website and services. We are committed to handling your data with care, transparency, and in full compliance with applicable data protection laws.",
+      "policySections": [
+        {
+          "title": "Information We Collect",
+          "body": "We collect personal information you voluntarily provide when interacting with our services, including your name, email address, phone number, and company details. This includes data submitted through contact forms, project inquiry submissions, and newsletter signups. We also automatically gather non-personal data such as browser type, device information, and usage statistics through cookies and analytics tools."
+        },
+        {
+          "title": "How We Use Your Information",
+          "body": "We use the information we collect to provide, maintain, and improve our services. This includes responding to project inquiries, processing service requests, personalizing user experiences, and delivering updates you have opted into. We may also use your data to analyze website performance, detect fraudulent activity, and maintain platform security."
+        },
+        {
+          "title": "Cookies and Tracking Technologies",
+          "body": "Our website uses cookies and similar tracking technologies to enhance your browsing experience and better understand user behavior. Cookies are small data files stored on your device that help remember your preferences and session activity. Some cookies are essential for core site functionality, while others allow us to analyze performance and personalize content."
+        },
+        {
+          "title": "Your Rights and Choices",
+          "body": "You have full control over your personal information and how it is used. You may request access to the data we hold, ask for corrections, or request complete deletion of your personal details at any time. If you no longer wish to receive communications from us, you can unsubscribe using the link provided in any of our emails."
+        }
+      ]
+    },
+    {
+      "route": "/404",
+      "headline": "Page 404 Found",
+      "headlineParts": { "ink": "Page ", "gold": "404", "inkTrailing": " Found" },
+      "body": "The page you're looking for doesn't exist or has been moved. Head back to the homepage to continue exploring.",
+      "cta": { "label": "Back to Home", "href": "/" },
+      "glow": "radial-gradient(ellipse at center, #8B5E1A 0%, #6B4010 30%, transparent 70%), blur(10px), animate-glowPulse"
+    }
+  ],
+  "sharedSections": {
+    "ctaContact": {
+      "label": "CONTACT US",
+      "headingLine1": "Let's Discuss Your",
+      "headingLine2": "Next Project",
+      "buttonLabel": "Contact Us",
+      "buttonHref": "/contact",
+      "visual": "/images/contact/roadmap.jpg",
+      "_note": "Rendered at the bottom of nearly every page."
+    },
+    "watermarkTexts": ["Built Different", "Engineered for Results", "Driven by Precision"],
+    "footerAvailabilityPill": "Available for new projects",
+    "footerBlurb": "A full-cycle software development agency engineering web, mobile, AI, and cloud products for startups and enterprises worldwide.",
+    "footerColumnTitles": { "menu": "Sitemap", "legal": "Legal", "cta": "Have a project?" },
+    "footerCtaLabel": "Start a conversation",
+    "footerGhostWordmark": "BARAKODE",
+    "footerCopyright": "© 2026 Barakode Technologies. All rights reserved."
+  }
+}

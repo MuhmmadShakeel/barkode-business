@@ -1,0 +1,337 @@
+{
+  "navigation": {
+    "navLinks": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Services",
+        "href": "/services"
+      },
+      {
+        "label": "Pricing",
+        "href": "/pricing"
+      },
+      {
+        "label": "Projects",
+        "href": "/projects"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      },
+      {
+        "label": "About Us",
+        "href": "/about"
+      },
+      {
+        "label": "Team",
+        "href": "/team"
+      },
+      {
+        "label": "Blog",
+        "href": "/blogs"
+      }
+    ],
+    "footerMenu": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Services",
+        "href": "/services"
+      },
+      {
+        "label": "Projects",
+        "href": "/projects"
+      },
+      {
+        "label": "Team",
+        "href": "/team"
+      },
+      {
+        "label": "Blog",
+        "href": "/blogs"
+      }
+    ],
+    "footerLegal": [
+      {
+        "label": "Pricing",
+        "href": "/pricing"
+      },
+      {
+        "label": "Privacy Policy",
+        "href": "/privacy-policy"
+      },
+      {
+        "label": "Contact Us",
+        "href": "/contact"
+      }
+    ],
+    "footerColumnTitles": {
+      "menu": "Sitemap",
+      "legal": "Legal",
+      "cta": "Have a project?"
+    },
+    "footerCtaLabel": "Start a conversation",
+    "footerGhostWordmark": "BARAKODE"
+  },
+  "newsletter": {
+    "label": "Newsletter",
+    "heading": "Stay in the loop",
+    "placeholder": "your@email.com",
+    "buttonLabel": "Subscribe",
+    "subcopy": "Occasional notes on building software that ships. No noise."
+  },
+  "stats": {
+    "label": "MORE ABOUT US",
+    "background": "/images/stats/city-bg.jpeg",
+    "counters": [
+      {
+        "label": "HAPPY CLIENTS",
+        "target": 98,
+        "suffix": "+"
+      },
+      {
+        "label": "LINES OF CODE",
+        "target": 20,
+        "suffix": "M"
+      },
+      {
+        "label": "ON-TIME DELIVERY",
+        "target": 98,
+        "suffix": "%"
+      }
+    ],
+    "aboutPhotos": [
+      "/images/about/Barakode_brochure_updated.jpg",
+      "/images/about/about-2.jpg",
+      "/images/about/about-3.jpg"
+    ]
+  },
+  "awards": {
+    "label": "AWARDS",
+    "columnHeaders": [
+      "Brand Name",
+      "Prize Name",
+      "Date"
+    ],
+    "items": [
+      {
+        "brand": "Clutch",
+        "prize": "Top Software Development Company 2024",
+        "date": "MAR 2024"
+      },
+      {
+        "brand": "GoodFirms",
+        "prize": "Best Web & Mobile App Development Agency 2024",
+        "date": "JAN 2024"
+      },
+      {
+        "brand": "Awwwards",
+        "prize": "Site of the Day — Enterprise SaaS Platform",
+        "date": "NOV 2023"
+      },
+      {
+        "brand": "Deloitte",
+        "prize": "Technology Fast 500 — Fastest Growing Tech Companies",
+        "date": "SEP 2023"
+      },
+      {
+        "brand": "Forbes",
+        "prize": "Top 10 Emerging Software Agencies — USA 2023",
+        "date": "JUN 2023"
+      }
+    ]
+  },
+  "process": [
+    {
+      "n": "Step 1",
+      "title": "Discovery",
+      "description": "We analyze your business requirements, define project scope, and deliver a clear roadmap with accurate cost and timeline estimates.",
+      "hasImage": true,
+      "image": "/images/process/discovery.jpg"
+    },
+    {
+      "n": "Step 2",
+      "title": "Development",
+      "description": "We engineer the product with clean, modular architecture — using your stack of choice and shipping reviewable increments every sprint.",
+      "hasImage": true,
+      "image": "/images/process/development.jpg"
+    },
+    {
+      "n": "Step 3",
+      "title": "QA & Delivery",
+      "description": "We harden the build with automated and manual QA across browsers, devices, and edge cases before a structured, low-risk launch.",
+      "hasImage": true,
+      "image": "/images/process/qa-delivery.jpg"
+    },
+    {
+      "n": "Step 4",
+      "title": "Support & Growth",
+      "description": "Post-launch we monitor, iterate, and scale — handling infrastructure, security patches, and feature growth as your business evolves.",
+      "hasImage": true,
+      "image": "/images/process/support-growth.jpg"
+    }
+  ],
+  "testimonials": {
+    "label": "TESTIMONIALS",
+    "items": [
+      {
+        "title": "Excellent Work!",
+        "body": "The Barakode team delivered ahead of schedule and the build was rock-solid from day one.",
+        "name": "Adam Lewis",
+        "role": "Founder, Loopify App",
+        "avatar": "/images/testimonials/adam-lewis.svg"
+      },
+      {
+        "title": "Impressive Results!",
+        "body": "Building enterprise software in our regulated industry is complex, Brakode handled it flawlessly.",
+        "name": "Marcus Webb",
+        "role": "Senior Director, FinSecure Global",
+        "avatar": "/images/testimonials/marcus-webb.svg",
+        "featured": true
+      },
+      {
+        "title": "Exceptional Team!",
+        "body": "Communication was clear at every sprint and the final product exceeded what we mapped on paper.",
+        "name": "Adrian Chen",
+        "role": "Product Lead, Nexus Labs",
+        "avatar": "/images/testimonials/adrian-chen.svg"
+      },
+      {
+        "title": "Love to partner again",
+        "body": "Brakode transformed our legacy system into a modern cloud platform that scaled 10x within months.",
+        "name": "Sarah Mitchell",
+        "role": "VP Engineering, DataBridge Corp",
+        "avatar": "/images/testimonials/sarah-mitchell.svg"
+      },
+      {
+        "title": "Best delivery ever!",
+        "body": "From discovery to launch, every milestone was on time and every estimate was honest.",
+        "name": "James Thornton",
+        "role": "CTO at NovaTech Inc",
+        "avatar": "/images/testimonials/james-thornton.svg"
+      }
+    ]
+  },
+  "faqs": {
+    "label": "FAQ",
+    "items": [
+      {
+        "q": "What is your typical project timeline?",
+        "a": "It depends on the scope! Simple integrations take about 1–2 weeks, while full web or mobile applications usually take 6–16 weeks."
+      },
+      {
+        "q": "What services does your agency offer?",
+        "a": "Full-stack web and mobile development, AI/ML integration, cloud and DevOps, UI/UX design, and staff augmentation."
+      },
+      {
+        "q": "What is your revision policy?",
+        "a": "Each milestone includes two structured revision rounds. Larger scope changes are quoted transparently before any additional work begins."
+      },
+      {
+        "q": "How do we get started working together?",
+        "a": "Send us a brief through the contact form. We respond within 24 hours with a clear plan, honest timeline, and a competitive quote."
+      },
+      {
+        "q": "Will I own the rights to the code?",
+        "a": "Yes — full IP transfer is included with every engagement upon final delivery and payment."
+      },
+      {
+        "q": "How do you approach a new software project?",
+        "a": "Discovery first. We map requirements, define architecture, lock the stack, and only then start engineering with weekly demos."
+      }
+    ]
+  },
+  "clientLogos": {
+    "label": "TRUSTED BY TEAMS WORLDWIDE",
+    "names": [
+      "Kintsugi",
+      "CoreOS",
+      "Luminary",
+      "45 Degrees°",
+      "Codecraft_",
+      "Frequencii",
+      "Fraencii",
+      "Northwind",
+      "Helix",
+      "Vantage"
+    ],
+    "_note": "Placeholder brand names only — no logo image files exist for these."
+  },
+  "blogPosts": [
+    {
+      "slug": "why-every-project-needs-a-technical-roadmap",
+      "title": "Why Every Project Needs a Technical Roadmap",
+      "year": "2025",
+      "category": "Development",
+      "cover": "/images/blog/technical-roadmap.jpeg",
+      "readTime": "5 min read",
+      "timeline": "March 2025",
+      "author": "Barakode Team",
+      "tags": [
+        "Development",
+        "Engineering"
+      ],
+      "excerpt": "More than just writing code — it's engineering a system. A technical roadmap is your project's blueprint, ensuring every decision leads to a scalable and maintainable product.",
+      "body": [
+        {
+          "heading": "Architecture Before Code",
+          "paragraphs": [
+            "When multiple developers, designers, and stakeholders collaborate on a software project, chaos becomes the biggest risk. A technical roadmap is the guardrail system — ensuring that architecture decisions, technology choices, and delivery milestones are defined before a single line of code is written.",
+            "For a fintech client, we mapped out every technical layer: from database schema and API architecture to deployment pipeline and security protocols. The roadmap helped the entire team execute cohesively across frontend, backend, and DevOps — without constant back-and-forth or costly mid-project pivots."
+          ],
+          "checklist": [
+            "Define project scope and technical requirements upfront",
+            "Agree on technology stack and architecture approach",
+            "Confirm delivery milestones and sprint structure"
+          ]
+        },
+        {
+          "image": "/images/blog/roadmap-tc-billboard.png",
+          "alt": "Illuminated street billboard reading Terms & Conditions Apply at night",
+          "portrait": true
+        },
+        {
+          "heading": "Stack Selection and Scalability",
+          "paragraphs": [
+            "Choosing a technology stack is more than preference — it determines performance, scalability, and long-term maintainability. Defining the right stack means setting standards for frontend frameworks, backend services, databases, and cloud infrastructure so the system can grow predictably without expensive rewrites.",
+            "We built a comprehensive stack evaluation process using business requirements, expected traffic load, and team expertise as core inputs. With clear decisions on React.js, Node.js, AWS, and MySQL documented upfront, the guide streamlined collaboration between our engineers and the client's internal team — reducing friction and accelerating delivery at every sprint."
+          ]
+        },
+        {
+          "image": "/images/blog/roadmap-schema.jpg",
+          "alt": "Database schema and entity-relationship diagram mapping the platform architecture",
+          "caption": "Mapping the data model and API architecture before development begins"
+        },
+        {
+          "heading": "Technical Documentation",
+          "paragraphs": [
+            "The heart of any successful software project lies in its documentation — how clearly and accessibly it explains the architecture, APIs, and deployment process. Good documentation does not just record decisions, it empowers future developers to build on the system confidently without breaking what already works.",
+            "Barakode delivers living technical documentation with every project — including API references, database schema diagrams, environment setup guides, and deployment runbooks. This empowers clients to onboard new developers faster, scale their teams independently, and maintain their software long after launch without depending on us for every change."
+          ]
+        }
+      ]
+    }
+  ],
+  "contactInterests": [
+    "Web Development",
+    "Mobile App Development",
+    "AI & Machine Learning",
+    "Cloud & DevOps",
+    "Enterprise Software",
+    "UI/UX Design",
+    "Staff Augmentation",
+    "Other"
+  ],
+  "logoAssetPaths": {
+    "logo3d": "/images/logo/logo-3d.png",
+    "chevronLeft": "/images/logo/chevron-left.png",
+    "chevronRight": "/images/logo/chevron-right.png",
+    "heroBgPattern": "/images/decor/hero-bg.svg",
+    "statsBg": "/images/stats/city-bg.jpeg"
+  }
+}

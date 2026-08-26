@@ -1,0 +1,447 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================================================================
+   THEME PALETTE — single source of truth
+   ----------------------------------------------------------------
+   ACTIVE: Light theme. Channel triplets (R G B) feed the Tailwind
+   semantic tokens (canvas/surface/ink/accent/…) via rgb(var(--c-*) / α).
+   The legacy bg/text alias vars below are derived from the same
+   palette so the globals-driven styles (body, selection, scrollbar,
+   grain, shadows, focus) stay in sync.
+
+   TO REVERT TO THE ORIGINAL DARK THEME: replace the LIGHT block with
+   the DARK block kept in the comment underneath (or add
+   data-theme="dark" to <html> — the dark overrides are defined too).
+   ================================================================ */
+:root {
+  /* —— LIGHT (active) —— */
+  --c-canvas: 247 247 245;
+  --c-surface: 255 255 255;
+  --c-panel: 240 239 234;
+  --c-card: 255 255 255;
+  --c-ink: 24 26 31;
+  --c-muted: 84 89 97;
+  --c-faint: 110 115 124;
+  --c-hair: 226 224 218;
+  --c-hairalt: 232 230 224;
+  --c-accent: 166 120 28;
+  --c-accenthi: 185 138 46;
+  --c-accentlo: 138 99 20;
+  --c-ghost: 235 233 227;
+  --c-danger: 226 75 74;
+
+  /* Legacy aliases (derived from the channels above) */
+  --bg-primary: rgb(var(--c-canvas));
+  --bg-secondary: rgb(var(--c-surface));
+  --bg-card: rgb(var(--c-card));
+  --bg-menu: rgb(var(--c-panel));
+  --accent-gold: rgb(var(--c-accent));
+  --accent-gold-light: rgb(var(--c-accenthi));
+  --glow-warm: rgb(var(--c-accent));
+  --text-white: rgb(var(--c-ink));
+  --text-muted: rgb(var(--c-faint));
+  --text-subtle: rgb(var(--c-muted));
+  --border-divider: rgb(var(--c-hair));
+  --navbar-divider: rgb(var(--c-hairalt));
+}
+
+/* —— DARK (original theme; add data-theme="dark" to <html> to use, or
+   paste these channels into :root above to fully revert) —— */
+:root[data-theme="dark"] {
+  --c-canvas: 10 10 10;
+  --c-surface: 17 17 17;
+  --c-panel: 13 13 13;
+  --c-card: 20 20 20;
+  --c-ink: 255 255 255;
+  --c-muted: 136 136 136;
+  --c-faint: 107 107 107;
+  --c-hair: 31 31 31;
+  --c-hairalt: 26 26 26;
+  --c-accent: 200 146 42;
+  --c-accenthi: 212 168 67;
+  --c-accentlo: 168 120 32;
+  --c-ghost: 28 28 28;
+  --c-danger: 226 75 74;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg-primary);
+  color: var(--text-white);
+  /* framer-motion's useScroll defaults its scroll container to
+     document.documentElement and warns in dev if it is position: static.
+     `relative` satisfies that check for every useScroll-with-target on the
+     site (InnerPageHero, WatermarkText, ParallaxSection, LogoMarquee). */
+  position: relative;
+}
+
+/* Custom cursor — only when the CustomCursor component mounts on a hover-capable device */
+@media (hover: hover) and (pointer: fine) {
+  html.cursor-none-active,
+  html.cursor-none-active * {
+    cursor: none !important;
+  }
+}
+
+/* Lenis smooth-scroll housekeeping */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-white);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ===== Arabic / RTL ============================================
+   When the LanguageProvider switches the document to Arabic it sets
+   html[lang="ar"][dir="rtl"]. Swap to the Cairo Arabic typeface and let
+   the browser mirror the layout. Headings get a touch more line-height
+   so Arabic diacritics/ascenders aren't clipped by the tight Latin
+   leading used for the display type. */
+html[lang="ar"] body {
+  font-family: var(--font-arabic), var(--font-inter), system-ui, sans-serif;
+}
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3 {
+  line-height: 1.25;
+}
+
+::selection {
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-divider); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
+
+/* ===== Logo float ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%      { transform: translateY(-8px) rotate(2deg); }
+}
+
+/* ===== Logo shimmer ===== */
+@keyframes shimmer-sweep {
+  0%   { transform: translateX(-100%) skewX(-15deg); opacity: 0; }
+  40%  { opacity: 0.4; }
+  100% { transform: translateX(250%) skewX(-15deg); opacity: 0; }
+}
+/* Back-compat alias (older components reference shimmerSweep) */
+@keyframes shimmerSweep {
+  0%   { transform: translateX(-130%); }
+  100% { transform: translateX(130%); }
+}
+
+/* ===== Marquee ===== */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== Testimonials float (LEFT → RIGHT direction) =====
+   Track starts shifted left by 50% so the duplicated content fills the
+   viewport. Animating to 0% slides the visible content rightward.
+   Because the cards are duplicated 2x the loop point matches up
+   seamlessly. */
+@keyframes testimonial-float {
+  0%   { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes card-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+.tm-track {
+  animation: testimonial-float 56s linear infinite;
+  will-change: transform;
+}
+.tm-wrap:hover .tm-track {
+  animation-play-state: paused;
+}
+
+/* ===== Scroll indicator ===== */
+@keyframes drawLine {
+  0%   { height: 0px;   opacity: 0; }
+  100% { height: 60px;  opacity: 1; }
+}
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+/* ===== Radial glow ===== */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.15; }
+  50%      { opacity: 0.25; }
+}
+/* Back-compat alias for components still referencing glowPulse */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.15; }
+  50%      { opacity: 0.28; }
+}
+
+/* ============================================================
+   PARTICLE DRIFT — 50 keyframe variants
+   Used by Hero/InnerPageHero ParticleField.
+   Each animates a small ±15-25px translate.
+   ============================================================ */
+@keyframes drift-1  { 0%,100%{transform:translate(0,0)} 50%{transform:translate(18px,-22px)} }
+@keyframes drift-2  { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-15px,20px)} }
+@keyframes drift-3  { 0%,100%{transform:translate(0,0)} 50%{transform:translate(22px,15px)} }
+@keyframes drift-4  { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,-18px)} }
+@keyframes drift-5  { 0%,100%{transform:translate(0,0)} 50%{transform:translate(12px,25px)} }
+@keyframes drift-6  { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-25px,12px)} }
+@keyframes drift-7  { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-15px)} }
+@keyframes drift-8  { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-18px,22px)} }
+@keyframes drift-9  { 0%,100%{transform:translate(0,0)} 50%{transform:translate(25px,10px)} }
+@keyframes drift-10 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-10px,-25px)} }
+@keyframes drift-11 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(15px,20px)} }
+@keyframes drift-12 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-22px,8px)} }
+@keyframes drift-13 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(8px,-20px)} }
+@keyframes drift-14 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-12px,18px)} }
+@keyframes drift-15 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(24px,-12px)} }
+@keyframes drift-16 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,20px)} }
+@keyframes drift-17 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(16px,16px)} }
+@keyframes drift-18 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-14px,-16px)} }
+@keyframes drift-19 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,24px)} }
+@keyframes drift-20 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-24px,14px)} }
+@keyframes drift-21 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(10px,-18px)} }
+@keyframes drift-22 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-18px,-10px)} }
+@keyframes drift-23 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(22px,18px)} }
+@keyframes drift-24 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-16px,22px)} }
+@keyframes drift-25 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(18px,-24px)} }
+@keyframes drift-26 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-22px,16px)} }
+@keyframes drift-27 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(14px,22px)} }
+@keyframes drift-28 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-10px,-22px)} }
+@keyframes drift-29 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(24px,8px)} }
+@keyframes drift-30 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-8px,24px)} }
+@keyframes drift-31 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-20px)} }
+@keyframes drift-32 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-24px,-8px)} }
+@keyframes drift-33 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(12px,14px)} }
+@keyframes drift-34 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-14px,12px)} }
+@keyframes drift-35 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(18px,-10px)} }
+@keyframes drift-36 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,18px)} }
+@keyframes drift-37 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(16px,20px)} }
+@keyframes drift-38 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-12px,-20px)} }
+@keyframes drift-39 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(22px,12px)} }
+@keyframes drift-40 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-18px,24px)} }
+@keyframes drift-41 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(10px,-14px)} }
+@keyframes drift-42 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-16px,10px)} }
+@keyframes drift-43 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(24px,-16px)} }
+@keyframes drift-44 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-22px,-14px)} }
+@keyframes drift-45 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(14px,18px)} }
+@keyframes drift-46 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-8px,20px)} }
+@keyframes drift-47 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,14px)} }
+@keyframes drift-48 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,-12px)} }
+@keyframes drift-49 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(16px,-22px)} }
+@keyframes drift-50 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-24px,20px)} }
+
+.particle {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* Marquee track */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+
+/* Hero radial glow */
+.hero-glow {
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow-warm) 0%, transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+/* Shimmer overlay on the 3D logo */
+.logo-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg,
+    transparent 30%,
+    rgba(255,255,255,0.18) 50%,
+    transparent 70%);
+  mix-blend-mode: screen;
+  animation: shimmerSweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Scroll indicator (CSS-driven dot + line) */
+.scroll-line {
+  position: relative;
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--text-muted), transparent);
+}
+.scroll-line::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  animation: scrollDot 2.4s ease-in-out infinite;
+}
+@keyframes scrollDot {
+  0%   { transform: translateY(0);   opacity: 1; }
+  100% { transform: translateY(55px); opacity: 0; }
+}
+
+.sq-bullet {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-gold);
+  margin-right: 10px;
+  vertical-align: 1px;
+}
+/* Spinner shown while the Spline 3D scene streams in (SplineScene fallback) */
+.loader {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid rgba(200, 146, 42, 0.25);
+  border-top-color: var(--accent-gold);
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.no-bullet { list-style: none; padding: 0; margin: 0; }
+.text-gold { color: var(--accent-gold); }
+.text-subtle { color: var(--text-subtle); }
+.text-muted { color: var(--text-muted); }
+
+/* ============================================================
+   TIER 1 — IMPECCABLE POLISH
+   Identity-preserving craft pass. Keeps Inter, the gold accent,
+   and the off-black palette; refines typography, depth,
+   interaction feedback, and accessibility. No layout or copy
+   changes. (See the redesign-existing-projects skill audit.)
+   ============================================================ */
+
+/* --- Typography presence ---------------------------------------
+   Display headings read as intentional: balanced wrapping (no
+   orphans / lopsided last lines) and a touch of negative tracking
+   so large Inter type feels tighter and more deliberate. */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+/* The hero / section display lines use clamp() font-sizes >= 56px.
+   Tighten tracking only on genuinely large type. */
+[style*="clamp(56px"],
+[style*="clamp(48px"] {
+  letter-spacing: -0.02em;
+}
+/* Body copy stays comfortable to read. */
+p {
+  text-wrap: pretty;
+}
+
+/* --- Surface depth: tinted shadow + cursor spotlight -----------
+   On a near-black canvas a pure-black shadow is invisible, so depth
+   is carried by a warm gold-tinted glow that matches the brand hue
+   (the skill's "tint shadows to match the background"). */
+:root {
+  /* Neutral, tinted-to-ink depth for the light theme (a gold-tinted shadow
+     reads muddy under white cards). Dark theme used a warm gold glow. */
+  --shadow-gold-soft: 0 18px 48px -28px rgba(24, 26, 31, 0.18);
+  --shadow-gold-hover: 0 26px 70px -26px rgba(24, 26, 31, 0.26);
+}
+:root[data-theme="dark"] {
+  --shadow-gold-soft: 0 24px 60px -28px rgba(200, 146, 42, 0.22);
+  --shadow-gold-hover: 0 30px 80px -24px rgba(200, 146, 42, 0.32);
+}
+.shadow-gold-soft {
+  box-shadow: var(--shadow-gold-soft);
+}
+.shadow-gold-soft:hover {
+  box-shadow: var(--shadow-gold-hover);
+}
+
+/* --- Interaction feedback --------------------------------------
+   Every interactive element gets a physical press response and a
+   visible keyboard focus ring. The custom cursor hides the native
+   pointer, which makes a real :focus-visible ring essential for
+   keyboard users. */
+a, button, [role="button"], summary {
+  transition: transform 0.15s ease;
+}
+a:active, button:active, [role="button"]:active {
+  transform: scale(0.985);
+}
+:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+/* Keyboard focus must stay visible even on hover-capable devices
+   where the custom cursor sets `cursor: none`. */
+@media (hover: hover) and (pointer: fine) {
+  html.cursor-none-active :focus-visible {
+    cursor: none;
+    outline: 2px solid var(--accent-gold);
+  }
+}
+
+/* --- Ambient grain --------------------------------------------
+   A fixed, ultra-subtle noise overlay breaks the flatness of large
+   solid #0A0A0A fields and gives surfaces a filmic texture. It sits
+   above content but never intercepts pointer events, and is muted
+   enough to be felt rather than seen. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  /* No mix-blend-mode: a blended fixed overlay forces a full-screen
+     recomposite on every scroll frame. A plain low-opacity texture on its
+     own GPU layer keeps the filmic grain without the per-frame cost. */
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 120px 120px;
+}
+
+/* --- Reduced motion -------------------------------------------
+   Honour the OS "reduce motion" setting for all CSS-driven motion
+   (particles, shimmer, glow pulse, marquees, scroll dot). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  body::after { display: none; }
+}

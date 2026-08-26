@@ -1,0 +1,550 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BARAKODE TECHNOLOGIES — DESIGN SYSTEM
+   Visual world: "Signal Schematic" — engineering blueprint notation.
+   Hairline rules, node dots, dashed signal traces, coordinate grids.
+   Derived from the Barakode hexagon mark (nodes + dashed connectors).
+
+   Palette per the brief: deep navy / near-black anchors, off-white reading
+   canvas, electric-blue + cyan accent. To revert to the legacy gold identity,
+   change only --accent / --accent-ink / --accent-bright below.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Anchor surfaces: deep navy → near-black ───────────────────────────── */
+  --color-ink-950: #080808;
+  --color-ink-900: #0C0C0C;
+  --color-ink-850: #121212;
+  --color-ink-800: #181818;
+  --color-ink-700: #222222;
+  --color-ink-600: #303030;
+
+  /* ── Reading surfaces: off-white ───────────────────────────────────────── */
+  --color-paper: #FCFBF8;
+  --color-paper-raised: #FFFFFF;
+  --color-paper-sunken: #F6F2E9;
+  --color-paper-deep: #EEE7D9;
+
+  /* ── Text ──────────────────────────────────────────────────────────────── */
+  --color-text: #0C0C0C;
+  --color-text-2: #44413C;
+  --color-text-3: #5C574F;
+  --color-text-4: #70695E;
+
+  --color-ontext: #FFFFFF;
+  --color-ontext-2: #D8D1C5;
+  --color-ontext-3: #B7AFA2;
+  --color-ontext-4: #968E82;
+
+  /* ── Rules / hairlines ─────────────────────────────────────────────────── */
+  --color-rule: #E8E1D5;
+  --color-rule-strong: #D8CEBD;
+  --color-rule-dark: #29251F;
+  --color-rule-dark-strong: #403729;
+
+  /* ── Accent — electric blue family ─────────────────────────────────────── */
+  --color-accent: #C8922A; /* solid fills, buttons */
+  --color-accent-ink: #8A5B08; /* gold as text on light — AA */
+  --color-accent-bright: #E2B85C; /* gold on dark — AA */
+  --color-accent-soft: #F8EDD7; /* gold wash on light */
+  --color-accent-deep: #9B6B12;
+
+  /* ── Signal — cyan. Reserved for data / AI / trace semantics only ──────── */
+  --color-signal: #E2B85C;
+  --color-signal-ink: #7A4F06; /* gold as text on light — AA */
+  --color-signal-dim: #6A4A16;
+
+  /* ── Status ────────────────────────────────────────────────────────────── */
+  --color-danger: #C0271F;
+  --color-danger-soft: #FDECEA;
+  --color-ok: #0F7B4F;
+  --color-ok-soft: #E7F6EE;
+
+  /* ── Type ──────────────────────────────────────────────────────────────── */
+  --font-display: var(--font-sora), "Sora", system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-mono: var(--font-mono-jb), "JetBrains Mono", ui-monospace, monospace;
+
+  --text-d1: clamp(2.25rem, 1.32rem + 4.05vw, 4.5rem); /* 36 → 72  H1 */
+  --text-d1--line-height: 1.03;
+  --text-d1--letter-spacing: -0.035em;
+
+  --text-d2: clamp(1.875rem, 1.35rem + 2.3vw, 3.25rem); /* 30 → 52  H2 */
+  --text-d2--line-height: 1.08;
+  --text-d2--letter-spacing: -0.03em;
+
+  --text-d3: clamp(1.5rem, 1.28rem + 0.95vw, 2rem); /* 24 → 32  H3 */
+  --text-d3--line-height: 1.16;
+  --text-d3--letter-spacing: -0.022em;
+
+  --text-d4: clamp(1.25rem, 1.16rem + 0.42vw, 1.5rem); /* 20 → 24  H4 */
+  --text-d4--line-height: 1.24;
+  --text-d4--letter-spacing: -0.016em;
+
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); /* 17 → 20 */
+  --text-lead--line-height: 1.62;
+
+  --text-body: 1.0625rem; /* 17 */
+  --text-body--line-height: 1.68;
+
+  --text-sm: 0.9375rem; /* 15 */
+  --text-sm--line-height: 1.6;
+
+  --text-xs: 0.8125rem; /* 13 */
+  --text-xs--line-height: 1.5;
+
+  --text-marker: 0.6875rem; /* 11 — schematic labels */
+  --text-marker--line-height: 1.2;
+  --text-marker--letter-spacing: 0.16em;
+
+  /* ── Layout ────────────────────────────────────────────────────────────── */
+  --container-content: 1216px;
+  --container-wide: 1440px;
+
+  --spacing-gutter: clamp(1.25rem, 0.6rem + 2.6vw, 2.5rem);
+  --spacing-section: clamp(2.25rem, 1.3rem + 3.8vw, 4.25rem);
+  --spacing-section-tight: clamp(1.625rem, 1.05rem + 2.3vw, 2.75rem);
+
+  /* ── Radii — crisp, technical ──────────────────────────────────────────── */
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+
+  /* ── Depth — every shadow carries offset + blur ────────────────────────── */
+  --shadow-e1: 0 1px 2px rgba(12, 12, 12, 0.05), 0 2px 8px -2px rgba(12, 12, 12, 0.05);
+  --shadow-e2: 0 3px 6px -2px rgba(12, 12, 12, 0.07), 0 12px 28px -8px rgba(12, 12, 12, 0.09);
+  --shadow-e3: 0 8px 18px -6px rgba(12, 12, 12, 0.1), 0 28px 56px -16px rgba(12, 12, 12, 0.14);
+  --shadow-e4: 0 14px 30px -10px rgba(12, 12, 12, 0.14), 0 48px 96px -28px rgba(12, 12, 12, 0.2);
+  --shadow-dark-e2: 0 4px 10px -3px rgba(0, 0, 0, 0.5), 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+  --shadow-dark-e3: 0 10px 24px -8px rgba(0, 0, 0, 0.55), 0 40px 80px -24px rgba(0, 0, 0, 0.7);
+
+  /* ── Motion ────────────────────────────────────────────────────────────── */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-signature: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-inout: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --animate-trace-flow: trace-flow 2.4s linear infinite;
+  --animate-node-pulse: node-pulse 2.8s var(--ease-inout) infinite;
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-scan: scan 5s var(--ease-inout) infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* Header height + breathing room for in-page anchors */
+    scroll-padding-top: 6.5rem;
+    color-scheme: light;
+    /* Decorative glow and grid layers deliberately bleed past the viewport.
+       `clip` contains them without creating a scroll container, so nested
+       `position: sticky` keeps working — which `overflow-x: hidden` would break. */
+    overflow-x: clip;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.68;
+    font-feature-settings: "cv05" 1, "cv08" 1, "ss03" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  p { text-wrap: pretty; margin: 0; }
+
+  /* Numerals line up in tables, timelines, stat readouts */
+  time, [data-numeric], .tnum { font-variant-numeric: tabular-nums; }
+
+  img, svg, video { display: block; max-width: 100%; }
+
+  a { color: inherit; text-decoration: none; }
+
+  button, input, select, textarea { font: inherit; color: inherit; }
+
+  /* ── Browser surfaces themed from the palette ───────────────────────────── */
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 24%, transparent);
+    color: var(--color-text);
+  }
+  .on-dark ::selection,
+  [data-surface="dark"] ::selection {
+    background: color-mix(in oklab, var(--color-signal) 32%, transparent);
+    color: #fff;
+  }
+
+  :root {
+    scrollbar-color: var(--color-rule-strong) transparent;
+    scrollbar-width: thin;
+    accent-color: var(--color-accent);
+    caret-color: var(--color-accent);
+  }
+
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: var(--color-paper-sunken); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-rule-strong);
+    border: 3px solid var(--color-paper-sunken);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  [data-surface="dark"] :focus-visible { outline-color: var(--color-signal); }
+
+  a:not([class]) {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+  }
+  a:not([class]):hover { text-decoration-color: currentColor; }
+
+  /* Skip link */
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 200;
+    padding: 0.7rem 1.1rem;
+    background: var(--color-ink-900);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    transform: translateY(-160%);
+    transition: transform 0.24s var(--ease-expo);
+  }
+  .skip-link:focus-visible { transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMPOSITION UTILITIES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: var(--container-content);
+    margin-inline: auto;
+    padding-inline: var(--spacing-gutter);
+  }
+  .shell-wide {
+    width: 100%;
+    max-width: var(--container-wide);
+    margin-inline: auto;
+    padding-inline: var(--spacing-gutter);
+  }
+
+  /* Measure: keeps body copy at 65–75ch */
+  .measure { max-width: 68ch; }
+  .measure-tight { max-width: 56ch; }
+  .measure-wide { max-width: 76ch; }
+
+  /* ── The schematic grid — the world's signature ground ───────────────────
+     Hairline coordinate grid with node dots at every 4th intersection.     */
+  .schematic-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line, rgba(12, 12, 12, 0.045)) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line, rgba(12, 12, 12, 0.045)) 1px, transparent 1px);
+    background-size: var(--grid-size, 34px) var(--grid-size, 34px);
+    background-position: center center;
+  }
+  .schematic-nodes {
+    background-image: radial-gradient(
+      circle at center,
+      var(--node-color, rgba(200, 146, 42, 0.24)) 1.1px,
+      transparent 1.2px
+    );
+    background-size: var(--node-size, 136px) var(--node-size, 136px);
+    background-position: center center;
+  }
+  [data-surface="dark"] .schematic-grid { --grid-line: rgba(255, 255, 255, 0.045); }
+  [data-surface="dark"] .schematic-nodes { --node-color: rgba(226, 184, 92, 0.3); }
+
+  /* Fades a decorative layer out toward the edges so it never fights content */
+  .mask-radial {
+    -webkit-mask-image: radial-gradient(ellipse 78% 68% at 50% 40%, #000 34%, transparent 100%);
+    mask-image: radial-gradient(ellipse 78% 68% at 50% 40%, #000 34%, transparent 100%);
+  }
+  .mask-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
+
+  /* ── Scroll reveal ────────────────────────────────────────────────────
+     Content is visible by default. The hidden state exists only under
+     `.js-motion`, which is set by an inline script once JS is confirmed —
+     so a failed script, a slow network, or a blocked bundle leaves a fully
+     readable page rather than an empty one. */
+  .js-motion [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+  }
+
+  .js-motion [data-reveal] {
+    transition:
+      opacity 0.72s var(--ease-expo),
+      transform 0.72s var(--ease-expo),
+      filter 0.72s var(--ease-expo);
+    transition-delay: calc(var(--reveal-i, 0) * 68ms);
+  }
+
+  /* The opening sequence is intentionally quicker than below-fold reveals. */
+  .js-motion .hero-reveal [data-reveal] {
+    transition-duration: 0.32s;
+    transition-delay: calc(var(--reveal-i, 0) * 55ms);
+  }
+
+  .js-motion .hero-reveal [data-reveal]:not([data-revealed]) {
+    transform: translate3d(0, 14px, 0) scale(0.96);
+    filter: blur(3px);
+  }
+
+  /* Fast, polished reveal timing for the trust section below the hero. */
+  .js-motion .trust-reveal [data-reveal] {
+    transition-duration: 0.36s;
+    transition-delay: calc(var(--reveal-i, 0) * 42ms);
+  }
+
+  .js-motion .trust-reveal [data-reveal]:not([data-revealed]) {
+    transform: translate3d(0, 18px, 0);
+    filter: blur(3px);
+  }
+
+  /* Matching fast reveal for the problem section. */
+  .js-motion .problem-reveal [data-reveal] {
+    transition-duration: 0.38s;
+    transition-delay: calc(var(--reveal-i, 0) * 46ms);
+  }
+
+  .js-motion .problem-reveal [data-reveal]:not([data-revealed]) {
+    transform: translate3d(0, 20px, 0);
+    filter: blur(3px);
+  }
+
+  .js-motion .services-reveal [data-reveal] {
+    transition-duration: 0.38s;
+    transition-delay: calc(var(--reveal-i, 0) * 44ms);
+  }
+
+  .js-motion .services-reveal [data-reveal]:not([data-revealed]) {
+    transform: translate3d(0, 18px, 0);
+    filter: blur(3px);
+  }
+
+  .js-motion .ai-reveal [data-reveal] {
+    transition-duration: 0.38s;
+    transition-delay: calc(var(--reveal-i, 0) * 44ms);
+  }
+
+  .js-motion .ai-reveal [data-reveal]:not([data-revealed]) {
+    transform: translate3d(0, 18px, 0);
+    filter: blur(3px);
+  }
+
+  .js-motion [data-reveal="rise"]:not([data-revealed]) {
+    transform: translate3d(0, 26px, 0);
+    filter: blur(6px);
+  }
+  .js-motion [data-reveal="flat"]:not([data-revealed]) {
+    transform: translate3d(0, 22px, 0);
+  }
+  .js-motion [data-reveal="left"]:not([data-revealed]) {
+    transform: translate3d(-30px, 0, 0);
+    filter: blur(5px);
+  }
+  .js-motion [data-reveal="right"]:not([data-revealed]) {
+    transform: translate3d(30px, 0, 0);
+    filter: blur(5px);
+  }
+
+  /* Below the two-column breakpoint everything stacks, so a sideways arrival
+     carries no meaning — and would push content past the viewport edge. */
+  @media (width < 64rem) {
+    .js-motion [data-reveal="left"]:not([data-revealed]),
+    .js-motion [data-reveal="right"]:not([data-revealed]) {
+      transform: translate3d(0, 26px, 0);
+    }
+  }
+
+  /* Failsafe: if hydration never happens, everything shows anyway. */
+  .reveal-all [data-reveal],
+  .reveal-all [data-reveal]:not([data-revealed]) {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  /* ── Accordion panel ──────────────────────────────────────────────────
+     Answers ship in the HTML and stay readable without JS. The collapse is a
+     grid-row transition applied only once `.js-motion` confirms scripting,
+     so a broken bundle degrades to an expanded, fully readable FAQ. */
+  [data-acc-panel] {
+    display: grid;
+    grid-template-rows: 1fr;
+  }
+  .js-motion [data-acc-panel] {
+    transition: grid-template-rows 0.36s var(--ease-expo);
+  }
+  .js-motion [data-acc-panel][data-open="false"] {
+    grid-template-rows: 0fr;
+  }
+  .js-motion [data-acc-panel][data-open="false"] > * {
+    visibility: hidden;
+    transition: visibility 0s linear 0.36s;
+  }
+  .js-motion [data-acc-panel][data-open="true"] > * {
+    visibility: visible;
+    transition: visibility 0s;
+  }
+
+  /* Marquee track */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   KEYFRAMES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes trace-flow {
+  from { stroke-dashoffset: 24; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes node-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.35); }
+}
+
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes scan {
+  0%, 100% { transform: translateY(-8%); opacity: 0; }
+  12%, 62% { opacity: 1; }
+  75%, 100% { transform: translateY(108%); opacity: 0; }
+}
+
+@keyframes caret-blink {
+  0%, 48% { opacity: 1; }
+  52%, 100% { opacity: 0; }
+}
+
+@keyframes ai-globe-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ai-globe-spin-reverse {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes ai-globe-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-7px) scale(1.04); }
+}
+
+.ai-globe-stage {
+  position: relative;
+  display: grid;
+  min-height: clamp(16rem, 31vw, 23rem);
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ai-globe-halo {
+  position: absolute;
+  width: min(62%, 22rem);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgb(215 169 63 / 0.16), transparent 68%);
+  filter: blur(18px);
+}
+
+.ai-globe-svg {
+  position: relative;
+  width: min(100%, 42rem);
+  overflow: visible;
+  filter: drop-shadow(0 24px 28px rgb(0 0 0 / 0.22));
+}
+
+.ai-globe-core,
+.ai-globe-orbit {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.ai-globe-core { animation: ai-globe-spin 6s linear infinite; }
+.ai-globe-orbit--outer { animation: ai-globe-spin-reverse 10s linear infinite; }
+.ai-globe-orbit--nodes { animation: ai-globe-spin-reverse 10s linear infinite; }
+.ai-globe-satellite { animation: ai-globe-float 2.4s ease-in-out infinite; transform-origin: center; }
+.ai-globe-satellite--small { animation-delay: -1.2s; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   REDUCED MOTION — every authored moment degrades to a static, correct state
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .js-motion [data-reveal],
+  .js-motion [data-reveal]:not([data-revealed]) {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PRINT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media print {
+  [data-print-hide] { display: none !important; }
+  body { background: #fff; color: #000; }
+}
