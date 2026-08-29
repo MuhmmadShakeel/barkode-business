@@ -19,22 +19,63 @@ import { cn } from "@/lib/utils";
  */
 export function ProcessTimeline({
   detailed = false,
+  containedScroll = false,
   className,
 }: {
   /** Full "what happens / you receive / why" treatment, for the Process page. */
   detailed?: boolean;
+  /** Uses this list as its own scroll viewport for compact homepage layouts. */
+  containedScroll?: boolean;
   className?: string;
 }) {
   const ref = useRef<HTMLOListElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 72%", "end 55%"],
-  });
+  const drag = useRef({ active: false, y: 0, scrollTop: 0 });
+  const { scrollYProgress } = useScroll(
+    containedScroll
+      ? { container: ref }
+      : { target: ref, offset: ["start 72%", "end 55%"] },
+  );
   const fill = useSpring(scrollYProgress, { stiffness: 110, damping: 30, mass: 0.5 });
   const height = useTransform(fill, [0, 1], ["0%", "100%"]);
 
   return (
-    <ol ref={ref} className={cn("relative", className)} data-reveal-group>
+    <ol
+      ref={ref}
+      className={cn(
+        "relative",
+        containedScroll && "process-scroll h-full cursor-grab snap-y snap-proximity overflow-y-auto overscroll-contain pr-3 select-none sm:pr-5",
+        className,
+      )}
+      tabIndex={containedScroll ? 0 : undefined}
+      aria-label={containedScroll ? "Scrollable product delivery process" : undefined}
+      onPointerDown={containedScroll ? (event) => {
+        if (event.button !== 0) return;
+        drag.current = { active: true, y: event.clientY, scrollTop: event.currentTarget.scrollTop };
+        event.currentTarget.setPointerCapture(event.pointerId);
+        event.currentTarget.dataset.dragging = "true";
+      } : undefined}
+      onPointerMove={containedScroll ? (event) => {
+        if (!drag.current.active) return;
+        event.currentTarget.scrollTop = drag.current.scrollTop - (event.clientY - drag.current.y);
+      } : undefined}
+      onPointerUp={containedScroll ? (event) => {
+        drag.current.active = false;
+        event.currentTarget.releasePointerCapture(event.pointerId);
+        delete event.currentTarget.dataset.dragging;
+      } : undefined}
+      onPointerCancel={containedScroll ? (event) => {
+        drag.current.active = false;
+        delete event.currentTarget.dataset.dragging;
+      } : undefined}
+      onKeyDown={containedScroll ? (event) => {
+        if (!["ArrowDown", "ArrowUp", "PageDown", "PageUp"].includes(event.key)) return;
+        event.preventDefault();
+        const direction = event.key === "ArrowDown" || event.key === "PageDown" ? 1 : -1;
+        const distance = event.key.startsWith("Page") ? event.currentTarget.clientHeight * 0.75 : 88;
+        event.currentTarget.scrollBy({ top: direction * distance, behavior: "smooth" });
+      } : undefined}
+      data-reveal-group
+    >
       {/* The unlit trace */}
       <span
         aria-hidden
@@ -53,7 +94,8 @@ export function ProcessTimeline({
           data-reveal="rise"
           className={cn(
             "relative pl-[3.75rem] sm:pl-[4.5rem]",
-            i === 0 ? "pb-10" : "py-10",
+            containedScroll && "snap-start",
+            i === 0 ? (containedScroll ? "pb-6" : "pb-10") : containedScroll ? "py-6" : "py-10",
             i === PROCESS.length - 1 && "pb-0",
           )}
         >

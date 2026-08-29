@@ -4,7 +4,6 @@ import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 
 import { Hero } from "@/components/sections/Hero";
 import { FinalCta } from "@/components/sections/FinalCta";
-import { TechStack } from "@/components/sections/TechStack";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { BeforeAfterWorkflow } from "@/components/sections/WorkflowDiagram";
 import { AnimatedAIGlobe } from "@/components/sections/AnimatedAIGlobe";
@@ -12,7 +11,7 @@ import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { ClientCaseCard } from "@/components/ui/CaseCard";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Registration, SchematicGround, TraceRule } from "@/components/ui/Schematic";
+import { SchematicGround, TraceRule } from "@/components/ui/Schematic";
 import { Marker, Section, SectionHead } from "@/components/ui/Section";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 
@@ -306,12 +305,11 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 6 · PROCESS ════════════════════════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="process-heading">
-        <div className="shell">
-          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
-            <Reveal className="lg:sticky lg:top-28 lg:self-start">
-              <Marker>Process</Marker>
-              <h2 id="process-heading" className="mt-5 max-w-[15ch] text-d2 text-text">
+      <Section surface="paper" tight aria-labelledby="process-heading" className="process-reveal lg:flex lg:h-[100svh] lg:items-center lg:overflow-hidden">
+        <div className="shell w-full lg:h-[calc(100svh-5.5rem)]">
+          <div className="grid h-full gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-stretch">
+            <Reveal className="flex h-full flex-col justify-start lg:pr-6 lg:pt-7">
+              <h2 id="process-heading" className="max-w-[17ch] text-d3 text-text">
                 A clear process from first idea to{" "}
                 <span className="text-accent-ink">working product.</span>
               </h2>
@@ -326,62 +324,57 @@ export default function HomePage() {
               </Button>
             </Reveal>
 
-            <Reveal kind="right">
-              <ProcessTimeline />
+            <Reveal kind="right" className="relative min-h-[30rem] overflow-hidden rounded-[var(--radius-lg)] border border-rule bg-paper-raised p-5 shadow-e2 lg:h-full lg:min-h-0 lg:p-7">
+              <ProcessTimeline containedScroll />
+              <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-paper-raised to-transparent" />
             </Reveal>
           </div>
         </div>
       </Section>
 
       {/* ═══ 7 · CASE STUDY PREVIEW ═════════════════════════════════════════ */}
-      <Section surface="sunken" aria-labelledby="work-heading">
-        <div className="shell">
+      <Section surface="paper" tight aria-labelledby="work-heading" className="selected-work-reveal !bg-transparent lg:flex lg:h-[100svh] lg:items-center lg:overflow-hidden">
+        <div className="shell w-full lg:h-[calc(100svh-5.5rem)]">
           <Reveal>
-            <div className="grid gap-x-14 gap-y-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end">
-              <div>
-                <Marker>Selected work</Marker>
-                <h2 id="work-heading" className="mt-5 max-w-[17ch] text-d2 text-text">
-                  Selected work with{" "}
-                  <span className="text-accent-ink">real project context.</span>
-                </h2>
-              </div>
-              <div>
-                <p className="measure text-text-2">
-                  Every case study explains what was built, why it mattered, what Barakode
-                  delivered, which technologies were used, and what changed for the business. No
-                  fake numbers. No inflated claims. Only proof that can be verified.
-                </p>
-                <Button href="/case-studies" variant="secondary" size="md" className="mt-7" arrow>
-                  View Case Studies
-                </Button>
-              </div>
+            <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
+              <h2 id="work-heading" className="max-w-[20ch] text-d3 text-text">
+                Selected work with{" "}
+                <span className="text-accent-ink">real project context.</span>
+              </h2>
+              <Button href="/case-studies" variant="secondary" size="md" arrow>
+                View Case Studies
+              </Button>
             </div>
           </Reveal>
 
-          <RevealGroup className="mt-14 grid gap-6 lg:grid-cols-3" as="ul">
+          <RevealGroup className="group/work mt-10 grid gap-6 pb-4 sm:mt-12 lg:h-[calc(100%-6.5rem)] lg:grid-cols-3 lg:pb-0" as="ul">
             {CLIENT_CASES.map((c, i) => (
-              <RevealItem key={c.slug} as="li" className="h-full">
-                <ClientCaseCard study={c} priority={i === 0} className="h-full" />
+              <RevealItem key={c.slug} as="li" className="h-full transition-[opacity,transform] duration-500 [transition-timing-function:var(--ease-expo)] lg:group-hover/work:scale-[0.985] lg:group-hover/work:opacity-65 lg:hover:!scale-100 lg:hover:!opacity-100">
+                <ClientCaseCard
+                  study={c}
+                  priority={i === 0}
+                  compact
+                  className="h-full [transform:perspective(1200px)_rotateX(0deg)_rotateY(0deg)] [transform-style:preserve-3d] hover:[transform:perspective(1200px)_rotateX(2deg)_rotateY(-2deg)_translate3d(0,-5px,16px)]"
+                />
               </RevealItem>
             ))}
           </RevealGroup>
         </div>
       </Section>
 
-      {/* ═══ 8 · TECHNOLOGIES ═══════════════════════════════════════════════ */}
-      <TechStack
-        surface="paper"
-        intro="We choose technology based on product goals, user needs, scalability, maintainability, integrations, team requirements, and long-term support."
-      />
-
       {/* ═══ 9 · WHY BARAKODE ═══════════════════════════════════════════════ */}
-      <Section surface="ink" aria-labelledby="why-heading">
-        <SchematicGround grid={38} nodes={152} mask="radial" />
-        <div className="shell relative">
-          <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <Section
+        surface="ink-deep"
+        aria-labelledby="why-heading"
+        className="why-reveal mt-8 min-h-[100svh] overflow-hidden bg-[url('/images/home/glass-company-headquarters.png')] bg-cover bg-center bg-no-repeat sm:mt-12 lg:bg-fixed"
+      >
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,9,16,0.96)_0%,rgba(5,9,16,0.87)_43%,rgba(5,9,16,0.58)_100%)]" />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-transparent to-ink-950/45" />
+        <div className="shell relative flex min-h-[calc(100svh-var(--spacing-section)*2)] items-center">
+          <div className="grid w-full gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center">
             <Reveal>
               <Marker tone="dark">Why Barakode</Marker>
-              <h2 id="why-heading" className="mt-5 max-w-[14ch] text-d2 text-white">
+              <h2 id="why-heading" className="mt-5 max-w-[16ch] text-d3 text-white">
                 Built for teams that need{" "}
                 <span className="text-accent-bright">more than code.</span>
               </h2>
@@ -392,11 +385,11 @@ export default function HomePage() {
               </p>
             </Reveal>
 
-            <RevealGroup as="dl" className="flex flex-col">
+            <RevealGroup as="dl" className="grid gap-3">
               {VALUE_PROPS.map((v, i) => (
-                <RevealItem key={v.title}>
+                <RevealItem key={v.title} className="h-full">
                   <div
-                    className={`grid gap-x-6 gap-y-2 border-b border-rule-dark py-6 sm:grid-cols-[minmax(0,13rem)_minmax(0,1fr)] ${i === 0 ? "border-t pt-0 sm:pt-6" : ""}`}
+                    className="grid h-full gap-x-6 gap-y-2 rounded-[var(--radius-md)] border border-white/12 border-b-2 border-b-accent/65 bg-black/48 p-5 shadow-dark-e1 backdrop-blur-md transition-[border-color,background-color,box-shadow,transform] duration-500 [transform:perspective(1000px)_translateZ(0)] [transition-timing-function:var(--ease-expo)] hover:[transform:perspective(1000px)_translate3d(0,-3px,12px)] hover:border-accent/40 hover:border-b-accent hover:bg-black/62 hover:shadow-dark-e2 sm:grid-cols-[minmax(0,12rem)_minmax(0,1fr)]"
                   >
                     <dt className="flex items-baseline gap-3 font-display text-[1.0625rem] font-semibold text-white">
                       <span
@@ -417,33 +410,34 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 10 · ENGAGEMENT MODELS PREVIEW ═════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="models-heading">
+      <Section surface="paper" tight aria-labelledby="models-heading" className="models-reveal">
         <div className="shell">
           <Reveal>
-            <SectionHead
-              id="models-heading"
-              marker="Engagement models"
-              lead="Flexible ways to"
-              accent="work with Barakode"
-              intro="Every software project has a different level of complexity. Start with the right level of planning, development, automation, or long-term support."
-            />
+            <h2 id="models-heading" className="max-w-[22ch] font-display text-[clamp(1.5rem,1.15rem+1.2vw,2.25rem)] leading-tight font-semibold text-text">
+              Flexible ways to <span className="text-accent-ink">work with Barakode</span>
+            </h2>
+            <p className="mt-4 max-w-[46rem] text-[0.9375rem] leading-relaxed text-text-2 sm:text-base">
+              Every software project has a different level of complexity. Start with the right level of planning, development, automation, or long-term support.
+            </p>
           </Reveal>
 
-          <RevealGroup className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5" as="ul">
+          <RevealGroup className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-5" as="ul">
             {ENGAGEMENT_MODELS.map((m) => (
               <RevealItem key={m.slug} as="li" className="h-full">
                 <Link
                   href={`/engagement-models#${m.slug}`}
-                  className="group/em relative flex h-full flex-col rounded-[var(--radius-md)] border border-rule bg-paper-raised p-6 shadow-e1 transition-[border-color,box-shadow,transform] duration-400 [transition-timing-function:var(--ease-expo)] hover:-translate-y-1 hover:border-accent/35 hover:shadow-e2"
+                  className="group/em relative flex h-full min-h-64 flex-col rounded-[var(--radius-md)] border border-rule bg-paper-raised p-6 shadow-e1 transition-[background-color,border-color,box-shadow,color] duration-500 [transition-timing-function:var(--ease-expo)] hover:border-ink-950 hover:bg-ink-950 hover:shadow-e3"
                 >
-                  <Registration />
-                  <h3 className="font-display text-[1.0625rem] leading-snug font-semibold text-text">
+                  <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-display text-[1.0625rem] leading-snug font-semibold text-text transition-colors duration-500 group-hover/em:text-white">
                     {m.name}
                   </h3>
-                  <p className="mt-2.5 flex-1 text-[0.8125rem] leading-relaxed text-text-3">
+                    <ArrowRight aria-hidden className="mt-0.5 size-4 shrink-0 text-accent opacity-55 transition-[color,opacity,transform] duration-500 group-hover/em:translate-x-1 group-hover/em:text-accent-bright group-hover/em:opacity-100" />
+                  </div>
+                  <p className="mt-4 flex-1 text-[0.8125rem] leading-relaxed text-text-3 transition-colors duration-500 group-hover/em:text-ontext-2">
                     {m.bestFor}
                   </p>
-                  <span className="mt-5 font-mono text-[0.6875rem] tracking-[0.06em] text-text-4">
+                  <span className="mt-6 border-t border-rule pt-4 font-mono text-[0.6875rem] tracking-[0.06em] text-text-4 transition-[border-color,color] duration-500 group-hover/em:border-white/15 group-hover/em:text-ontext-3">
                     {m.timeline}
                   </span>
                 </Link>
@@ -460,24 +454,28 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 11 · FAQ PREVIEW ═══════════════════════════════════════════════ */}
-      <Section surface="sunken" aria-labelledby="faq-heading">
-        <div className="shell">
-          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
-            <Reveal className="lg:sticky lg:top-28 lg:self-start">
-              <Marker>Common questions</Marker>
-              <h2 id="faq-heading" className="mt-5 max-w-[14ch] text-d2 text-text">
-                Answers before <span className="text-accent-ink">you commit.</span>
-              </h2>
-              <p className="measure mt-6 text-text-2">
-                The questions founders and operations leads ask us most often, answered plainly.
-              </p>
-              <Button href="/faq" variant="secondary" size="md" className="mt-8" arrow>
+      <Section surface="sunken" tight aria-labelledby="faq-heading" className="faq-reveal lg:flex lg:h-[100svh] lg:items-center lg:overflow-hidden">
+        <div className="shell w-full lg:h-[calc(100svh-5.5rem)]">
+          <Reveal>
+            <div className="flex flex-col items-start justify-between gap-5 border-b border-rule pb-6 sm:flex-row sm:items-end">
+              <div>
+                <Marker>Common questions</Marker>
+                <h2 id="faq-heading" className="mt-4 max-w-[18ch] text-d3 text-text">
+                  Answers before <span className="text-accent-ink">you commit.</span>
+                </h2>
+              </div>
+              <Button href="/faq" variant="secondary" size="md" arrow>
                 Read all FAQs
               </Button>
-            </Reveal>
+            </div>
+          </Reveal>
 
+          <div className="mt-6 grid gap-x-10 gap-y-2 lg:grid-cols-2">
+            <Reveal kind="left">
+              <Accordion items={FAQ_PREVIEW.filter((_, i) => i % 2 === 0)} compact />
+            </Reveal>
             <Reveal kind="right">
-              <Accordion items={FAQ_PREVIEW} defaultOpen={0} />
+              <Accordion items={FAQ_PREVIEW.filter((_, i) => i % 2 === 1)} compact />
             </Reveal>
           </div>
         </div>
