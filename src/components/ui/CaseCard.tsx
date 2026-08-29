@@ -13,10 +13,12 @@ import { cn } from "@/lib/utils";
 export function ClientCaseCard({
   study,
   priority = false,
+  compact = false,
   className,
 }: {
   study: ClientCase;
   priority?: boolean;
+  compact?: boolean;
   className?: string;
 }) {
   return (
@@ -28,7 +30,8 @@ export function ClientCaseCard({
     >
       <div
         className={cn(
-          "relative aspect-[16/10] overflow-hidden border-b border-rule",
+          "relative overflow-hidden border-b border-rule",
+          compact ? "aspect-[16/8]" : "aspect-[16/10]",
           study.tone === "light" ? "bg-paper-deep" : "bg-ink-900",
         )}
       >
@@ -46,7 +49,7 @@ export function ClientCaseCard({
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className={cn("flex flex-1 flex-col", compact ? "p-5" : "p-6")}>
         <p className="font-mono text-[0.6875rem] tracking-[0.1em] text-text-4 uppercase">
           {study.clientType} · {study.industry}
         </p>
@@ -60,9 +63,9 @@ export function ClientCaseCard({
           </Link>
         </h3>
 
-        <p className="measure mt-3 text-sm leading-relaxed text-text-2">{study.summary}</p>
+        <p className={cn("measure mt-3 text-sm leading-relaxed text-text-2", compact && "line-clamp-2")}>{study.summary}</p>
 
-        <dl className="mt-5 grid gap-x-6 gap-y-3 border-t border-rule pt-5 text-xs sm:grid-cols-2">
+        <dl className={cn("grid gap-x-6 gap-y-3 border-t border-rule text-xs sm:grid-cols-2", compact ? "mt-4 pt-4" : "mt-5 pt-5")}>
           <div>
             <dt className="font-mono tracking-[0.1em] text-text-4 uppercase">Delivered</dt>
             <dd className="mt-1.5 text-text-2">{study.servicesDelivered.length} services</dd>
@@ -73,7 +76,7 @@ export function ClientCaseCard({
           </div>
         </dl>
 
-        <ul className="mt-5 flex flex-wrap gap-1.5">
+        <ul className={cn("flex flex-wrap gap-1.5", compact ? "mt-4" : "mt-5")}>
           {study.stack
             .flatMap((g) => g.items)
             .slice(0, 5)
@@ -88,7 +91,7 @@ export function ClientCaseCard({
         </ul>
 
         {study.results && (
-          <p className="mt-5 flex items-start gap-2.5 border-t border-rule pt-5 text-sm text-text-2">
+          <p className={cn("flex items-start gap-2.5 border-t border-rule text-sm text-text-2", compact ? "mt-4 pt-4" : "mt-5 pt-5")}>
             <span
               aria-hidden
               className="mt-[0.4375rem] size-1.5 shrink-0 rounded-full bg-accent"
@@ -97,7 +100,7 @@ export function ClientCaseCard({
           </p>
         )}
 
-        <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-accent-ink">
+        <span className={cn("mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-accent-ink", compact ? "pt-4" : "pt-6")}>
           View case study
           <ArrowUpRight
             aria-hidden

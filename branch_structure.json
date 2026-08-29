@@ -1,0 +1,15 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "main",
+    "payroll-calculation"
+  ],
+  "parent": {
+    "main": null,
+    "payroll-calculation": "main"
+  },
+  "order": [
+    "main",
+    "payroll-calculation"
+  ]
+}
