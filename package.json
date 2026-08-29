@@ -2,11 +2,11 @@
   "name": "barakode-technologies",
   "version": "1.0.0",
   "private": true,
-  "description": "Barakode Technologies — Product Engineering & AI Automation Partner",
+  "description": "Barakode Technologies \u2014 Product Engineering & AI Automation Partner",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node api.js && next dev",
+    "build": "node api.js && next build",
+    "start": "node api.js && next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },
