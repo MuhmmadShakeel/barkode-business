@@ -18,6 +18,11 @@ export function RevealObserver() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Enable enhanced motion only after the client has mounted. Content stays
+    // visible when JavaScript is unavailable, without injecting an inline
+    // script into the server-rendered layout.
+    document.documentElement.classList.add("js-motion");
+
     const nodes = Array.from(
       document.querySelectorAll<HTMLElement>("[data-reveal]:not([data-revealed])"),
     );
@@ -57,10 +62,3 @@ export function RevealObserver() {
 
   return null;
 }
-
-/**
- * Runs before first paint: enables the hidden state only when JS is present,
- * and schedules a failsafe that force-reveals everything if hydration never
- * completes. Without this script the page renders fully visible and static.
- */
-export const revealBootstrap = `(function(){var d=document.documentElement;d.classList.add('js-motion');setTimeout(function(){d.classList.add('reveal-all')},4000)})()`;

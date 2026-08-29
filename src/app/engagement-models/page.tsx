@@ -1,235 +1,172 @@
-import { ArrowRight, Check } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Check, Clock3, Layers3, MoveUpRight } from "lucide-react";
 
-import { PageHero } from "@/components/sections/PageHero";
-import { FinalCta } from "@/components/sections/FinalCta";
-import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Registration, SchematicGround, TraceRule } from "@/components/ui/Schematic";
-import { Marker, Section, SectionHead } from "@/components/ui/Section";
-
-import { ENGAGEMENT_MODELS, FAQ_CATEGORIES } from "@/lib/content";
-import { JsonLd, breadcrumbSchema, buildMetadata, faqSchema } from "@/lib/seo";
+import { Marker } from "@/components/ui/Section";
+import { ENGAGEMENT_MODELS } from "@/lib/content";
+import { JsonLd, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Engagement Models — Flexible ways to work with Barakode",
-  description:
-    "Structured engagement models for product builds, AI automation, and ongoing support. Custom quotes after discovery — no misleading fixed-price tables.",
+  description: "Structured engagement models for product builds, AI automation, and ongoing support. Custom quotes after discovery — no misleading fixed-price tables.",
   path: "/engagement-models",
 });
 
-const PRICING_FAQS = FAQ_CATEGORIES.find((c) => c.id === "pricing")!.items;
+const MODEL_IMAGES = [
+  { src: "/images/contact/roadmap.jpg", alt: "Product roadmap and planning workspace" },
+  { src: "/images/projects/originals/beyut-cover.jpg", alt: "Custom digital product presented on multiple devices" },
+  { src: "/images/home/ai-business-leader.png", alt: "Business leader reviewing an AI-enabled workflow" },
+  { src: "/images/home/glass-company-headquarters.png", alt: "Modern technology company headquarters" },
+  { src: "/images/process/support-growth.jpg", alt: "Ongoing product support and growth planning" },
+];
+
+const SECONDARY_IMAGES = [
+  "/images/process/discovery.jpg",
+  "/images/projects/beyut-libya.jpg",
+  "/images/projects/openinterview-detail.jpg",
+  "/images/process/development.jpg",
+  "/images/process/qa-delivery.jpg",
+];
+
+function ModelCopy({ model, index, dark = false }: { model: (typeof ENGAGEMENT_MODELS)[number]; index: number; dark?: boolean }) {
+  return (
+    <Reveal kind={index % 2 ? "right" : "left"} className="engagement-copy">
+      <div className={`font-mono text-xs tracking-[.14em] uppercase ${dark ? "text-signal" : "text-accent-ink"}`}>0{index + 1} / 0{ENGAGEMENT_MODELS.length}</div>
+      <h2 className={`mt-4 max-w-[14ch] text-d2 ${dark ? "text-white" : "text-text"}`}>{model.name}</h2>
+      <p className={`mt-4 max-w-xl text-lead ${dark ? "text-ontext-2" : "text-text-2"}`}><span className={dark ? "text-white" : "text-text"}>Best for: </span>{model.bestFor}</p>
+      <div className={`mt-6 border-t pt-5 ${dark ? "border-rule-dark" : "border-rule"}`}>
+        <p className={`font-mono text-xs tracking-[.14em] uppercase ${dark ? "text-ontext-3" : "text-text-4"}`}>What is included</p>
+        <ul className="mt-4 grid gap-x-5 gap-y-2 sm:grid-cols-2">{model.included.map((item) => <li key={item} className={`flex items-start gap-2 text-[.8125rem] ${dark ? "text-ontext-2" : "text-text-2"}`}><Check className="mt-0.5 size-3.5 shrink-0 text-accent" strokeWidth={2.3} />{item}</li>)}</ul>
+      </div>
+      <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center"><Button href={model.cta.href} variant={dark ? "onDark" : "primary"} size="md" arrow>{model.cta.label}</Button><span className={`inline-flex items-center gap-2 text-xs ${dark ? "text-ontext-3" : "text-text-3"}`}><Clock3 className="size-4" />{model.pricing}</span></div>
+    </Reveal>
+  );
+}
 
 export default function EngagementModelsPage() {
   return (
     <>
-      <PageHero
-        marker="Engagement Models"
-        heading="Flexible engagement models for product builds, AI automation, and"
-        accent="ongoing support"
-        trail="."
-        body="Every software project has a different level of complexity. We offer structured engagement models so you can start with the right level of planning, development, automation, or long-term support."
-        primary={{ label: "Find the Right Model", href: "/contact?intent=engagement-model" }}
-        secondary={{ label: "Book a Strategy Call", href: "/contact?intent=strategy-call" }}
-        crumbs={[
-          { name: "Home", path: "/" },
-          { name: "Engagement Models", path: "/engagement-models" },
-        ]}
-        meta={[
-          { label: "Models", value: `${ENGAGEMENT_MODELS.length}, from a focused sprint to a standing team` },
-          { label: "Shortest", value: "AI Automation Sprint — 2 to 6 weeks" },
-          { label: "Pricing", value: "Custom quote after discovery" },
-        ]}
-      />
+      <section className="engagement-hero relative flex h-[100svh] min-h-[38rem] items-center justify-center overflow-hidden bg-ink-950 text-center text-white" data-surface="dark">
+        <Image src="/images/hero/engagement-models-hero-v2.png" alt="Business and technology leaders collaborating in a modern boardroom" fill priority sizes="100vw" className="engagement-hero-image object-cover object-center" />
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,8,10,.64)_0%,rgba(4,8,10,.46)_36%,rgba(4,8,10,.72)_100%)]" />
+        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,7,9,.16)_42%,rgba(3,7,9,.66)_100%)]" />
+        <div aria-hidden className="engagement-grid absolute inset-0 opacity-20" />
 
-      {/* ═══ CHOOSER ════════════════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="chooser-heading">
-        <div className="shell">
-          <Reveal>
-            <div className="flex items-center gap-5">
-              <TraceRule className="w-14" />
-              <h2
-                id="chooser-heading"
-                className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase"
-              >
-                Start here — which one is you?
-              </h2>
+        <div className="shell relative z-10 flex h-full flex-col items-center justify-center pt-20">
+          <Reveal className="flex max-w-[58rem] flex-col items-center">
+            <div className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/25 px-4 py-2 backdrop-blur-md">
+              <span className="size-1.5 rounded-full bg-accent-bright shadow-[0_0_14px_rgba(226,184,92,.9)]" />
+              <span className="font-mono text-[.6875rem] tracking-[.16em] text-white/80 uppercase">Engagement Models</span>
+            </div>
+            <h1 className="mt-7 max-w-[15ch] text-d1 text-white drop-shadow-[0_4px_30px_rgba(0,0,0,.5)]">The right partnership for your <span className="text-accent-bright">next move.</span></h1>
+            <div className="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
+              <Button href="/contact?intent=engagement-model" size="lg" arrow>Find the Right Model</Button>
+              <Button href="/contact?intent=strategy-call" variant="onDarkGhost" size="lg" className="bg-black/15 backdrop-blur-md">Book a Strategy Call</Button>
             </div>
           </Reveal>
 
-          <RevealGroup as="ul" className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {ENGAGEMENT_MODELS.map((m) => (
-              <RevealItem key={m.slug} as="li">
-                <a
-                  href={`#${m.slug}`}
-                  className="group/c flex h-full flex-col justify-between gap-5 rounded-[var(--radius-md)] border border-rule bg-paper-raised p-5 shadow-e1 transition-[border-color,box-shadow,transform] duration-400 [transition-timing-function:var(--ease-expo)] hover:-translate-y-1 hover:border-accent/40 hover:shadow-e2"
-                >
-                  <span className="text-[0.9375rem] leading-snug font-medium text-text">
-                    {m.trigger}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 font-mono text-[0.6875rem] tracking-[0.06em] text-accent-ink">
-                    {m.name}
-                    <ArrowRight
-                      aria-hidden
-                      className="size-3 transition-transform duration-300 [transition-timing-function:var(--ease-expo)] group-hover/c:translate-x-1"
-                    />
-                  </span>
-                </a>
+        </div>
+      </section>
+
+      <section id="model-navigator" className="flex min-h-[100svh] items-center bg-paper py-24" aria-labelledby="navigator-heading">
+        <div className="shell w-full">
+          <Reveal className="grid items-end gap-8 lg:grid-cols-[1fr_auto]">
+            <div><Marker>Choose your starting point</Marker><h2 id="navigator-heading" className="mt-5 max-w-[15ch] text-d2 text-text">Start with the business need. <span className="text-accent-ink">The model follows.</span></h2></div>
+            <p className="max-w-md text-text-3">Five clear ways to work together—from validating one idea to extending your product team.</p>
+          </Reveal>
+          <RevealGroup as="ol" className="mt-14 grid border-y border-rule lg:grid-cols-5">
+            {ENGAGEMENT_MODELS.map((model, i) => (
+              <RevealItem key={model.slug} as="li" index={i} className="border-b border-rule last:border-b-0 lg:border-r lg:border-b-0 lg:last:border-r-0">
+                <Link href={`#${model.slug}`} className="group/nav flex min-h-48 flex-col justify-between p-6 transition-colors duration-300 hover:bg-ink-950 hover:text-white lg:min-h-64">
+                  <span className="flex items-center justify-between font-mono text-xs text-text-4 group-hover/nav:text-signal">0{i + 1}<MoveUpRight className="size-4 transition-transform group-hover/nav:translate-x-1 group-hover/nav:-translate-y-1" /></span>
+                  <span><span className="block text-sm text-text-3 group-hover/nav:text-ontext-3">{model.trigger}</span><span className="mt-2 block font-display text-lg font-semibold text-text group-hover/nav:text-white">{model.name}</span></span>
+                </Link>
               </RevealItem>
             ))}
           </RevealGroup>
         </div>
-      </Section>
+      </section>
 
-      {/* ═══ THE MODELS ═════════════════════════════════════════════════════ */}
-      <Section surface="sunken" aria-label="Engagement models in detail">
-        <SchematicGround grid={30} nodes={false} mask="radial" className="opacity-60" />
-        <div className="shell relative">
-          <ul className="flex flex-col gap-6">
-            {ENGAGEMENT_MODELS.map((m, i) => (
-              <li key={m.slug} id={m.slug} className="scroll-mt-28">
-                <Reveal>
-                  <article className="relative grid gap-x-12 gap-y-8 rounded-[var(--radius-lg)] border border-rule bg-paper-raised p-7 shadow-e1 transition-[border-color,box-shadow] duration-400 hover:border-accent/25 hover:shadow-e2 sm:p-9 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)_minmax(0,0.85fr)]">
-                    <Registration size={18} />
+      {ENGAGEMENT_MODELS.map((model, i) => {
+        const image = MODEL_IMAGES[i];
+        if (i === 0) return (
+          <section key={model.slug} id={model.slug} className="engagement-model engagement-editorial flex scroll-mt-20 items-center overflow-hidden bg-paper-sunken py-20">
+            <div className="shell w-full"><div className="grid items-center gap-10 lg:grid-cols-[.88fr_1.12fr] lg:gap-20">
+              <ModelCopy model={model} index={i} />
+              <Reveal kind="right" className="relative grid grid-cols-[.72fr_1fr] items-end gap-4">
+                <div className="relative mb-10 h-[22rem] overflow-hidden rounded-t-full shadow-e3"><Image src={SECONDARY_IMAGES[i]} alt="Discovery workshop in progress" fill sizes="24vw" className="object-cover" /></div>
+                <div className="relative h-[32rem] overflow-hidden rounded-[1.5rem] shadow-e4"><Image src={image.src} alt={image.alt} fill sizes="40vw" className="object-cover" /><div className="absolute inset-x-5 bottom-5 rounded-xl bg-white/90 p-4 backdrop-blur"><span className="font-mono text-[.625rem] text-accent-ink uppercase">Focused delivery</span><p className="mt-1 text-sm font-medium text-text">{model.timeline}</p></div></div>
+              </Reveal>
+            </div></div>
+          </section>
+        );
+        if (i === 1) return (
+          <section key={model.slug} id={model.slug} data-surface="dark" className="engagement-model engagement-architectural relative flex scroll-mt-20 items-center overflow-hidden bg-ink-950 py-20">
+            <div className="absolute inset-y-0 right-0 hidden w-[52%] lg:block"><Image src={image.src} alt={image.alt} fill sizes="52vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/25 to-transparent" /></div>
+            <div className="shell relative w-full"><div className="max-w-[44rem] rounded-[1.75rem] border border-white/10 bg-ink-950/85 p-7 shadow-e4 backdrop-blur-xl sm:p-10"><ModelCopy model={model} index={i} dark /></div></div>
+            <div className="absolute right-8 bottom-8 hidden rounded-xl border border-white/15 bg-black/35 px-5 py-3 text-sm text-white backdrop-blur lg:block">{model.timeline}</div>
+          </section>
+        );
+        if (i === 2) return (
+          <section key={model.slug} id={model.slug} data-surface="dark" className="engagement-model engagement-control-room flex scroll-mt-20 items-center overflow-hidden bg-[#11100d] py-20">
+            <div className="shell w-full"><div className="grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
+              <Reveal kind="left" className="relative min-h-[34rem] [perspective:1200px]">
+                <div className="absolute inset-8 overflow-hidden rounded-full border border-accent/30 shadow-[0_0_90px_rgba(200,146,42,.18)]"><Image src={image.src} alt={image.alt} fill sizes="48vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" /></div>
+                {["Discover", "Prototype", "Integrate", "Review"].map((step, n) => <span key={step} className={`engagement-satellite engagement-satellite-${n + 1}`}>0{n + 1} · {step}</span>)}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-accent/30 bg-ink-950 px-5 py-2 text-center text-xs text-signal shadow-e3">{model.timeline}</div>
+              </Reveal>
+              <ModelCopy model={model} index={i} dark />
+            </div></div>
+          </section>
+        );
+        if (i === 3) return (
+          <section key={model.slug} id={model.slug} className="engagement-model engagement-team flex scroll-mt-20 items-center overflow-hidden bg-paper py-20">
+            <div className="shell w-full"><div className="grid items-center gap-10 lg:grid-cols-[.92fr_1.08fr] lg:gap-16">
+              <ModelCopy model={model} index={i} />
+              <Reveal kind="right" className="grid h-[35rem] grid-cols-5 grid-rows-5 gap-4">
+                <div className="relative col-span-3 row-span-5 overflow-hidden rounded-[1.5rem] shadow-e4"><Image src={image.src} alt={image.alt} fill sizes="32vw" className="object-cover" /></div>
+                <div className="relative col-span-2 row-span-3 overflow-hidden rounded-[1.5rem] shadow-e3"><Image src={SECONDARY_IMAGES[i]} alt="Product engineers working together" fill sizes="20vw" className="object-cover" /></div>
+                <div className="col-span-2 row-span-2 flex flex-col justify-between rounded-[1.5rem] bg-accent p-6 text-ink-950 shadow-e3"><Layers3 className="size-8" /><div><span className="font-mono text-[.625rem] uppercase">Team rhythm</span><p className="mt-1 font-display text-lg font-semibold">{model.timeline}</p></div></div>
+              </Reveal>
+            </div></div>
+          </section>
+        );
+        return (
+          <section key={model.slug} id={model.slug} data-surface="dark" className="engagement-model engagement-support relative flex scroll-mt-20 items-center overflow-hidden bg-ink-950 py-20">
+            <Image src={image.src} alt={image.alt} fill sizes="100vw" className="object-cover opacity-30" /><div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/85 to-ink-950/35" />
+            <div className="shell relative w-full"><div className="grid items-center gap-10 lg:grid-cols-[1fr_.82fr] lg:gap-20">
+              <ModelCopy model={model} index={i} dark />
+              <Reveal kind="right" className="rounded-[1.75rem] border border-white/10 bg-white/[.06] p-6 shadow-e4 backdrop-blur-xl">
+                <div className="flex items-center justify-between border-b border-white/10 pb-5"><span className="font-mono text-xs text-ontext-3 uppercase">Product health</span><span className="flex items-center gap-2 text-xs text-emerald-300"><span className="size-2 rounded-full bg-emerald-400 shadow-[0_0_12px_#34d399]" />Active support</span></div>
+                <div className="mt-5 grid grid-cols-2 gap-3">{["Monitoring", "Updates", "Performance", "Security"].map((item, n) => <div key={item} className="rounded-xl border border-white/10 bg-black/20 p-4"><span className="font-mono text-[.625rem] text-signal">0{n + 1}</span><p className="mt-5 text-sm font-medium text-white">{item}</p><div className="mt-3 h-1 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-accent" style={{ width: `${72 + n * 7}%` }} /></div></div>)}</div>
+                <div className="relative mt-4 h-32 overflow-hidden rounded-xl"><Image src={SECONDARY_IMAGES[i]} alt="Quality assurance and product delivery" fill sizes="36vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" /><p className="absolute bottom-4 left-4 text-sm font-medium text-white">{model.timeline}</p></div>
+              </Reveal>
+            </div></div>
+          </section>
+        );
+      })}
 
-                    {/* Identity */}
-                    <div>
-                      <span className="font-mono text-[0.6875rem] text-text-4 tabular-nums">
-                        {String(i + 1).padStart(2, "0")} / {String(ENGAGEMENT_MODELS.length).padStart(2, "0")}
-                      </span>
-                      <h2 className="mt-3 text-d3 text-text">{m.name}</h2>
-                      <p className="measure mt-4 text-[0.9375rem] leading-relaxed text-text-2">
-                        <span className="font-medium text-text">Best for: </span>
-                        {m.bestFor}
-                      </p>
-                    </div>
+      <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-accent-soft py-24" aria-labelledby="pricing-heading">
+        <div aria-hidden className="engagement-grid absolute inset-0 opacity-25" />
+        <div className="shell relative w-full"><div className="grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
+          <Reveal>
+            <Marker>Pricing with context</Marker><h2 id="pricing-heading" className="mt-5 max-w-[15ch] text-d1 text-text">A clear scope before <span className="text-accent-ink">a confident quote.</span></h2>
+            <p className="mt-7 max-w-2xl text-lead text-text-2">Software scope depends on features, integrations, users, platforms, data, security needs, and long-term goals. Instead of showing misleading fixed prices, we review your project and recommend the right scope, timeline, and engagement model.</p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button href="/contact?intent=engagement-model" size="lg" arrow>Find the Right Model</Button><Button href="/contact?intent=strategy-call" variant="secondary" size="lg">Book a Strategy Call</Button></div>
+          </Reveal>
+          <Reveal kind="right" className="relative [perspective:1200px]">
+            <div className="engagement-price-card relative rounded-[2rem] border border-rule bg-white p-7 shadow-e4 sm:p-10 [transform:rotateY(-5deg)_rotateX(3deg)] [transform-style:preserve-3d]">
+              <span className="font-mono text-xs tracking-[.14em] text-accent-ink uppercase">Scope signals</span>
+              <div className="mt-8 grid grid-cols-2 gap-3">{["Features", "Integrations", "Users & roles", "Platforms", "Data", "Security needs", "Long-term goals"].map((item, i) => <div key={item} className={`rounded-xl border border-rule bg-paper px-4 py-4 text-sm text-text-2 ${i === 6 ? "col-span-2" : ""}`}><span className="mr-2 font-mono text-[.625rem] text-accent">0{i + 1}</span>{item}</div>)}</div>
+              <div className="mt-8 flex items-center justify-between gap-4 border-t border-rule pt-6"><span className="text-sm text-text-3">Recommendation</span><span className="inline-flex items-center gap-2 text-right font-medium text-text">Built around your goals <ArrowRight className="size-4 shrink-0 text-accent" /></span></div>
+            </div>
+          </Reveal>
+        </div></div>
+      </section>
 
-                    {/* Included */}
-                    <div>
-                      <h3 className="font-mono text-marker font-medium tracking-[0.16em] text-accent-ink uppercase">
-                        Included
-                      </h3>
-                      <ul className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
-                        {m.included.map((inc) => (
-                          <li key={inc} className="flex items-start gap-2.5 text-sm text-text-2">
-                            <Check
-                              aria-hidden
-                              className="mt-[0.1875rem] size-3.5 shrink-0 text-accent"
-                              strokeWidth={2.4}
-                            />
-                            {inc}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Terms */}
-                    <div className="flex flex-col justify-between gap-6 rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-5">
-                      <dl className="flex flex-col gap-4">
-                        <div>
-                          <dt className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
-                            Typical timeline
-                          </dt>
-                          <dd className="mt-1.5 text-sm text-text-2">{m.timeline}</dd>
-                        </div>
-                        <div>
-                          <dt className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
-                            Pricing
-                          </dt>
-                          <dd className="mt-1.5 text-sm text-text-2">{m.pricing}</dd>
-                        </div>
-                      </dl>
-                      <Button href={m.cta.href} size="md" arrow block>
-                        {m.cta.label}
-                      </Button>
-                    </div>
-                  </article>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Section>
-
-      {/* ═══ PRICING NOTE ═══════════════════════════════════════════════════ */}
-      <Section surface="ink" aria-labelledby="pricing-heading">
-        <SchematicGround grid={38} nodes={152} mask="radial" />
-        <div className="shell relative">
-          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
-            <Reveal>
-              <Marker tone="dark">Pricing</Marker>
-              <h2 id="pricing-heading" className="mt-5 max-w-[17ch] text-d2 text-white">
-                Why we do not use{" "}
-                <span className="text-accent-bright">one-size-fits-all pricing.</span>
-              </h2>
-            </Reveal>
-            <Reveal kind="right">
-              <p className="measure text-lead text-ontext-2">
-                Software scope depends on features, integrations, users, platforms, data, security
-                needs, and long-term goals. Instead of showing misleading fixed prices, we review
-                your project and recommend the right scope, timeline, and engagement model.
-              </p>
-              <ul className="mt-8 flex flex-wrap gap-2">
-                {[
-                  "Features",
-                  "Integrations",
-                  "Users & roles",
-                  "Platforms",
-                  "Data",
-                  "Security needs",
-                  "Long-term goals",
-                ].map((f) => (
-                  <li
-                    key={f}
-                    className="rounded-[var(--radius-xs)] border border-rule-dark-strong px-2.5 py-1 font-mono text-xs text-ontext-2"
-                  >
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
-
-      {/* ═══ FAQ ════════════════════════════════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="faq-heading">
-        <div className="shell">
-          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
-            <Reveal className="lg:sticky lg:top-28 lg:self-start">
-              <Marker>Questions</Marker>
-              <h2 id="faq-heading" className="mt-5 max-w-[14ch] text-d2 text-text">
-                About <span className="text-accent-ink">pricing and scope.</span>
-              </h2>
-              <Button href="/faq" variant="secondary" size="md" className="mt-8" arrow>
-                All FAQs
-              </Button>
-            </Reveal>
-            <Reveal kind="right">
-              <Accordion items={PRICING_FAQS} defaultOpen={0} />
-            </Reveal>
-          </div>
-        </div>
-      </Section>
-
-      <FinalCta
-        marker="Next step"
-        heading="Not sure which model fits"
-        accent="your project?"
-        body="Share your project goals and we will recommend the best starting point."
-        primary={{ label: "Find the Right Model", href: "/contact?intent=engagement-model" }}
-        secondary={{ label: "Book a Strategy Call", href: "/contact?intent=strategy-call" }}
-      />
-
-      <JsonLd
-        data={[
-          breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Engagement Models", path: "/engagement-models" },
-          ]),
-          faqSchema(PRICING_FAQS),
-        ]}
-      />
+      <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Engagement Models", path: "/engagement-models" }])} />
     </>
   );
 }

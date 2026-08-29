@@ -19,12 +19,15 @@ export function Accordion({
   items,
   tone = "light",
   defaultOpen = -1,
+  compact = false,
   className,
 }: {
   items: AccordionItem[];
   tone?: "light" | "dark";
   /** Index open on first paint. -1 opens nothing. */
   defaultOpen?: number;
+  /** Tighter rhythm for compact two-column FAQ previews. */
+  compact?: boolean;
   className?: string;
 }) {
   const [open, setOpen] = useState(defaultOpen);
@@ -46,11 +49,15 @@ export function Accordion({
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpen(isOpen ? -1 : i)}
-                className="group/acc flex w-full items-start gap-5 py-5 text-left sm:py-6"
+                className={cn(
+                  "group/acc flex w-full items-start text-left",
+                  compact ? "gap-4 py-4" : "gap-5 py-5 sm:py-6",
+                )}
               >
                 <span
                   className={cn(
-                    "flex-1 text-[1.0625rem] leading-snug font-medium transition-colors duration-200 sm:text-[1.125rem]",
+                    "flex-1 leading-snug font-medium transition-colors duration-200",
+                    compact ? "text-[0.9375rem] sm:text-[1rem]" : "text-[1.0625rem] sm:text-[1.125rem]",
                     isOpen
                       ? dark
                         ? "text-white"
@@ -90,7 +97,8 @@ export function Accordion({
               <div className="min-h-0 overflow-hidden">
                 <p
                   className={cn(
-                    "measure pr-12 pb-6 text-[1rem] leading-relaxed",
+                    "measure pr-10 leading-relaxed",
+                    compact ? "pb-4 text-[0.875rem]" : "pb-6 text-[1rem]",
                     dark ? "text-ontext-2" : "text-text-2",
                   )}
                 >
