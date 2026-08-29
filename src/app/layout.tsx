@@ -5,7 +5,7 @@ import "@/styles/globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
-import { RevealObserver, revealBootstrap } from "@/components/layout/RevealObserver";
+import { RevealObserver } from "@/components/layout/RevealObserver";
 import { JsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
@@ -82,11 +82,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${sora.variable} ${inter.variable} ${jetbrains.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        {/* Enables the reveal system's hidden state only when JS is present,
-            so the page is never blank if the bundle fails to run. */}
-        <script dangerouslySetInnerHTML={{ __html: revealBootstrap }} />
-      </head>
       <body>
         <a href="#main" className="skip-link">
           Skip to content
