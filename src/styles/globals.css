@@ -342,6 +342,60 @@
     .home-flow-lines__signal { stroke-width: 2; }
   }
 
+  /* Home route: resilient composition from 320px phones to short laptops. */
+  @media (max-width: 39.99rem) {
+    .home-hero {
+      height: auto;
+      min-height: 100svh;
+      padding-top: max(5rem, env(safe-area-inset-top));
+      padding-bottom: max(2rem, env(safe-area-inset-bottom));
+    }
+
+    .home-hero .shell-wide { padding-inline: max(1rem, env(safe-area-inset-left)); }
+    .home-hero h1 { font-size: clamp(2.15rem, 11.5vw, 3rem); line-height: 1.02; }
+    .home-hero p { font-size: clamp(.9375rem, 4.4vw, 1.125rem); }
+
+    .trust-reveal .shell > .grid > [data-reveal]:first-child { min-height: 20rem; }
+    .trust-reveal .trust-card-grid a { min-height: 10rem; padding: 1.125rem; }
+    .services-reveal article { padding: 1.25rem; }
+    .ai-reveal .ai-globe-stage { min-height: 13rem; }
+    .process-reveal [data-reveal="right"] { min-height: min(30rem, 72svh); padding: 1rem; }
+    .why-reveal .shell { min-height: auto; }
+    .models-reveal a { min-height: 13rem; }
+  }
+
+  @media (min-width: 40rem) and (max-width: 63.99rem) {
+    .home-hero { height: auto; min-height: 100svh; padding-bottom: 2.5rem; }
+    .process-reveal [data-reveal="right"] { min-height: 34rem; }
+  }
+
+  @media (min-width: 64rem) and (max-height: 47.99rem) {
+    .process-reveal,
+    .selected-work-reveal,
+    .faq-reveal {
+      height: auto !important;
+      min-height: 100svh;
+      overflow: visible !important;
+    }
+
+    .process-reveal > .shell,
+    .selected-work-reveal > .shell,
+    .faq-reveal > .shell { height: auto !important; }
+
+    .process-reveal [data-reveal="right"] { min-height: 34rem; }
+    .selected-work-reveal [data-reveal-group] { height: auto !important; }
+  }
+
+  @media (hover: none) {
+    .trust-reveal a,
+    .problem-reveal article,
+    .services-reveal article,
+    .ai-reveal [class*="group/"],
+    .selected-work-reveal article,
+    .why-reveal [data-reveal-group] > div,
+    .models-reveal a { transform: none !important; }
+  }
+
   /* ── The schematic grid — the world's signature ground ───────────────────
      Hairline coordinate grid with node dots at every 4th intersection.     */
   .schematic-grid {
@@ -1071,6 +1125,27 @@
   font-size: clamp(2.75rem, 5.65vw, 6rem);
   line-height: .98;
   letter-spacing: -.05em;
+}
+
+/* Compact-screen safeguards shared by every interior route. Desktop remains unchanged. */
+@media (max-width: 39.99rem) {
+  .site-hero-heading,
+  .ai-hero-heading {
+    max-width: 100%;
+    font-size: clamp(2.2rem, 10.75vw, 3rem);
+    line-height: 1.02;
+    letter-spacing: -.045em;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-reveal p,
+  .hero-reveal dd,
+  main h2,
+  main h3,
+  main p,
+  main li {
+    overflow-wrap: anywhere;
+  }
 }
 
 .ai-service-hero {

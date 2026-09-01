@@ -26,7 +26,7 @@ export default function CaseStudiesPage() {
       <section
         data-surface="dark"
         aria-labelledby="case-studies-hero-heading"
-        className="hero-reveal relative isolate h-[100svh] overflow-hidden bg-ink-950 text-ontext"
+        className="hero-reveal relative isolate min-h-[100svh] overflow-hidden bg-ink-950 text-ontext lg:h-[100svh]"
       >
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(215,169,63,.1),transparent_42%),linear-gradient(180deg,#090b0e_0%,#050607_100%)]" />
         <div aria-hidden className="absolute inset-0 opacity-15 [background-image:linear-gradient(rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:linear-gradient(to_bottom,transparent,#000_25%,#000_82%,transparent)]" />
@@ -38,7 +38,7 @@ export default function CaseStudiesPage() {
         </div>
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(5,6,7,.24)_0%,rgba(5,6,7,.55)_48%,rgba(5,6,7,.88)_100%)]" />
 
-        <div className="shell relative flex h-full w-full flex-col justify-center pt-20 pb-5 sm:pt-24 sm:pb-7">
+        <div className="shell relative flex min-h-[100svh] w-full flex-col justify-center pt-28 pb-8 sm:pt-28 sm:pb-9 lg:h-full lg:min-h-0 lg:pt-20 lg:pb-5">
           <Reveal className="mx-auto flex max-w-4xl flex-col items-center text-center">
             <Marker tone="dark">Case Studies</Marker>
             <h1 id="case-studies-hero-heading" className="site-hero-heading mt-4 max-w-[19ch] font-display font-semibold text-white">
@@ -50,19 +50,19 @@ export default function CaseStudiesPage() {
               approached the solution, and what was delivered. Every case study is based on verified
               project details, real screenshots, and accurate outcomes.
             </p>
-            <Button href="/contact" variant="onDark" size="md" className="mt-6" arrow>
+            <Button href="/contact" variant="onDark" size="md" className="mt-6 w-full sm:w-auto" arrow>
               Discuss a Similar Project
             </Button>
           </Reveal>
 
           <Reveal index={1} className="mt-7 sm:mt-9">
-            <dl className="mx-auto grid max-w-5xl grid-cols-3 border-t border-rule-dark pt-5 text-center">
+            <dl className="mx-auto grid max-w-5xl grid-cols-1 border-t border-rule-dark pt-3 text-center sm:grid-cols-3 sm:pt-5">
               {[
                 { label: "Client engagements", value: `${CLIENT_CASES.length} documented in full` },
                 { label: "Engineering studies", value: `${RESEARCH_STUDIES.length}, each with its report` },
                 { label: "Invented metrics", value: "None. Verified outcomes only." },
               ].map((item) => (
-                <div key={item.label} className="border-r border-rule-dark px-2 last:border-r-0 sm:px-6">
+                <div key={item.label} className="border-b border-rule-dark px-2 py-2 last:border-b-0 sm:border-r sm:border-b-0 sm:px-6 sm:py-0 sm:last:border-r-0">
                   <dt className="font-mono text-[.5rem] tracking-[.1em] text-ontext-4 uppercase sm:text-[.625rem] sm:tracking-[.14em]">
                     {item.label}
                   </dt>

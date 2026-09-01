@@ -118,14 +118,14 @@ export function PageHero({
             <p className={cn("measure mt-7 text-lead text-ontext-2", twoUp && "lg:ml-0")}>{body}</p>
 
             {(primary || secondary) && (
-              <div className={cn("mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap", twoUp && "lg:justify-start")}>
+              <div className={cn("mt-9 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap", twoUp && "lg:justify-start")}>
                 {primary && (
-                  <Button href={primary.href} variant="onDark" size="lg" arrow>
+                  <Button href={primary.href} variant="onDark" size="lg" className="w-full sm:w-auto" arrow>
                     {primary.label}
                   </Button>
                 )}
                 {secondary && (
-                  <Button href={secondary.href} variant="onDarkGhost" size="lg">
+                  <Button href={secondary.href} variant="onDarkGhost" size="lg" className="w-full sm:w-auto">
                     {secondary.label}
                   </Button>
                 )}

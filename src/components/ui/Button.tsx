@@ -6,8 +6,9 @@ type Variant = "primary" | "secondary" | "ghost" | "onDark" | "onDarkGhost";
 type Size = "md" | "lg" | "sm";
 
 const base =
-  "group/btn relative inline-flex items-center justify-center gap-2.5 font-medium " +
+  "group/btn relative inline-flex max-w-full items-center justify-center gap-2.5 font-medium " +
   "rounded-[var(--radius-sm)] whitespace-nowrap select-none " +
+  "max-[359px]:h-auto max-[359px]:min-h-11 max-[359px]:whitespace-normal max-[359px]:py-3 max-[359px]:text-center max-[359px]:leading-snug " +
   "transition-[background-color,color,border-color,box-shadow,transform] duration-200 " +
   "[transition-timing-function:var(--ease-expo)] " +
   "active:translate-y-px disabled:pointer-events-none disabled:opacity-45";

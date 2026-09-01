@@ -122,7 +122,7 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 3 · PROBLEM ════════════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="problem-heading" className="problem-reveal flex min-h-[100svh] items-center">
+      <Section surface="paper" tight aria-labelledby="problem-heading" className="problem-reveal flex items-center lg:min-h-[100svh]">
         <div className="shell relative w-full">
           <div className="grid items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
             <div className="grid h-full gap-5 lg:grid-rows-[auto_1fr_auto]">
@@ -163,7 +163,7 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 4 · SERVICES OVERVIEW ══════════════════════════════════════════ */}
-      <Section surface="ink" aria-labelledby="services-heading" className="services-reveal min-h-[100svh]">
+      <Section surface="ink" aria-labelledby="services-heading" className="services-reveal lg:min-h-[100svh]">
         <div className="shell relative">
           <Reveal>
             <SectionHead
@@ -221,7 +221,7 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 5 · AI AUTOMATION HIGHLIGHT ════════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="ai-heading" className="ai-reveal min-h-[100svh] overflow-hidden">
+      <Section surface="paper" aria-labelledby="ai-heading" className="ai-reveal overflow-hidden lg:min-h-[100svh]">
         <div className="shell relative">
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-10">
             <Reveal className="flex flex-col">

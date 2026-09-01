@@ -21,9 +21,9 @@ export default function ProcessPage() {
     <>
       <section
         aria-labelledby="process-hero-heading"
-        className="hero-reveal relative isolate h-[100svh] overflow-hidden bg-white text-text"
+        className="hero-reveal relative isolate min-h-[100svh] overflow-hidden bg-white text-text lg:h-[100svh]"
       >
-        <div className="shell-wide grid h-full items-center gap-7 pt-24 pb-6 lg:grid-cols-[minmax(0,.83fr)_minmax(0,1.17fr)] lg:gap-6 lg:pt-20">
+        <div className="shell-wide grid min-h-[100svh] items-center gap-7 pt-28 pb-10 sm:pt-32 lg:h-full lg:min-h-0 lg:grid-cols-[minmax(0,.83fr)_minmax(0,1.17fr)] lg:gap-6 lg:pt-20 lg:pb-6">
           <Reveal className="relative z-10 max-w-2xl">
             <h1
               id="process-hero-heading"
@@ -36,11 +36,11 @@ export default function ProcessPage() {
               We follow a structured process that helps reduce confusion, control scope, improve
               communication, and deliver software that supports real business goals.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Button href="/contact" size="md" arrow>
+            <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+              <Button href="/contact" size="md" className="w-full sm:w-auto" arrow>
                 Start Your Project
               </Button>
-              <Button href="/contact?intent=strategy-call" variant="secondary" size="md">
+              <Button href="/contact?intent=strategy-call" variant="secondary" size="md" className="w-full sm:w-auto">
                 Book a Strategy Call
               </Button>
             </div>

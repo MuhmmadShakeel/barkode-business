@@ -48,13 +48,13 @@ function ModelCopy({ model, index, dark = false }: { model: (typeof ENGAGEMENT_M
 export default function EngagementModelsPage() {
   return (
     <>
-      <section className="engagement-hero relative flex h-[100svh] min-h-[38rem] items-center justify-center overflow-hidden bg-ink-950 text-center text-white" data-surface="dark">
+      <section className="engagement-hero relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-ink-950 py-28 text-center text-white sm:py-32 lg:h-[100svh] lg:min-h-[38rem] lg:py-0" data-surface="dark">
         <Image src="/images/hero/engagement-models-hero-v2.webp" alt="Business and technology leaders collaborating in a modern boardroom" fill priority sizes="100vw" className="engagement-hero-image object-cover object-center" />
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,8,10,.64)_0%,rgba(4,8,10,.46)_36%,rgba(4,8,10,.72)_100%)]" />
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,7,9,.16)_42%,rgba(3,7,9,.66)_100%)]" />
         <div aria-hidden className="engagement-grid absolute inset-0 opacity-20" />
 
-        <div className="shell relative z-10 flex h-full flex-col items-center justify-center pt-20">
+        <div className="shell relative z-10 flex h-full flex-col items-center justify-center lg:pt-20">
           <Reveal className="flex max-w-[58rem] flex-col items-center">
             <div className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/25 px-4 py-2 backdrop-blur-md">
               <span className="size-1.5 rounded-full bg-accent-bright shadow-[0_0_14px_rgba(226,184,92,.9)]" />
@@ -70,13 +70,13 @@ export default function EngagementModelsPage() {
         </div>
       </section>
 
-      <section id="model-navigator" className="flex min-h-[100svh] items-center bg-paper py-24" aria-labelledby="navigator-heading">
+      <section id="model-navigator" className="flex items-center bg-paper py-14 sm:py-20 lg:min-h-[100svh] lg:py-24" aria-labelledby="navigator-heading">
         <div className="shell w-full">
           <Reveal className="grid items-end gap-8 lg:grid-cols-[1fr_auto]">
             <div><Marker>Choose your starting point</Marker><h2 id="navigator-heading" className="mt-5 max-w-[15ch] text-d2 text-text">Start with the business need. <span className="text-accent-ink">The model follows.</span></h2></div>
             <p className="max-w-md text-text-3">Five clear ways to work together—from validating one idea to extending your product team.</p>
           </Reveal>
-          <RevealGroup as="ol" className="mt-14 grid border-y border-rule lg:grid-cols-5">
+          <RevealGroup as="ol" className="mt-10 grid border-y border-rule sm:mt-14 sm:grid-cols-2 lg:grid-cols-5">
             {ENGAGEMENT_MODELS.map((model, i) => (
               <RevealItem key={model.slug} as="li" index={i} className="border-b border-rule last:border-b-0 lg:border-r lg:border-b-0 lg:last:border-r-0">
                 <Link href={`#${model.slug}`} className="group/nav flex min-h-48 flex-col justify-between p-6 transition-colors duration-300 hover:bg-ink-950 hover:text-white lg:min-h-64">
@@ -95,9 +95,9 @@ export default function EngagementModelsPage() {
           <section key={model.slug} id={model.slug} className="engagement-model engagement-editorial flex scroll-mt-20 items-center overflow-hidden bg-paper-sunken py-20">
             <div className="shell w-full"><div className="grid items-center gap-10 lg:grid-cols-[.88fr_1.12fr] lg:gap-20">
               <ModelCopy model={model} index={i} />
-              <Reveal kind="right" className="relative grid grid-cols-[.72fr_1fr] items-end gap-4">
-                <div className="relative mb-10 h-[22rem] overflow-hidden rounded-t-full shadow-e3"><Image src={SECONDARY_IMAGES[i]} alt="Discovery workshop in progress" fill sizes="24vw" className="object-cover" /></div>
-                <div className="relative h-[32rem] overflow-hidden rounded-[1.5rem] shadow-e4"><Image src={image.src} alt={image.alt} fill sizes="40vw" className="object-cover" /><div className="absolute inset-x-5 bottom-5 rounded-xl bg-white/90 p-4 backdrop-blur"><span className="font-mono text-[.625rem] text-accent-ink uppercase">Focused delivery</span><p className="mt-1 text-sm font-medium text-text">{model.timeline}</p></div></div>
+              <Reveal kind="right" className="relative grid grid-cols-[.72fr_1fr] items-end gap-3 sm:gap-4">
+                <div className="relative mb-6 h-[15rem] overflow-hidden rounded-t-full shadow-e3 sm:mb-10 sm:h-[22rem]"><Image src={SECONDARY_IMAGES[i]} alt="Discovery workshop in progress" fill sizes="(max-width: 640px) 42vw, 24vw" className="object-cover" /></div>
+                <div className="relative h-[22rem] overflow-hidden rounded-[1.25rem] shadow-e4 sm:h-[32rem] sm:rounded-[1.5rem]"><Image src={image.src} alt={image.alt} fill sizes="(max-width: 640px) 58vw, 40vw" className="object-cover" /><div className="absolute inset-x-3 bottom-3 rounded-xl bg-white/90 p-3 backdrop-blur sm:inset-x-5 sm:bottom-5 sm:p-4"><span className="font-mono text-[.625rem] text-accent-ink uppercase">Focused delivery</span><p className="mt-1 text-xs font-medium text-text sm:text-sm">{model.timeline}</p></div></div>
               </Reveal>
             </div></div>
           </section>
@@ -126,8 +126,8 @@ export default function EngagementModelsPage() {
         if (i === 2) return (
           <section key={model.slug} id={model.slug} data-surface="dark" className="engagement-model engagement-control-room flex scroll-mt-20 items-center overflow-hidden bg-ink-950 py-20">
             <div className="shell w-full"><div className="grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
-              <Reveal kind="left" className="relative min-h-[34rem] [perspective:1200px]">
-                <div className="absolute inset-8 overflow-hidden rounded-full border border-accent/30 shadow-[0_0_90px_rgba(200,146,42,.18)]"><Image src={image.src} alt={image.alt} fill sizes="48vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" /></div>
+              <Reveal kind="left" className="relative min-h-[23rem] [perspective:1200px] sm:min-h-[30rem] lg:min-h-[34rem]">
+                <div className="absolute inset-4 overflow-hidden rounded-full border border-accent/30 shadow-[0_0_90px_rgba(200,146,42,.18)] sm:inset-8"><Image src={image.src} alt={image.alt} fill sizes="(max-width: 1024px) 90vw, 48vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" /></div>
                 {["Discover", "Prototype", "Integrate", "Review"].map((step, n) => <span key={step} className={`engagement-satellite engagement-satellite-${n + 1}`}>0{n + 1} · {step}</span>)}
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-accent/30 bg-ink-950 px-5 py-2 text-center text-xs text-signal shadow-e3">{model.timeline}</div>
               </Reveal>
@@ -139,10 +139,10 @@ export default function EngagementModelsPage() {
           <section key={model.slug} id={model.slug} className="engagement-model engagement-team flex scroll-mt-20 items-center overflow-hidden bg-paper py-20">
             <div className="shell w-full"><div className="grid items-center gap-10 lg:grid-cols-[.92fr_1.08fr] lg:gap-16">
               <ModelCopy model={model} index={i} />
-              <Reveal kind="right" className="grid h-[35rem] grid-cols-5 grid-rows-5 gap-4">
+              <Reveal kind="right" className="grid h-[24rem] grid-cols-5 grid-rows-5 gap-2.5 sm:h-[30rem] sm:gap-4 lg:h-[35rem]">
                 <div className="relative col-span-3 row-span-5 overflow-hidden rounded-[1.5rem] shadow-e4"><Image src={image.src} alt={image.alt} fill sizes="32vw" className="object-cover" /></div>
                 <div className="relative col-span-2 row-span-3 overflow-hidden rounded-[1.5rem] shadow-e3"><Image src={SECONDARY_IMAGES[i]} alt="Product engineers working together" fill sizes="20vw" className="object-cover" /></div>
-                <div className="col-span-2 row-span-2 flex flex-col justify-between rounded-[1.5rem] bg-accent p-6 text-ink-950 shadow-e3"><Layers3 className="size-8" /><div><span className="font-mono text-[.625rem] uppercase">Team rhythm</span><p className="mt-1 font-display text-lg font-semibold">{model.timeline}</p></div></div>
+                <div className="col-span-2 row-span-2 flex flex-col justify-between rounded-[1.25rem] bg-accent p-3 text-ink-950 shadow-e3 sm:rounded-[1.5rem] sm:p-6"><Layers3 className="size-6 sm:size-8" /><div><span className="font-mono text-[.5rem] uppercase sm:text-[.625rem]">Team rhythm</span><p className="mt-1 font-display text-xs font-semibold sm:text-lg">{model.timeline}</p></div></div>
               </Reveal>
             </div></div>
           </section>
@@ -151,8 +151,8 @@ export default function EngagementModelsPage() {
           <section key={model.slug} id={model.slug} className="engagement-model engagement-support relative flex scroll-mt-20 items-center overflow-hidden border-t border-rule py-20">
             <div className="shell relative w-full"><div className="grid items-center gap-10 lg:grid-cols-[1fr_.82fr] lg:gap-20">
               <ModelCopy model={model} index={i} />
-              <Reveal kind="right" className="rounded-[1.75rem] border border-rule bg-white p-6 shadow-e3">
-                <div className="flex items-center justify-between border-b border-rule pb-5"><span className="font-mono text-xs text-text-3 uppercase">Product health</span><span className="flex items-center gap-2 text-xs text-emerald-700"><span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,.35)]" />Active support</span></div>
+              <Reveal kind="right" className="rounded-[1.5rem] border border-rule bg-white p-4 shadow-e3 sm:rounded-[1.75rem] sm:p-6">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-5"><span className="font-mono text-xs text-text-3 uppercase">Product health</span><span className="flex items-center gap-2 text-xs text-emerald-700"><span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,.35)]" />Active support</span></div>
                 <div className="mt-5 grid grid-cols-2 gap-3">{["Monitoring", "Updates", "Performance", "Security"].map((item, n) => <div key={item} className="rounded-xl border border-rule bg-paper-sunken p-4"><span className="font-mono text-[.625rem] text-accent-ink">0{n + 1}</span><p className="mt-5 text-sm font-medium text-text">{item}</p><div className="mt-3 h-1 overflow-hidden rounded-full bg-rule"><div className="h-full rounded-full bg-accent" style={{ width: `${72 + n * 7}%` }} /></div></div>)}</div>
                 <div className="relative mt-4 h-32 overflow-hidden rounded-xl"><Image src={SECONDARY_IMAGES[i]} alt="Quality assurance and product delivery" fill sizes="36vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" /><p className="absolute bottom-4 left-4 text-sm font-medium text-white">{model.timeline}</p></div>
               </Reveal>
