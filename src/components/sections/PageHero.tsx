@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { Marker } from "@/components/ui/Section";
 import { Glow, SchematicGround } from "@/components/ui/Schematic";
 import { cn } from "@/lib/utils";
@@ -22,6 +24,12 @@ export function PageHero({
   crumbs,
   aside,
   meta,
+  showMarker = true,
+  below,
+  minimalBackdrop = false,
+  headingClassName,
+  className,
+  backgroundImage,
 }: {
   marker: string;
   heading: string;
@@ -35,15 +43,37 @@ export function PageHero({
   aside?: React.ReactNode;
   /** Optional key/value strip beneath the copy. */
   meta?: { label: string; value: React.ReactNode }[];
+  showMarker?: boolean;
+  /** Optional full-width content rendered beneath the hero copy. */
+  below?: React.ReactNode;
+  /** Pure navbar-matched dark treatment without decorative gold graphics. */
+  minimalBackdrop?: boolean;
+  headingClassName?: string;
+  className?: string;
+  backgroundImage?: { src: string; alt: string };
 }) {
   const twoUp = Boolean(aside);
   return (
     <section
       data-surface="dark"
-      className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ink-950 pt-[calc(4.5rem+clamp(1.5rem,1rem+3vw,2.75rem))] pb-[clamp(2rem,1.25rem+3vw,3.5rem)] text-center text-ontext"
+      className={cn("hero-reveal relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ink-950 pt-[calc(4.5rem+clamp(1.5rem,1rem+3vw,2.75rem))] pb-[clamp(2rem,1.25rem+3vw,3.5rem)] text-center text-ontext", className)}
     >
-      <SchematicGround grid={42} nodes={168} mask="bottom" />
-      <Glow className="top-[-16rem] left-[-8rem]" size={620} />
+      {backgroundImage && (
+        <Image
+          src={backgroundImage.src}
+          alt={backgroundImage.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      )}
+      {backgroundImage && <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/35" />}
+      {!minimalBackdrop && <SchematicGround grid={42} nodes={168} mask="bottom" />}
+      {!minimalBackdrop && <Glow className="top-[-16rem] left-[-8rem]" size={620} />}
+      {minimalBackdrop && !backgroundImage && (
+        <div className="pointer-events-none absolute inset-0 bg-ink-950" />
+      )}
 
       <div className="shell-wide relative">
         {crumbs && crumbs.length > 0 && (
@@ -73,9 +103,9 @@ export function PageHero({
             twoUp && "lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center",
           )}
         >
-          <div className="flex flex-col items-center">
-            <Marker tone="dark">{marker}</Marker>
-            <h1 className="mt-6 max-w-[17ch] text-d1 text-white">
+          <Reveal className={cn("flex flex-col items-center", twoUp && "lg:items-start lg:text-left")}>
+            {showMarker && <Marker tone="dark">{marker}</Marker>}
+            <h1 className={cn("max-w-[17ch] text-d1 text-white", showMarker && "mt-6", headingClassName)}>
               {heading}
               {accent && (
                 <>
@@ -85,10 +115,10 @@ export function PageHero({
               )}
               {trail}
             </h1>
-            <p className="measure mt-7 text-lead text-ontext-2">{body}</p>
+            <p className={cn("measure mt-7 text-lead text-ontext-2", twoUp && "lg:ml-0")}>{body}</p>
 
             {(primary || secondary) && (
-              <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
+              <div className={cn("mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap", twoUp && "lg:justify-start")}>
                 {primary && (
                   <Button href={primary.href} variant="onDark" size="lg" arrow>
                     {primary.label}
@@ -114,10 +144,11 @@ export function PageHero({
                 ))}
               </dl>
             )}
-          </div>
+          </Reveal>
 
           {aside && <div className="relative">{aside}</div>}
         </div>
+        {below && <div className="mt-8 sm:mt-10">{below}</div>}
       </div>
     </section>
   );

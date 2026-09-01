@@ -3,19 +3,16 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 
 import { PageHero } from "@/components/sections/PageHero";
-import { FinalCta } from "@/components/sections/FinalCta";
-import { TechStack } from "@/components/sections/TechStack";
-import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { ClientCaseCard } from "@/components/ui/CaseCard";
 import { Pending } from "@/components/ui/Pending";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Registration, SchematicGround, TraceRule } from "@/components/ui/Schematic";
-import { Marker, Section, SectionHead } from "@/components/ui/Section";
+import { Registration, TraceRule } from "@/components/ui/Schematic";
+import { Section, SectionHead } from "@/components/ui/Section";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 
 import { SERVICE_PAGES, getServicePage } from "@/lib/service-pages";
-import { getService, stackFor } from "@/lib/services";
+import { getService } from "@/lib/services";
 import { ENGAGEMENT_MODELS } from "@/lib/content";
 import { CLIENT_CASES, clientCaseInTrack, type TrackId } from "@/lib/case-studies";
 import { JsonLd, breadcrumbSchema, buildMetadata, faqSchema, serviceSchema } from "@/lib/seo";
@@ -59,7 +56,7 @@ export default async function ServiceDetailPage({
   const proof = CLIENT_CASES.filter((c) => clientCaseInTrack(c, track)).slice(0, 2);
 
   return (
-    <>
+    <div className="service-detail-page">
       <PageHero
         marker={page.hero.marker}
         heading={page.hero.heading}
@@ -81,21 +78,25 @@ export default async function ServiceDetailPage({
             value: "Custom quote after discovery — no fixed packages.",
           },
         ]}
+        showMarker={false}
+        minimalBackdrop
+        headingClassName="ai-hero-heading"
+        className="ai-service-hero service-detail-hero"
       />
 
       {/* ═══ WHO THIS IS FOR ════════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="who-heading">
+      <Section surface="paper" tight aria-labelledby="who-heading" className="service-panel service-detail-panel service-detail-who">
         <div className="shell">
-          <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+          <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)]">
             <Reveal>
-              <Marker>Fit check</Marker>
-              <h2 id="who-heading" className="mt-5 max-w-[14ch] text-d3 text-text">
+              <span className="service-detail-kicker">01 / Fit</span>
+              <h2 id="who-heading" className="max-w-[14ch] text-d2 text-text">
                 Who this is <span className="text-accent-ink">for.</span>
               </h2>
             </Reveal>
-            <RevealGroup as="ul" className="grid gap-x-8 gap-y-3.5 sm:grid-cols-2">
+            <RevealGroup as="ul" className="service-detail-list grid gap-x-8 sm:grid-cols-2">
               {page.audience.map((a) => (
-                <RevealItem key={a} as="li" className="flex items-start gap-3">
+                <RevealItem key={a} as="li" className="flex items-start gap-3 border-b border-black/10 py-4">
                   <Check
                     aria-hidden
                     className="mt-[0.1875rem] size-4 shrink-0 text-accent"
@@ -110,13 +111,12 @@ export default async function ServiceDetailPage({
       </Section>
 
       {/* ═══ PROBLEM ════════════════════════════════════════════════════════ */}
-      <Section surface="sunken" aria-labelledby="problem-heading">
-        <SchematicGround grid={30} nodes={false} mask="radial" className="opacity-60" />
+      <Section surface="paper" tight aria-labelledby="problem-heading" className="service-panel service-detail-panel service-detail-problem border-t border-rule">
         <div className="shell relative">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
             <Reveal>
-              <Marker>The problem</Marker>
-              <h2 id="problem-heading" className="mt-5 max-w-[17ch] text-d2 text-text">
+              <span className="service-detail-kicker">02 / Challenge</span>
+              <h2 id="problem-heading" className="max-w-[17ch] text-d2 text-text">
                 {page.problem.heading}{" "}
                 <span className="text-accent-ink">{page.problem.accent}.</span>
               </h2>
@@ -125,11 +125,11 @@ export default async function ServiceDetailPage({
 
             <RevealGroup
               as="ul"
-              className="grid gap-px self-start overflow-hidden rounded-[var(--radius-md)] border border-rule bg-rule sm:grid-cols-2"
+              className="service-detail-problem-list grid self-start sm:grid-cols-2"
             >
               {page.problem.items.map((p) => (
                 <RevealItem key={p} as="li">
-                  <div className="flex h-full items-start gap-3 bg-paper-raised px-5 py-4">
+                  <div className="flex h-full items-start gap-3 border-b border-black/10 px-5 py-4 sm:odd:border-r">
                     <span aria-hidden className="mt-[0.5625rem] size-1 shrink-0 rounded-full bg-danger/70" />
                     <span className="text-sm leading-relaxed text-text-2">{p}</span>
                   </div>
@@ -141,11 +141,12 @@ export default async function ServiceDetailPage({
       </Section>
 
       {/* ═══ WHAT WE BUILD + EXTRAS ═════════════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="builds-heading">
-        <div className="shell">
+      <Section surface="paper" tight aria-labelledby="builds-heading" className="service-panel service-detail-panel service-detail-builds border-t border-rule">
+        <div className="shell relative">
           <Reveal>
+            <span className="service-detail-kicker">03 / Capability</span>
             <div className="flex items-center gap-4">
-              <span className="grid size-12 shrink-0 place-items-center rounded-[var(--radius-sm)] border border-accent/25 bg-accent-soft text-accent">
+              <span className="grid size-12 shrink-0 place-items-center rounded-[var(--radius-sm)] border border-accent/25 text-accent">
                 <ServiceIcon name={service.icon} className="size-5" />
               </span>
               <TraceRule className="w-16" />
@@ -162,7 +163,7 @@ export default async function ServiceDetailPage({
           >
             {page.builds.items.map((b) => (
               <RevealItem key={b} as="li">
-                <span className="flex items-center gap-3 rounded-[var(--radius-sm)] border border-rule bg-paper-raised px-4 py-3 text-[0.9375rem] text-text-2 shadow-e1">
+                <span className="flex items-center gap-3 rounded-[var(--radius-sm)] border border-black/10 px-4 py-3 text-[0.9375rem] text-text-2">
                   <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-accent" />
                   {b}
                 </span>
@@ -173,7 +174,7 @@ export default async function ServiceDetailPage({
           {page.extra?.map((block) => (
             <div key={block.heading} className="mt-16">
               <Reveal>
-                <div className="grid gap-x-14 gap-y-4 border-t border-rule pt-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+                <div className="grid gap-x-14 gap-y-4 border-t border-black/10 pt-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
                   <div>
                     <h3 className="text-d3 text-text">{block.heading}</h3>
                     {block.note && (
@@ -184,7 +185,7 @@ export default async function ServiceDetailPage({
                     {block.items.map((item) => (
                       <li
                         key={item}
-                        className="rounded-[var(--radius-xs)] border border-rule bg-paper-sunken px-3 py-1.5 text-sm text-text-2"
+                        className="rounded-[var(--radius-xs)] border border-black/10 px-3 py-1.5 text-sm text-text-2"
                       >
                         {item}
                       </li>
@@ -198,31 +199,30 @@ export default async function ServiceDetailPage({
       </Section>
 
       {/* ═══ PROCESS ════════════════════════════════════════════════════════ */}
-      <Section surface="ink" aria-labelledby="proc-heading">
-        <SchematicGround grid={38} nodes={152} mask="radial" />
+      <Section surface="paper" tight aria-labelledby="proc-heading" className="service-panel service-detail-panel service-detail-process border-t border-rule">
         <div className="shell relative">
           <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
             <Reveal>
-              <Marker tone="dark">Process</Marker>
-              <h2 id="proc-heading" className="mt-5 max-w-[14ch] text-d2 text-white">
+              <span className="service-detail-kicker">04 / Delivery</span>
+              <h2 id="proc-heading" className="max-w-[14ch] text-d2 text-text">
                 {page.process.heading}
               </h2>
-              <p className="measure mt-6 text-ontext-2">
+              <p className="measure mt-6 text-text-2">
                 The same structured route every engagement follows, scoped to this service.
               </p>
-              <Button href="/process" variant="onDarkGhost" size="md" className="mt-8" arrow>
+              <Button href="/process" variant="secondary" size="md" className="mt-8" arrow>
                 See the full process
               </Button>
             </Reveal>
 
-            <RevealGroup as="ol" className="flex flex-col">
+            <RevealGroup as="ol" className="grid gap-x-8 md:grid-cols-2">
               {page.process.steps.map((step, i) => (
                 <RevealItem key={step} as="div">
-                  <div className="flex items-center gap-5 border-b border-rule-dark py-5 first:border-t">
-                    <span className="grid size-9 shrink-0 place-items-center rounded-full border border-rule-dark-strong font-mono text-xs text-signal tabular-nums">
+                  <div className="flex items-center gap-5 border-b border-rule py-5 first:border-t">
+                    <span className="grid size-9 shrink-0 place-items-center rounded-full border border-black/15 font-mono text-xs text-black/60 tabular-nums">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="text-[1.0625rem] text-white">{step}</span>
+                    <span className="text-[1.0625rem] text-text">{step}</span>
                   </div>
                 </RevealItem>
               ))}
@@ -232,22 +232,13 @@ export default async function ServiceDetailPage({
       </Section>
 
       {/* ═══ TECH STACK ═════════════════════════════════════════════════════ */}
-      <TechStack
-        groups={stackFor(page.stackGroups)}
-        marker="Stack"
-        heading="What this is"
-        accent="built with"
-        surface="sunken"
-        compact
-      />
-
       {/* ═══ PROOF ══════════════════════════════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="proof-heading">
+      <Section surface="paper" tight aria-labelledby="proof-heading" className="service-panel service-detail-panel service-detail-proof">
         <div className="shell">
           <Reveal>
             <SectionHead
               id="proof-heading"
-              marker="Proof"
+              marker="05 / Evidence"
               lead="Related"
               accent="work"
               intro="Real engagements with real screenshots, timelines, and stacks. Nothing here is a stand-in."
@@ -274,12 +265,12 @@ export default async function ServiceDetailPage({
       </Section>
 
       {/* ═══ ENGAGEMENT ═════════════════════════════════════════════════════ */}
-      <Section surface="sunken" aria-labelledby="eng-heading">
+      <Section surface="paper" tight aria-labelledby="eng-heading" className="service-panel service-detail-panel service-detail-engagement border-t border-rule">
         <div className="shell">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
             <Reveal>
-              <Marker>Engagement</Marker>
-              <h2 id="eng-heading" className="mt-5 max-w-[15ch] text-d3 text-text">
+              <span className="service-detail-kicker">06 / Structure</span>
+              <h2 id="eng-heading" className="max-w-[15ch] text-d2 text-text">
                 How this work is <span className="text-accent-ink">structured.</span>
               </h2>
               <p className="measure mt-6 text-text-2">{page.engagement.note}</p>
@@ -324,35 +315,6 @@ export default async function ServiceDetailPage({
         </div>
       </Section>
 
-      {/* ═══ FAQ ════════════════════════════════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="faq-heading">
-        <div className="shell">
-          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
-            <Reveal className="lg:sticky lg:top-28 lg:self-start">
-              <Marker>Questions</Marker>
-              <h2 id="faq-heading" className="mt-5 max-w-[16ch] text-d2 text-text">
-                About <span className="text-accent-ink">{service.shortTitle}.</span>
-              </h2>
-              <Button href="/faq" variant="secondary" size="md" className="mt-8" arrow>
-                All FAQs
-              </Button>
-            </Reveal>
-            <Reveal kind="right">
-              <Accordion items={page.faqs} defaultOpen={0} />
-            </Reveal>
-          </div>
-        </div>
-      </Section>
-
-      <FinalCta
-        marker="Next step"
-        heading={page.cta.heading}
-        accent={page.cta.accent}
-        body={page.cta.body}
-        primary={{ label: page.cta.label, href: page.cta.href }}
-        secondary={{ label: "Book a Strategy Call", href: "/contact?intent=strategy-call" }}
-      />
-
       <JsonLd
         data={[
           serviceSchema({
@@ -368,6 +330,6 @@ export default async function ServiceDetailPage({
           faqSchema(page.faqs),
         ]}
       />
-    </>
+    </div>
   );
 }

@@ -2,13 +2,13 @@ import Image from "next/image";
 import { Globe2, MessageSquareText, Clock3, FileText } from "lucide-react";
 
 import { PageHero } from "@/components/sections/PageHero";
-import { FinalCta } from "@/components/sections/FinalCta";
+import { AboutWorkFlow } from "@/components/sections/AboutWorkFlow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Pending } from "@/components/ui/Pending";
-import { Registration, SchematicGround, TraceRule } from "@/components/ui/Schematic";
+import { Registration, SchematicGround } from "@/components/ui/Schematic";
 import { Marker, Section, SectionHead } from "@/components/ui/Section";
 
-import { BELIEFS, HOW_WE_WORK, TEAM } from "@/lib/content";
+import { BELIEFS, TEAM } from "@/lib/content";
 import { SITE } from "@/lib/site";
 import { JsonLd, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 
@@ -63,6 +63,10 @@ export default function AboutPage() {
           { name: "Home", path: "/" },
           { name: "About", path: "/about" },
         ]}
+        showMarker={false}
+        minimalBackdrop
+        headingClassName="ai-hero-heading"
+        className="ai-service-hero"
       />
 
       {/* ═══ COMPANY STORY ══════════════════════════════════════════════════ */}
@@ -176,34 +180,21 @@ export default function AboutPage() {
       </Section>
 
       {/* ═══ HOW WE WORK ════════════════════════════════════════════════════ */}
-      <Section surface="sunken" tight aria-labelledby="how-heading">
+      <Section surface="paper" tight aria-labelledby="how-heading" className="overflow-hidden border-y border-rule">
         <div className="shell">
-          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
-            <Reveal>
+          <div className="grid items-start gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,.72fr)_minmax(0,1.28fr)] xl:gap-x-24">
+            <Reveal className="lg:sticky lg:top-28">
               <Marker>How we work</Marker>
-              <h2 id="how-heading" className="mt-5 max-w-[14ch] text-d3 text-text">
+              <h2 id="how-heading" className="mt-5 max-w-[12ch] text-d2 text-text">
                 Seven steps, <span className="text-accent-ink">every time.</span>
               </h2>
+              <p className="mt-6 max-w-md text-text-3">
+                A repeatable delivery rhythm keeps decisions visible, progress measurable, and every stage connected to the business goal.
+              </p>
             </Reveal>
 
             <Reveal kind="right">
-              <ol className="relative flex flex-col">
-                <span
-                  aria-hidden
-                  className="absolute top-4 bottom-4 left-[0.6875rem] w-px bg-rule-strong"
-                />
-                {HOW_WE_WORK.map((h, i) => (
-                  <li key={h} className="relative flex items-center gap-5 py-3">
-                    <span
-                      aria-hidden
-                      className="relative z-10 grid size-6 shrink-0 place-items-center rounded-full border border-rule-strong bg-paper-raised font-mono text-[0.625rem] text-accent-ink tabular-nums"
-                    >
-                      {i + 1}
-                    </span>
-                    <span className="text-[1.0625rem] text-text-2">{h}</span>
-                  </li>
-                ))}
-              </ol>
+              <AboutWorkFlow />
             </Reveal>
           </div>
         </div>
@@ -308,53 +299,6 @@ export default function AboutPage() {
       </Section>
 
       {/* ═══ TRUST ══════════════════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="trust-heading">
-        <div className="shell">
-          <Reveal>
-            <div className="grid gap-x-14 gap-y-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
-              <div>
-                <div className="flex items-center gap-5">
-                  <TraceRule className="w-14" />
-                  <h2
-                    id="trust-heading"
-                    className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase"
-                  >
-                    Verified proof only
-                  </h2>
-                </div>
-                <p className="measure mt-5 text-text-2">
-                  This section carries client logos, testimonials, reviews, and certifications — and
-                  only once each one is verified and cleared for publication. We would rather show
-                  an empty slot than a claim we cannot stand behind.
-                </p>
-              </div>
-              <ul className="flex flex-wrap gap-2 self-center">
-                {[
-                  "[Add verified client logos]",
-                  "[Add real testimonials]",
-                  "[Add real project screenshots]",
-                  "[Add verified platform reviews]",
-                  "[Add certifications only if real]",
-                ].map((p) => (
-                  <li key={p}>
-                    <Pending>{p}</Pending>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      <FinalCta
-        marker="Next step"
-        heading="Looking for a technical partner for your"
-        accent="next product or workflow?"
-        body="Share your project goals and let's discuss the best way to build, automate, or improve your system."
-        primary={{ label: "Book a Strategy Call", href: "/contact?intent=strategy-call" }}
-        secondary={{ label: "Send Project Details", href: "/contact" }}
-      />
-
       <JsonLd
         data={[
           breadcrumbSchema([

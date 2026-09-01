@@ -1,9 +1,21 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { PROCESS } from "@/lib/content";
 import { cn } from "@/lib/utils";
+
+const PROCESS_IMAGES = [
+  ["/images/process/discovery.jpg", "Business discovery and requirement planning session"],
+  ["/images/process/product-strategy.jpg", "Product strategy and user experience planning workshop"],
+  ["/images/services/product-design.png", "Product interface design and prototyping workflow"],
+  ["/images/contact/roadmap.jpg", "Development roadmap with milestones and delivery checkpoints"],
+  ["/images/process/development.jpg", "Software engineers building a digital product"],
+  ["/images/services/ai-automation.png", "AI automation and systems integration workflow"],
+  ["/images/process/qa-delivery.jpg", "Quality assurance testing and controlled product delivery"],
+  ["/images/process/support-growth.jpg", "Long-term product support, monitoring, and growth planning"],
+] as const;
 
 /**
  * THE PROCESS TRACE — the site's second authored motion moment.
@@ -79,13 +91,13 @@ export function ProcessTimeline({
       {/* The unlit trace */}
       <span
         aria-hidden
-        className="absolute top-2 bottom-2 left-[1.4375rem] w-px bg-rule sm:left-[1.6875rem]"
+        className={cn("absolute top-2 bottom-2 w-px bg-rule", detailed ? "left-1/2 hidden -translate-x-1/2 lg:block" : "left-[1.4375rem] sm:left-[1.6875rem]")}
       />
       {/* The lit trace */}
       <motion.span
         aria-hidden
         style={{ height }}
-        className="absolute top-2 left-[1.4375rem] w-px bg-gradient-to-b from-accent via-accent to-signal sm:left-[1.6875rem]"
+        className={cn("absolute top-2 w-px bg-gradient-to-b from-accent via-accent to-signal", detailed ? "left-1/2 hidden -translate-x-1/2 lg:block" : "left-[1.4375rem] sm:left-[1.6875rem]")}
       />
 
       {PROCESS.map((step, i) => (
@@ -93,51 +105,49 @@ export function ProcessTimeline({
           key={step.id}
           data-reveal="rise"
           className={cn(
-            "relative pl-[3.75rem] sm:pl-[4.5rem]",
+            "relative",
+            detailed ? "lg:grid lg:grid-cols-2 lg:items-center lg:gap-20" : "pl-[3.75rem] sm:pl-[4.5rem]",
             containedScroll && "snap-start",
-            i === 0 ? (containedScroll ? "pb-6" : "pb-10") : containedScroll ? "py-6" : "py-10",
+            i === 0 ? (containedScroll ? "pb-6" : detailed ? "pb-14" : "pb-10") : containedScroll ? "py-6" : detailed ? "py-14" : "py-10",
             i === PROCESS.length - 1 && "pb-0",
           )}
         >
           {/* Node */}
           <span
             aria-hidden
-            className="absolute top-1 left-0 grid size-[2.875rem] place-items-center rounded-full border border-rule bg-paper-raised shadow-e1 sm:size-[3.375rem]"
+            className={cn("absolute z-10 place-items-center rounded-full border border-rule bg-paper-raised shadow-e1", detailed ? "top-1/2 left-1/2 hidden size-[3.375rem] -translate-x-1/2 -translate-y-1/2 lg:grid" : "top-1 left-0 grid size-[2.875rem] sm:size-[3.375rem]")}
           >
             <span className="grid size-[1.625rem] place-items-center rounded-full bg-accent-soft font-mono text-[0.6875rem] font-medium text-accent-ink tabular-nums sm:size-8 sm:text-xs">
               {String(i + 1).padStart(2, "0")}
             </span>
           </span>
 
-          <h3 className="text-d4 text-text">{step.title}</h3>
-
           {detailed ? (
-            <div className="mt-5 grid gap-x-10 gap-y-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
-              <div>
+            <>
+              <div className={cn("relative aspect-[16/10] overflow-hidden rounded-[var(--radius-lg)] bg-ink-900 shadow-e3", i % 2 === 1 && "lg:order-2")}>
+                <Image src={PROCESS_IMAGES[i][0]} alt={PROCESS_IMAGES[i][1]} fill sizes="(max-width: 1024px) 100vw, 46vw" className="object-cover transition-transform duration-700 [transition-timing-function:var(--ease-expo)] hover:scale-[1.025]" />
+                <div aria-hidden className="absolute inset-0 ring-1 ring-inset ring-black/10" />
+              </div>
+              <div className={cn("mt-7 lg:mt-0", i % 2 === 1 && "lg:order-1 lg:text-right")}>
+                <div className={cn("flex items-center gap-3", i % 2 === 1 && "lg:justify-end")}>
+                  <span className="grid size-8 place-items-center rounded-full bg-accent-soft font-mono text-xs font-medium text-accent-ink">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-mono text-[.625rem] tracking-[.14em] text-text-4 uppercase">Process stage</span>
+                </div>
+                <h3 className="mt-4 text-d3 text-text">{step.title}</h3>
                 <p className="measure text-text-2">{step.what}</p>
-                <p className="measure mt-4 border-l border-accent/40 pl-4 text-sm text-text-3 italic">
+                <p className={cn("measure mt-4 border-accent/40 text-sm text-text-3 italic", i % 2 === 1 ? "lg:ml-auto lg:border-r lg:pr-4" : "border-l pl-4")}>
                   {step.why}
                 </p>
-              </div>
-              <div className="rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-5">
-                <p className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
-                  You receive
-                </p>
-                <ul className="mt-3.5 flex flex-col gap-2">
+                <p className="mt-6 font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">You receive</p>
+                <ul className={cn("mt-3 flex flex-wrap gap-2", i % 2 === 1 && "lg:justify-end")}>
                   {step.receives.map((r) => (
-                    <li key={r} className="flex items-start gap-2.5 text-sm text-text-2">
-                      <span
-                        aria-hidden
-                        className="mt-[0.5rem] size-1 shrink-0 rounded-full bg-accent"
-                      />
-                      {r}
-                    </li>
+                    <li key={r} className="rounded-full border border-rule bg-white px-3 py-1.5 text-xs text-text-2 shadow-e1">{r}</li>
                   ))}
                 </ul>
               </div>
-            </div>
+            </>
           ) : (
-            <p className="measure mt-2.5 text-text-2">{step.short}</p>
+            <div><h3 className="text-d4 text-text">{step.title}</h3><p className="measure mt-2.5 text-text-2">{step.short}</p></div>
           )}
         </li>
       ))}

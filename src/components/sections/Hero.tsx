@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { CTA } from "@/lib/site";
+import { HomeFlowLines } from "@/components/sections/HomeFlowLines";
 
 /** The homepage opening, kept server-rendered for resilient content. */
 export function Hero() {
@@ -9,24 +10,11 @@ export function Hero() {
       data-surface="dark"
       className="relative isolate flex h-[100svh] items-center overflow-hidden bg-ink-950 pt-[5rem] text-ontext lg:pt-[5.25rem]"
     >
-      <div className="absolute inset-0 -z-20" aria-hidden>
-        <video
-          className="h-full w-full object-cover object-[58%_center] sm:object-center"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/images/hero/business-partnership-poster.jpg"
-        >
-          <source src="/videos/business-partnership-hero.mp4" type="video/mp4" />
-        </video>
-      </div>
+      <HomeFlowLines />
 
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-ink-950/48" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,13,24,0.98)_0%,rgba(8,13,24,0.9)_38%,rgba(8,13,24,0.32)_72%,rgba(8,13,24,0.2)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,13,24,0.3)_0%,transparent_34%,rgba(8,13,24,0.72)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.82)_0%,rgba(5,6,7,0.58)_42%,rgba(5,6,7,0.12)_78%,rgba(5,6,7,0.25)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,6,7,0.18)_0%,transparent_34%,rgba(5,6,7,0.58)_100%)]" />
         <div
           className="schematic-grid absolute inset-0 opacity-35"
           style={{

@@ -125,39 +125,39 @@ export type ServiceNavItem = {
 
 export const SERVICES_MENU: ServiceNavItem[] = [
   {
-    label: "MVP & SaaS Product Development",
+    label: "MVP & SaaS",
     href: "/services/mvp-saas-product-development",
-    description: "Launch scalable MVPs and SaaS platforms.",
+    description: "Launch and scale faster.",
     icon: "Rocket",
   },
   {
-    label: "Custom Web & Mobile App Development",
+    label: "Web & Mobile Apps",
     href: "/services/custom-web-mobile-app-development",
-    description: "Build web and mobile apps around real business needs.",
+    description: "Purpose-built digital products.",
     icon: "AppWindow",
   },
   {
-    label: "AI Automation & AI Integration",
+    label: "AI Automation",
     href: "/ai-automation",
-    description: "Automate workflows with practical AI systems.",
+    description: "Smarter, faster workflows.",
     icon: "BrainCircuit",
   },
   {
-    label: "Internal Business Systems",
+    label: "Internal Systems",
     href: "/services/internal-business-systems",
-    description: "Replace manual operations with reliable digital systems.",
+    description: "Simplify complex operations.",
     icon: "LayoutDashboard",
   },
   {
-    label: "Cloud, DevOps & Maintenance",
+    label: "Cloud & DevOps",
     href: "/services/cloud-devops-maintenance",
-    description: "Keep products stable, secure, and ready to scale.",
+    description: "Reliable, scalable infrastructure.",
     icon: "Cloud",
   },
   {
-    label: "UI/UX Product Design",
+    label: "Product Design",
     href: "/services/ui-ux-product-design",
-    description: "Design clear product experiences before development.",
+    description: "Clear, intuitive experiences.",
     icon: "PenTool",
   },
 ];

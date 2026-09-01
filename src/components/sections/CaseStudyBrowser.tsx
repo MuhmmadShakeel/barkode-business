@@ -20,7 +20,17 @@ import { cn } from "@/lib/utils";
  * The filterable work grid. Client engagements lead; engineering studies follow
  * in a clearly separated band so a visitor is never misled about which is which.
  */
-export function CaseStudyBrowser({ excludeSlug }: { excludeSlug?: string }) {
+export function CaseStudyBrowser({
+  excludeSlug,
+  showFilters = true,
+  compactClients = false,
+  subtleCards = false,
+}: {
+  excludeSlug?: string;
+  showFilters?: boolean;
+  compactClients?: boolean;
+  subtleCards?: boolean;
+}) {
   const [track, setTrack] = useState<TrackId>("all");
   const counts = useMemo(() => trackCounts(), []);
 
@@ -56,7 +66,7 @@ export function CaseStudyBrowser({ excludeSlug }: { excludeSlug?: string }) {
   return (
     <div>
       {/* ── Filters ──────────────────────────────────────────────────────── */}
-      <div className="border-b border-rule pb-6">
+      {showFilters && <div className="border-b border-rule pb-6">
         <h2 className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
           Filter by category
         </h2>
@@ -100,7 +110,7 @@ export function CaseStudyBrowser({ excludeSlug }: { excludeSlug?: string }) {
             Showing {clients.length + research.length} of {counts.all}.
           </span>
         </p>
-      </div>
+      </div>}
 
       {empty && (
         <PendingPanel
@@ -117,7 +127,7 @@ export function CaseStudyBrowser({ excludeSlug }: { excludeSlug?: string }) {
 
       {/* ── Client engagements ───────────────────────────────────────────── */}
       {clients.length > 0 && (
-        <section className="mt-12" aria-labelledby="clients-heading">
+        <section className={showFilters ? "mt-12" : ""} aria-labelledby="clients-heading">
           <h2
             id="clients-heading"
             className="font-mono text-marker font-medium tracking-[0.16em] text-accent-ink uppercase"
@@ -139,7 +149,12 @@ export function CaseStudyBrowser({ excludeSlug }: { excludeSlug?: string }) {
                   transition={{ duration: 0.42, ease: EASE_EXPO }}
                   className="h-full"
                 >
-                  <ClientCaseCard study={c} className="h-full" />
+                  <ClientCaseCard
+                    study={c}
+                    compact={compactClients}
+                    subtle={subtleCards}
+                    className="h-full"
+                  />
                 </motion.li>
               ))}
             </AnimatePresence>

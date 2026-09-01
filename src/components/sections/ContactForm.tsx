@@ -138,7 +138,7 @@ export function ContactForm() {
       method="post"
       encType="multipart/form-data"
       noValidate
-      className="rounded-[var(--radius-lg)] border border-rule bg-paper-raised p-6 shadow-e2 sm:p-8"
+      className="rounded-[var(--radius-lg)] border border-black/10 bg-white p-6 text-black shadow-e2 sm:p-8"
     >
       <p className="font-mono text-marker font-medium tracking-[0.16em] text-accent-ink uppercase">
         Project inquiry
@@ -236,7 +236,7 @@ export function ContactForm() {
       <div className="mt-5">
         <label
           htmlFor="brief"
-          className="block font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase"
+          className="block font-mono text-marker font-medium tracking-[0.16em] text-black/65 uppercase"
         >
           Project brief{" "}
           <span className="font-sans tracking-normal normal-case">(optional)</span>
@@ -244,7 +244,7 @@ export function ContactForm() {
         <div className="mt-2.5">
           <label
             htmlFor="brief"
-            className="flex cursor-pointer items-center gap-3 rounded-[var(--radius-sm)] border border-dashed border-rule-strong bg-paper-sunken px-4 py-3.5 text-sm text-text-3 transition-[border-color,color,background-color] duration-200 hover:border-accent/50 hover:bg-accent-soft/40 hover:text-accent-ink"
+            className="flex cursor-pointer items-center gap-3 rounded-[var(--radius-sm)] border border-dashed border-black/20 bg-white px-4 py-3.5 text-sm text-black/70 transition-[border-color,color,box-shadow] duration-200 hover:border-accent/60 hover:text-black hover:shadow-e1"
           >
             <Paperclip aria-hidden className="size-4 shrink-0" strokeWidth={1.7} />
             <span className="truncate">
@@ -280,7 +280,7 @@ export function ContactForm() {
           )}
         </Button>
 
-        <p className="mt-4 text-xs leading-relaxed text-text-3">
+        <p className="mt-4 text-xs leading-relaxed text-black/60">
           We review every inquiry carefully and respond with practical next steps. If your project is
           not the right fit, we will still try to point you in the right direction. We can sign an
           NDA where required.
@@ -295,8 +295,8 @@ export function ContactForm() {
    ══════════════════════════════════════════════════════════════════════════ */
 
 const controlClass =
-  "w-full rounded-[var(--radius-sm)] border bg-paper px-3.5 py-2.5 text-[1rem] text-text " +
-  "placeholder:text-text-4 transition-[border-color,box-shadow] duration-200 " +
+  "w-full rounded-[var(--radius-sm)] border bg-white px-3.5 py-2.5 text-[1rem] text-black " +
+  "placeholder:text-black/40 transition-[border-color,box-shadow] duration-200 " +
   "focus:outline-none focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/22";
 
 function Field({
@@ -332,7 +332,7 @@ function Field({
     <div className={as === "textarea" ? "sm:col-span-2" : undefined}>
       <label
         htmlFor={name}
-        className="block font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase"
+        className="block font-mono text-marker font-medium tracking-[0.16em] text-black/65 uppercase"
       >
         {label}
         {required && (
@@ -370,7 +370,7 @@ function Field({
       )}
 
       {hint && !error && (
-        <p id={hintId} className="mt-2 text-xs text-text-3">
+        <p id={hintId} className="mt-2 text-xs text-black/60">
           {hint}
         </p>
       )}
@@ -399,7 +399,7 @@ function SelectField({
     <div>
       <label
         htmlFor={name}
-        className="block font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase"
+        className="block font-mono text-marker font-medium tracking-[0.16em] text-black/65 uppercase"
       >
         {label}
       </label>

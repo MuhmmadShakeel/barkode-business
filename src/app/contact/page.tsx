@@ -7,7 +7,7 @@ import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { Pending } from "@/components/ui/Pending";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { SchematicGround, TraceRule } from "@/components/ui/Schematic";
+import { TraceRule } from "@/components/ui/Schematic";
 import { Marker, Section } from "@/components/ui/Section";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 
@@ -81,6 +81,10 @@ export default function ContactPage() {
           { name: "Home", path: "/" },
           { name: "Contact", path: "/contact" },
         ]}
+        showMarker={false}
+        minimalBackdrop
+        headingClassName="ai-hero-heading"
+        className="ai-service-hero"
       />
 
       {/* ═══ FORM + DETAILS ═════════════════════════════════════════════════ */}
@@ -94,7 +98,7 @@ export default function ContactPage() {
             <Reveal>
               <Suspense
                 fallback={
-                  <div className="rounded-[var(--radius-lg)] border border-rule bg-paper-raised p-8 shadow-e2">
+                  <div className="rounded-[var(--radius-lg)] border border-black/10 bg-white p-8 text-black shadow-e2">
                     <p className="text-sm text-text-3">Loading form…</p>
                   </div>
                 }
@@ -105,15 +109,15 @@ export default function ContactPage() {
 
             {/* ── Sidebar ─────────────────────────────────────────────────── */}
             <Reveal kind="right" className="flex flex-col gap-6 lg:sticky lg:top-28">
-              <div className="rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-6">
-                <h3 className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
+              <div className="rounded-[var(--radius-md)] border border-black/10 bg-white p-6 text-black shadow-e1">
+                <h3 className="font-mono text-marker font-medium tracking-[0.16em] text-black/65 uppercase">
                   Direct channels
                 </h3>
                 <ul className="mt-5 flex flex-col gap-4">
                   <li className="flex items-start gap-3">
                     <Mail aria-hidden className="mt-0.5 size-4 shrink-0 text-accent" strokeWidth={1.7} />
                     <div className="min-w-0">
-                      <p className="text-xs text-text-4">Email</p>
+                      <p className="text-xs text-black/55">Email</p>
                       {CONTACT.email ? (
                         <a
                           href={`mailto:${CONTACT.email}`}
@@ -136,7 +140,7 @@ export default function ContactPage() {
                       strokeWidth={1.7}
                     />
                     <div className="min-w-0">
-                      <p className="text-xs text-text-4">Phone / WhatsApp</p>
+                      <p className="text-xs text-black/55">Phone / WhatsApp</p>
                       <a
                         href={CONTACT.whatsapp.href}
                         target="_blank"
@@ -151,14 +155,14 @@ export default function ContactPage() {
                   <li className="flex items-start gap-3">
                     <MapPin aria-hidden className="mt-0.5 size-4 shrink-0 text-accent" strokeWidth={1.7} />
                     <div className="min-w-0">
-                      <p className="text-xs text-text-4">Location</p>
-                      <p className="text-sm text-text-2">{SITE.location}</p>
+                      <p className="text-xs text-black/55">Location</p>
+                      <p className="text-sm text-black/75">{SITE.location}</p>
                     </div>
                   </li>
                 </ul>
 
                 <div className="mt-6 border-t border-rule pt-5">
-                  <p className="text-xs text-text-4">Social</p>
+                  <p className="text-xs text-black/55">Social</p>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {SOCIAL.map((s) => (
                       <li key={s.label}>
@@ -168,7 +172,7 @@ export default function ContactPage() {
                           rel="noopener noreferrer"
                           aria-label={`${SITE.shortName} on ${s.label}`}
                           title={s.handle}
-                          className="grid size-9 place-items-center rounded-[var(--radius-xs)] border border-rule bg-paper-raised text-text-3 shadow-e1 transition-[color,border-color,transform] duration-200 [transition-timing-function:var(--ease-expo)] hover:-translate-y-0.5 hover:border-accent/40 hover:text-accent"
+                          className="grid size-9 place-items-center rounded-[var(--radius-xs)] border border-black/10 bg-white text-black/65 shadow-e1 transition-[color,border-color,transform,box-shadow] duration-200 [transition-timing-function:var(--ease-expo)] hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent-ink hover:shadow-e2"
                         >
                           <SocialIcon name={s.icon} className="size-4" />
                         </a>
@@ -179,12 +183,12 @@ export default function ContactPage() {
               </div>
 
               {/* Booking */}
-              <div className="rounded-[var(--radius-md)] border border-accent/25 bg-accent-soft p-6">
+              <div className="rounded-[var(--radius-md)] border border-black/10 bg-white p-6 text-black shadow-e1">
                 <CalendarClock aria-hidden className="size-5 text-accent-ink" strokeWidth={1.7} />
-                <h3 className="mt-4 font-display text-[1.0625rem] leading-snug font-semibold text-text">
+                <h3 className="mt-4 font-display text-[1.0625rem] leading-snug font-semibold text-black">
                   Would rather just talk it through?
                 </h3>
-                <p className="mt-2.5 text-sm text-text-2">
+                <p className="mt-2.5 text-sm text-black/70">
                   A strategy call is 30 minutes: what you are building, what the constraints are,
                   and what the sensible first step looks like.
                 </p>
@@ -213,9 +217,8 @@ export default function ContactPage() {
       </Section>
 
       {/* ═══ PROJECT TYPE GUIDANCE ══════════════════════════════════════════ */}
-      <Section surface="sunken" aria-labelledby="guidance-heading">
-        <SchematicGround grid={30} nodes={false} mask="radial" className="opacity-60" />
-        <div className="shell relative">
+      <Section surface="paper" className="border-t border-black/8" aria-labelledby="guidance-heading">
+        <div className="shell">
           <Reveal>
             <Marker>What to send us</Marker>
             <h2 id="guidance-heading" className="mt-5 max-w-[17ch] text-d2 text-text">

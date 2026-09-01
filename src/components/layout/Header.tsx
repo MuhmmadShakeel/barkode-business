@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { CTA, NAV, SERVICES_MENU, type ServiceNavItem } from "@/lib/site";
 import { EASE_EXPO } from "@/lib/motion";
 import { cn } from "@/lib/utils";
@@ -216,27 +216,33 @@ export function Header() {
         <AnimatePresence>
           {megaOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.26, ease: EASE_EXPO }}
+              initial={{ opacity: 0, y: -14, scaleY: 0.96, filter: "blur(5px)" }}
+              animate={{ opacity: 1, y: 0, scaleY: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: -10, scaleY: 0.98, filter: "blur(3px)" }}
+              transition={{ duration: 0.34, ease: EASE_EXPO }}
               onMouseEnter={openMega}
               onMouseLeave={scheduleClose}
-              className="absolute inset-x-0 top-full hidden border-t border-rule bg-paper-raised shadow-e3 lg:block"
+              className="absolute inset-x-0 top-full hidden origin-top border-t border-rule bg-paper-raised/98 shadow-e4 backdrop-blur-xl lg:block"
             >
-              <div className="shell-wide grid grid-cols-[1fr_auto] gap-12 py-9">
+              <div className="shell-wide grid grid-cols-[1fr_auto] gap-10 py-7">
                 <ul className="grid grid-cols-3 gap-x-8 gap-y-1">
-                  {SERVICES_MENU.map((s) => (
+                  {SERVICES_MENU.map((s, index) => (
                     <MegaItem
                       key={s.href}
                       item={s}
                       active={pathname === s.href}
+                      index={index}
                     />
                   ))}
                 </ul>
-                <div className="w-[17rem] shrink-0 self-start rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-6">
+                <motion.div
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.12, duration: 0.35, ease: EASE_EXPO }}
+                  className="w-[16rem] shrink-0 self-start rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-5"
+                >
                   <p className="font-display text-[1.0625rem] leading-snug font-semibold text-text">
-                    Not sure which one you need?
+                    Not sure where to start?
                   </p>
                   <p className="mt-2.5 text-sm text-text-3">
                     Describe the workflow or product. We will point you at the
@@ -252,7 +258,7 @@ export function Header() {
                   >
                     Send Project Details
                   </Button>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           )}
@@ -377,19 +383,23 @@ export function Header() {
   );
 }
 
-function MegaItem({ item, active }: { item: ServiceNavItem; active: boolean }) {
+function MegaItem({ item, active, index }: { item: ServiceNavItem; active: boolean; index: number }) {
   return (
-    <li>
+    <motion.li
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.035 * index, duration: 0.3, ease: EASE_EXPO }}
+    >
       <Link
         href={item.href}
         className={cn(
-          "group/mi flex gap-3.5 rounded-[var(--radius-sm)] p-3.5 transition-colors duration-200",
+          "group/mi flex gap-3.5 rounded-[var(--radius-sm)] p-3.5 transition-[background-color,transform] duration-300 hover:-translate-y-0.5",
           active ? "bg-accent-soft" : "hover:bg-paper-sunken",
         )}
       >
         <span
           className={cn(
-            "mt-0.5 grid size-9 shrink-0 place-items-center rounded-[var(--radius-xs)] border transition-colors duration-200",
+            "mt-0.5 grid size-9 shrink-0 place-items-center rounded-[var(--radius-xs)] border transition-[color,border-color,background-color,transform] duration-300 group-hover/mi:scale-105",
             active
               ? "border-accent/30 bg-paper-raised text-accent"
               : "border-rule bg-paper-sunken text-text-3 group-hover/mi:border-accent/30 group-hover/mi:text-accent",
@@ -412,7 +422,8 @@ function MegaItem({ item, active }: { item: ServiceNavItem; active: boolean }) {
             {item.description}
           </span>
         </span>
+        <ArrowUpRight className="ml-auto mt-1 size-3.5 shrink-0 -translate-x-1 translate-y-1 text-text-3 opacity-0 transition-all duration-300 group-hover/mi:translate-x-0 group-hover/mi:translate-y-0 group-hover/mi:text-accent group-hover/mi:opacity-100" />
       </Link>
-    </li>
+    </motion.li>
   );
 }

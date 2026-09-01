@@ -1,9 +1,8 @@
-import { AlertTriangle, ArrowRight, Check, ShieldCheck, X } from "lucide-react";
+import Image from "next/image";
+import { AlertTriangle, ArrowRight, Check, ShieldCheck } from "lucide-react";
 
 import { PageHero } from "@/components/sections/PageHero";
-import { FinalCta } from "@/components/sections/FinalCta";
-import { TechStack } from "@/components/sections/TechStack";
-import { BeforeAfterWorkflow, WorkflowDiagram } from "@/components/sections/WorkflowDiagram";
+import { AiWorkflow3D } from "@/components/sections/AiWorkflow3D";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
@@ -17,15 +16,9 @@ import {
   AI_PROBLEMS,
   AI_PROCESS,
   AI_USE_CASES,
-  AI_WORKFLOWS,
-  CRM_USE_CASES,
   DOCUMENT_TYPES,
   DO_NOT_AUTOMATE,
-  REPORTING_USE_CASES,
-  SUPPORT_AUTOMATABLE,
-  SUPPORT_HUMAN_LED,
 } from "@/lib/ai-automation";
-import { stackFor } from "@/lib/services";
 import { JsonLd, breadcrumbSchema, buildMetadata, faqSchema, serviceSchema } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -37,7 +30,7 @@ export const metadata = buildMetadata({
 
 export default function AiAutomationPage() {
   return (
-    <>
+    <div className="ai-service-page">
       <PageHero
         marker="AI Automation & AI Integration"
         heading="Practical AI automation for"
@@ -50,125 +43,156 @@ export default function AiAutomationPage() {
           { name: "Home", path: "/" },
           { name: "AI Automation", path: "/ai-automation" },
         ]}
-        aside={
-          <div className="rounded-[var(--radius-lg)] border border-white/12 bg-ink-850/80 p-5 shadow-dark-e3 backdrop-blur-xl sm:p-6">
-            <p className="font-mono text-marker font-medium tracking-[0.16em] text-signal uppercase">
-              The shape of every workflow we build
-            </p>
-            <ol className="mt-6 space-y-0">
-              {[
-                { label: "Business input", note: "a form, a message, a file, an event" },
-                { label: "AI workflow layer", note: "classify, retrieve, extract, draft" },
-                { label: "Human review", note: "the gate, where it matters", gate: true },
-                { label: "System update", note: "CRM, database, dashboard, ticket" },
-                { label: "Business output", note: "the thing a person actually needed" },
-              ].map((s, i, arr) => (
-                <li key={s.label} className="relative flex gap-4 pb-6 last:pb-0">
-                  {i < arr.length - 1 && (
-                    <span
-                      aria-hidden
-                      className="absolute top-8 bottom-0 left-[0.9375rem] w-px bg-gradient-to-b from-accent-bright/45 to-signal/25"
-                    />
-                  )}
-                  <span
-                    aria-hidden
-                    className={
-                      s.gate
-                        ? "relative z-10 grid size-8 shrink-0 place-items-center rounded-full border border-signal/50 bg-signal/12 font-mono text-[0.625rem] text-signal tabular-nums"
-                        : "relative z-10 grid size-8 shrink-0 place-items-center rounded-full border border-white/14 bg-ink-800 font-mono text-[0.625rem] text-ontext-3 tabular-nums"
-                    }
-                  >
-                    {i + 1}
+        showMarker={false}
+        minimalBackdrop
+        headingClassName="ai-hero-heading"
+        className="ai-service-hero"
+        backgroundImage={{
+          src: "/images/services/ai-automation-hero-v2.png",
+          alt: "A business team collaborating around practical AI automation workflows",
+        }}
+        below={
+          <RevealGroup as="ol" className="mx-auto grid max-w-5xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { label: "Business input", note: "Forms, messages, files and events" },
+              { label: "AI workflow", note: "Classify, retrieve, extract and draft" },
+              { label: "Human review", note: "A clear approval gate where needed" },
+              { label: "Business output", note: "Update systems and deliver the result" },
+            ].map((item, index) => (
+              <RevealItem key={item.label} as="li" index={index} className="h-full">
+                <div className="flex h-full items-start gap-3 rounded-[var(--radius-sm)] border border-white/12 bg-white/[0.045] p-4 text-left backdrop-blur-sm transition-[border-color,background-color,transform] duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.07]">
+                  <span className="grid size-7 shrink-0 place-items-center rounded-full border border-white/18 bg-black/25 font-mono text-[0.625rem] text-white/65 tabular-nums">
+                    {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="min-w-0 pt-0.5">
-                    <span
-                      className={
-                        s.gate
-                          ? "block text-[0.9375rem] leading-tight font-medium text-signal"
-                          : "block text-[0.9375rem] leading-tight font-medium text-white"
-                      }
-                    >
-                      {s.label}
-                    </span>
-                    <span className="mt-1 block font-mono text-[0.6875rem] text-ontext-4">
-                      {s.note}
-                    </span>
+                  <span>
+                    <strong className="block text-sm font-medium text-white">{item.label}</strong>
+                    <span className="mt-1 block text-xs leading-relaxed text-ontext-3">{item.note}</span>
                   </span>
-                </li>
-              ))}
-            </ol>
-          </div>
+                </div>
+              </RevealItem>
+            ))}
+          </RevealGroup>
         }
       />
 
       {/* ═══ WHAT AI AUTOMATION MEANS ═══════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="means-heading">
-        <div className="shell">
-          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
-            <Reveal>
-              <Marker>Definition</Marker>
-              <h2 id="means-heading" className="mt-5 max-w-[19ch] text-d2 text-text">
+      <section
+        aria-labelledby="means-heading"
+        className="border-y border-rule bg-white"
+      >
+        <div className="shell py-12 sm:py-14 lg:py-16">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,.95fr)_minmax(0,1.05fr)] lg:gap-16 xl:gap-24">
+            <Reveal className="lg:pr-6">
+              <Marker>Human-led automation</Marker>
+              <h2 id="means-heading" className="mt-5 max-w-[17ch] text-d2 text-text">
                 AI automation is not about replacing people. It is about{" "}
                 <span className="text-accent-ink">reducing repetitive work.</span>
               </h2>
             </Reveal>
+
+            <Reveal kind="right" className="flex flex-col justify-center lg:border-l lg:border-rule lg:pl-12 xl:pl-16">
+              <p className="max-w-2xl text-lead text-text-2">
+                We combine AI models, business rules, integrations, and software workflows to handle
+                repetitive or information-heavy tasks that normally consume valuable human time.
+              </p>
+              <p className="mt-4 max-w-2xl text-text-3">
+                The result is a faster, more consistent team—without losing judgment, accountability,
+                or human control.
+              </p>
+
+              <div className="mt-7 grid gap-px overflow-hidden rounded-[var(--radius-md)] border border-rule bg-rule sm:grid-cols-3">
+                {[
+                  ["01", "Reduce", "Manual work"],
+                  ["02", "Connect", "Business systems"],
+                  ["03", "Keep", "Human oversight"],
+                ].map(([number, action, outcome]) => (
+                  <div key={number} className="bg-paper-raised p-4 transition-colors duration-300 hover:bg-accent-soft sm:p-5">
+                    <span className="font-mono text-[.625rem] text-accent-ink">{number}</span>
+                    <p className="mt-4 text-sm font-semibold text-text">{action}</p>
+                    <p className="mt-1 text-xs text-text-3">{outcome}</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <Section surface="ink-deep" tight aria-labelledby="ai-3d-heading" className="service-panel ai-3d-section">
+        <div className="shell">
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,.75fr)_minmax(0,1.25fr)]">
+            <Reveal>
+              <h2 id="ai-3d-heading" className="max-w-[13ch] text-d2 text-white">
+                One connected workflow, <span className="text-accent-bright">built around control.</span>
+              </h2>
+              <p className="measure mt-5 text-ontext-2">
+                Business inputs move through a defined AI layer, pause for human review where it matters, and finish as a useful system update or business output.
+              </p>
+            </Reveal>
             <Reveal kind="right">
-              <p className="measure text-lead text-text-2">
-                AI automation means using AI models, business rules, integrations, and software
-                workflows to handle repetitive or information-heavy tasks that normally take human
-                time.
-              </p>
-              <p className="measure mt-5 text-text-3">
-                The goal is to make teams faster, more consistent, and better supported without
-                losing human control.
-              </p>
+              <AiWorkflow3D />
             </Reveal>
           </div>
         </div>
       </Section>
 
       {/* ═══ PROBLEMS AI CAN SOLVE ══════════════════════════════════════════ */}
-      <Section surface="sunken" aria-labelledby="probs-heading">
-        <SchematicGround grid={30} nodes={false} mask="radial" className="opacity-60" />
-        <div className="shell relative">
-          <Reveal>
-            <SectionHead
-              id="probs-heading"
-              marker="Where the time goes"
-              lead="Problems AI can"
-              accent="help solve"
-              intro="If your team spends hours a week on any of these, there is usually a workflow worth automating."
-            />
-          </Reveal>
+      <Section
+        surface="paper"
+        flush
+        aria-labelledby="probs-heading"
+        className="overflow-hidden border-t border-rule bg-[linear-gradient(180deg,var(--color-paper-sunken)_0%,var(--color-paper)_22rem)]"
+      >
+        <SchematicGround grid={34} nodes={false} mask="radial" className="opacity-45" />
+        <div className="shell relative py-14 sm:py-16 lg:py-20">
+          <div className="grid items-end gap-7 border-b border-rule pb-9 lg:grid-cols-[minmax(0,.9fr)_minmax(22rem,.62fr)] lg:gap-16 lg:pb-11">
+            <Reveal>
+              <Marker>Automation opportunities</Marker>
+              <h2 id="probs-heading" className="mt-5 max-w-[18ch] text-d2 text-text">
+                Problems AI can <span className="text-accent-ink">help solve.</span>
+              </h2>
+            </Reveal>
+            <Reveal kind="right">
+              <p className="max-w-xl text-lead text-text-2 lg:ml-auto">
+                If your team spends hours each week on any of these tasks, there is usually a
+                practical workflow worth automating.
+              </p>
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-text-3 lg:ml-auto">
+                We start with the operational bottleneck—not the technology—and keep people in
+                control wherever judgment matters.
+              </p>
+            </Reveal>
+          </div>
 
-          <RevealGroup
-            as="ul"
-            className="mt-12 grid gap-px overflow-hidden rounded-[var(--radius-md)] border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4"
-           
-          >
-            {AI_PROBLEMS.map((p) => (
-              <RevealItem key={p} as="li">
-                <div className="flex h-full items-start gap-3 bg-paper-raised p-5">
-                  <span aria-hidden className="mt-[0.4375rem] size-1.5 shrink-0 rounded-full bg-danger/70" />
-                  <span className="text-[0.9375rem] leading-relaxed text-text-2">{p}</span>
+          <RevealGroup as="ul" className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {AI_PROBLEMS.map((problem, index) => (
+              <RevealItem key={problem} as="li" index={index} className="h-full">
+                <div className="group/problem relative flex h-full min-h-32 flex-col justify-between overflow-hidden rounded-[var(--radius-sm)] border border-rule bg-paper-raised p-5 shadow-e1 transition-[border-color,box-shadow,transform] duration-400 [transition-timing-function:var(--ease-expo)] hover:-translate-y-1 hover:border-accent/35 hover:shadow-e2">
+                  <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/55 to-transparent opacity-0 transition-opacity duration-300 group-hover/problem:opacity-100" />
+                  <span className="flex items-center justify-between font-mono text-[.625rem] tracking-[.12em] text-text-4 uppercase">
+                    Signal {String(index + 1).padStart(2, "0")}
+                    <span className="size-1.5 rounded-full bg-accent/70 shadow-[0_0_0_4px_rgba(200,146,42,.09)]" />
+                  </span>
+                  <span className="mt-8 max-w-[18ch] text-[.9375rem] leading-snug font-medium text-text">
+                    {problem}
+                  </span>
                 </div>
               </RevealItem>
             ))}
           </RevealGroup>
 
-          <Reveal className="mt-14">
-            <BeforeAfterWorkflow tone="light" />
-          </Reveal>
         </div>
       </Section>
 
       {/* ═══ USE CASES ══════════════════════════════════════════════════════ */}
-      <Section surface="paper" id="use-cases" aria-labelledby="uc-heading">
-        <div className="shell">
+      <Section surface="ink-deep" tight id="use-cases" aria-labelledby="uc-heading" className="service-panel service-panel--visual service-panel--centered">
+        <Image src="/images/services/ai-automation.png" alt="Structured data and documents flowing through an intelligent automation system" fill sizes="100vw" className="service-panel__image object-cover grayscale" />
+        <div className="absolute inset-0 bg-ink-950/88" />
+        <div className="shell relative">
           <Reveal>
             <SectionHead
               id="uc-heading"
-              marker="Use cases"
+              tone="dark"
               lead="What we"
               accent="actually build"
               intro="Seven patterns cover most of the AI work businesses need. Each one connects to the tools you already run."
@@ -182,19 +206,19 @@ export default function AiAutomationPage() {
                 as="li"
                 className={i === AI_USE_CASES.length - 1 ? "h-full md:col-span-2 lg:col-span-1" : "h-full"}
               >
-                <article className="relative flex h-full flex-col rounded-[var(--radius-lg)] border border-rule bg-paper-raised p-7 shadow-e1 transition-[border-color,box-shadow,transform] duration-400 [transition-timing-function:var(--ease-expo)] hover:-translate-y-1 hover:border-accent/35 hover:shadow-e2">
+                <article className="relative flex h-full flex-col rounded-[var(--radius-lg)] border border-white/15 bg-black/35 p-7 text-left shadow-dark-e2 backdrop-blur-md transition-[border-color,box-shadow,transform] duration-400 [transition-timing-function:var(--ease-expo)] hover:-translate-y-1 hover:border-white/30">
                   <div className="flex items-start justify-between gap-4">
-                    <span className="grid size-11 place-items-center rounded-[var(--radius-sm)] border border-rule bg-paper-sunken text-accent">
+                    <span className="grid size-11 place-items-center rounded-[var(--radius-sm)] border border-white/15 bg-white/8 text-white">
                       <ServiceIcon name={u.icon} className="size-5" />
                     </span>
-                    <span className="font-mono text-[0.6875rem] text-text-4 tabular-nums">
+                    <span className="font-mono text-[0.6875rem] text-ontext-4 tabular-nums">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <h3 className="mt-6 font-display text-[1.125rem] leading-snug font-semibold text-text">
+                  <h3 className="mt-6 font-display text-[1.125rem] leading-snug font-semibold text-white">
                     {u.title}
                   </h3>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-text-2">{u.body}</p>
+                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-ontext-2">{u.body}</p>
                 </article>
               </RevealItem>
             ))}
@@ -202,39 +226,12 @@ export default function AiAutomationPage() {
         </div>
       </Section>
 
-      {/* ═══ WORKFLOW EXAMPLES ══════════════════════════════════════════════ */}
-      <Section surface="ink" aria-labelledby="wf-heading">
-        <SchematicGround grid={38} nodes={152} mask="radial" />
-        <Glow className="top-[-10rem] left-[-10rem]" color="signal" size={560} />
-        <div className="shell relative">
-          <Reveal>
-            <SectionHead
-              id="wf-heading"
-              tone="dark"
-              marker="Workflow examples"
-              lead="Four workflows, drawn"
-              accent="end to end"
-              intro="Notice where the human sits in each one. That gate is a design decision, not an afterthought."
-            />
-          </Reveal>
-
-          <RevealGroup className="mt-14 grid gap-5 lg:grid-cols-2" as="ul">
-            {AI_WORKFLOWS.map((w) => (
-              <RevealItem key={w.id} as="li">
-                <WorkflowDiagram workflow={w} tone="dark" />
-              </RevealItem>
-            ))}
-          </RevealGroup>
-        </div>
-      </Section>
-
       {/* ═══ AGENTS + RAG ═══════════════════════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="agents-heading">
+      <Section surface="paper" tight aria-labelledby="agents-heading" className="service-panel service-panel--centered border-t border-rule">
         <div className="shell">
           <div className="grid gap-x-14 gap-y-14 lg:grid-cols-2">
             <Reveal>
-              <Marker>AI agents</Marker>
-              <h2 id="agents-heading" className="mt-5 max-w-[18ch] text-d3 text-text">
+              <h2 id="agents-heading" className="max-w-[18ch] text-d2 text-text">
                 AI agents that support{" "}
                 <span className="text-accent-ink">defined business tasks.</span>
               </h2>
@@ -255,8 +252,7 @@ export default function AiAutomationPage() {
             </Reveal>
 
             <Reveal kind="right">
-              <Marker>RAG assistants</Marker>
-              <h2 className="mt-5 max-w-[18ch] text-d3 text-text">
+              <h2 className="max-w-[18ch] text-d2 text-text">
                 AI assistants connected to{" "}
                 <span className="text-accent-ink">your company knowledge.</span>
               </h2>
@@ -294,24 +290,51 @@ export default function AiAutomationPage() {
       </Section>
 
       {/* ═══ DOCUMENT PROCESSING ════════════════════════════════════════════ */}
-      <Section surface="sunken" tight aria-labelledby="doc-heading">
+      <Section surface="paper" tight aria-labelledby="doc-heading" className="service-panel border-t border-rule">
         <div className="shell">
-          <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-            <Reveal>
-              <Marker>Document processing</Marker>
-              <h2 id="doc-heading" className="mt-5 max-w-[17ch] text-d3 text-text">
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,.78fr)_minmax(0,1.22fr)] lg:gap-16 xl:gap-20">
+            <Reveal className="lg:pr-4">
+              <Marker>Document intelligence</Marker>
+              <h2 id="doc-heading" className="mt-5 max-w-[17ch] text-d2 text-text">
                 Turn document-heavy work into{" "}
                 <span className="text-accent-ink">structured workflows.</span>
               </h2>
+              <p className="mt-6 max-w-lg text-lead text-text-2">
+                Extract the information your team needs, apply clear validation rules, and move
+                approved data into the systems where work continues.
+              </p>
+              <div className="mt-8 flex items-center gap-3 border-t border-rule pt-5 font-mono text-[.6875rem] tracking-[.12em] text-text-4 uppercase">
+                <span>Input</span>
+                <ArrowRight aria-hidden className="size-3.5 text-accent" />
+                <span>Extract</span>
+                <ArrowRight aria-hidden className="size-3.5 text-accent" />
+                <span>Structure</span>
+              </div>
             </Reveal>
-            <Reveal kind="right">
-              <ul className="grid gap-2.5 sm:grid-cols-2">
+
+            <Reveal kind="right" className="overflow-hidden rounded-[var(--radius-lg)] border border-rule bg-paper-raised shadow-e3">
+              <div className="relative aspect-[16/8.5] overflow-hidden bg-ink-950">
+                <Image
+                  src="/images/services/ai-automation.png"
+                  alt="Documents being transformed into structured data and business outputs"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  className="object-cover transition-transform duration-700 [transition-timing-function:var(--ease-expo)] hover:scale-[1.025]"
+                />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
+                <div className="absolute inset-x-5 bottom-4 flex items-center justify-between gap-4 text-white sm:inset-x-6 sm:bottom-5">
+                  <span className="font-mono text-[.625rem] tracking-[.14em] text-signal uppercase">Controlled processing</span>
+                  <span className="hidden text-xs text-white/70 sm:block">Human review where confidence matters</span>
+                </div>
+              </div>
+
+              <ul className="grid gap-px border-t border-rule bg-rule sm:grid-cols-2">
                 {DOCUMENT_TYPES.map((d) => (
                   <li
                     key={d}
-                    className="flex items-center gap-3 rounded-[var(--radius-sm)] border border-rule bg-paper-raised px-4 py-3 text-sm text-text-2 shadow-e1"
+                    className="group/doc flex min-h-14 items-center gap-3 bg-white px-4 py-3 text-sm text-text-2 transition-colors duration-300 hover:bg-accent-soft sm:px-5"
                   >
-                    <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-accent" />
+                    <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-accent transition-transform duration-300 group-hover/doc:scale-150" />
                     {d}
                   </li>
                 ))}
@@ -321,120 +344,13 @@ export default function AiAutomationPage() {
         </div>
       </Section>
 
-      {/* ═══ SUPPORT AUTOMATION — the two-column limit ══════════════════════ */}
-      <Section surface="paper" aria-labelledby="sup-heading">
-        <div className="shell">
-          <Reveal>
-            <SectionHead
-              id="sup-heading"
-              marker="Customer support"
-              lead="Support automation with clear limits and"
-              accent="human escalation"
-              intro="The line between the two columns below is the most important design decision in a support automation project."
-            />
-          </Reveal>
-
-          <div className="mt-14 grid gap-5 lg:grid-cols-2">
-            <Reveal>
-              <div className="h-full rounded-[var(--radius-md)] border border-accent/25 bg-accent-soft/60 p-6 sm:p-7">
-                <h3 className="flex items-center gap-2.5 font-mono text-marker font-medium tracking-[0.16em] text-accent-ink uppercase">
-                  <Check aria-hidden className="size-4" strokeWidth={2.4} />
-                  What can be automated
-                </h3>
-                <ul className="mt-6 flex flex-col gap-3">
-                  {SUPPORT_AUTOMATABLE.map((s) => (
-                    <li key={s} className="flex items-start gap-3 text-[0.9375rem] text-text-2">
-                      <Check
-                        aria-hidden
-                        className="mt-[0.1875rem] size-4 shrink-0 text-accent"
-                        strokeWidth={2.2}
-                      />
-                      {s}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-
-            <Reveal kind="right">
-              <div className="h-full rounded-[var(--radius-md)] border border-rule-strong bg-paper-sunken p-6 sm:p-7">
-                <h3 className="flex items-center gap-2.5 font-mono text-marker font-medium tracking-[0.16em] text-text-3 uppercase">
-                  <ShieldCheck aria-hidden className="size-4" strokeWidth={2} />
-                  What should remain human-led
-                </h3>
-                <ul className="mt-6 flex flex-col gap-3">
-                  {SUPPORT_HUMAN_LED.map((s) => (
-                    <li key={s} className="flex items-start gap-3 text-[0.9375rem] text-text-2">
-                      <X
-                        aria-hidden
-                        className="mt-[0.1875rem] size-4 shrink-0 text-text-4"
-                        strokeWidth={2.2}
-                      />
-                      {s}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
-
       {/* ═══ CRM & REPORTING ════════════════════════════════════════════════ */}
-      <Section surface="sunken" tight aria-labelledby="crm-heading">
-        <div className="shell">
-          <Reveal>
-            <SectionHead
-              id="crm-heading"
-              marker="CRM & reporting"
-              lead="Connect AI with the tools"
-              accent="your team already uses"
-            />
-          </Reveal>
-
-          <div className="mt-12 grid gap-x-14 gap-y-8 lg:grid-cols-2">
-            <Reveal>
-              <h3 className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
-                CRM automation
-              </h3>
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {CRM_USE_CASES.map((c) => (
-                  <li
-                    key={c}
-                    className="rounded-[var(--radius-xs)] border border-rule bg-paper-raised px-3 py-1.5 text-sm text-text-2 shadow-e1"
-                  >
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal kind="right">
-              <h3 className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
-                Reporting automation
-              </h3>
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {REPORTING_USE_CASES.map((c) => (
-                  <li
-                    key={c}
-                    className="rounded-[var(--radius-xs)] border border-rule bg-paper-raised px-3 py-1.5 text-sm text-text-2 shadow-e1"
-                  >
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
-
       {/* ═══ WHAT NOT TO AUTOMATE + RESPONSIBLE AI ══════════════════════════ */}
-      <Section surface="ink" aria-labelledby="limits-heading">
-        <SchematicGround grid={38} nodes={152} mask="radial" />
+      <Section surface="ink-deep" tight aria-labelledby="limits-heading" className="service-panel service-panel--centered">
         <div className="shell relative">
           <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
             <Reveal>
-              <Marker tone="dark">Limits</Marker>
-              <h2 id="limits-heading" className="mt-5 max-w-[16ch] text-d2 text-white">
+              <h2 id="limits-heading" className="max-w-[16ch] text-d2 text-white">
                 Not every process <span className="text-accent-bright">should be automated.</span>
               </h2>
               <p className="measure mt-7 text-ontext-2">
@@ -495,12 +411,11 @@ export default function AiAutomationPage() {
       </Section>
 
       {/* ═══ PROCESS ════════════════════════════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="aiproc-heading">
+      <Section surface="paper" tight aria-labelledby="aiproc-heading" className="service-panel service-panel--centered">
         <div className="shell">
           <Reveal>
             <SectionHead
               id="aiproc-heading"
-              marker="Process"
               lead="From opportunity to"
               accent="production"
               intro="Eight steps. The prototype runs on your real inputs, not a demo dataset."
@@ -527,22 +442,12 @@ export default function AiAutomationPage() {
       </Section>
 
       {/* ═══ STACK ══════════════════════════════════════════════════════════ */}
-      <TechStack
-        groups={stackFor(["AI", "Backend", "Databases", "Integrations"])}
-        marker="Stack"
-        heading="What AI workflows are"
-        accent="built with"
-        surface="sunken"
-        compact
-      />
-
       {/* ═══ FAQ ════════════════════════════════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="aifaq-heading">
+      <Section surface="paper" tight aria-labelledby="aifaq-heading" className="service-panel service-panel--centered border-t border-rule">
         <div className="shell">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
             <Reveal className="lg:sticky lg:top-28 lg:self-start">
-              <Marker>Questions</Marker>
-              <h2 id="aifaq-heading" className="mt-5 max-w-[14ch] text-d2 text-text">
+              <h2 id="aifaq-heading" className="max-w-[14ch] text-d2 text-text">
                 About <span className="text-accent-ink">AI automation.</span>
               </h2>
               <Button href="/faq" variant="secondary" size="md" className="mt-8" arrow>
@@ -555,15 +460,6 @@ export default function AiAutomationPage() {
           </div>
         </div>
       </Section>
-
-      <FinalCta
-        marker="Next step"
-        heading="Have a workflow"
-        accent="you want to automate?"
-        body="Tell us how your team currently works and we will help you identify where AI can create practical value."
-        primary={{ label: "Book an AI Automation Call", href: "/contact?intent=ai-automation" }}
-        secondary={{ label: "Send Project Details", href: "/contact" }}
-      />
 
       <JsonLd
         data={[
@@ -580,6 +476,6 @@ export default function AiAutomationPage() {
           faqSchema(AI_FAQS),
         ]}
       />
-    </>
+    </div>
   );
 }

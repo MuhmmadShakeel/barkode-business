@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, Clock3, Layers3, MoveUpRight } from "lucide-react";
+import { Check, Clock3, Layers3, MoveUpRight } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
@@ -103,14 +103,28 @@ export default function EngagementModelsPage() {
           </section>
         );
         if (i === 1) return (
-          <section key={model.slug} id={model.slug} data-surface="dark" className="engagement-model engagement-architectural relative flex scroll-mt-20 items-center overflow-hidden bg-ink-950 py-20">
-            <div className="absolute inset-y-0 right-0 hidden w-[52%] lg:block"><Image src={image.src} alt={image.alt} fill sizes="52vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/25 to-transparent" /></div>
-            <div className="shell relative w-full"><div className="max-w-[44rem] rounded-[1.75rem] border border-white/10 bg-ink-950/85 p-7 shadow-e4 backdrop-blur-xl sm:p-10"><ModelCopy model={model} index={i} dark /></div></div>
-            <div className="absolute right-8 bottom-8 hidden rounded-xl border border-white/15 bg-black/35 px-5 py-3 text-sm text-white backdrop-blur lg:block">{model.timeline}</div>
+          <section key={model.slug} id={model.slug} className="engagement-model flex scroll-mt-20 items-center overflow-hidden border-y border-rule bg-white py-16 sm:py-20">
+            <div className="shell w-full">
+              <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] lg:gap-16 xl:gap-24">
+                <ModelCopy model={model} index={i} />
+                <Reveal kind="right">
+                  <div className="group/product relative aspect-[16/11] overflow-hidden rounded-[var(--radius-lg)] bg-paper-sunken shadow-e4">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 56vw"
+                      className="object-cover transition-transform duration-700 [transition-timing-function:var(--ease-expo)] group-hover/product:scale-[1.025]"
+                    />
+                    <div aria-hidden className="absolute inset-0 ring-1 ring-inset ring-black/10" />
+                  </div>
+                </Reveal>
+              </div>
+            </div>
           </section>
         );
         if (i === 2) return (
-          <section key={model.slug} id={model.slug} data-surface="dark" className="engagement-model engagement-control-room flex scroll-mt-20 items-center overflow-hidden bg-[#11100d] py-20">
+          <section key={model.slug} id={model.slug} data-surface="dark" className="engagement-model engagement-control-room flex scroll-mt-20 items-center overflow-hidden bg-ink-950 py-20">
             <div className="shell w-full"><div className="grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
               <Reveal kind="left" className="relative min-h-[34rem] [perspective:1200px]">
                 <div className="absolute inset-8 overflow-hidden rounded-full border border-accent/30 shadow-[0_0_90px_rgba(200,146,42,.18)]"><Image src={image.src} alt={image.alt} fill sizes="48vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" /></div>
@@ -134,37 +148,18 @@ export default function EngagementModelsPage() {
           </section>
         );
         return (
-          <section key={model.slug} id={model.slug} data-surface="dark" className="engagement-model engagement-support relative flex scroll-mt-20 items-center overflow-hidden bg-ink-950 py-20">
-            <Image src={image.src} alt={image.alt} fill sizes="100vw" className="object-cover opacity-30" /><div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/85 to-ink-950/35" />
+          <section key={model.slug} id={model.slug} className="engagement-model engagement-support relative flex scroll-mt-20 items-center overflow-hidden border-t border-rule py-20">
             <div className="shell relative w-full"><div className="grid items-center gap-10 lg:grid-cols-[1fr_.82fr] lg:gap-20">
-              <ModelCopy model={model} index={i} dark />
-              <Reveal kind="right" className="rounded-[1.75rem] border border-white/10 bg-white/[.06] p-6 shadow-e4 backdrop-blur-xl">
-                <div className="flex items-center justify-between border-b border-white/10 pb-5"><span className="font-mono text-xs text-ontext-3 uppercase">Product health</span><span className="flex items-center gap-2 text-xs text-emerald-300"><span className="size-2 rounded-full bg-emerald-400 shadow-[0_0_12px_#34d399]" />Active support</span></div>
-                <div className="mt-5 grid grid-cols-2 gap-3">{["Monitoring", "Updates", "Performance", "Security"].map((item, n) => <div key={item} className="rounded-xl border border-white/10 bg-black/20 p-4"><span className="font-mono text-[.625rem] text-signal">0{n + 1}</span><p className="mt-5 text-sm font-medium text-white">{item}</p><div className="mt-3 h-1 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-accent" style={{ width: `${72 + n * 7}%` }} /></div></div>)}</div>
+              <ModelCopy model={model} index={i} />
+              <Reveal kind="right" className="rounded-[1.75rem] border border-rule bg-white p-6 shadow-e3">
+                <div className="flex items-center justify-between border-b border-rule pb-5"><span className="font-mono text-xs text-text-3 uppercase">Product health</span><span className="flex items-center gap-2 text-xs text-emerald-700"><span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,.35)]" />Active support</span></div>
+                <div className="mt-5 grid grid-cols-2 gap-3">{["Monitoring", "Updates", "Performance", "Security"].map((item, n) => <div key={item} className="rounded-xl border border-rule bg-paper-sunken p-4"><span className="font-mono text-[.625rem] text-accent-ink">0{n + 1}</span><p className="mt-5 text-sm font-medium text-text">{item}</p><div className="mt-3 h-1 overflow-hidden rounded-full bg-rule"><div className="h-full rounded-full bg-accent" style={{ width: `${72 + n * 7}%` }} /></div></div>)}</div>
                 <div className="relative mt-4 h-32 overflow-hidden rounded-xl"><Image src={SECONDARY_IMAGES[i]} alt="Quality assurance and product delivery" fill sizes="36vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" /><p className="absolute bottom-4 left-4 text-sm font-medium text-white">{model.timeline}</p></div>
               </Reveal>
             </div></div>
           </section>
         );
       })}
-
-      <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-accent-soft py-24" aria-labelledby="pricing-heading">
-        <div aria-hidden className="engagement-grid absolute inset-0 opacity-25" />
-        <div className="shell relative w-full"><div className="grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
-          <Reveal>
-            <Marker>Pricing with context</Marker><h2 id="pricing-heading" className="mt-5 max-w-[15ch] text-d1 text-text">A clear scope before <span className="text-accent-ink">a confident quote.</span></h2>
-            <p className="mt-7 max-w-2xl text-lead text-text-2">Software scope depends on features, integrations, users, platforms, data, security needs, and long-term goals. Instead of showing misleading fixed prices, we review your project and recommend the right scope, timeline, and engagement model.</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button href="/contact?intent=engagement-model" size="lg" arrow>Find the Right Model</Button><Button href="/contact?intent=strategy-call" variant="secondary" size="lg">Book a Strategy Call</Button></div>
-          </Reveal>
-          <Reveal kind="right" className="relative [perspective:1200px]">
-            <div className="engagement-price-card relative rounded-[2rem] border border-rule bg-white p-7 shadow-e4 sm:p-10 [transform:rotateY(-5deg)_rotateX(3deg)] [transform-style:preserve-3d]">
-              <span className="font-mono text-xs tracking-[.14em] text-accent-ink uppercase">Scope signals</span>
-              <div className="mt-8 grid grid-cols-2 gap-3">{["Features", "Integrations", "Users & roles", "Platforms", "Data", "Security needs", "Long-term goals"].map((item, i) => <div key={item} className={`rounded-xl border border-rule bg-paper px-4 py-4 text-sm text-text-2 ${i === 6 ? "col-span-2" : ""}`}><span className="mr-2 font-mono text-[.625rem] text-accent">0{i + 1}</span>{item}</div>)}</div>
-              <div className="mt-8 flex items-center justify-between gap-4 border-t border-rule pt-6"><span className="text-sm text-text-3">Recommendation</span><span className="inline-flex items-center gap-2 text-right font-medium text-text">Built around your goals <ArrowRight className="size-4 shrink-0 text-accent" /></span></div>
-            </div>
-          </Reveal>
-        </div></div>
-      </section>
 
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Engagement Models", path: "/engagement-models" }])} />
     </>

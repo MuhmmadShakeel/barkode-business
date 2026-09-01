@@ -1,11 +1,11 @@
-import { PageHero } from "@/components/sections/PageHero";
-import { FinalCta } from "@/components/sections/FinalCta";
+import Image from "next/image";
+
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
-import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { SchematicGround, TraceRule } from "@/components/ui/Schematic";
+import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { Marker, Section, SectionHead } from "@/components/ui/Section";
 
-import { COLLABORATION_POINTS, PROCESS } from "@/lib/content";
+import { PROCESS } from "@/lib/content";
 import { JsonLd, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
@@ -19,24 +19,45 @@ export const metadata = buildMetadata({
 export default function ProcessPage() {
   return (
     <>
-      <PageHero
-        marker="Our Process"
-        heading="A clear product engineering process from"
-        accent="idea to launch"
-        trail="."
-        body="We follow a structured process that helps reduce confusion, control scope, improve communication, and deliver software that supports real business goals."
-        primary={{ label: "Start Your Project", href: "/contact" }}
-        secondary={{ label: "Book a Strategy Call", href: "/contact?intent=strategy-call" }}
-        crumbs={[
-          { name: "Home", path: "/" },
-          { name: "Process", path: "/process" },
-        ]}
-        meta={[
-          { label: "Steps", value: `${PROCESS.length}, from discovery to long-term support` },
-          { label: "You always receive", value: "Written deliverables at every stage" },
-          { label: "Scope changes", value: "Quoted before any additional work begins" },
-        ]}
-      />
+      <section
+        aria-labelledby="process-hero-heading"
+        className="hero-reveal relative isolate h-[100svh] overflow-hidden bg-white text-text"
+      >
+        <div className="shell-wide grid h-full items-center gap-7 pt-24 pb-6 lg:grid-cols-[minmax(0,.83fr)_minmax(0,1.17fr)] lg:gap-6 lg:pt-20">
+          <Reveal className="relative z-10 max-w-2xl">
+            <h1
+              id="process-hero-heading"
+              className="max-w-[14ch] font-display text-[clamp(2.35rem,4.8vw,5rem)] leading-[.98] font-semibold tracking-[-.05em] text-text"
+            >
+              A clear product engineering process from{" "}
+              <span className="text-accent-ink">idea to launch.</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-[clamp(.9375rem,1.35vw,1.125rem)] leading-relaxed text-text-2">
+              We follow a structured process that helps reduce confusion, control scope, improve
+              communication, and deliver software that supports real business goals.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Button href="/contact" size="md" arrow>
+                Start Your Project
+              </Button>
+              <Button href="/contact?intent=strategy-call" variant="secondary" size="md">
+                Book a Strategy Call
+              </Button>
+            </div>
+          </Reveal>
+
+          <Reveal kind="right" className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] opacity-20 lg:pointer-events-auto lg:relative lg:inset-auto lg:h-[min(70svh,46rem)] lg:opacity-100">
+            <Image
+              src="/images/process/business-process-hero.png"
+              alt="Business and product leaders reviewing a structured product engineering workflow"
+              fill
+              priority
+              sizes="58vw"
+              className="object-contain object-center"
+            />
+          </Reveal>
+        </div>
+      </section>
 
       {/* ═══ WHY PROCESS MATTERS ════════════════════════════════════════════ */}
       <Section surface="paper" tight aria-labelledby="why-heading">
@@ -61,8 +82,7 @@ export default function ProcessPage() {
       </Section>
 
       {/* ═══ FULL TIMELINE ══════════════════════════════════════════════════ */}
-      <Section surface="sunken" aria-labelledby="timeline-heading">
-        <SchematicGround grid={30} nodes={false} mask="radial" className="opacity-60" />
+      <Section surface="paper" aria-labelledby="timeline-heading">
         <div className="shell relative">
           <Reveal>
             <SectionHead
@@ -80,46 +100,6 @@ export default function ProcessPage() {
       </Section>
 
       {/* ═══ CLIENT COLLABORATION ═══════════════════════════════════════════ */}
-      <Section surface="ink" aria-labelledby="collab-heading">
-        <SchematicGround grid={38} nodes={152} mask="radial" />
-        <div className="shell relative">
-          <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-            <Reveal>
-              <Marker tone="dark">Collaboration</Marker>
-              <h2 id="collab-heading" className="mt-5 max-w-[15ch] text-d2 text-white">
-                Clear communication at{" "}
-                <span className="text-accent-bright">every stage.</span>
-              </h2>
-              <p className="measure mt-7 text-ontext-2">
-                Barakode works with clients through structured updates, clear documentation, planned
-                meetings, and transparent delivery checkpoints. You should never have to ask what is
-                happening.
-              </p>
-            </Reveal>
-
-            <RevealGroup as="ul" className="grid gap-px self-start overflow-hidden rounded-[var(--radius-md)] border border-rule-dark bg-rule-dark sm:grid-cols-2">
-              {COLLABORATION_POINTS.map((c) => (
-                <RevealItem key={c} as="li">
-                  <div className="flex h-full items-center gap-3.5 bg-ink-900 px-5 py-4">
-                    <TraceRule tone="dark" className="w-6 shrink-0" />
-                    <span className="text-[0.9375rem] text-ontext-2">{c}</span>
-                  </div>
-                </RevealItem>
-              ))}
-            </RevealGroup>
-          </div>
-        </div>
-      </Section>
-
-      <FinalCta
-        marker="Next step"
-        heading="Ready to move from idea to"
-        accent="execution?"
-        body="Tell us what you are building and we will help you define the next technical step."
-        primary={{ label: "Start Your Project", href: "/contact" }}
-        secondary={{ label: "Book a Strategy Call", href: "/contact?intent=strategy-call" }}
-      />
-
       <JsonLd
         data={[
           breadcrumbSchema([

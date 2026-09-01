@@ -14,17 +14,22 @@ export function ClientCaseCard({
   study,
   priority = false,
   compact = false,
+  subtle = false,
   className,
 }: {
   study: ClientCase;
   priority?: boolean;
   compact?: boolean;
+  subtle?: boolean;
   className?: string;
 }) {
   return (
     <article
       className={cn(
-        "group/cc relative flex flex-col overflow-hidden rounded-[var(--radius-lg)] border border-rule bg-paper-raised shadow-e1 transition-[box-shadow,border-color,transform] duration-400 [transition-timing-function:var(--ease-expo)] hover:-translate-y-1 hover:border-accent/35 hover:shadow-e3",
+        "group/cc relative flex flex-col overflow-hidden rounded-[var(--radius-lg)] border border-rule bg-paper-raised shadow-e1 transition-[box-shadow,border-color,transform] duration-400 [transition-timing-function:var(--ease-expo)]",
+        subtle
+          ? "hover:-translate-y-0.5 hover:border-accent/25 hover:shadow-e2"
+          : "hover:-translate-y-1 hover:border-accent/35 hover:shadow-e3",
         className,
       )}
     >
