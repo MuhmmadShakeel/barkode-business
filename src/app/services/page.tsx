@@ -19,12 +19,12 @@ export const metadata = buildMetadata({
 });
 
 const SERVICE_IMAGES: Record<string, { src: string; alt: string }> = {
-  "mvp-saas-product-development": { src: "/images/services/mvp-saas.png", alt: "A product team planning and building a scalable SaaS platform" },
-  "custom-web-mobile-app-development": { src: "/images/services/web-mobile.png", alt: "Responsive web and mobile product interfaces" },
-  "ai-automation-ai-integration": { src: "/images/services/ai-automation.png", alt: "Connected AI automation workflows for business operations" },
-  "internal-business-systems": { src: "/images/services/internal-systems.png", alt: "A modern internal operations dashboard and business system" },
-  "cloud-devops-maintenance": { src: "/images/services/cloud-devops.png", alt: "Cloud infrastructure, monitoring, and reliable deployment operations" },
-  "ui-ux-product-design": { src: "/images/services/product-design.png", alt: "A polished product design system and interface workflow" },
+  "mvp-saas-product-development": { src: "/images/services/mvp-saas.webp", alt: "A product team planning and building a scalable SaaS platform" },
+  "custom-web-mobile-app-development": { src: "/images/services/web-mobile.webp", alt: "Responsive web and mobile product interfaces" },
+  "ai-automation-ai-integration": { src: "/images/services/ai-automation.webp", alt: "Connected AI automation workflows for business operations" },
+  "internal-business-systems": { src: "/images/services/internal-systems.webp", alt: "A modern internal operations dashboard and business system" },
+  "cloud-devops-maintenance": { src: "/images/services/cloud-devops.webp", alt: "Cloud infrastructure, monitoring, and reliable deployment operations" },
+  "ui-ux-product-design": { src: "/images/services/product-design.webp", alt: "A polished product design system and interface workflow" },
 };
 
 export default function ServicesPage() {
@@ -44,7 +44,7 @@ export default function ServicesPage() {
         headingClassName="ai-hero-heading"
         className="ai-service-hero services-main-hero"
         backgroundImage={{
-          src: "/images/services/overview/services-hero-connected-platform.png",
+          src: "/images/services/overview/services-hero-connected-platform.webp",
           alt: "A connected product engineering platform spanning strategy, software, AI, and cloud systems",
         }}
         below={
@@ -80,7 +80,7 @@ export default function ServicesPage() {
           </Reveal>
           <Reveal kind="right">
             <div className="services-editorial-image group relative aspect-[16/10] overflow-hidden rounded-[var(--radius-lg)] border border-black/10 bg-white shadow-e2">
-              <Image src="/images/services/overview/end-to-end-delivery-system.png" alt="An end-to-end product delivery system connecting strategy, design, engineering, AI, cloud, and improvement" fill sizes="(min-width: 1024px) 56vw, 100vw" className="object-cover transition-transform duration-1000 [transition-timing-function:var(--ease-expo)] group-hover:scale-[1.025]" />
+              <Image src="/images/services/overview/end-to-end-delivery-system.webp" alt="An end-to-end product delivery system connecting strategy, design, engineering, AI, cloud, and improvement" fill sizes="(min-width: 1024px) 56vw, 100vw" className="object-cover transition-transform duration-1000 [transition-timing-function:var(--ease-expo)] group-hover:scale-[1.025]" />
               <div className="absolute inset-x-5 bottom-5 flex items-center justify-between gap-3 rounded-[var(--radius-sm)] border border-white/70 bg-white/85 px-4 py-3 text-xs text-black/65 shadow-e1 backdrop-blur-md">
                 <span className="font-mono tracking-[0.12em] uppercase">Plan · Design · Build · Operate</span>
                 <span className="size-2 rounded-full bg-accent shadow-[0_0_0_5px_rgba(208,161,46,.15)]" />

@@ -48,7 +48,7 @@ export default function AiAutomationPage() {
         headingClassName="ai-hero-heading"
         className="ai-service-hero"
         backgroundImage={{
-          src: "/images/services/ai-automation-hero-v2.png",
+          src: "/images/services/ai-automation-hero-v2.webp",
           alt: "A business team collaborating around practical AI automation workflows",
         }}
         below={
@@ -186,7 +186,7 @@ export default function AiAutomationPage() {
 
       {/* ═══ USE CASES ══════════════════════════════════════════════════════ */}
       <Section surface="ink-deep" tight id="use-cases" aria-labelledby="uc-heading" className="service-panel service-panel--visual service-panel--centered">
-        <Image src="/images/services/ai-automation.png" alt="Structured data and documents flowing through an intelligent automation system" fill sizes="100vw" className="service-panel__image object-cover grayscale" />
+        <Image src="/images/services/ai-automation.webp" alt="Structured data and documents flowing through an intelligent automation system" fill sizes="100vw" className="service-panel__image object-cover grayscale" />
         <div className="absolute inset-0 bg-ink-950/88" />
         <div className="shell relative">
           <Reveal>
@@ -315,7 +315,7 @@ export default function AiAutomationPage() {
             <Reveal kind="right" className="overflow-hidden rounded-[var(--radius-lg)] border border-rule bg-paper-raised shadow-e3">
               <div className="relative aspect-[16/8.5] overflow-hidden bg-ink-950">
                 <Image
-                  src="/images/services/ai-automation.png"
+                  src="/images/services/ai-automation.webp"
                   alt="Documents being transformed into structured data and business outputs"
                   fill
                   sizes="(max-width: 1024px) 100vw, 58vw"

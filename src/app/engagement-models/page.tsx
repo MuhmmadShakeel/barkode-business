@@ -15,19 +15,19 @@ export const metadata = buildMetadata({
 });
 
 const MODEL_IMAGES = [
-  { src: "/images/contact/roadmap.jpg", alt: "Product roadmap and planning workspace" },
-  { src: "/images/projects/originals/beyut-cover.jpg", alt: "Custom digital product presented on multiple devices" },
-  { src: "/images/home/ai-business-leader.png", alt: "Business leader reviewing an AI-enabled workflow" },
-  { src: "/images/home/glass-company-headquarters.png", alt: "Modern technology company headquarters" },
-  { src: "/images/process/support-growth.jpg", alt: "Ongoing product support and growth planning" },
+  { src: "/images/contact/roadmap.webp", alt: "Product roadmap and planning workspace" },
+  { src: "/images/projects/originals/beyut-cover.webp", alt: "Custom digital product presented on multiple devices" },
+  { src: "/images/home/ai-business-leader.webp", alt: "Business leader reviewing an AI-enabled workflow" },
+  { src: "/images/home/glass-company-headquarters.webp", alt: "Modern technology company headquarters" },
+  { src: "/images/process/support-growth.webp", alt: "Ongoing product support and growth planning" },
 ];
 
 const SECONDARY_IMAGES = [
-  "/images/process/discovery.jpg",
-  "/images/projects/beyut-libya.jpg",
+  "/images/process/discovery.webp",
+  "/images/projects/beyut-libya.webp",
   "/images/projects/openinterview-detail.jpg",
-  "/images/process/development.jpg",
-  "/images/process/qa-delivery.jpg",
+  "/images/process/development.webp",
+  "/images/process/qa-delivery.webp",
 ];
 
 function ModelCopy({ model, index, dark = false }: { model: (typeof ENGAGEMENT_MODELS)[number]; index: number; dark?: boolean }) {
@@ -49,7 +49,7 @@ export default function EngagementModelsPage() {
   return (
     <>
       <section className="engagement-hero relative flex h-[100svh] min-h-[38rem] items-center justify-center overflow-hidden bg-ink-950 text-center text-white" data-surface="dark">
-        <Image src="/images/hero/engagement-models-hero-v2.png" alt="Business and technology leaders collaborating in a modern boardroom" fill priority sizes="100vw" className="engagement-hero-image object-cover object-center" />
+        <Image src="/images/hero/engagement-models-hero-v2.webp" alt="Business and technology leaders collaborating in a modern boardroom" fill priority sizes="100vw" className="engagement-hero-image object-cover object-center" />
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,8,10,.64)_0%,rgba(4,8,10,.46)_36%,rgba(4,8,10,.72)_100%)]" />
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,7,9,.16)_42%,rgba(3,7,9,.66)_100%)]" />
         <div aria-hidden className="engagement-grid absolute inset-0 opacity-20" />
@@ -60,7 +60,7 @@ export default function EngagementModelsPage() {
               <span className="size-1.5 rounded-full bg-accent-bright shadow-[0_0_14px_rgba(226,184,92,.9)]" />
               <span className="font-mono text-[.6875rem] tracking-[.16em] text-white/80 uppercase">Engagement Models</span>
             </div>
-            <h1 className="mt-7 max-w-[15ch] text-d1 text-white drop-shadow-[0_4px_30px_rgba(0,0,0,.5)]">The right partnership for your <span className="text-accent-bright">next move.</span></h1>
+            <h1 className="site-hero-heading mt-7 max-w-[15ch] text-d1 text-white drop-shadow-[0_4px_30px_rgba(0,0,0,.5)]">The right partnership for your <span className="text-accent-bright">next move.</span></h1>
             <div className="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
               <Button href="/contact?intent=engagement-model" size="lg" arrow>Find the Right Model</Button>
               <Button href="/contact?intent=strategy-call" variant="onDarkGhost" size="lg" className="bg-black/15 backdrop-blur-md">Book a Strategy Call</Button>
@@ -160,7 +160,6 @@ export default function EngagementModelsPage() {
           </section>
         );
       })}
-
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Engagement Models", path: "/engagement-models" }])} />
     </>
   );

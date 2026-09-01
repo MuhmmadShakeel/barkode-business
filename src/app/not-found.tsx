@@ -24,7 +24,7 @@ export default function NotFound() {
         <div className="max-w-2xl">
           <Marker tone="dark">Error 404</Marker>
 
-          <h1 className="mt-6 text-d1 text-white">
+          <h1 className="site-hero-heading mt-6 text-d1 text-white">
             This route does not{" "}
             <span className="text-accent-bright">resolve.</span>
           </h1>

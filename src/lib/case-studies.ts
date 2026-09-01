@@ -183,7 +183,7 @@ export const CLIENT_CASES: ClientCase[] = [
       "Parsing the résumé rather than asking the user to retype it was the single change that made the product feel finished.",
       "Testing the upload and processing pipeline with real résumés, not clean samples, surfaced the failure cases that mattered.",
     ],
-    cover: "/images/projects/openinterview.jpg",
+    cover: "/images/projects/openinterview.webp",
     coverAlt:
       "OpenInterview marketing site shown on a laptop — upload a résumé to generate a shareable video profile",
     screenshots: [
@@ -267,17 +267,17 @@ export const CLIENT_CASES: ClientCase[] = [
       "Early feedback from users in Tripoli reshaped the search filters before the nationwide launch.",
       "The admin panel was what made the public marketplace sustainable; without it the operator would have been the bottleneck.",
     ],
-    cover: "/images/projects/beyut-libya.jpg",
+    cover: "/images/projects/beyut-libya.webp",
     coverAlt:
       "Beyut Libya real-estate platform on a laptop — sign-in screen with the Add New Property wizard behind it",
     screenshots: [
       {
-        src: "/images/projects/beyut-admin-categories.jpg",
+        src: "/images/projects/beyut-admin-categories.webp",
         alt: "Beyut Libya admin panel showing the property categories management dashboard",
         caption: "Admin panel — category and listing management",
       },
       {
-        src: "/images/projects/beyut-admin-profile.jpg",
+        src: "/images/projects/beyut-admin-profile.webp",
         alt: "Beyut Libya admin panel showing a user profile with verification status and listing limits",
         caption: "User profile — verification status and listing limits",
       },
@@ -356,7 +356,7 @@ export const CLIENT_CASES: ClientCase[] = [
       "Making configuration a first-class product feature removed the client's dependency on us for routine change.",
       "Weekly progress reviews on a live staging environment caught misunderstandings while they were still cheap.",
     ],
-    cover: "/images/projects/gman.png",
+    cover: "/images/projects/gman.webp",
     coverAlt: "Gman tailoring platform dashboard shown on screen",
     screenshots: [
       {

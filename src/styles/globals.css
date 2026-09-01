@@ -913,7 +913,6 @@
 @media (min-width: 64rem) {
   .service-detail-hero .ai-hero-heading {
     max-width: 16ch;
-    font-size: clamp(3rem, 5vw, 5.25rem);
   }
 
   .service-detail-hero .mt-9 { margin-top: 1.5rem; }
@@ -1066,9 +1065,10 @@
   .ai-3d-node { width: 9rem; }
 }
 
+.site-hero-heading,
 .ai-hero-heading {
   max-width: 18ch;
-  font-size: clamp(2.75rem, 5.4vw, 5.75rem);
+  font-size: clamp(2.75rem, 5.65vw, 6rem);
   line-height: .98;
   letter-spacing: -.05em;
 }
@@ -1160,6 +1160,7 @@
 }
 
 @media (max-height: 48rem) and (min-width: 48rem) {
+  .site-hero-heading,
   .ai-service-hero .ai-hero-heading { font-size: clamp(2.5rem, 7vh, 4rem); }
   .ai-service-hero .mt-9 { margin-top: 1.25rem; }
   .ai-service-hero .mt-8,

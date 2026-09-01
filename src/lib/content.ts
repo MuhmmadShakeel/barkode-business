@@ -409,7 +409,7 @@ export const TEAM: TeamMember[] = [
     slug: "safdar-iqbal",
     name: "Safdar Iqbal",
     role: "Chief Executive Officer & Founder",
-    photo: "/images/team/safdar.png",
+    photo: "/images/team/safdar.webp",
     shortBio:
       "Sets the company's direction, owns its most important client relationships, and protects the standard every engagement is held to.",
     bio: "Safdar founded Barakode on a single conviction: that world-class software shouldn't be bound by geography. As CEO he sets the company's direction, owns its most important client relationships, and protects the standard every engagement is held to. He works where strategy meets delivery — shaping the roadmap, building the team, and making sure ambitious ideas leave the building as reliable, scalable products.",
@@ -428,7 +428,7 @@ export const TEAM: TeamMember[] = [
     slug: "humayon-abdullah",
     name: "Humayon Abdullah",
     role: "Full-Stack Developer",
-    photo: "/images/team/humayon.png",
+    photo: "/images/team/humayon.webp",
     shortBio:
       "Architects and builds full-cycle web and mobile products end to end — frontend, services, database, and deployment.",
     bio: "Humayon is the engine room. He architects and builds full-cycle web and mobile products end to end — clean React and Next.js on the front, robust Node.js services behind, and the database and deployment work that holds it all together. He sweats the architecture before the first feature ships, writes code meant to be read and maintained years from now, and ships reviewable increments every sprint.",
@@ -448,7 +448,7 @@ export const TEAM: TeamMember[] = [
     slug: "burhan-tariq",
     name: "Burhan Tariq",
     role: "Business Development Manager",
-    photo: "/images/team/burhan.png",
+    photo: "/images/team/burhan.webp",
     shortBio:
       "Where new partnerships begin — translating what a client is trying to achieve into a scope engineering can run with.",
     bio: "Burhan is where new partnerships begin. As Business Development Manager he listens first — understanding what a client is really trying to achieve — then translates it into a scope the engineering team can run with. He owns the relationship from first conversation through delivery, keeps communication honest and timelines clear, and is relentless about turning a single project into a long-term partnership.",
@@ -589,7 +589,7 @@ export const ARTICLES: Article[] = [
     displayDate: "March 2025",
     readTime: "5 min read",
     author: "Barakode Team",
-    cover: "/images/blog/technical-roadmap.jpeg",
+    cover: "/images/blog/technical-roadmap.webp",
     coverAlt: "Technical roadmap planning session",
     tags: ["Product Engineering", "Architecture"],
     body: [
@@ -608,7 +608,7 @@ export const ARTICLES: Article[] = [
       },
       {
         kind: "figure",
-        src: "/images/blog/roadmap-tc-billboard.png",
+        src: "/images/blog/roadmap-tc-billboard.webp",
         alt: "Illuminated street billboard reading Terms & Conditions Apply at night",
         portrait: true,
       },

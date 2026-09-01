@@ -71,7 +71,7 @@ export default function HomePage() {
           <div className="grid items-stretch gap-4 sm:gap-5 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-6">
             <Reveal kind="left" className="relative min-h-[22rem] overflow-hidden rounded-[var(--radius-lg)] border border-rule-dark bg-ink-950 shadow-e4 sm:min-h-[30rem] lg:min-h-[34rem]">
               <Image
-                src="/images/home/trusted-product-strategist.png"
+                src="/images/home/trusted-product-strategist.webp"
                 alt="Product strategist working with confidence and focus"
                 fill
                 sizes="(max-width: 1024px) 100vw, 46vw"
@@ -227,7 +227,7 @@ export default function HomePage() {
             <Reveal className="flex flex-col">
               <div className="relative min-h-52 overflow-hidden rounded-[var(--radius-lg)] shadow-e2 sm:min-h-60">
                 <Image
-                  src="/images/home/ai-business-leader.png"
+                  src="/images/home/ai-business-leader.webp"
                   alt="Business leader reviewing an AI-enabled workflow"
                   fill
                   sizes="(max-width: 1024px) 100vw, 42vw"
@@ -366,7 +366,7 @@ export default function HomePage() {
       <Section
         surface="ink-deep"
         aria-labelledby="why-heading"
-        className="why-reveal mt-8 min-h-[100svh] overflow-hidden bg-[url('/images/home/glass-company-headquarters.png')] bg-cover bg-center bg-no-repeat sm:mt-12 lg:bg-fixed"
+        className="why-reveal mt-8 min-h-[100svh] overflow-hidden bg-[url('/images/home/glass-company-headquarters.webp')] bg-cover bg-center bg-no-repeat sm:mt-12"
       >
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,9,16,0.96)_0%,rgba(5,9,16,0.87)_43%,rgba(5,9,16,0.58)_100%)]" />
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-transparent to-ink-950/45" />

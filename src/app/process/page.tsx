@@ -27,7 +27,7 @@ export default function ProcessPage() {
           <Reveal className="relative z-10 max-w-2xl">
             <h1
               id="process-hero-heading"
-              className="max-w-[14ch] font-display text-[clamp(2.35rem,4.8vw,5rem)] leading-[.98] font-semibold tracking-[-.05em] text-text"
+              className="site-hero-heading max-w-[14ch] font-display font-semibold text-text"
             >
               A clear product engineering process from{" "}
               <span className="text-accent-ink">idea to launch.</span>
@@ -48,7 +48,7 @@ export default function ProcessPage() {
 
           <Reveal kind="right" className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] opacity-20 lg:pointer-events-auto lg:relative lg:inset-auto lg:h-[min(70svh,46rem)] lg:opacity-100">
             <Image
-              src="/images/process/business-process-hero.png"
+              src="/images/process/business-process-hero.webp"
               alt="Business and product leaders reviewing a structured product engineering workflow"
               fill
               priority

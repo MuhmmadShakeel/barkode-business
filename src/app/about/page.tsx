@@ -20,9 +20,9 @@ export const metadata = buildMetadata({
 });
 
 const ABOUT_PHOTOS = [
-  { src: "/images/about/Barakode_brochure_updated.jpg", alt: "Barakode Technologies company brochure" },
-  { src: "/images/about/about-2.jpg", alt: "The Barakode team at work" },
-  { src: "/images/about/about-3.jpg", alt: "Barakode engineering session" },
+  { src: "/images/about/Barakode_brochure_updated.webp", alt: "Barakode Technologies company brochure" },
+  { src: "/images/about/about-2.webp", alt: "The Barakode team at work" },
+  { src: "/images/about/about-3.webp", alt: "Barakode engineering session" },
 ];
 
 const DELIVERY_TRAITS = [

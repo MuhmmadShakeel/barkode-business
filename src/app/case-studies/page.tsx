@@ -41,7 +41,7 @@ export default function CaseStudiesPage() {
         <div className="shell relative flex h-full w-full flex-col justify-center pt-20 pb-5 sm:pt-24 sm:pb-7">
           <Reveal className="mx-auto flex max-w-4xl flex-col items-center text-center">
             <Marker tone="dark">Case Studies</Marker>
-            <h1 id="case-studies-hero-heading" className="mt-4 max-w-[19ch] font-display text-[clamp(2.35rem,5vw,4.75rem)] leading-[.98] font-semibold tracking-[-.045em] text-white">
+            <h1 id="case-studies-hero-heading" className="site-hero-heading mt-4 max-w-[19ch] font-display font-semibold text-white">
               Real project stories, built around{" "}
               <span className="text-accent-bright">business problems.</span>
             </h1>

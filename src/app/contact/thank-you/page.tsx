@@ -39,7 +39,7 @@ export default function ThankYouPage() {
             <Marker tone="dark">Inquiry received</Marker>
           </div>
 
-          <h1 className="mt-5 text-d2 text-white">
+          <h1 className="site-hero-heading mt-5 text-white">
             Thank you for sharing your{" "}
             <span className="text-accent-bright">project details.</span>
           </h1>

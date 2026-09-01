@@ -105,7 +105,7 @@ export function PageHero({
         >
           <Reveal className={cn("flex flex-col items-center", twoUp && "lg:items-start lg:text-left")}>
             {showMarker && <Marker tone="dark">{marker}</Marker>}
-            <h1 className={cn("max-w-[17ch] text-d1 text-white", showMarker && "mt-6", headingClassName)}>
+            <h1 className={cn("site-hero-heading max-w-[17ch] text-d1 text-white", showMarker && "mt-6", headingClassName)}>
               {heading}
               {accent && (
                 <>

@@ -7,14 +7,14 @@ import { PROCESS } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 const PROCESS_IMAGES = [
-  ["/images/process/discovery.jpg", "Business discovery and requirement planning session"],
-  ["/images/process/product-strategy.jpg", "Product strategy and user experience planning workshop"],
-  ["/images/services/product-design.png", "Product interface design and prototyping workflow"],
-  ["/images/contact/roadmap.jpg", "Development roadmap with milestones and delivery checkpoints"],
-  ["/images/process/development.jpg", "Software engineers building a digital product"],
-  ["/images/services/ai-automation.png", "AI automation and systems integration workflow"],
-  ["/images/process/qa-delivery.jpg", "Quality assurance testing and controlled product delivery"],
-  ["/images/process/support-growth.jpg", "Long-term product support, monitoring, and growth planning"],
+  ["/images/process/discovery.webp", "Business discovery and requirement planning session"],
+  ["/images/process/product-strategy.webp", "Product strategy and user experience planning workshop"],
+  ["/images/services/product-design.webp", "Product interface design and prototyping workflow"],
+  ["/images/contact/roadmap.webp", "Development roadmap with milestones and delivery checkpoints"],
+  ["/images/process/development.webp", "Software engineers building a digital product"],
+  ["/images/services/ai-automation.webp", "AI automation and systems integration workflow"],
+  ["/images/process/qa-delivery.webp", "Quality assurance testing and controlled product delivery"],
+  ["/images/process/support-growth.webp", "Long-term product support, monitoring, and growth planning"],
 ] as const;
 
 /**
