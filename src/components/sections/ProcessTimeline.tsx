@@ -55,7 +55,7 @@ export function ProcessTimeline({
       ref={ref}
       className={cn(
         "relative",
-        containedScroll && "process-scroll h-full cursor-grab snap-y snap-proximity overflow-y-auto overscroll-contain pr-3 select-none sm:pr-5",
+        containedScroll && "process-scroll h-full cursor-grab snap-y snap-proximity overflow-x-hidden overflow-y-auto overscroll-contain pr-3 select-none sm:pr-5",
         className,
       )}
       tabIndex={containedScroll ? 0 : undefined}
@@ -108,7 +108,7 @@ export function ProcessTimeline({
             "relative",
             detailed ? "lg:grid lg:grid-cols-2 lg:items-center lg:gap-20" : "pl-[3.75rem] sm:pl-[4.5rem]",
             containedScroll && "snap-start",
-            i === 0 ? (containedScroll ? "pb-6" : detailed ? "pb-14" : "pb-10") : containedScroll ? "py-6" : detailed ? "py-14" : "py-10",
+            i === 0 ? (containedScroll ? "pb-5" : detailed ? "pb-14" : "pb-10") : containedScroll ? "py-5" : detailed ? "py-14" : "py-10",
             i === PROCESS.length - 1 && "pb-0",
           )}
         >

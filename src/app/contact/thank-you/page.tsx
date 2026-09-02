@@ -46,7 +46,7 @@ export default function ThankYouPage() {
 
           <p className="measure mx-auto mt-6 text-lead text-balance text-ontext-2">
             We will review your inquiry and respond with the best next step. You can also book a
-            strategy call if you are ready to discuss the project.
+            free project discovery call if you are ready to discuss the project.
           </p>
 
           <Suspense fallback={null}>
@@ -56,7 +56,7 @@ export default function ThankYouPage() {
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
             {CONTACT.bookingUrl ? (
               <Button href={CONTACT.bookingUrl} variant="onDark" size="lg" arrow>
-                Book a Strategy Call
+                Book a Free Project Discovery Call
               </Button>
             ) : (
               <Button href={CONTACT.whatsapp.href} variant="onDark" size="lg" arrow>
@@ -70,7 +70,7 @@ export default function ThankYouPage() {
 
           {!CONTACT.bookingUrl && (
             <div className="mt-8 flex justify-center">
-              <Pending tone="dark">[Add booking link for a direct strategy-call button]</Pending>
+              <Pending tone="dark">[Add booking link for the free discovery-call button]</Pending>
             </div>
           )}
         </div>

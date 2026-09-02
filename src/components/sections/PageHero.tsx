@@ -36,8 +36,8 @@ export function PageHero({
   accent?: string;
   trail?: string;
   body: string;
-  primary?: { label: string; href: string };
-  secondary?: { label: string; href: string };
+  primary?: { label: string; href: string; mobileLabel?: string };
+  secondary?: { label: string; href: string; mobileLabel?: string };
   crumbs?: Crumb[];
   /** Optional visual occupying the right column. */
   aside?: React.ReactNode;
@@ -121,12 +121,22 @@ export function PageHero({
               <div className={cn("mt-9 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap", twoUp && "lg:justify-start")}>
                 {primary && (
                   <Button href={primary.href} variant="onDark" size="lg" className="w-full sm:w-auto" arrow>
-                    {primary.label}
+                    {primary.mobileLabel ? (
+                      <>
+                        <span className="max-[359px]:hidden">{primary.label}</span>
+                        <span className="hidden max-[359px]:inline">{primary.mobileLabel}</span>
+                      </>
+                    ) : primary.label}
                   </Button>
                 )}
                 {secondary && (
                   <Button href={secondary.href} variant="onDarkGhost" size="lg" className="w-full sm:w-auto">
-                    {secondary.label}
+                    {secondary.mobileLabel ? (
+                      <>
+                        <span className="max-[359px]:hidden">{secondary.label}</span>
+                        <span className="hidden max-[359px]:inline">{secondary.mobileLabel}</span>
+                      </>
+                    ) : secondary.label}
                   </Button>
                 )}
               </div>

@@ -182,7 +182,7 @@ export default function TechnologiesPage() {
         accent="technology direction?"
         body="Tell us what you are building and we will help you identify the right stack and architecture."
         primary={{ label: "Discuss Your Tech Stack", href: "/contact?intent=tech-stack" }}
-        secondary={{ label: "Book a Strategy Call", href: "/contact?intent=strategy-call" }}
+        secondary={{ label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" }}
       />
 
       <JsonLd

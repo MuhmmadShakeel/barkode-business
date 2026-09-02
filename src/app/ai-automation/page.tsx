@@ -37,7 +37,7 @@ export default function AiAutomationPage() {
         accent="real business workflows"
         trail="."
         body="Barakode helps businesses use AI to automate manual tasks, connect internal knowledge, process documents, support customers, improve reporting, and build practical AI features into existing products."
-        primary={{ label: "Book an AI Automation Call", href: "/contact?intent=ai-automation" }}
+        primary={{ label: "Book a Free Project Discovery Call", mobileLabel: "Free AI Discovery Call", href: "/contact?intent=ai-automation" }}
         secondary={{ label: "Explore Use Cases", href: "#use-cases" }}
         crumbs={[
           { name: "Home", path: "/" },

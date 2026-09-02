@@ -79,7 +79,7 @@ export function Logo({
   compact?: boolean;
 }) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
+    <span className={cn("brand-logo inline-flex items-center gap-2.5", className)}>
       <Mark
         className={cn(
           "size-8 shrink-0 transition-colors duration-300",
@@ -87,10 +87,10 @@ export function Logo({
         )}
       />
       {!compact && (
-        <span className="flex flex-col leading-none">
+        <span className="brand-logo__wordmark flex flex-col leading-none">
           <span
             className={cn(
-              "font-display text-[1.0625rem] font-semibold tracking-[0.1em] uppercase",
+              "brand-logo__name font-display text-[1.0625rem] font-semibold tracking-[0.1em] uppercase",
               tone === "dark" ? "text-white" : "text-text",
             )}
           >
@@ -98,7 +98,7 @@ export function Logo({
           </span>
           <span
             className={cn(
-              "mt-1 font-mono text-[0.5625rem] tracking-[0.3em] uppercase",
+              "brand-logo__tagline mt-1 font-mono text-[0.5625rem] tracking-[0.3em] uppercase",
               tone === "dark" ? "text-ontext-4" : "text-text-4",
             )}
           >

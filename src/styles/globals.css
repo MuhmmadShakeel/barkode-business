@@ -170,6 +170,16 @@
     overflow-x: clip;
   }
 
+  /* Keep below-fold content in the accessibility and SEO trees while deferring
+     its layout and paint work until it approaches the viewport. */
+  @supports (content-visibility: auto) {
+    main > section:not(:first-child),
+    main > div > section:not(:first-child) {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 48rem;
+    }
+  }
+
   h1, h2, h3, h4, h5 {
     font-family: var(--font-display);
     font-weight: 600;
@@ -331,11 +341,29 @@
     to { stroke-dashoffset: -440; }
   }
 
+  @keyframes menu-reveal {
+    from { opacity: 0; transform: translateY(-.5rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .client-slide-in-right { animation: client-slide-right .42s var(--ease-expo) both; }
+  .client-slide-in-left { animation: client-slide-left .42s var(--ease-expo) both; }
+
+  @keyframes client-slide-right {
+    from { opacity: 0; transform: translate3d(1.5rem, 0, 0); }
+    to { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+
+  @keyframes client-slide-left {
+    from { opacity: 0; transform: translate3d(-1.5rem, 0, 0); }
+    to { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+
   @media (max-width: 47.99rem) {
     .home-flow-lines svg {
-      width: 150%;
-      max-width: none;
-      transform: translateX(-31%);
+      width: 100%;
+      max-width: 100%;
+      transform: none;
     }
 
     .home-flow-lines__cross { opacity: .62; }
@@ -349,24 +377,43 @@
       min-height: 100svh;
       padding-top: max(5rem, env(safe-area-inset-top));
       padding-bottom: max(2rem, env(safe-area-inset-bottom));
+      overflow: clip;
     }
 
     .home-hero .shell-wide { padding-inline: max(1rem, env(safe-area-inset-left)); }
-    .home-hero h1 { font-size: clamp(2.15rem, 11.5vw, 3rem); line-height: 1.02; }
-    .home-hero p { font-size: clamp(.9375rem, 4.4vw, 1.125rem); }
+    .home-hero .hero-reveal { padding-block: clamp(1.5rem, 6svh, 3rem); }
+    .home-hero h1 { max-width: 12ch; font-size: clamp(1.95rem, 9.6vw, 2.7rem); line-height: 1.04; }
+    .home-hero p { max-width: 31rem; font-size: clamp(.9375rem, 4.2vw, 1.0625rem); line-height: 1.55; }
+    .home-hero p span { display: inline; }
 
     .trust-reveal .shell > .grid > [data-reveal]:first-child { min-height: 20rem; }
     .trust-reveal .trust-card-grid a { min-height: 10rem; padding: 1.125rem; }
     .services-reveal article { padding: 1.25rem; }
     .ai-reveal .ai-globe-stage { min-height: 13rem; }
-    .process-reveal [data-reveal="right"] { min-height: min(30rem, 72svh); padding: 1rem; }
+    .process-reveal [data-reveal="right"] { min-height: 20rem; padding: 1rem; }
     .why-reveal .shell { min-height: auto; }
     .models-reveal a { min-height: 13rem; }
   }
 
+  /* Ultra-narrow phones and embedded previews: retain the full brand without
+     allowing the logo, menu trigger, or hero CTA to create horizontal scroll. */
+  @media (max-width: 19.99rem) {
+    header .shell-wide { gap: .5rem; padding-inline: .625rem; }
+    header .brand-logo { gap: .4375rem; }
+    header .brand-logo > svg { width: 1.5rem; height: 1.5rem; }
+    header .brand-logo__name { font-size: .8125rem; letter-spacing: .07em; }
+    header .brand-logo__tagline { margin-top: .1875rem; font-size: .4375rem; letter-spacing: .19em; }
+    header button[aria-controls="mobile-nav"] { width: 2.5rem; height: 2.5rem; }
+
+    .home-hero { align-items: flex-start; }
+    .home-hero .hero-reveal { padding-top: 1.75rem; padding-bottom: 1.5rem; }
+    .home-hero h1 { font-size: clamp(1.8rem, 12vw, 2.15rem); }
+    .home-hero [class*="group/btn"] { padding-inline: .875rem; font-size: .9rem; }
+  }
+
   @media (min-width: 40rem) and (max-width: 63.99rem) {
     .home-hero { height: auto; min-height: 100svh; padding-bottom: 2.5rem; }
-    .process-reveal [data-reveal="right"] { min-height: 34rem; }
+    .process-reveal [data-reveal="right"] { min-height: 0; }
   }
 
   @media (min-width: 64rem) and (max-height: 47.99rem) {
@@ -382,7 +429,7 @@
     .selected-work-reveal > .shell,
     .faq-reveal > .shell { height: auto !important; }
 
-    .process-reveal [data-reveal="right"] { min-height: 34rem; }
+    .process-reveal [data-reveal="right"] { min-height: 0; }
     .selected-work-reveal [data-reveal-group] { height: auto !important; }
   }
 
@@ -1127,6 +1174,28 @@
   letter-spacing: -.05em;
 }
 
+/* Process route statement: a deliberate two-line editorial lockup. */
+.process-route-heading h2 {
+  max-width: none;
+  font-size: clamp(2.75rem, 5vw, 5.5rem);
+  line-height: .98;
+  letter-spacing: -.052em;
+}
+
+.process-route-heading .split-heading__lead,
+.process-route-heading h2 > span:last-child {
+  display: block;
+  white-space: nowrap;
+}
+
+@media (max-width: 24.99rem) {
+  .process-route-heading h2 { font-size: 1.6rem; line-height: 1.04; }
+}
+
+@media (max-width: 19.99rem) {
+  .process-route-heading h2 { font-size: 1.2rem; letter-spacing: -.035em; }
+}
+
 /* Compact-screen safeguards shared by every interior route. Desktop remains unchanged. */
 @media (max-width: 39.99rem) {
   .site-hero-heading,
@@ -1153,6 +1222,54 @@
   min-height: 100svh;
   padding-top: calc(5rem + clamp(.75rem, 2vh, 1.5rem));
   padding-bottom: clamp(1rem, 2.5vh, 2rem);
+}
+
+/* The AI hero includes a workflow summary below its CTA. On compact screens
+   it must grow with that content instead of centering an oversized block
+   inside one clipped viewport. */
+@media (max-width: 47.99rem) {
+  .ai-service-page > .ai-service-hero {
+    height: auto;
+    min-height: 100svh;
+    align-items: flex-start;
+    padding-top: calc(5rem + clamp(1.5rem, 5vw, 2.25rem));
+    padding-bottom: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .ai-service-page > .ai-service-hero nav { margin-bottom: 1.25rem; }
+  .ai-service-page > .ai-service-hero .ai-hero-heading {
+    max-width: 13ch;
+    font-size: clamp(2rem, 9.5vw, 2.75rem);
+    line-height: 1.04;
+  }
+  .ai-service-page > .ai-service-hero .ai-hero-heading + p {
+    margin-top: 1.125rem;
+    max-width: 36rem;
+    font-size: clamp(.9375rem, 3.8vw, 1.0625rem);
+    line-height: 1.6;
+  }
+  .ai-service-page > .ai-service-hero .ai-hero-heading + p + div { margin-top: 1.5rem; }
+  .ai-service-page > .ai-service-hero [data-reveal-group] { margin-top: 1.75rem; }
+}
+
+@media (max-width: 19.99rem) {
+  .ai-service-page > .ai-service-hero {
+    padding-top: 6.25rem;
+    padding-inline: 0;
+  }
+  .ai-service-page > .ai-service-hero .shell-wide { padding-inline: .75rem; }
+  .ai-service-page > .ai-service-hero nav { margin-bottom: 1rem; }
+  .ai-service-page > .ai-service-hero .ai-hero-heading {
+    max-width: 12ch;
+    font-size: clamp(1.75rem, 11vw, 2.05rem);
+  }
+  .ai-service-page > .ai-service-hero [class*="group/btn"] {
+    min-height: 2.75rem;
+    padding: .7rem .875rem;
+    font-size: .875rem;
+  }
+  .ai-service-page > .ai-service-hero [data-reveal-group] { gap: .5rem; }
+  .ai-service-page > .ai-service-hero [data-reveal-item] > div { padding: .75rem; }
 }
 
 .ai-service-page .service-panel {

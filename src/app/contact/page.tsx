@@ -18,14 +18,14 @@ import { JsonLd, breadcrumbSchema, buildMetadata, faqSchema } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Contact — Tell us what you want to build",
   description:
-    "Share a few details about your project and we will respond with the best next step — a strategy call, technical review, MVP plan, or automation discovery.",
+    "Share a few details about your project and we will respond with the best next step — a free project discovery call, technical review, MVP plan, or automation discovery.",
   path: "/contact",
 });
 
 const CONTACT_FAQS = [
   {
     q: "What happens after I submit the form?",
-    a: "We read it, and reply with a practical next step — usually a strategy call, a technical review, or a scoped starting point. If your project is not a fit for us, we will say so and try to point you somewhere useful.",
+    a: "We read it and reply with a practical next step — usually a free project discovery call, technical review, or scoped starting point. If your project is not a fit for us, we will say so and try to point you somewhere useful.",
   },
   {
     q: "Can I book a call directly?",
@@ -76,7 +76,7 @@ export default function ContactPage() {
         heading="Tell us what you want to build, automate, or"
         accent="improve"
         trail="."
-        body="Share a few details about your project and we will respond with the best next step, whether that is a strategy call, technical review, MVP plan, or automation discovery."
+        body="Share a few details about your project and we will respond with the best next step, whether that is a free project discovery call, technical review, MVP plan, or automation discovery."
         crumbs={[
           { name: "Home", path: "/" },
           { name: "Contact", path: "/contact" },
@@ -189,19 +189,21 @@ export default function ContactPage() {
                   Would rather just talk it through?
                 </h3>
                 <p className="mt-2.5 text-sm text-black/70">
-                  A strategy call is 30 minutes: what you are building, what the constraints are,
-                  and what the sensible first step looks like.
+                  Your free 30-minute discovery call covers what you are building, your key
+                  constraints, and the most practical next step — with no obligation.
                 </p>
                 {CONTACT.bookingUrl ? (
                   <Button href={CONTACT.bookingUrl} size="md" className="mt-5" arrow block>
-                    Book a Strategy Call
+                    Book a Free Project Discovery Call
                   </Button>
                 ) : (
                   <div className="mt-5">
-                    <Pending block>[Add booking link — Calendly / Cal.com]</Pending>
+                    <Button href={CONTACT.whatsapp.href} size="md" arrow block>
+                      Request a Free Discovery Call
+                    </Button>
                     <p className="mt-3 text-xs text-text-3">
-                      Until then, choose &ldquo;Google Meet / Zoom&rdquo; on the form and we will
-                      send times.
+                      Or choose &ldquo;Google Meet / Zoom&rdquo; on the form and share your availability.
+                      We will confirm a suitable time.
                     </p>
                   </div>
                 )}

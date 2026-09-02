@@ -7,6 +7,7 @@ import { FinalCta } from "@/components/sections/FinalCta";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { BeforeAfterWorkflow } from "@/components/sections/WorkflowDiagram";
 import { AnimatedAIGlobe } from "@/components/sections/AnimatedAIGlobe";
+import { ClientOutcomesCarousel } from "@/components/sections/ClientOutcomesCarousel";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { ClientCaseCard } from "@/components/ui/CaseCard";
@@ -31,9 +32,11 @@ import { JsonLd, buildMetadata, faqSchema } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Barakode Technologies — Product Engineering & AI Automation Partner",
   description:
-    "Barakode Technologies helps startups and growing businesses build scalable web apps, mobile apps, SaaS platforms, internal business systems, and AI-powered workflows.",
+    "Barakode Technologies helps startups, SaaS companies, growing businesses, and enterprises build scalable digital products, internal systems, and AI-powered workflows.",
   path: "/",
 });
+
+const TARGET_AUDIENCES = ["Startups", "SaaS Companies", "Growing Businesses", "Enterprises"] as const;
 
 function ProblemCard({ groupIndex }: { groupIndex: number }) {
   const items = PROBLEM_CARDS.slice(groupIndex * 2, groupIndex * 2 + 2);
@@ -68,7 +71,36 @@ export default function HomePage() {
       {/* ═══ 2 · TRUST SIGNAL ═══════════════════════════════════════════════ */}
       <Section surface="paper" aria-labelledby="trust-heading" className="trust-reveal overflow-hidden">
         <div className="shell relative">
-          <div className="grid items-stretch gap-4 sm:gap-5 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-6">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <Marker>Who we work with</Marker>
+            <h2 className="mt-5 text-d3 text-text">
+              Product engineering for teams at every stage of{" "}
+              <span className="text-accent-ink">business growth.</span>
+            </h2>
+          </Reveal>
+
+          <RevealGroup
+            as="ul"
+            className="mt-8 grid overflow-hidden rounded-[var(--radius-md)] border border-rule bg-paper-raised shadow-e1 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {TARGET_AUDIENCES.map((audience, index) => (
+              <RevealItem
+                key={audience}
+                as="li"
+                index={index}
+                className="group/audience flex min-h-20 items-center gap-4 border-b border-rule px-5 py-4 transition-colors duration-300 last:border-b-0 hover:bg-accent-soft sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(3)]:border-b-0 lg:border-r lg:border-b-0 lg:last:border-r-0"
+              >
+                <span className="font-mono text-[0.6875rem] text-accent-ink tabular-nums">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="font-display text-[0.9375rem] font-semibold text-text sm:text-base">
+                  {audience}
+                </span>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+
+          <div className="mt-10 grid items-stretch gap-4 sm:mt-12 sm:gap-5 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-6">
             <Reveal kind="left" className="relative min-h-[22rem] overflow-hidden rounded-[var(--radius-lg)] border border-rule-dark bg-ink-950 shadow-e4 sm:min-h-[30rem] lg:min-h-[34rem]">
               <Image
                 src="/images/home/trusted-product-strategist.webp"
@@ -305,27 +337,31 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 6 · PROCESS ════════════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="process-heading" className="process-reveal lg:flex lg:h-[100svh] lg:items-center lg:overflow-hidden">
-        <div className="shell w-full lg:h-[calc(100svh-5.5rem)]">
-          <div className="grid h-full gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-stretch">
-            <Reveal className="flex h-full flex-col justify-start lg:pr-6 lg:pt-7">
+      <Section surface="paper" tight aria-labelledby="process-heading" className="process-reveal">
+        <div className="shell w-full">
+          <div className="grid items-center gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:gap-x-16">
+            <Reveal className="flex flex-col justify-center lg:pr-4">
               <h2 id="process-heading" className="max-w-[17ch] text-d3 text-text">
                 A clear process from first idea to{" "}
                 <span className="text-accent-ink">working product.</span>
               </h2>
-              <p className="measure mt-6 text-text-2">
+              <p className="measure mt-5 text-text-2">
                 Good software does not happen by accident. We follow a structured product
                 engineering process that helps reduce confusion, manage scope, improve
                 communication, and deliver software that is easier to build, test, launch, and
                 maintain.
               </p>
-              <Button href="/process" variant="secondary" size="md" className="mt-8" arrow>
+              <Button href="/process" variant="secondary" size="md" className="mt-7 w-full sm:w-auto" arrow>
                 See Our Process
               </Button>
             </Reveal>
 
-            <Reveal kind="right" className="relative min-h-[30rem] overflow-hidden rounded-[var(--radius-lg)] border border-rule bg-paper-raised p-5 shadow-e2 lg:h-full lg:min-h-0 lg:p-7">
-              <ProcessTimeline containedScroll />
+            <Reveal kind="right" className="relative flex h-[min(25rem,68svh)] min-h-[20rem] flex-col overflow-hidden rounded-[var(--radius-lg)] border border-rule bg-paper-raised p-4 shadow-e2 sm:h-[29rem] sm:p-5 lg:h-[min(33rem,68svh)] lg:p-6">
+              <div className="mb-3 flex shrink-0 items-center justify-between gap-4 border-b border-rule pb-3 font-mono text-[0.625rem] tracking-[0.12em] uppercase">
+                <span className="text-text-4">8-stage delivery path</span>
+                <span className="inline-flex items-center gap-1.5 text-accent-ink">Scroll to explore <ArrowRight aria-hidden className="size-3 rotate-90" /></span>
+              </div>
+              <ProcessTimeline containedScroll className="min-h-0 flex-1" />
               <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-paper-raised to-transparent" />
             </Reveal>
           </div>
@@ -359,6 +395,37 @@ export default function HomePage() {
               </RevealItem>
             ))}
           </RevealGroup>
+        </div>
+      </Section>
+
+      {/* ═══ 8 · CLIENT OUTCOMES ════════════════════════════════════════════ */}
+      <Section surface="ink-deep" aria-labelledby="client-outcomes-heading">
+        <SchematicGround grid={38} nodes={144} mask="radial" />
+        <div className="shell relative">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <Marker tone="dark">Client reviews & outcomes</Marker>
+            <h2 id="client-outcomes-heading" className="mt-5 text-d2 text-white">
+              Client work, reviewed through{" "}
+              <span className="text-accent-bright">real business outcomes.</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-ontext-2">
+              Project imagery and documented outcomes move together. Client quotations are only
+              published after explicit approval.
+            </p>
+          </Reveal>
+          <Reveal className="mt-10 sm:mt-12">
+            <ClientOutcomesCarousel
+              items={CLIENT_CASES.map((study) => ({
+                slug: study.slug,
+                name: study.name,
+                clientType: study.clientType,
+                industry: study.industry,
+                cover: study.cover,
+                coverAlt: study.coverAlt,
+                outcome: study.results?.[0] ?? "Outcome verification is pending.",
+              }))}
+            />
+          </Reveal>
         </div>
       </Section>
 

@@ -1,10 +1,9 @@
 import Image from "next/image";
-import { Globe2, MessageSquareText, Clock3, FileText } from "lucide-react";
+import { ArrowUpRight, Globe2, MessageSquareText, Clock3, FileText } from "lucide-react";
 
 import { PageHero } from "@/components/sections/PageHero";
 import { AboutWorkFlow } from "@/components/sections/AboutWorkFlow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Pending } from "@/components/ui/Pending";
 import { Registration, SchematicGround } from "@/components/ui/Schematic";
 import { Marker, Section, SectionHead } from "@/components/ui/Section";
 
@@ -56,7 +55,7 @@ export default function AboutPage() {
         heading="Born in Pakistan, building software"
         accent="for the world"
         trail="."
-        body="Barakode Technologies is a product engineering and AI automation company helping startups and growing businesses build scalable digital products, internal systems, and practical AI-powered workflows."
+        body="Barakode Technologies is a product engineering and AI automation partner for startups, SaaS companies, growing businesses, and enterprises building scalable digital products and practical AI-powered workflows."
         primary={{ label: "Work With Us", href: "/contact" }}
         secondary={{ label: "View Our Work", href: "/case-studies" }}
         crumbs={[
@@ -251,11 +250,18 @@ export default function AboutPage() {
                       ))}
                     </ul>
 
-                    {!m.linkedin && (
-                      <div className="mt-5">
-                        <Pending>[Add LinkedIn profile]</Pending>
-                      </div>
+                    {m.linkedin && (
+                      <a
+                        href={m.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-5 inline-flex w-fit items-center gap-1 font-mono text-[0.6875rem] tracking-[0.08em] text-text-3 transition-colors hover:text-accent-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                      >
+                        LinkedIn profile
+                        <ArrowUpRight aria-hidden className="size-3.5" strokeWidth={1.8} />
+                      </a>
                     )}
+
                   </div>
                 </article>
               </RevealItem>

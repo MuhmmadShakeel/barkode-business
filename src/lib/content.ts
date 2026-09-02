@@ -422,7 +422,7 @@ export const TEAM: TeamMember[] = [
       "Vision & Roadmapping",
       "Go-to-Market",
     ],
-    linkedin: null,
+    linkedin: "https://www.linkedin.com/in/muhammad-safdar-iqbal/",
   },
   {
     slug: "humayon-abdullah",
@@ -442,7 +442,7 @@ export const TEAM: TeamMember[] = [
       "REST & API Design",
       "DevOps & Deployment",
     ],
-    linkedin: null,
+    linkedin: "https://www.linkedin.com/in/humayun-abdullah-15a2993b2/",
   },
   {
     slug: "burhan-tariq",
@@ -462,7 +462,7 @@ export const TEAM: TeamMember[] = [
       "Communication",
       "Account Management",
     ],
-    linkedin: null,
+    linkedin: "https://www.linkedin.com/in/muhammadburhantariq/",
   },
 ];
 

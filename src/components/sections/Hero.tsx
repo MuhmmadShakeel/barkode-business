@@ -8,7 +8,7 @@ export function Hero() {
   return (
     <section
       data-surface="dark"
-      className="home-hero relative isolate flex h-[100svh] min-h-[100svh] items-center overflow-hidden bg-ink-950 pt-[5rem] text-ontext lg:pt-[5.25rem]"
+      className="home-hero relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ink-950 pt-[5rem] text-ontext lg:pt-[5.25rem]"
     >
       <HomeFlowLines />
 
@@ -43,7 +43,8 @@ export function Hero() {
 
             <Reveal index={2} className="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
               <Button href={CTA.primary.href} variant="onDark" size="lg" className="w-full sm:w-auto" arrow>
-                {CTA.primary.label}
+                <span className="max-[359px]:hidden">{CTA.primary.label}</span>
+                <span className="hidden max-[359px]:inline">Free Discovery Call</span>
               </Button>
               <Button href={CTA.secondary.href} variant="onDarkGhost" size="lg" className="w-full sm:w-auto">
                 {CTA.secondary.label}

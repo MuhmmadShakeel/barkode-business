@@ -7,7 +7,7 @@ export function HomeFlowLines() {
     <div className="home-flow-lines" aria-hidden>
       <svg
         viewBox="0 0 1440 900"
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="none"
         className="h-full w-full"
         focusable="false"
       >

@@ -35,8 +35,8 @@ export default function ServicesPage() {
         heading="Software product development and"
         accent="AI automation services"
         trail="."
-        body="Barakode helps startups and growing businesses build scalable products, improve existing systems, and automate manual workflows through structured product engineering."
-        primary={{ label: "Discuss Your Project", href: "/contact" }}
+        body="Barakode helps startups, SaaS companies, growing businesses, and enterprises build scalable products, improve existing systems, and automate manual workflows through structured product engineering."
+        primary={{ label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" }}
         secondary={{ label: "View Our Work", href: "/case-studies" }}
         crumbs={[{ name: "Home", path: "/" }, { name: "Services", path: "/services" }]}
         showMarker={false}

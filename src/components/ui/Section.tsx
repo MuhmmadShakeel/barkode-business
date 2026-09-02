@@ -133,7 +133,7 @@ export function SplitHeading({
         className,
       )}
     >
-      {lead}
+      <span className="split-heading__lead">{lead}</span>
       {accent && (
         <>
           {" "}

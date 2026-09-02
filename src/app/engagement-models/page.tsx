@@ -63,7 +63,7 @@ export default function EngagementModelsPage() {
             <h1 className="site-hero-heading mt-7 max-w-[15ch] text-d1 text-white drop-shadow-[0_4px_30px_rgba(0,0,0,.5)]">The right partnership for your <span className="text-accent-bright">next move.</span></h1>
             <div className="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
               <Button href="/contact?intent=engagement-model" size="lg" arrow>Find the Right Model</Button>
-              <Button href="/contact?intent=strategy-call" variant="onDarkGhost" size="lg" className="bg-black/15 backdrop-blur-md">Book a Strategy Call</Button>
+              <Button href="/contact?intent=strategy-call" variant="onDarkGhost" size="lg" className="bg-black/15 backdrop-blur-md">Book a Free Project Discovery Call</Button>
             </div>
           </Reveal>
 

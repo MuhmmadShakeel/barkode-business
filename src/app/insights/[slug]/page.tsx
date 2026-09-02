@@ -167,7 +167,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         heading="Want this applied to"
         accent="your project?"
         body="Tell us what you are building and we will help you define the technical plan behind it."
-        primary={{ label: "Book a Strategy Call", href: "/contact?intent=strategy-call" }}
+        primary={{ label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" }}
         secondary={{ label: "Read more insights", href: "/insights" }}
       />
 

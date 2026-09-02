@@ -21,9 +21,9 @@ export default function ProcessPage() {
     <>
       <section
         aria-labelledby="process-hero-heading"
-        className="hero-reveal relative isolate min-h-[100svh] overflow-hidden bg-white text-text lg:h-[100svh]"
+        className="hero-reveal relative isolate min-h-[100svh] overflow-hidden bg-white text-text lg:min-h-[clamp(38rem,78svh,50rem)]"
       >
-        <div className="shell-wide grid min-h-[100svh] items-center gap-7 pt-28 pb-10 sm:pt-32 lg:h-full lg:min-h-0 lg:grid-cols-[minmax(0,.83fr)_minmax(0,1.17fr)] lg:gap-6 lg:pt-20 lg:pb-6">
+        <div className="shell-wide grid min-h-[100svh] items-center gap-7 pt-28 pb-10 sm:pt-32 lg:min-h-[clamp(38rem,78svh,50rem)] lg:grid-cols-[minmax(0,.83fr)_minmax(0,1.17fr)] lg:gap-6 lg:pt-24 lg:pb-10">
           <Reveal className="relative z-10 max-w-2xl">
             <h1
               id="process-hero-heading"
@@ -41,12 +41,12 @@ export default function ProcessPage() {
                 Start Your Project
               </Button>
               <Button href="/contact?intent=strategy-call" variant="secondary" size="md" className="w-full sm:w-auto">
-                Book a Strategy Call
+                Book a Free Project Discovery Call
               </Button>
             </div>
           </Reveal>
 
-          <Reveal kind="right" className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] opacity-20 lg:pointer-events-auto lg:relative lg:inset-auto lg:h-[min(70svh,46rem)] lg:opacity-100">
+          <Reveal kind="right" className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] opacity-20 lg:pointer-events-auto lg:relative lg:inset-auto lg:h-[min(58svh,39rem)] lg:opacity-100">
             <Image
               src="/images/process/business-process-hero.webp"
               alt="Business and product leaders reviewing a structured product engineering workflow"
@@ -60,7 +60,7 @@ export default function ProcessPage() {
       </section>
 
       {/* ═══ WHY PROCESS MATTERS ════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="why-heading">
+      <Section surface="paper" tight aria-labelledby="why-heading" className="!pt-10 !pb-8 sm:!pt-12 sm:!pb-10">
         <div className="shell">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
             <Reveal>
@@ -82,7 +82,7 @@ export default function ProcessPage() {
       </Section>
 
       {/* ═══ FULL TIMELINE ══════════════════════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="timeline-heading">
+      <Section surface="paper" tight aria-labelledby="timeline-heading" className="!pt-8 sm:!pt-10">
         <div className="shell relative">
           <Reveal>
             <SectionHead
@@ -90,10 +90,13 @@ export default function ProcessPage() {
               marker="The full route"
               lead="Eight steps, and what"
               accent="you get from each"
+              align="center"
+              size="d1"
+              className="process-route-heading mx-auto max-w-6xl"
             />
           </Reveal>
 
-          <div className="mt-14">
+          <div className="mt-9 sm:mt-11">
             <ProcessTimeline detailed />
           </div>
         </div>

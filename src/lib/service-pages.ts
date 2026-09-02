@@ -50,7 +50,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       trail: ".",
       body: "Barakode helps founders and growing teams turn product ideas into scalable MVPs and SaaS platforms with clear planning, product-focused UI/UX, full-stack development, testing, launch support, and ongoing improvement.",
       primary: { label: "Plan Your MVP", href: "/contact?service=mvp-saas" },
-      secondary: { label: "Book a Strategy Call", href: "/contact?intent=strategy-call" },
+      secondary: { label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" },
     },
     audience: [
       "Startup founders",
@@ -174,7 +174,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       trail: ".",
       body: "Barakode designs and develops web and mobile applications for startups, businesses, and teams that need software built around their real operations, not generic templates.",
       primary: { label: "Build a Custom App", href: "/contact?service=web-mobile" },
-      secondary: { label: "Book a Strategy Call", href: "/contact?intent=strategy-call" },
+      secondary: { label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" },
     },
     audience: [
       "Businesses needing custom applications",
@@ -605,7 +605,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       trail: ".",
       body: "Barakode helps teams turn ideas, workflows, and product requirements into clean user flows, wireframes, prototypes, dashboards, mobile screens, and design systems ready for development.",
       primary: { label: "Design Your Product", href: "/contact?service=ui-ux" },
-      secondary: { label: "Book a Strategy Call", href: "/contact?intent=strategy-call" },
+      secondary: { label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" },
     },
     audience: [
       "Founders planning a product before development",

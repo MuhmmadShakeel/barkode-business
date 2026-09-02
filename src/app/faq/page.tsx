@@ -84,7 +84,7 @@ export default function FaqPage() {
         accent="a question?"
         body="Share your project details and we will help you understand the best next step."
         primary={{ label: "Contact Barakode", href: "/contact" }}
-        secondary={{ label: "Book a Strategy Call", href: "/contact?intent=strategy-call" }}
+        secondary={{ label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" }}
       />
 
       <JsonLd

@@ -19,7 +19,7 @@ export const PENDING = {
   /** Organisation schema records only `addressCountry: PK`. */
   streetAddress: null as string | Pending,
   city: null as string | Pending,
-  /** Calendly / Cal.com / SavvyCal link for "Book a Strategy Call". */
+  /** Calendly / Cal.com / SavvyCal link for the free project discovery call. */
   bookingUrl: null as string | Pending,
   /** Endpoint that receives contact-form submissions. */
   formEndpoint: null as string | Pending,
@@ -106,7 +106,8 @@ export const SOCIAL: SocialLink[] = [
    ══════════════════════════════════════════════════════════════════════════ */
 
 export const CTA = {
-  primary: { label: "Book a Strategy Call", href: "/contact?intent=strategy-call" },
+  header: { label: "Free Discovery Call", href: "/contact?intent=strategy-call" },
+  primary: { label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" },
   secondary: { label: "View Our Work", href: "/case-studies" },
   supporting: { label: "Send Project Details", href: "/contact" },
 } as const;

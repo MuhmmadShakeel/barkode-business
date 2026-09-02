@@ -83,6 +83,7 @@ function ClientCaseView({ study }: { study: ClientCase }) {
           { name: "Case Studies", path: "/case-studies" },
           { name: study.name, path: `/case-studies/${study.slug}` },
         ]}
+        minimalBackdrop
       />
 
       {/* ═══ PROJECT OVERVIEW CARD ══════════════════════════════════════════ */}
@@ -154,6 +155,56 @@ function ClientCaseView({ study }: { study: ClientCase }) {
               />
             </figure>
           </Reveal>
+        </div>
+      </Section>
+
+      {/* ═══ PROBLEM → SOLUTION → OUTCOME ═══════════════════════════════════ */}
+      <Section surface="ink-deep" aria-labelledby="impact-story-heading">
+        <SchematicGround grid={34} nodes={136} mask="radial" />
+        <div className="shell relative">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <Marker tone="dark">The impact story</Marker>
+            <h2 id="impact-story-heading" className="mt-5 text-d2 text-white">
+              From business problem to{" "}
+              <span className="text-accent-bright">measurable outcome.</span>
+            </h2>
+          </Reveal>
+
+          <RevealGroup as="ol" className="mt-10 grid overflow-hidden rounded-[var(--radius-lg)] border border-rule-dark bg-rule-dark shadow-dark-e2 md:grid-cols-3">
+            {[
+              {
+                label: "Problem",
+                title: "What held the business back",
+                body: study.challenge[0],
+              },
+              {
+                label: "Solution",
+                title: "What Barakode changed",
+                body: study.solution[0],
+              },
+              {
+                label: "Business outcome",
+                title: "What changed after delivery",
+                body: study.results?.[0] ?? "Verified business outcome pending.",
+              },
+            ].map((item, index) => (
+              <RevealItem key={item.label} as="li" index={index} className="h-full">
+                <article className="group/impact flex h-full min-h-[20rem] flex-col bg-ink-900 p-6 transition-colors duration-300 hover:bg-ink-850 sm:p-8">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="font-mono text-[0.6875rem] tracking-[.14em] text-signal uppercase">{item.label}</span>
+                    <span className="grid size-8 place-items-center rounded-full border border-white/12 font-mono text-[0.625rem] text-ontext-4">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="mt-8 font-display text-xl font-semibold text-white">{item.title}</h3>
+                  <p className="mt-4 line-clamp-6 text-[0.9375rem] leading-relaxed text-ontext-2">{item.body}</p>
+                  <div aria-hidden className="mt-auto pt-8">
+                    <div className="h-px bg-gradient-to-r from-accent/70 to-transparent" />
+                  </div>
+                </article>
+              </RevealItem>
+            ))}
+          </RevealGroup>
         </div>
       </Section>
 
@@ -419,7 +470,7 @@ function ClientCaseView({ study }: { study: ClientCase }) {
         accent="workflow to build?"
         body="Tell us what you are working on and we will help you identify the right technical direction."
         primary={{ label: "Discuss Your Project", href: "/contact" }}
-        secondary={{ label: "Book a Strategy Call", href: "/contact?intent=strategy-call" }}
+        secondary={{ label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" }}
       />
 
       <JsonLd
@@ -480,6 +531,7 @@ function ResearchView({ study }: { study: ResearchStudy }) {
               : "Applied build — internal engineering work",
           },
         ]}
+        minimalBackdrop
       />
 
       {/* ═══ CONTEXT NOTE ═══════════════════════════════════════════════════ */}
@@ -630,7 +682,7 @@ function ResearchView({ study }: { study: ResearchStudy }) {
         heading="Need this kind of capability in"
         accent="a real product?"
         body="Tell us the workflow you want to automate and we will map the practical version of it — grounded, reviewable, and connected to the tools you already run."
-        primary={{ label: "Book an AI Automation Call", href: "/contact?intent=ai-automation" }}
+        primary={{ label: "Book a Free Project Discovery Call", href: "/contact?intent=ai-automation" }}
         secondary={{ label: "Explore AI Automation", href: "/ai-automation" }}
       />
 

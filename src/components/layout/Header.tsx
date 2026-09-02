@@ -3,10 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { CTA, NAV, SERVICES_MENU, type ServiceNavItem } from "@/lib/site";
-import { EASE_EXPO } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Mark";
@@ -172,12 +170,12 @@ export function Header() {
 
           <div className="hidden shrink-0 lg:block">
             <Button
-              href={CTA.primary.href}
+              href={CTA.header.href}
               variant={overHero ? "onDark" : "primary"}
               size="md"
               arrow
             >
-              {CTA.primary.label}
+              {CTA.header.label}
             </Button>
           </div>
 
@@ -197,29 +195,19 @@ export function Header() {
             <span className="sr-only">
               {mobileOpen ? "Close menu" : "Open menu"}
             </span>
-            <motion.span
-              key={mobileOpen ? "x" : "menu"}
-              initial={{ opacity: 0, rotate: -45 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.22, ease: EASE_EXPO }}
-            >
+            <span className="transition-transform duration-200">
               {mobileOpen ? (
                 <X className="size-5" />
               ) : (
                 <Menu className="size-5" />
               )}
-            </motion.span>
+            </span>
           </button>
         </div>
 
         {/* ── Services mega menu ───────────────────────────────────────────── */}
-        <AnimatePresence>
-          {megaOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -14, scaleY: 0.96, filter: "blur(5px)" }}
-              animate={{ opacity: 1, y: 0, scaleY: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -10, scaleY: 0.98, filter: "blur(3px)" }}
-              transition={{ duration: 0.34, ease: EASE_EXPO }}
+        {megaOpen && (
+            <div
               onMouseEnter={openMega}
               onMouseLeave={scheduleClose}
               className="absolute inset-x-0 top-full hidden origin-top border-t border-rule bg-paper-raised/98 shadow-e4 backdrop-blur-xl lg:block"
@@ -235,10 +223,7 @@ export function Header() {
                     />
                   ))}
                 </ul>
-                <motion.div
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.12, duration: 0.35, ease: EASE_EXPO }}
+                <div
                   className="w-[16rem] shrink-0 self-start rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-5"
                 >
                   <p className="font-display text-[1.0625rem] leading-snug font-semibold text-text">
@@ -258,67 +243,57 @@ export function Header() {
                   >
                     Send Project Details
                   </Button>
-                </motion.div>
+                </div>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+        )}
       </header>
 
       {/* ── Mobile drawer ── rendered as a header sibling: the header's own
          backdrop-blur establishes a containing block for `position: fixed`
          descendants, which collapsed this drawer's height when it lived
          inside <header>. As a sibling it sizes against the viewport. ── */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
+      {mobileOpen && (
+          <div
             id="mobile-nav"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
             className="fixed inset-x-0 top-[5rem] bottom-0 z-100 overflow-y-auto overscroll-contain border-t border-rule bg-paper lg:hidden"
           >
-            <motion.nav
-              initial={{ y: -12, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.32, ease: EASE_EXPO }}
-              className="shell flex min-h-full flex-col py-7"
-            >
+            <nav className="shell flex min-h-full flex-col py-7">
               <ul className="flex flex-col">
                 <li className="border-b border-rule">
-                  <button
-                    type="button"
-                    onClick={() => setMobileServices((v) => !v)}
-                    aria-expanded={mobileServices}
-                    className="flex w-full items-center justify-between py-4 text-left text-[1.0625rem] font-medium text-text"
-                  >
-                    Services
-                    <ChevronDown
-                      aria-hidden
+                  <div className="flex items-center gap-2">
+                    <Link
+                      href="/services"
+                      aria-current={pathname === "/services" ? "page" : undefined}
                       className={cn(
-                        "size-4 text-text-3 transition-transform duration-300 [transition-timing-function:var(--ease-expo)]",
-                        mobileServices && "rotate-180",
+                        "flex min-h-14 flex-1 items-center text-[1.0625rem] font-medium transition-colors",
+                        servicesActive ? "text-accent-ink" : "text-text",
                       )}
-                    />
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {mobileServices && (
-                      <motion.ul
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: EASE_EXPO }}
-                        className="overflow-hidden"
+                    >
+                      Services
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setMobileServices((v) => !v)}
+                      aria-expanded={mobileServices}
+                      aria-controls="mobile-services-menu"
+                      aria-label={mobileServices ? "Collapse services menu" : "Expand services menu"}
+                      className="grid size-11 shrink-0 place-items-center rounded-[var(--radius-xs)] border border-rule bg-paper-raised text-text-3 transition-[color,border-color,background-color] hover:border-accent/40 hover:text-accent-ink"
+                    >
+                      <ChevronDown
+                        aria-hidden
+                        className={cn(
+                          "size-4 text-text-3 transition-transform duration-300 [transition-timing-function:var(--ease-expo)]",
+                          mobileServices && "rotate-180",
+                        )}
+                      />
+                    </button>
+                  </div>
+                  {mobileServices && (
+                      <ul
+                        id="mobile-services-menu"
+                        className="overflow-hidden motion-safe:animate-[menu-reveal_.24s_var(--ease-expo)]"
                       >
-                        <li className="pb-2">
-                          <Link
-                            href="/services"
-                            className="block py-2.5 pl-4 text-sm font-medium text-accent-ink"
-                          >
-                            All services overview
-                          </Link>
-                        </li>
                         {SERVICES_MENU.map((s) => (
                           <li key={s.href}>
                             <Link
@@ -341,9 +316,8 @@ export function Header() {
                           </li>
                         ))}
                         <li className="h-2" />
-                      </motion.ul>
-                    )}
-                  </AnimatePresence>
+                      </ul>
+                  )}
                 </li>
 
                 {NAV.filter((n) => !n.children).map((item) => (
@@ -363,8 +337,8 @@ export function Header() {
               </ul>
 
               <div className="mt-auto flex flex-col gap-3 pt-9 pb-4">
-                <Button href={CTA.primary.href} size="lg" arrow block>
-                  {CTA.primary.label}
+                <Button href={CTA.header.href} size="lg" arrow block>
+                  {CTA.header.label}
                 </Button>
                 <Button
                   href={CTA.secondary.href}
@@ -375,21 +349,16 @@ export function Header() {
                   {CTA.secondary.label}
                 </Button>
               </div>
-            </motion.nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </nav>
+          </div>
+      )}
     </>
   );
 }
 
-function MegaItem({ item, active, index }: { item: ServiceNavItem; active: boolean; index: number }) {
+function MegaItem({ item, active }: { item: ServiceNavItem; active: boolean; index?: number }) {
   return (
-    <motion.li
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.035 * index, duration: 0.3, ease: EASE_EXPO }}
-    >
+    <li>
       <Link
         href={item.href}
         className={cn(
@@ -424,6 +393,6 @@ function MegaItem({ item, active, index }: { item: ServiceNavItem; active: boole
         </span>
         <ArrowUpRight className="ml-auto mt-1 size-3.5 shrink-0 -translate-x-1 translate-y-1 text-text-3 opacity-0 transition-all duration-300 group-hover/mi:translate-x-0 group-hover/mi:translate-y-0 group-hover/mi:text-accent group-hover/mi:opacity-100" />
       </Link>
-    </motion.li>
+    </li>
   );
 }
