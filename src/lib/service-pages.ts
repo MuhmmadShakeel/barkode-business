@@ -728,4 +728,31 @@ export const SERVICE_PAGES: ServicePage[] = [
   },
 ];
 
+const RECOVERED_SERVICE_PAGES: ServicePage[] = [
+  ["blockchain-development", "Blockchain Development", "secure digital products", "Blockchain"],
+  ["digital-transformation", "Digital Transformation", "connected operations", "Digital Transformation"],
+  ["internet-of-things", "Internet of Things Development", "connected products", "IoT"],
+  ["it-project-management", "IT Project Management", "reliable delivery", "IT Project Management"],
+  ["prompt-engineering", "Prompt Engineering", "dependable AI workflows", "Prompt Engineering"],
+  ["quality-assurance", "Quality Assurance", "confident releases", "Quality Assurance"],
+  ["staff-augmentation", "Staff Augmentation", "focused delivery capacity", "Staff Augmentation"],
+  ["vibe-code", "Vibe Code", "a credible product direction", "Vibe Code"],
+].map(([slug, title, accent, marker]) => ({
+  slug,
+  metaTitle: `${title} | Barakode Technologies`,
+  metaDescription: `${title} from Barakode: practical planning, focused delivery, and a clear route from decision to implementation.`,
+  hero: { marker, heading: "Build the next step with", accent, trail: ".", body: `${title} for teams that need a practical, well-scoped path forward without unnecessary process or technical noise.`, primary: { label: `Discuss ${title}`, href: `/contact?service=${slug}` }, secondary: { label: "Book a Strategy Call", href: "/contact?intent=strategy-call" } },
+  audience: ["Teams with a defined business problem", "Leaders planning a technical change", "Product teams needing delivery clarity", "Operations teams improving a critical workflow"],
+  problem: { heading: "Make the technical decision", accent: "easier to act on", body: "The work starts with the outcome, constraints, and people affected. From there, we create a delivery path that is understandable to both technical and business stakeholders.", items: ["Unclear scope", "Disconnected ownership", "Unvalidated assumptions", "Delivery risk", "Limited visibility", "No practical next step"] },
+  builds: { heading: "What we deliver", items: ["Current-state review", "Prioritized scope", "Technical recommendations", "Implementation plan", "Working product increments", "Quality review", "Handover documentation", "Next-step roadmap"] },
+  extra: [{ heading: "How we keep it focused", note: "The work stays tied to the decision and outcome that matter now.", items: ["Clear ownership", "Visible milestones", "Practical trade-offs", "Quality checks", "Stakeholder updates", "Documented decisions"] }],
+  process: { heading: "How the engagement runs", steps: ["Understand the context", "Define the outcome", "Map the constraints", "Prioritize the work", "Deliver in focused increments", "Validate the result", "Document the next step"] },
+  stackGroups: ["Frontend", "Backend", "Cloud & DevOps"],
+  engagement: { models: ["mvp-sprint", "custom-product-build"], note: "We scope the engagement around the decision, the delivery risk, and the outcome your team needs to reach." },
+  faqs: [{ q: `What does ${title} include?`, a: "The exact scope is agreed after a discovery conversation. We document the priorities, delivery approach, and expected output before work begins." }, { q: "Can this work with our existing team?", a: "Yes. We can work alongside your internal team, existing vendors, or take ownership of a clearly defined delivery area." }, { q: "How do we begin?", a: "Start with the problem, the current system, and the decision you need to make. We will recommend a practical next step." }],
+  cta: { heading: "Need a clearer", accent: "next step?", body: `Tell us what you are trying to achieve with ${title}. We will help you identify the right path forward.`, label: `Discuss ${title}`, href: `/contact?service=${slug}` },
+}));
+
+SERVICE_PAGES.push(...RECOVERED_SERVICE_PAGES);
+
 export const getServicePage = (slug: string) => SERVICE_PAGES.find((p) => p.slug === slug);

@@ -184,6 +184,31 @@ export const SERVICES: ServiceSummary[] = [
   },
 ];
 
+const RECOVERED_SERVICES: ServiceSummary[] = [
+  ["blockchain-development", "Blockchain Development", "Blockchain", "Blocks", "Build reliable decentralized products, from product definition through secure implementation."],
+  ["digital-transformation", "Digital Transformation", "Digital Transformation", "Waypoints", "Connect workflows, systems, and teams through a clear modernization roadmap."],
+  ["internet-of-things", "Internet of Things Development", "Internet of Things", "Network", "Plan and build connected-device products around reliable data and operations."],
+  ["it-project-management", "IT Project Management", "IT Project Management", "ClipboardList", "Bring structure, visibility, and practical delivery control to technical work."],
+  ["prompt-engineering", "Prompt Engineering", "Prompt Engineering", "WandSparkles", "Create dependable AI interactions that support useful and repeatable workflows."],
+  ["quality-assurance", "Quality Assurance", "Quality Assurance", "ShieldCheck", "Build confidence in releases with focused product and workflow testing."],
+  ["staff-augmentation", "Staff Augmentation", "Staff Augmentation", "UsersRound", "Add capable product delivery capacity where your team needs it most."],
+  ["vibe-code", "Vibe Code", "Vibe Code", "Sparkles", "Move from an early product idea to a credible direction quickly and thoughtfully."],
+].map(([slug, title, shortTitle, icon, summary]) => ({
+  slug,
+  href: `/services/${slug}`,
+  title,
+  shortTitle,
+  icon: icon as ServiceIconName,
+  summary,
+  cta: `Explore ${title}`,
+  audience: "Teams planning a focused product, workflow, or technical improvement.",
+  problem: "The next technical step is unclear, risky, or difficult to turn into a dependable delivery plan.",
+  delivers: "Discovery, priorities, implementation guidance, focused delivery, quality review, and a practical next-step roadmap.",
+  features: ["Clear scope", "Practical recommendations", "Focused delivery", "Quality checks", "Visible progress", "Documented next steps"],
+}));
+
+SERVICES.push(...RECOVERED_SERVICES);
+
 export const getService = (slug: string) => SERVICES.find((s) => s.slug === slug);
 
 /* ══════════════════════════════════════════════════════════════════════════

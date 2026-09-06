@@ -3,6 +3,7 @@ import { SITE } from "@/lib/site";
 import { SERVICE_PAGES } from "@/lib/service-pages";
 import { CLIENT_CASES, RESEARCH_STUDIES } from "@/lib/case-studies";
 import { ARTICLES } from "@/lib/content";
+import { CONSULTANCY_DETAILS } from "@/lib/consultancy";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -11,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const core: MetadataRoute.Sitemap = [
     { url: url("/"), priority: 1, changeFrequency: "monthly" },
     { url: url("/services"), priority: 0.9, changeFrequency: "monthly" },
+    { url: url("/consultancy"), priority: 0.8, changeFrequency: "monthly" },
     { url: url("/ai-automation"), priority: 0.9, changeFrequency: "monthly" },
     { url: url("/case-studies"), priority: 0.9, changeFrequency: "monthly" },
     { url: url("/process"), priority: 0.7, changeFrequency: "yearly" },
@@ -27,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const services: MetadataRoute.Sitemap = SERVICE_PAGES.map((p) => ({
     url: url(`/services/${p.slug}`),
     priority: 0.8,
+    changeFrequency: "monthly" as const,
+  }));
+
+  const consultancy: MetadataRoute.Sitemap = CONSULTANCY_DETAILS.map((p) => ({
+    url: url(`/consultancy/${p.slug}`),
+    priority: 0.7,
     changeFrequency: "monthly" as const,
   }));
 
@@ -49,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "yearly" as const,
   }));
 
-  return [...core, ...services, ...clientCases, ...studies, ...articles].map((e) => ({
+  return [...core, ...services, ...consultancy, ...clientCases, ...studies, ...articles].map((e) => ({
     lastModified: now,
     ...e,
   }));

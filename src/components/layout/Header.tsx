@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
-import { CTA, NAV, SERVICES_MENU, type ServiceNavItem } from "@/lib/site";
+import { CTA, CONSULTANCY_MENU, NAV, SERVICES_MENU, type ServiceNavItem } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Mark";
@@ -13,9 +13,10 @@ import { ServiceIcon } from "@/components/ui/ServiceIcon";
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
+  const [megaMenu, setMegaMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServices, setMobileServices] = useState(false);
+  const [mobileConsultancy, setMobileConsultancy] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -28,16 +29,17 @@ export function Header() {
 
   // Route change closes everything.
   useEffect(() => {
-    setMegaOpen(false);
+    setMegaMenu(null);
     setMobileOpen(false);
     setMobileServices(false);
+    setMobileConsultancy(false);
   }, [pathname]);
 
   // Escape closes; body scroll locks while the drawer is open.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
-      setMegaOpen(false);
+      setMegaMenu(null);
       setMobileOpen(false);
     };
     document.addEventListener("keydown", onKey);
@@ -53,16 +55,16 @@ export function Header() {
 
   // Focus leaving the nav region closes the mega menu (keyboard users).
   const onNavBlur = (e: React.FocusEvent) => {
-    if (!navRef.current?.contains(e.relatedTarget as Node)) setMegaOpen(false);
+    if (!navRef.current?.contains(e.relatedTarget as Node)) setMegaMenu(null);
   };
 
-  const openMega = () => {
+  const openMega = (href: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    setMegaOpen(true);
+    setMegaMenu(href);
   };
   const scheduleClose = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setMegaOpen(false), 140);
+    closeTimer.current = setTimeout(() => setMegaMenu(null), 140);
   };
 
   const isActive = (href: string) =>
@@ -72,6 +74,8 @@ export function Header() {
 
   const servicesActive =
     pathname.startsWith("/services") || pathname.startsWith("/ai-automation");
+  const consultancyActive = pathname.startsWith("/consultancy");
+  const activeMegaMenu = NAV.find((item) => item.href === megaMenu);
 
   /* Every page opens on a dark hero and the header is transparent until the
      reader scrolls. Until then it has to render light-on-dark, or the logo and
@@ -107,22 +111,22 @@ export function Header() {
               item.children ? (
                 <div
                   key={item.href}
-                  onMouseEnter={openMega}
+                  onMouseEnter={() => openMega(item.href)}
                   onMouseLeave={scheduleClose}
                 >
                   <Link
                     href={item.href}
-                    aria-expanded={megaOpen}
+                    aria-expanded={megaMenu === item.href}
                     aria-haspopup="true"
-                    onFocus={openMega}
+                    onFocus={() => openMega(item.href)}
                     className={cn(
                       "inline-flex items-center gap-1.5 rounded-[var(--radius-xs)] px-3 py-2 text-[0.9375rem] font-medium",
                       "transition-colors duration-200",
                       overHero
-                        ? servicesActive
+                        ? (item.href === "/services" ? servicesActive : consultancyActive)
                           ? "text-accent-bright"
                           : "text-ontext-2 hover:text-white"
-                        : servicesActive
+                        : (item.href === "/services" ? servicesActive : consultancyActive)
                           ? "text-accent-ink"
                           : "text-text-2 hover:text-text",
                     )}
@@ -132,7 +136,7 @@ export function Header() {
                       aria-hidden
                       className={cn(
                         "size-3.5 transition-transform duration-300 [transition-timing-function:var(--ease-expo)]",
-                        megaOpen && "rotate-180",
+                        megaMenu === item.href && "rotate-180",
                       )}
                     />
                   </Link>
@@ -206,20 +210,21 @@ export function Header() {
         </div>
 
         {/* ── Services mega menu ───────────────────────────────────────────── */}
-        {megaOpen && (
+        {activeMegaMenu?.children && (
             <div
-              onMouseEnter={openMega}
+              onMouseEnter={() => openMega(activeMegaMenu.href)}
               onMouseLeave={scheduleClose}
-              className="absolute inset-x-0 top-full hidden origin-top border-t border-rule bg-paper-raised/98 shadow-e4 backdrop-blur-xl lg:block"
+              className="absolute inset-x-0 top-full hidden origin-top border-t border-white/10 bg-ink-950/98 shadow-e4 backdrop-blur-xl lg:block"
             >
               <div className="shell-wide grid grid-cols-[1fr_auto] gap-10 py-7">
                 <ul className="grid grid-cols-3 gap-x-8 gap-y-1">
-                  {SERVICES_MENU.map((s, index) => (
+                  {activeMegaMenu.children.map((s, index) => (
                     <MegaItem
-                      key={s.href}
+                      key={`${activeMegaMenu.href}-${s.label}`}
                       item={s}
                       active={pathname === s.href}
                       index={index}
+                      dark
                     />
                   ))}
                 </ul>
@@ -320,6 +325,44 @@ export function Header() {
                   )}
                 </li>
 
+                <li className="border-b border-rule">
+                  <div className="flex items-center gap-2">
+                    <Link
+                      href="/consultancy"
+                      aria-current={pathname === "/consultancy" ? "page" : undefined}
+                      className={cn(
+                        "flex min-h-14 flex-1 items-center text-[1.0625rem] font-medium transition-colors",
+                        consultancyActive ? "text-accent-ink" : "text-text",
+                      )}
+                    >
+                      Consultancy
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setMobileConsultancy((value) => !value)}
+                      aria-expanded={mobileConsultancy}
+                      aria-controls="mobile-consultancy-menu"
+                      aria-label={mobileConsultancy ? "Collapse consultancy menu" : "Expand consultancy menu"}
+                      className="grid size-11 shrink-0 place-items-center rounded-[var(--radius-xs)] border border-rule bg-paper-raised text-text-3 transition-[color,border-color,background-color] hover:border-accent/40 hover:text-accent-ink"
+                    >
+                      <ChevronDown aria-hidden className={cn("size-4 transition-transform duration-300 [transition-timing-function:var(--ease-expo)]", mobileConsultancy && "rotate-180")} />
+                    </button>
+                  </div>
+                  {mobileConsultancy && (
+                    <ul id="mobile-consultancy-menu" className="overflow-hidden motion-safe:animate-[menu-reveal_.24s_var(--ease-expo)]">
+                      {CONSULTANCY_MENU.map((item) => (
+                        <li key={item.href}>
+                          <Link href={item.href} className="flex gap-3 py-2.5 pl-4">
+                            <ServiceIcon name={item.icon} className="mt-0.5 size-4 shrink-0 text-accent" />
+                            <span><span className="block text-[0.9375rem] font-medium text-text">{item.label}</span><span className="mt-0.5 block text-xs text-text-3">{item.description}</span></span>
+                          </Link>
+                        </li>
+                      ))}
+                      <li className="h-2" />
+                    </ul>
+                  )}
+                </li>
+
                 {NAV.filter((n) => !n.children).map((item) => (
                   <li key={item.href} className="border-b border-rule">
                     <Link
@@ -356,22 +399,22 @@ export function Header() {
   );
 }
 
-function MegaItem({ item, active }: { item: ServiceNavItem; active: boolean; index?: number }) {
+function MegaItem({ item, active, dark = false }: { item: ServiceNavItem; active: boolean; index?: number; dark?: boolean }) {
   return (
     <li>
       <Link
         href={item.href}
         className={cn(
           "group/mi flex gap-3.5 rounded-[var(--radius-sm)] p-3.5 transition-[background-color,transform] duration-300 hover:-translate-y-0.5",
-          active ? "bg-accent-soft" : "hover:bg-paper-sunken",
+          dark ? active ? "bg-white/10" : "hover:bg-white/8" : active ? "bg-accent-soft" : "hover:bg-paper-sunken",
         )}
       >
         <span
           className={cn(
             "mt-0.5 grid size-9 shrink-0 place-items-center rounded-[var(--radius-xs)] border transition-[color,border-color,background-color,transform] duration-300 group-hover/mi:scale-105",
-            active
-              ? "border-accent/30 bg-paper-raised text-accent"
-              : "border-rule bg-paper-sunken text-text-3 group-hover/mi:border-accent/30 group-hover/mi:text-accent",
+            dark
+              ? active ? "border-accent/40 bg-white/10 text-accent-bright" : "border-white/10 bg-white/5 text-accent-bright group-hover/mi:border-accent/40"
+              : active ? "border-accent/30 bg-paper-raised text-accent" : "border-rule bg-paper-sunken text-text-3 group-hover/mi:border-accent/30 group-hover/mi:text-accent",
           )}
         >
           <ServiceIcon name={item.icon} className="size-[1.125rem]" />
@@ -380,14 +423,14 @@ function MegaItem({ item, active }: { item: ServiceNavItem; active: boolean; ind
           <span
             className={cn(
               "block text-[0.9375rem] leading-snug font-medium transition-colors duration-200",
-              active
-                ? "text-accent-ink"
-                : "text-text group-hover/mi:text-accent-ink",
+              dark
+                ? active ? "text-white" : "text-white group-hover/mi:text-accent-bright"
+                : active ? "text-accent-ink" : "text-text group-hover/mi:text-accent-ink",
             )}
           >
             {item.label}
           </span>
-          <span className="mt-1 block text-xs leading-relaxed text-text-3">
+          <span className={cn("mt-1 block text-xs leading-relaxed", dark ? "text-white/55" : "text-text-3")}>
             {item.description}
           </span>
         </span>

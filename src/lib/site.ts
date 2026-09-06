@@ -121,10 +121,21 @@ export type ServiceNavItem = {
   href: string;
   description: string;
   /** lucide-react icon name resolved in ServiceIcon */
-  icon: "Rocket" | "AppWindow" | "BrainCircuit" | "LayoutDashboard" | "Cloud" | "PenTool";
+  icon: "Rocket" | "AppWindow" | "BrainCircuit" | "LayoutDashboard" | "Cloud" | "PenTool" | "Blocks" | "Code2" | "Waypoints" | "Network" | "ClipboardList" | "WandSparkles" | "Palette" | "ShieldCheck" | "UsersRound" | "Sparkles" | "BarChart3";
 };
 
 export const SERVICES_MENU: ServiceNavItem[] = [
+  { label: "Artificial Intelligence", href: "/ai-automation", description: "AI systems and automation.", icon: "BrainCircuit" },
+  { label: "Blockchain", href: "/services/blockchain-development", description: "Reliable decentralized products.", icon: "Blocks" },
+  { label: "Design", href: "/services/ui-ux-product-design", description: "Clear product experiences.", icon: "Palette" },
+  { label: "Development", href: "/services/custom-web-mobile-app-development", description: "Web and mobile products.", icon: "Code2" },
+  { label: "Digital Transformation", href: "/services/digital-transformation", description: "Connected business systems.", icon: "Waypoints" },
+  { label: "Internet of Things", href: "/services/internet-of-things", description: "Connected device platforms.", icon: "Network" },
+  { label: "IT Project Management", href: "/services/it-project-management", description: "Structured technical delivery.", icon: "ClipboardList" },
+  { label: "Prompt Engineering", href: "/services/prompt-engineering", description: "Reliable AI interactions.", icon: "WandSparkles" },
+  { label: "Quality Assurance", href: "/services/quality-assurance", description: "Thorough product testing.", icon: "ShieldCheck" },
+  { label: "Staff Augmentation", href: "/services/staff-augmentation", description: "Flexible product capacity.", icon: "UsersRound" },
+  { label: "Vibe Code", href: "/services/vibe-code", description: "Rapid idea validation.", icon: "Sparkles" },
   {
     label: "MVP & SaaS",
     href: "/services/mvp-saas-product-development",
@@ -163,10 +174,26 @@ export const SERVICES_MENU: ServiceNavItem[] = [
   },
 ];
 
+export const CONSULTANCY_MENU: ServiceNavItem[] = [
+  { label: "IT Consultation", href: "/consultancy/it-consultation", description: "Independent technology guidance.", icon: "ClipboardList" },
+  { label: "IT Outsourcing Consultancy", href: "/consultancy/it-outsourcing", description: "A practical delivery partnership plan.", icon: "UsersRound" },
+  { label: "Managed IT Services Consultancy", href: "/consultancy/managed-it", description: "Reliable ongoing IT operations.", icon: "ShieldCheck" },
+  { label: "Design Consultancy", href: "/consultancy/design-consultancy", description: "Product and experience direction.", icon: "Palette" },
+  { label: "AI & Data Strategy Consulting", href: "/consultancy/ai-data-strategy", description: "Responsible AI and data priorities.", icon: "BrainCircuit" },
+  { label: "Digital Transformation Consulting", href: "/consultancy/digital-transformation", description: "A sequenced modernization roadmap.", icon: "Waypoints" },
+  { label: "Product Strategy Consulting", href: "/consultancy/product-strategy", description: "Sharper product decisions.", icon: "Rocket" },
+  { label: "Tech Strategy Consulting", href: "/consultancy/tech-strategy", description: "Technology choices with context.", icon: "AppWindow" },
+  { label: "DevOps Consulting", href: "/consultancy/devops-consulting", description: "Stronger delivery and operations.", icon: "Cloud" },
+  { label: "Microservices Consulting", href: "/consultancy/microservices-consulting", description: "Service architecture direction.", icon: "Blocks" },
+  { label: "IoT Consultancy", href: "/consultancy/iot-consultancy", description: "Connected-device platform planning.", icon: "Network" },
+  { label: "Business Intelligence Consulting", href: "/consultancy/business-intelligence", description: "Decision-ready reporting foundations.", icon: "BarChart3" },
+];
+
 export type NavLink = { label: string; href: string; children?: ServiceNavItem[] };
 
 export const NAV: NavLink[] = [
   { label: "Services", href: "/services", children: SERVICES_MENU },
+  { label: "Consultancy", href: "/consultancy", children: CONSULTANCY_MENU },
   { label: "AI Automation", href: "/ai-automation" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Process", href: "/process" },
