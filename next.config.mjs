@@ -8,6 +8,10 @@ const nextConfig = {
     // Keep file watching and cache invalidation inside this project.
     root: process.cwd(),
   },
+  experimental: {
+    // Lucide exports a large icon catalogue; compile only icons used by a route.
+    optimizePackageImports: ["lucide-react"],
+  },
   images: {
     // WebP avoids AVIF's expensive first-request encoding on the server.
     formats: ["image/webp"],
