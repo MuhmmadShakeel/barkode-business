@@ -2,8 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Build only the runtime files that production needs.
+  output: "standalone",
+  turbopack: {
+    // Keep file watching and cache invalidation inside this project.
+    root: process.cwd(),
+  },
   images: {
-    formats: ["image/avif", "image/webp"],
+    // WebP avoids AVIF's expensive first-request encoding on the server.
+    formats: ["image/webp"],
     deviceSizes: [360, 480, 640, 768, 1024, 1280, 1536, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512],
   },

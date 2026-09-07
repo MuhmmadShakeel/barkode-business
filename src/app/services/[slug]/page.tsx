@@ -26,6 +26,22 @@ const PROOF_TRACK: Record<string, TrackId> = {
   "ui-ux-product-design": "all",
 };
 
+const SERVICE_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
+  "mvp-saas-product-development": { src: "/images/services/mvp-saas.webp", alt: "Abstract visual representing a scalable MVP and SaaS product" },
+  "custom-web-mobile-app-development": { src: "/images/services/web-mobile.webp", alt: "Abstract visual representing web and mobile application development" },
+  "internal-business-systems": { src: "/images/services/internal-systems.webp", alt: "Abstract visual representing connected internal business systems" },
+  "cloud-devops-maintenance": { src: "/images/services/cloud-devops.webp", alt: "Abstract visual representing cloud infrastructure and DevOps" },
+  "ui-ux-product-design": { src: "/images/services/product-design.webp", alt: "Abstract visual representing product design" },
+  "blockchain-development": { src: "/images/services/detail/blockchain-development.jpg", alt: "Abstract visual representing secure blockchain engineering" },
+  "digital-transformation": { src: "/images/services/detail/digital-transformation.jpg", alt: "Abstract visual representing connected digital transformation" },
+  "internet-of-things": { src: "/images/services/detail/internet-of-things.jpg", alt: "Abstract visual representing connected Internet of Things devices" },
+  "it-project-management": { src: "/images/services/detail/it-project-management.jpg", alt: "Abstract visual representing structured IT project delivery" },
+  "prompt-engineering": { src: "/images/services/detail/prompt-engineering.jpg", alt: "Abstract visual representing AI prompt engineering" },
+  "quality-assurance": { src: "/images/services/detail/quality-assurance.jpg", alt: "Abstract visual representing product quality assurance" },
+  "staff-augmentation": { src: "/images/services/detail/staff-augmentation.jpg", alt: "Abstract visual representing an integrated delivery team" },
+  "vibe-code": { src: "/images/services/detail/vibe-code.jpg", alt: "Abstract visual representing rapid product validation" },
+};
+
 export function generateStaticParams() {
   return SERVICE_PAGES.map((p) => ({ slug: p.slug }));
 }
@@ -54,6 +70,7 @@ export default async function ServiceDetailPage({
   const models = ENGAGEMENT_MODELS.filter((m) => page.engagement.models.includes(m.slug));
   const track = PROOF_TRACK[page.slug] ?? "all";
   const proof = CLIENT_CASES.filter((c) => clientCaseInTrack(c, track)).slice(0, 2);
+  const heroImage = SERVICE_HERO_IMAGES[page.slug];
 
   return (
     <div className="service-detail-page">
@@ -80,6 +97,8 @@ export default async function ServiceDetailPage({
         ]}
         showMarker={false}
         minimalBackdrop
+        solidOverlay
+        backgroundImage={heroImage}
         headingClassName="ai-hero-heading"
         className="ai-service-hero service-detail-hero"
       />

@@ -1,0 +1,38 @@
+<!-- Barakode primary mark — hexagon "molecule".
+     Gold #C8922A on transparent. Node/dot holes are transparent so the mark
+     reads correctly on any surface. Viewbox 200x200, centre 100,100, r≈70. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none" role="img" aria-label="Barakode">
+  <defs>
+    <mask id="holes">
+      <rect width="200" height="200" fill="#fff"/>
+      <circle cx="100"   cy="30"  r="4.6" fill="#000"/>
+      <circle cx="160.6" cy="65"  r="4.6" fill="#000"/>
+      <circle cx="160.6" cy="135" r="4.6" fill="#000"/>
+      <circle cx="100"   cy="170" r="4.6" fill="#000"/>
+      <circle cx="39.4"  cy="135" r="4.6" fill="#000"/>
+      <circle cx="39.4"  cy="65"  r="4.6" fill="#000"/>
+      <circle cx="100"   cy="100" r="5"   fill="#000"/>
+    </mask>
+  </defs>
+  <g mask="url(#holes)">
+    <!-- Hexagon edges -->
+    <path d="M100 30 L160.6 65 L160.6 135 L100 170 L39.4 135 L39.4 65 Z"
+          stroke="#C8922A" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <!-- Dashed connectors: centre → the two right-hand nodes -->
+    <g stroke="#C8922A" stroke-width="4" stroke-linecap="round" stroke-dasharray="1.5 9">
+      <line x1="100" y1="100" x2="160.6" y2="65"/>
+      <line x1="100" y1="100" x2="160.6" y2="135"/>
+    </g>
+    <!-- Vertex nodes -->
+    <g fill="#C8922A">
+      <circle cx="100"   cy="30"  r="10.5"/>
+      <circle cx="160.6" cy="65"  r="10.5"/>
+      <circle cx="160.6" cy="135" r="10.5"/>
+      <circle cx="100"   cy="170" r="10.5"/>
+      <circle cx="39.4"  cy="135" r="10.5"/>
+      <circle cx="39.4"  cy="65"  r="10.5"/>
+    </g>
+    <!-- Centre node — deeper bronze -->
+    <circle cx="100" cy="100" r="13" fill="#7A5320"/>
+  </g>
+</svg>

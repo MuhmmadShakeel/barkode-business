@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useInView, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { CheckCircle2, CircleDot, Cpu, Database, Search, UserCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -42,13 +42,14 @@ const ROLES: [string, string][] = [
 export function ProductSchematic({ className }: { className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const inView = useInView(ref, { margin: "240px 0px" });
 
   /* `useReducedMotion` resolves after mount, so branching on it during render
      would make the first client pass disagree with the server HTML. Waiting
      for mount keeps hydration exact, then the parallax switches on. */
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  const parallax = mounted && !reduced;
+  const parallax = mounted && !reduced && inView;
 
   const { scrollYProgress } = useScroll({
     target: ref,

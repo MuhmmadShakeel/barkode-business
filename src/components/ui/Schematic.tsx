@@ -107,7 +107,7 @@ export function Glow({
   return (
     <span
       aria-hidden
-      className={cn("pointer-events-none absolute -z-10 rounded-full blur-[110px]", className)}
+      className={cn("schematic-glow pointer-events-none absolute -z-10 rounded-full blur-[110px]", className)}
       style={{
         width: size,
         height: size,

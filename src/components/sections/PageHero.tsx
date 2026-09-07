@@ -30,6 +30,7 @@ export function PageHero({
   headingClassName,
   className,
   backgroundImage,
+  solidOverlay = false,
 }: {
   marker: string;
   heading: string;
@@ -51,6 +52,8 @@ export function PageHero({
   headingClassName?: string;
   className?: string;
   backgroundImage?: { src: string; alt: string };
+  /** Use the site’s solid dark surface instead of a decorative image gradient. */
+  solidOverlay?: boolean;
 }) {
   const twoUp = Boolean(aside);
   return (
@@ -68,7 +71,9 @@ export function PageHero({
           className="object-cover object-center"
         />
       )}
-      {backgroundImage && <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/35" />}
+      {backgroundImage && (
+        <div className={cn("absolute inset-0", solidOverlay ? "bg-ink-950/82" : "bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/35")} />
+      )}
       {!minimalBackdrop && <SchematicGround grid={42} nodes={168} mask="bottom" />}
       {!minimalBackdrop && <Glow className="top-[-16rem] left-[-8rem]" size={620} />}
       {minimalBackdrop && !backgroundImage && (

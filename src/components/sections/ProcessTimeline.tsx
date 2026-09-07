@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useSpring, useTransform } from "framer-motion";
 import { PROCESS } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
@@ -41,6 +41,7 @@ export function ProcessTimeline({
   className?: string;
 }) {
   const ref = useRef<HTMLOListElement>(null);
+  const inView = useInView(ref, { margin: "240px 0px" });
   const drag = useRef({ active: false, y: 0, scrollTop: 0 });
   const { scrollYProgress } = useScroll(
     containedScroll
@@ -96,7 +97,7 @@ export function ProcessTimeline({
       {/* The lit trace */}
       <motion.span
         aria-hidden
-        style={{ height }}
+        style={{ height: inView ? height : 0 }}
         className={cn("absolute top-2 w-px bg-gradient-to-b from-accent via-accent to-signal", detailed ? "left-1/2 hidden -translate-x-1/2 lg:block" : "left-[1.4375rem] sm:left-[1.6875rem]")}
       />
 

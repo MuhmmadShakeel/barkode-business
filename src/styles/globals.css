@@ -103,8 +103,8 @@
   --container-wide: 1440px;
 
   --spacing-gutter: clamp(1.25rem, 0.6rem + 2.6vw, 2.5rem);
-  --spacing-section: clamp(2.25rem, 1.3rem + 3.8vw, 4.25rem);
-  --spacing-section-tight: clamp(1.625rem, 1.05rem + 2.3vw, 2.75rem);
+  --spacing-section: clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
+  --spacing-section-tight: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
 
   /* ── Radii — crisp, technical ──────────────────────────────────────────── */
   --radius-xs: 3px;
@@ -321,10 +321,8 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .home-flow-lines__ribbons { animation: home-flow-drift 18s ease-in-out infinite alternate; }
-    .home-flow-lines__cross { animation: home-flow-cross 24s ease-in-out infinite alternate; }
-    .home-flow-lines__signal--one { animation: home-flow-signal 9s linear infinite; }
-    .home-flow-lines__signal--two { animation: home-flow-signal 13s linear infinite reverse; }
+    .home-flow-lines__ribbons { animation: home-flow-drift 24s ease-in-out infinite alternate; }
+    .home-flow-lines__cross { animation: home-flow-cross 30s ease-in-out infinite alternate; }
   }
 
   @keyframes home-flow-drift {
@@ -463,6 +461,18 @@
   }
   [data-surface="dark"] .schematic-grid { --grid-line: rgba(255, 255, 255, 0.045); }
   [data-surface="dark"] .schematic-nodes { --node-color: rgba(226, 184, 92, 0.3); }
+
+  /* Dark sections use the same calm black surface as the fixed navbar. The
+     schematic grid, gold nodes, and glow are intentionally removed here to
+     avoid visual clutter and reduce paint work during scroll. */
+  [data-surface="dark"] {
+    background-color: var(--color-ink-950) !important;
+  }
+  [data-surface="dark"] .schematic-grid,
+  [data-surface="dark"] .schematic-nodes,
+  [data-surface="dark"] .schematic-glow {
+    display: none;
+  }
 
   /* Fades a decorative layer out toward the edges so it never fights content */
   .mask-radial {
@@ -933,7 +943,45 @@
 
 .service-detail-page .service-detail-hero {
   height: auto;
-  min-height: clamp(38rem, 84svh, 50rem);
+  min-height: 100svh;
+}
+
+.consultancy-page-hero,
+.consultancy-detail-hero {
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  text-align: center;
+}
+
+/* The detail hero does not use PageHero, so it must reserve room below the
+   fixed header itself rather than allowing its first line to sit underneath it. */
+.consultancy-detail-hero {
+  padding: calc(4.75rem + clamp(1.5rem, 1rem + 3vw, 2.75rem)) var(--spacing-gutter) clamp(2rem, 1.25rem + 3vw, 3.5rem);
+}
+
+@media (min-width: 80rem) {
+  .consultancy-detail-hero {
+    padding-top: calc(5.25rem + clamp(1.5rem, 1rem + 3vw, 2.75rem));
+  }
+}
+
+.consultancy-detail-hero .shell {
+  display: grid;
+  justify-items: center;
+}
+
+.consultancy-detail-hero .measure {
+  margin-inline: auto;
+}
+
+/* These route groups keep every reading surface plain white; dark and image-led
+   sections retain their intentional contrast without decorative yellow fills. */
+.services-page [data-surface="light"],
+.service-detail-page [data-surface="light"],
+.consultancy-page [data-surface="light"],
+.consultancy-detail-page [data-surface="light"] {
+  background-color: #fff !important;
 }
 
 .service-detail-kicker {

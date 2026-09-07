@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="44" fill="#0A0A0A"/>
+  <g stroke="#C8922A" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M100 30 L160.6 65 L160.6 135 L100 170 L39.4 135 L39.4 65 Z"/>
+  </g>
+  <g stroke="#C8922A" stroke-width="4" stroke-linecap="round" stroke-dasharray="1.5 9">
+    <line x1="100" y1="100" x2="160.6" y2="65"/>
+    <line x1="100" y1="100" x2="160.6" y2="135"/>
+  </g>
+  <g fill="#C8922A">
+    <circle cx="100" cy="30" r="10.5"/>
+    <circle cx="160.6" cy="65" r="10.5"/>
+    <circle cx="160.6" cy="135" r="10.5"/>
+    <circle cx="100" cy="170" r="10.5"/>
+    <circle cx="39.4" cy="135" r="10.5"/>
+    <circle cx="39.4" cy="65" r="10.5"/>
+  </g>
+  <g fill="#0A0A0A">
+    <circle cx="100" cy="30" r="4.6"/>
+    <circle cx="160.6" cy="65" r="4.6"/>
+    <circle cx="160.6" cy="135" r="4.6"/>
+    <circle cx="100" cy="170" r="4.6"/>
+    <circle cx="39.4" cy="135" r="4.6"/>
+    <circle cx="39.4" cy="65" r="4.6"/>
+  </g>
+  <circle cx="100" cy="100" r="13" fill="#7a5320"/>
+  <circle cx="100" cy="100" r="5" fill="#0A0A0A"/>
+</svg>

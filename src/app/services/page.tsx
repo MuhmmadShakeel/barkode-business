@@ -25,7 +25,17 @@ const SERVICE_IMAGES: Record<string, { src: string; alt: string }> = {
   "internal-business-systems": { src: "/images/services/internal-systems.webp", alt: "A modern internal operations dashboard and business system" },
   "cloud-devops-maintenance": { src: "/images/services/cloud-devops.webp", alt: "Cloud infrastructure, monitoring, and reliable deployment operations" },
   "ui-ux-product-design": { src: "/images/services/product-design.webp", alt: "A polished product design system and interface workflow" },
+  "blockchain-development": { src: "/images/services/detail/blockchain-development.jpg", alt: "Secure connected blocks representing blockchain engineering" },
+  "digital-transformation": { src: "/images/services/detail/digital-transformation.jpg", alt: "Connected operational systems representing digital transformation" },
+  "internet-of-things": { src: "/images/services/detail/internet-of-things.jpg", alt: "Connected device network representing Internet of Things development" },
+  "it-project-management": { src: "/images/services/detail/it-project-management.jpg", alt: "Structured milestones representing IT project management" },
+  "prompt-engineering": { src: "/images/services/detail/prompt-engineering.jpg", alt: "AI orchestration lattice representing prompt engineering" },
+  "quality-assurance": { src: "/images/services/detail/quality-assurance.jpg", alt: "Validation layers representing quality assurance" },
+  "staff-augmentation": { src: "/images/services/detail/staff-augmentation.jpg", alt: "Connected delivery team representing staff augmentation" },
+  "vibe-code": { src: "/images/services/detail/vibe-code.jpg", alt: "Product concept evolving into a prototype representing Vibe Code" },
 };
+
+const FALLBACK_SERVICE_IMAGE = SERVICE_IMAGES["mvp-saas-product-development"];
 
 export default function ServicesPage() {
   return (
@@ -41,6 +51,7 @@ export default function ServicesPage() {
         crumbs={[{ name: "Home", path: "/" }, { name: "Services", path: "/services" }]}
         showMarker={false}
         minimalBackdrop
+        solidOverlay
         headingClassName="ai-hero-heading"
         className="ai-service-hero services-main-hero"
         backgroundImage={{
@@ -94,7 +105,7 @@ export default function ServicesPage() {
         {SERVICES.map((service, index) => {
           const dark = index === 2 || index === 4;
           const reversed = index % 2 === 1;
-          const image = SERVICE_IMAGES[service.slug];
+          const image = SERVICE_IMAGES[service.slug] ?? FALLBACK_SERVICE_IMAGE;
           return (
             <Section key={service.slug} id={service.slug} surface={dark ? "ink" : "paper"} flush className={`services-story scroll-mt-20 ${dark ? "services-story--dark" : "border-t border-black/8"}`}>
               <article className="shell grid items-center gap-10 py-section lg:grid-cols-2 lg:gap-16">

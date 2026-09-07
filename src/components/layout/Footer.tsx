@@ -11,32 +11,28 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Mark";
 import { Pending } from "@/components/ui/Pending";
-import { SchematicGround } from "@/components/ui/Schematic";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+
+const FOOTER_SERVICES = SERVICES_MENU.slice(0, 6);
 
 export function Footer() {
   return (
     <footer data-surface="dark" className="relative isolate overflow-hidden bg-ink-950 text-ontext">
-      <SchematicGround grid={40} nodes={160} mask="none" className="opacity-60" />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent"
-      />
 
-      <div className="shell-wide relative pt-[clamp(3.5rem,2rem+5vw,5.5rem)] pb-10">
-        <div className="grid gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,1.35fr)_repeat(3,minmax(0,1fr))_minmax(0,1.05fr)]">
+      <div className="shell-wide relative pt-[clamp(2.75rem,2rem+3vw,4rem)] pb-8">
+        <div className="grid gap-x-10 gap-y-8 lg:grid-cols-[minmax(0,1.35fr)_repeat(3,minmax(0,1fr))_minmax(0,1.05fr)]">
           {/* ── Column 1 — identity + CTA ─────────────────────────────────── */}
           <div>
             <Logo tone="dark" />
-            <p className="mt-6 max-w-[34ch] text-sm leading-relaxed text-ontext-2">
+            <p className="mt-5 max-w-[34ch] text-sm leading-relaxed text-ontext-2">
               {FOOTER_COPY.description}
             </p>
 
-            <div className="mt-8 rounded-[var(--radius-md)] border border-rule-dark bg-white/[0.03] p-5">
+            <div className="mt-6 rounded-[var(--radius-md)] border border-rule-dark bg-white/[0.03] p-4">
               <p className="font-display text-[1.0625rem] leading-snug font-semibold text-white">
                 {FOOTER_COPY.ctaHeading}
               </p>
-              <Button href="/contact" variant="onDark" size="sm" className="mt-4" arrow block>
+              <Button href="/contact" variant="onDark" size="sm" className="mt-3" arrow block>
                 {FOOTER_COPY.ctaLabel}
               </Button>
             </div>
@@ -44,11 +40,12 @@ export function Footer() {
 
           {/* ── Column 2 — services ───────────────────────────────────────── */}
           <FooterColumn title="Services">
-            {SERVICES_MENU.map((s) => (
+            {FOOTER_SERVICES.map((s) => (
               <FooterLink key={s.href} href={s.href}>
                 {s.label}
               </FooterLink>
             ))}
+            <FooterLink href="/services">All services</FooterLink>
           </FooterColumn>
 
           {/* ── Column 3 — company ────────────────────────────────────────── */}
@@ -124,7 +121,7 @@ export function Footer() {
         </div>
 
         {/* ── Bottom bar ──────────────────────────────────────────────────── */}
-        <div className="mt-14 flex flex-col gap-4 border-t border-rule-dark pt-7 text-xs text-ontext-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-4 border-t border-rule-dark pt-6 text-xs text-ontext-4 sm:flex-row sm:items-center sm:justify-between">
           <p>{FOOTER_COPY.copyright}</p>
           <nav aria-label="Legal">
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
@@ -153,7 +150,7 @@ function FooterColumn({ title, children }: { title: string; children: React.Reac
       <h2 className="font-mono text-marker font-medium tracking-[0.16em] text-ontext-4 uppercase">
         {title}
       </h2>
-      <ul className="mt-5 flex flex-col gap-3">{children}</ul>
+      <ul className="mt-4 flex flex-col gap-2.5">{children}</ul>
     </div>
   );
 }
