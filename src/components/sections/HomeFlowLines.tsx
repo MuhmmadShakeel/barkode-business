@@ -1,7 +1,7 @@
-/** Lightweight, responsive signal-line field used behind the homepage hero. */
+/** Static signal-line field for a rich hero without runtime animation cost. */
 export function HomeFlowLines() {
-  const ribbons = Array.from({ length: 20 }, (_, index) => index);
-  const crossLines = Array.from({ length: 14 }, (_, index) => index);
+  const ribbons = Array.from({ length: 8 }, (_, index) => index);
+  const crossLines = Array.from({ length: 5 }, (_, index) => index);
 
   return (
     <div className="home-flow-lines" aria-hidden>
@@ -36,7 +36,7 @@ export function HomeFlowLines() {
             <path
               key={index}
               vectorEffect="non-scaling-stroke"
-              transform={`translate(0 ${index * 34 - 300})`}
+              transform={`translate(0 ${index * 56 - 190})`}
               d="M-120 590 C120 350 300 770 520 548 C760 306 870 236 1040 410 C1190 564 1300 760 1560 438"
             />
           ))}
@@ -47,10 +47,22 @@ export function HomeFlowLines() {
             <path
               key={index}
               vectorEffect="non-scaling-stroke"
-              transform={`translate(${index * 48 - 280} 0)`}
+              transform={`translate(${index * 125 - 260} 0)`}
               d="M430 -120 C670 120 350 300 620 474 C900 654 1220 570 1510 910"
             />
           ))}
+        </g>
+
+        <g className="home-flow-lines__orbit" fill="none" stroke="#f0bd52" strokeOpacity=".28" strokeWidth="1.2">
+          <ellipse cx="1040" cy="445" rx="315" ry="192" />
+          <g className="home-flow-lines__orbit-dots" fill="#f2c865" stroke="#fff2c9" strokeOpacity=".5" strokeWidth="1">
+            <circle cx="1355" cy="445" r="5" />
+            <circle cx="1198" cy="611" r="3.75" />
+            <circle cx="882" cy="611" r="4.5" />
+            <circle cx="725" cy="445" r="3.5" />
+            <circle cx="882" cy="279" r="4.5" />
+            <circle cx="1198" cy="279" r="3.75" />
+          </g>
         </g>
 
         <path

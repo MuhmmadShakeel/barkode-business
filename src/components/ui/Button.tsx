@@ -74,13 +74,15 @@ export function Button({
 
   if (href) {
     const external = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
-    if (external) {
+    const inPageAnchor = href.startsWith("#");
+    // Native anchors avoid Next's route-scroll restoration, which can briefly
+    // reset the viewport before the destination section is applied.
+    if (external || inPageAnchor) {
       return (
         <a
           href={href}
           className={cls}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
           {inner}

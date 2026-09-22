@@ -188,7 +188,7 @@ export const CLIENT_CASES: ClientCase[] = [
       "OpenInterview marketing site shown on a laptop — upload a résumé to generate a shareable video profile",
     screenshots: [
       {
-        src: "/images/projects/openinterview-detail.jpg",
+        src: "/images/projects/openinterview-detail.webp",
         alt: "OpenInterview candidate landing page with résumé upload and shareable profile explainer",
         caption: "Candidate landing — résumé in, shareable profile out",
       },

@@ -1,9 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { Marker } from "@/components/ui/Section";
 import { Glow, SchematicGround } from "@/components/ui/Schematic";
 import { cn } from "@/lib/utils";
 
@@ -81,27 +78,6 @@ export function PageHero({
       )}
 
       <div className="shell-wide relative">
-        {crumbs && crumbs.length > 0 && (
-          <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="flex flex-wrap items-center justify-center gap-1 font-mono text-[0.6875rem] tracking-[0.06em] text-ontext-4">
-              {crumbs.map((c, i) => (
-                <li key={c.path} className="flex items-center gap-1">
-                  {i > 0 && <ChevronRight aria-hidden className="size-3 opacity-50" />}
-                  {i === crumbs.length - 1 ? (
-                    <span aria-current="page" className="text-ontext-2">
-                      {c.name}
-                    </span>
-                  ) : (
-                    <Link href={c.path} className="transition-colors hover:text-white">
-                      {c.name}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </nav>
-        )}
-
         <div
           className={cn(
             "grid gap-x-14 gap-y-12",
@@ -109,8 +85,7 @@ export function PageHero({
           )}
         >
           <Reveal className={cn("flex flex-col items-center", twoUp && "lg:items-start lg:text-left")}>
-            {showMarker && <Marker tone="dark">{marker}</Marker>}
-            <h1 className={cn("site-hero-heading max-w-[17ch] text-d1 text-white", showMarker && "mt-6", headingClassName)}>
+            <h1 className={cn("site-hero-heading max-w-[17ch] text-d1 text-white", headingClassName)}>
               {heading}
               {accent && (
                 <>
@@ -123,7 +98,7 @@ export function PageHero({
             <p className={cn("measure mt-7 text-lead text-ontext-2", twoUp && "lg:ml-0")}>{body}</p>
 
             {(primary || secondary) && (
-              <div className={cn("mt-9 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap", twoUp && "lg:justify-start")}>
+              <div className={cn("mt-9 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap", twoUp && "lg:justify-start")}>
                 {primary && (
                   <Button href={primary.href} variant="onDark" size="lg" className="w-full sm:w-auto" arrow>
                     {primary.mobileLabel ? (

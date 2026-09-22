@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CONTACT, SITE, SOCIAL } from "./site";
 
-const OG = "/brand/og-image-1200x630.png";
+const OG = "/brand/og-image-1200x630.webp";
 
 export const buildMetadata = ({
   title,

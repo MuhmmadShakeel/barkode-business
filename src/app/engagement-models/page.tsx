@@ -25,7 +25,7 @@ const MODEL_IMAGES = [
 const SECONDARY_IMAGES = [
   "/images/process/discovery.webp",
   "/images/projects/beyut-libya.webp",
-  "/images/projects/openinterview-detail.jpg",
+  "/images/projects/openinterview-detail.webp",
   "/images/process/development.webp",
   "/images/process/qa-delivery.webp",
 ];

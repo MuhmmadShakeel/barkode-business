@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "dist": "next build && node scripts/package-dist.mjs",
+    "images:webp": "node scripts/convert-images-to-webp.mjs",
+    "dist": "npm run images:webp && next build && node scripts/package-dist.mjs",
     "start": "next start",
     "start:dist": "node dist/server.js",
     "lint": "next lint",

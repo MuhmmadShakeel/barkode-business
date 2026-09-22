@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { CTA } from "@/lib/site";
 import { HomeFlowLines } from "@/components/sections/HomeFlowLines";
+import { CTA } from "@/lib/site";
 
 /** The homepage opening, kept server-rendered for resilient content. */
 export function Hero() {
@@ -12,7 +12,7 @@ export function Hero() {
     >
       <HomeFlowLines />
 
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-[1]">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.82)_0%,rgba(5,6,7,0.58)_42%,rgba(5,6,7,0.12)_78%,rgba(5,6,7,0.25)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,6,7,0.18)_0%,transparent_34%,rgba(5,6,7,0.58)_100%)]" />
         <div
@@ -24,7 +24,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="shell-wide hero-reveal relative w-full py-8 sm:py-10">
+      <div className="shell-wide hero-reveal relative z-10 w-full py-8 sm:py-10">
         <div className="mx-auto max-w-[54rem]">
           <div className="flex flex-col items-center text-center">
             <Reveal as="header" index={0}>
@@ -54,7 +54,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-white/12" />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 z-10 h-px bg-white/12" />
     </section>
   );
 }

@@ -3,11 +3,9 @@ import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 
 import { Hero } from "@/components/sections/Hero";
-import { FinalCta } from "@/components/sections/FinalCta";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { BeforeAfterWorkflow } from "@/components/sections/WorkflowDiagram";
 import { AnimatedAIGlobe } from "@/components/sections/AnimatedAIGlobe";
-import { ClientOutcomesCarousel } from "@/components/sections/ClientOutcomesCarousel";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { ClientCaseCard } from "@/components/ui/CaseCard";
@@ -26,7 +24,6 @@ import {
 } from "@/lib/content";
 import { AI_USE_CASES } from "@/lib/ai-automation";
 import { SERVICES } from "@/lib/services";
-import { CTA } from "@/lib/site";
 import { JsonLd, buildMetadata, faqSchema } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -154,7 +151,7 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 3 · PROBLEM ════════════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="problem-heading" className="problem-reveal flex items-center lg:min-h-[100svh]">
+      <Section surface="paper" tight aria-labelledby="problem-heading" className="problem-reveal">
         <div className="shell relative w-full">
           <div className="grid items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
             <div className="grid h-full gap-5 lg:grid-rows-[auto_1fr_auto]">
@@ -195,7 +192,7 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 4 · SERVICES OVERVIEW ══════════════════════════════════════════ */}
-      <Section surface="ink" aria-labelledby="services-heading" className="services-reveal lg:min-h-[100svh]">
+      <Section surface="ink" aria-labelledby="services-heading" className="services-reveal">
         <div className="shell relative">
           <Reveal>
             <SectionHead
@@ -253,7 +250,7 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 5 · AI AUTOMATION HIGHLIGHT ════════════════════════════════════ */}
-      <Section surface="paper" aria-labelledby="ai-heading" className="ai-reveal overflow-hidden lg:min-h-[100svh]">
+      <Section surface="paper" aria-labelledby="ai-heading" className="ai-reveal overflow-hidden">
         <div className="shell relative">
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-10">
             <Reveal className="flex flex-col">
@@ -369,8 +366,8 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 7 · CASE STUDY PREVIEW ═════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="work-heading" className="selected-work-reveal !bg-transparent lg:flex lg:h-[100svh] lg:items-center lg:overflow-hidden">
-        <div className="shell w-full lg:h-[calc(100svh-5.5rem)]">
+      <Section surface="paper" tight aria-labelledby="work-heading" className="selected-work-reveal !bg-transparent">
+        <div className="shell w-full">
           <Reveal>
             <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
               <h2 id="work-heading" className="max-w-[20ch] text-d3 text-text">
@@ -383,7 +380,7 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <RevealGroup className="group/work mt-10 grid gap-6 pb-4 sm:mt-12 lg:h-[calc(100%-6.5rem)] lg:grid-cols-3 lg:pb-0" as="ul">
+          <RevealGroup className="group/work mt-10 grid gap-6 pb-4 sm:mt-12 lg:grid-cols-3 lg:pb-0" as="ul">
             {CLIENT_CASES.map((c, i) => (
               <RevealItem key={c.slug} as="li" className="h-full transition-[opacity,transform] duration-500 [transition-timing-function:var(--ease-expo)] lg:group-hover/work:scale-[0.985] lg:group-hover/work:opacity-65 lg:hover:!scale-100 lg:hover:!opacity-100">
                 <ClientCaseCard
@@ -399,45 +396,15 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 8 · CLIENT OUTCOMES ════════════════════════════════════════════ */}
-      <Section surface="ink-deep" aria-labelledby="client-outcomes-heading">
-        <SchematicGround grid={38} nodes={144} mask="radial" />
-        <div className="shell relative">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <Marker tone="dark">Client reviews & outcomes</Marker>
-            <h2 id="client-outcomes-heading" className="mt-5 text-d2 text-white">
-              Client work, reviewed through{" "}
-              <span className="text-accent-bright">real business outcomes.</span>
-            </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-ontext-2">
-              Project imagery and documented outcomes move together. Client quotations are only
-              published after explicit approval.
-            </p>
-          </Reveal>
-          <Reveal className="mt-10 sm:mt-12">
-            <ClientOutcomesCarousel
-              items={CLIENT_CASES.map((study) => ({
-                slug: study.slug,
-                name: study.name,
-                clientType: study.clientType,
-                industry: study.industry,
-                cover: study.cover,
-                coverAlt: study.coverAlt,
-                outcome: study.results?.[0] ?? "Outcome verification is pending.",
-              }))}
-            />
-          </Reveal>
-        </div>
-      </Section>
-
       {/* ═══ 9 · WHY BARAKODE ═══════════════════════════════════════════════ */}
       <Section
         surface="ink-deep"
         aria-labelledby="why-heading"
-        className="why-reveal mt-8 min-h-[100svh] overflow-hidden bg-[url('/images/home/glass-company-headquarters.webp')] bg-cover bg-center bg-no-repeat sm:mt-12"
+        className="why-reveal overflow-hidden bg-[url('/images/home/glass-company-headquarters.webp')] bg-cover bg-center bg-no-repeat"
       >
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,9,16,0.96)_0%,rgba(5,9,16,0.87)_43%,rgba(5,9,16,0.58)_100%)]" />
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-transparent to-ink-950/45" />
-        <div className="shell relative flex min-h-[calc(100svh-var(--spacing-section)*2)] items-center">
+        <div className="shell relative flex items-center">
           <div className="grid w-full gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center">
             <Reveal>
               <Marker tone="dark">Why Barakode</Marker>
@@ -521,8 +488,8 @@ export default function HomePage() {
       </Section>
 
       {/* ═══ 11 · FAQ PREVIEW ═══════════════════════════════════════════════ */}
-      <Section surface="sunken" tight aria-labelledby="faq-heading" className="faq-reveal lg:flex lg:h-[100svh] lg:items-center lg:overflow-hidden">
-        <div className="shell w-full lg:h-[calc(100svh-5.5rem)]">
+      <Section surface="paper" tight aria-labelledby="faq-heading" className="faq-reveal">
+        <div className="shell w-full">
           <Reveal>
             <div className="flex flex-col items-start justify-between gap-5 border-b border-rule pb-6 sm:flex-row sm:items-end">
               <div>
@@ -547,16 +514,6 @@ export default function HomePage() {
           </div>
         </div>
       </Section>
-
-      {/* ═══ 12 · FINAL CTA ═════════════════════════════════════════════════ */}
-      <FinalCta
-        marker="Start here"
-        heading="Ready to build or improve your"
-        accent="software product?"
-        body="Tell us what you are trying to build, automate, or scale. We will help you identify the right technical direction and next steps."
-        primary={CTA.primary}
-        secondary={CTA.supporting}
-      />
 
       <JsonLd data={faqSchema(FAQ_PREVIEW)} />
     </>

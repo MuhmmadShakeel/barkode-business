@@ -36,7 +36,7 @@ export default function AiAutomationPage() {
         heading="Practical AI automation for"
         accent="real business workflows"
         trail="."
-        body="Barakode helps businesses use AI to automate manual tasks, connect internal knowledge, process documents, support customers, improve reporting, and build practical AI features into existing products."
+        body="We turn the repetitive parts of everyday operations into reliable workflows: sorting requests, reading documents, finding the right information, and updating the systems your team already uses."
         primary={{ label: "Book a Free Project Discovery Call", mobileLabel: "Free AI Discovery Call", href: "/contact?intent=ai-automation" }}
         secondary={{ label: "Explore Use Cases", href: "#use-cases" }}
         crumbs={[
@@ -78,22 +78,20 @@ export default function AiAutomationPage() {
       {/* ═══ WHAT AI AUTOMATION MEANS ═══════════════════════════════════════ */}
       <section
         aria-labelledby="means-heading"
-        className="border-y border-rule bg-white"
+        className="bg-white"
       >
         <div className="shell py-12 sm:py-14 lg:py-16">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,.95fr)_minmax(0,1.05fr)] lg:gap-16 xl:gap-24">
             <Reveal className="lg:pr-6">
-              <Marker>Human-led automation</Marker>
-              <h2 id="means-heading" className="mt-5 max-w-[17ch] text-d2 text-text">
-                AI automation is not about replacing people. It is about{" "}
-                <span className="text-accent-ink">reducing repetitive work.</span>
+              <h2 id="means-heading" className="max-w-[14ch] text-d2 text-text">
+                Make routine work <span className="text-accent-ink">move.</span>
               </h2>
             </Reveal>
 
-            <Reveal kind="right" className="flex flex-col justify-center lg:border-l lg:border-rule lg:pl-12 xl:pl-16">
+            <Reveal kind="right" className="flex flex-col justify-center lg:pl-12 xl:pl-16">
               <p className="max-w-2xl text-lead text-text-2">
-                We combine AI models, business rules, integrations, and software workflows to handle
-                repetitive or information-heavy tasks that normally consume valuable human time.
+                We connect AI to your existing rules, tools, and approval steps so repetitive,
+                information-heavy work moves faster without becoming a black box.
               </p>
               <p className="mt-4 max-w-2xl text-text-3">
                 The result is a faster, more consistent team—without losing judgment, accountability,
@@ -106,7 +104,7 @@ export default function AiAutomationPage() {
                   ["02", "Connect", "Business systems"],
                   ["03", "Keep", "Human oversight"],
                 ].map(([number, action, outcome]) => (
-                  <div key={number} className="bg-paper-raised p-4 transition-colors duration-300 hover:bg-accent-soft sm:p-5">
+                  <div key={number} className="bg-paper-raised p-4 transition-[box-shadow,transform] duration-300 [transition-timing-function:var(--ease-expo)] hover:-translate-y-0.5 hover:shadow-e1 sm:p-5">
                     <span className="font-mono text-[.625rem] text-accent-ink">{number}</span>
                     <p className="mt-4 text-sm font-semibold text-text">{action}</p>
                     <p className="mt-1 text-xs text-text-3">{outcome}</p>
@@ -120,7 +118,7 @@ export default function AiAutomationPage() {
 
       <Section surface="ink-deep" tight aria-labelledby="ai-3d-heading" className="service-panel ai-3d-section">
         <div className="shell">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,.75fr)_minmax(0,1.25fr)]">
+          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,.75fr)_minmax(0,1.25fr)]">
             <Reveal>
               <h2 id="ai-3d-heading" className="max-w-[13ch] text-d2 text-white">
                 One connected workflow, <span className="text-accent-bright">built around control.</span>
@@ -141,11 +139,11 @@ export default function AiAutomationPage() {
         surface="paper"
         flush
         aria-labelledby="probs-heading"
-        className="overflow-hidden border-t border-rule bg-[linear-gradient(180deg,var(--color-paper-sunken)_0%,var(--color-paper)_22rem)]"
+        className="overflow-hidden bg-[linear-gradient(180deg,var(--color-paper-sunken)_0%,var(--color-paper)_22rem)]"
       >
         <SchematicGround grid={34} nodes={false} mask="radial" className="opacity-45" />
         <div className="shell relative py-14 sm:py-16 lg:py-20">
-          <div className="grid items-end gap-7 border-b border-rule pb-9 lg:grid-cols-[minmax(0,.9fr)_minmax(22rem,.62fr)] lg:gap-16 lg:pb-11">
+          <div className="grid items-end gap-7 pb-9 lg:grid-cols-[minmax(0,.9fr)_minmax(22rem,.62fr)] lg:gap-16 lg:pb-11">
             <Reveal>
               <Marker>Automation opportunities</Marker>
               <h2 id="probs-heading" className="mt-5 max-w-[18ch] text-d2 text-text">
@@ -154,8 +152,8 @@ export default function AiAutomationPage() {
             </Reveal>
             <Reveal kind="right">
               <p className="max-w-xl text-lead text-text-2 lg:ml-auto">
-                If your team spends hours each week on any of these tasks, there is usually a
-                practical workflow worth automating.
+                If these jobs keep landing back on the same people every week, there is usually a
+                sensible way to automate the routine parts.
               </p>
               <p className="mt-3 max-w-xl text-sm leading-relaxed text-text-3 lg:ml-auto">
                 We start with the operational bottleneck—not the technology—and keep people in
@@ -164,16 +162,14 @@ export default function AiAutomationPage() {
             </Reveal>
           </div>
 
-          <RevealGroup as="ul" className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <RevealGroup as="ul" className="ai-problem-list mt-8 grid sm:grid-cols-2 lg:grid-cols-4">
             {AI_PROBLEMS.map((problem, index) => (
-              <RevealItem key={problem} as="li" index={index} className="h-full">
-                <div className="group/problem relative flex h-full min-h-32 flex-col justify-between overflow-hidden rounded-[var(--radius-sm)] border border-rule bg-paper-raised p-5 shadow-e1 transition-[border-color,box-shadow,transform] duration-400 [transition-timing-function:var(--ease-expo)] hover:-translate-y-1 hover:border-accent/35 hover:shadow-e2">
-                  <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/55 to-transparent opacity-0 transition-opacity duration-300 group-hover/problem:opacity-100" />
-                  <span className="flex items-center justify-between font-mono text-[.625rem] tracking-[.12em] text-text-4 uppercase">
-                    Signal {String(index + 1).padStart(2, "0")}
-                    <span className="size-1.5 rounded-full bg-accent/70 shadow-[0_0_0_4px_rgba(200,146,42,.09)]" />
+              <RevealItem key={problem} as="li" index={index}>
+                <div className="group/problem flex min-h-32 flex-col justify-between py-5 pr-5 transition-transform duration-300 [transition-timing-function:var(--ease-expo)] hover:translate-x-1">
+                  <span className="font-mono text-[.625rem] tracking-[.12em] text-accent-ink uppercase">
+                    {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="mt-8 max-w-[18ch] text-[.9375rem] leading-snug font-medium text-text">
+                  <span className="mt-7 max-w-[18ch] text-[.9375rem] leading-snug font-medium text-text">
                     {problem}
                   </span>
                 </div>
@@ -227,13 +223,12 @@ export default function AiAutomationPage() {
       </Section>
 
       {/* ═══ AGENTS + RAG ═══════════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="agents-heading" className="service-panel service-panel--centered border-t border-rule">
+      <Section surface="paper" tight aria-labelledby="agents-heading" className="service-panel service-panel--centered">
         <div className="shell">
           <div className="grid gap-x-14 gap-y-14 lg:grid-cols-2">
             <Reveal>
-              <h2 id="agents-heading" className="max-w-[18ch] text-d2 text-text">
-                AI agents that support{" "}
-                <span className="text-accent-ink">defined business tasks.</span>
+              <h2 id="agents-heading" className="max-w-[14ch] text-d2 text-text">
+                AI agents for <span className="text-accent-ink">defined work.</span>
               </h2>
               <p className="measure mt-6 text-text-2">
                 An AI agent is a workflow assistant that can understand a task, use available tools,
@@ -252,9 +247,8 @@ export default function AiAutomationPage() {
             </Reveal>
 
             <Reveal kind="right">
-              <h2 className="max-w-[18ch] text-d2 text-text">
-                AI assistants connected to{" "}
-                <span className="text-accent-ink">your company knowledge.</span>
+              <h2 className="max-w-[14ch] text-d2 text-text">
+                AI grounded in <span className="text-accent-ink">your knowledge.</span>
               </h2>
               <p className="measure mt-6 text-text-2">
                 RAG allows an AI assistant to answer based on selected business knowledge instead of
@@ -290,9 +284,9 @@ export default function AiAutomationPage() {
       </Section>
 
       {/* ═══ DOCUMENT PROCESSING ════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="doc-heading" className="service-panel border-t border-rule">
+      <Section surface="paper" tight aria-labelledby="doc-heading" className="service-panel">
         <div className="shell">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,.78fr)_minmax(0,1.22fr)] lg:gap-16 xl:gap-20">
+          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,.78fr)_minmax(0,1.22fr)] lg:gap-16 xl:gap-20">
             <Reveal className="lg:pr-4">
               <Marker>Document intelligence</Marker>
               <h2 id="doc-heading" className="mt-5 max-w-[17ch] text-d2 text-text">
@@ -303,7 +297,7 @@ export default function AiAutomationPage() {
                 Extract the information your team needs, apply clear validation rules, and move
                 approved data into the systems where work continues.
               </p>
-              <div className="mt-8 flex items-center gap-3 border-t border-rule pt-5 font-mono text-[.6875rem] tracking-[.12em] text-text-4 uppercase">
+              <div className="mt-8 flex items-center gap-3 pt-2 font-mono text-[.6875rem] tracking-[.12em] text-text-4 uppercase">
                 <span>Input</span>
                 <ArrowRight aria-hidden className="size-3.5 text-accent" />
                 <span>Extract</span>
@@ -328,11 +322,11 @@ export default function AiAutomationPage() {
                 </div>
               </div>
 
-              <ul className="grid gap-px border-t border-rule bg-rule sm:grid-cols-2">
+              <ul className="grid gap-2 sm:grid-cols-2">
                 {DOCUMENT_TYPES.map((d) => (
                   <li
                     key={d}
-                    className="group/doc flex min-h-14 items-center gap-3 bg-white px-4 py-3 text-sm text-text-2 transition-colors duration-300 hover:bg-accent-soft sm:px-5"
+                    className="group/doc flex min-h-14 items-center gap-3 rounded-[var(--radius-sm)] bg-white px-4 py-3 text-sm text-text-2 transition-colors duration-300 hover:bg-accent-soft sm:px-5"
                   >
                     <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-accent transition-transform duration-300 group-hover/doc:scale-150" />
                     {d}
@@ -348,17 +342,19 @@ export default function AiAutomationPage() {
       {/* ═══ WHAT NOT TO AUTOMATE + RESPONSIBLE AI ══════════════════════════ */}
       <Section surface="ink-deep" tight aria-labelledby="limits-heading" className="service-panel service-panel--centered">
         <div className="shell relative">
-          <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
-            <Reveal>
-              <h2 id="limits-heading" className="max-w-[16ch] text-d2 text-white">
+          <Reveal className="mx-auto max-w-3xl text-center">
+              <h2 id="limits-heading" className="mx-auto max-w-[16ch] text-d2 text-white">
                 Not every process <span className="text-accent-bright">should be automated.</span>
               </h2>
-              <p className="measure mt-7 text-ontext-2">
+              <p className="measure mx-auto mt-7 text-ontext-2">
                 We will tell you when AI is the wrong answer. These are the categories we do not
                 automate blindly, regardless of what is technically possible.
               </p>
+          </Reveal>
 
-              <ul className="mt-9 flex flex-col gap-px overflow-hidden rounded-[var(--radius-md)] border border-rule-dark bg-rule-dark">
+          <div className="mt-12 grid gap-8 lg:grid-cols-2 lg:gap-12">
+            <Reveal>
+              <ul className="flex flex-col gap-px overflow-hidden rounded-[var(--radius-md)] border border-rule-dark bg-rule-dark">
                 {DO_NOT_AUTOMATE.map((d) => (
                   <li key={d} className="flex items-start gap-3 bg-ink-900 px-5 py-3.5">
                     <AlertTriangle
@@ -372,7 +368,7 @@ export default function AiAutomationPage() {
               </ul>
             </Reveal>
 
-            <Reveal kind="right" className="lg:pt-16">
+            <Reveal kind="right">
               <div className="relative rounded-[var(--radius-lg)] border border-signal/25 bg-signal/[0.05] p-7 sm:p-8">
                 <Registration tone="dark" size={18} />
                 <ShieldCheck aria-hidden className="size-7 text-signal" strokeWidth={1.5} />
@@ -443,7 +439,7 @@ export default function AiAutomationPage() {
 
       {/* ═══ STACK ══════════════════════════════════════════════════════════ */}
       {/* ═══ FAQ ════════════════════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="aifaq-heading" className="service-panel service-panel--centered border-t border-rule">
+      <Section surface="paper" tight aria-labelledby="aifaq-heading" className="service-panel service-panel--centered">
         <div className="shell">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
             <Reveal className="lg:sticky lg:top-28 lg:self-start">

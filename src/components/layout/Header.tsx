@@ -126,7 +126,7 @@ export function Header() {
                     aria-haspopup="true"
                     onFocus={() => openMega(item.href)}
                     className={cn(
-                      "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[var(--radius-xs)] px-2.5 py-2 text-[0.875rem] font-medium",
+                      "inline-flex shrink-0 items-center gap-0.5 whitespace-nowrap rounded-[var(--radius-xs)] px-2.5 py-2 text-[0.875rem] font-medium",
                       "transition-colors duration-200",
                       overHero
                         ? (item.href === "/services" ? servicesActive : consultancyActive)
@@ -141,7 +141,7 @@ export function Header() {
                     <ChevronDown
                       aria-hidden
                       className={cn(
-                        "size-4 shrink-0 text-accent-bright transition-transform duration-300 [transition-timing-function:var(--ease-expo)]",
+                        "size-3.5 shrink-0 text-accent-bright transition-transform duration-300 [transition-timing-function:var(--ease-expo)]",
                         megaMenu === item.href && "rotate-180",
                       )}
                     />

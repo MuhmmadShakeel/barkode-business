@@ -622,7 +622,7 @@ export const ARTICLES: Article[] = [
       },
       {
         kind: "figure",
-        src: "/images/blog/roadmap-schema.jpg",
+        src: "/images/blog/roadmap-schema.webp",
         alt: "Database schema and entity-relationship diagram mapping the platform architecture",
         caption: "Mapping the data model and API architecture before development begins",
       },

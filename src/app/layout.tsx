@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Sora } from "next/font/google";
+import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 
 import { Header } from "@/components/layout/Header";
@@ -9,24 +9,10 @@ import { RevealObserver } from "@/components/layout/RevealObserver";
 import { JsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
-const sora = Sora({
-  subsets: ["latin"],
-  variable: "--font-sora",
-  display: "swap",
-  weight: ["500", "600", "700"],
-});
-
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono-jb",
-  display: "swap",
-  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -79,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${inter.variable} ${jetbrains.variable}`}
+      className={inter.variable}
       suppressHydrationWarning
     >
       <body>

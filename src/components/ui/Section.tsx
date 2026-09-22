@@ -3,9 +3,11 @@ import { cn } from "@/lib/utils";
 type Surface = "paper" | "sunken" | "raised" | "ink" | "ink-deep";
 
 const surfaceClass: Record<Surface, string> = {
-  paper: "bg-paper text-text",
-  sunken: "bg-paper-sunken text-text",
-  raised: "bg-paper-raised text-text",
+  // Light sections share the page canvas. Cards still own their raised
+  // surfaces, but section-to-section changes no longer create beige bands.
+  paper: "text-text",
+  sunken: "text-text",
+  raised: "text-text",
   ink: "bg-ink-900 text-ontext",
   "ink-deep": "bg-ink-950 text-ontext",
 };
@@ -60,41 +62,19 @@ export function Section({
  * or page name, drawn as a schematic annotation.
  */
 export function Marker({
-  children,
-  tone = "light",
-  className,
-  as: Tag = "p",
+  children: _children,
+  tone: _tone = "light",
+  className: _className,
+  as: _Tag = "p",
 }: {
   children: React.ReactNode;
   tone?: "light" | "dark";
   className?: string;
   as?: "p" | "span" | "div";
 }) {
-  return (
-    <Tag
-      className={cn(
-        "inline-flex items-center gap-2.5 font-mono text-marker font-medium uppercase",
-        tone === "dark" ? "text-signal" : "text-accent-ink",
-        className,
-      )}
-    >
-      <span
-        aria-hidden
-        className={cn(
-          "grid size-[1.375rem] shrink-0 place-items-center rounded-full border",
-          tone === "dark" ? "border-signal/35" : "border-accent/30",
-        )}
-      >
-        <span
-          className={cn(
-            "size-1.5 rounded-full motion-safe:[animation:var(--animate-node-pulse)]",
-            tone === "dark" ? "bg-signal" : "bg-accent",
-          )}
-        />
-      </span>
-      {children}
-    </Tag>
-  );
+  // Section labels and their animated node are intentionally omitted. The
+  // heading itself provides clearer hierarchy without repeating navigation copy.
+  return null;
 }
 
 /**
@@ -180,7 +160,7 @@ export function SectionHead({
         className,
       )}
     >
-      {marker && <Marker tone={tone} className="mb-5">{marker}</Marker>}
+      {marker && <Marker tone={tone}>{marker}</Marker>}
       <SplitHeading
         id={id}
         lead={lead}

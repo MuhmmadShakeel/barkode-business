@@ -4,11 +4,13 @@ import { ArrowUpRight } from "lucide-react";
 
 import { AnimatedAIGlobe } from "@/components/sections/AnimatedAIGlobe";
 import { CaseStudyBrowser } from "@/components/sections/CaseStudyBrowser";
+import { ClientReviewsCarousel } from "@/components/sections/ClientReviewsCarousel";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { Marker, Section } from "@/components/ui/Section";
 
 import { CLIENT_CASES, FEATURED_CASE, RESEARCH_STUDIES } from "@/lib/case-studies";
+import { CLIENT_REVIEWS } from "@/lib/client-reviews";
 import { JsonLd, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -120,6 +122,23 @@ export default function CaseStudiesPage() {
       <Section surface="paper" aria-label="All work">
         <div className="shell">
           <CaseStudyBrowser showFilters={false} compactClients subtleCards />
+        </div>
+      </Section>
+
+      <Section surface="paper" aria-labelledby="client-reviews-heading">
+        <div className="shell">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <Marker>Client reviews</Marker>
+            <h2 id="client-reviews-heading" className="mt-5 text-d2 text-text">
+              Real delivery, shared through <span className="text-accent-ink">client experience.</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-text-2">
+              A selection of client feedback from mobile product, Flutter, React Native, and AI-enabled delivery work.
+            </p>
+          </Reveal>
+          <Reveal className="mt-10 sm:mt-12">
+            <ClientReviewsCarousel items={CLIENT_REVIEWS} />
+          </Reveal>
         </div>
       </Section>
 

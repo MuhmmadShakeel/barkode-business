@@ -1,4 +1,4 @@
-import { cpSync, existsSync, mkdirSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
 
 const root = process.cwd();
@@ -10,6 +10,9 @@ if (!existsSync(standalone)) {
   throw new Error("Standalone build output is missing. Run next build before packaging dist.");
 }
 
+// A fresh package avoids carrying deleted images and stale build artifacts into
+// the deployable folder.
+rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist, { recursive: true });
 cpSync(standalone, dist, { recursive: true, force: true });
 cpSync(join(root, "public"), join(dist, "public"), { recursive: true, force: true });

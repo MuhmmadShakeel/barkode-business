@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/Button";
 import { Marker } from "@/components/ui/Section";
-import { Glow, SchematicGround } from "@/components/ui/Schematic";
 import { CONTACT } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -27,48 +26,41 @@ export function FinalCta({
 }) {
   return (
     <section
-      data-surface="dark"
-      className={cn("relative isolate overflow-hidden bg-ink-900 py-section text-ontext", className)}
+      data-surface="light"
+      className={cn("relative isolate border-t border-rule py-section text-text", className)}
     >
-      <SchematicGround grid={40} nodes={160} mask="radial" />
-      <Glow className="top-[-14rem] left-1/2 -translate-x-1/2" size={640} />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
-      />
-
       <div className="shell relative">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <Marker tone="dark">{marker}</Marker>
-          <h2 className="mt-5 max-w-[20ch] text-d2 text-white">
+          <Marker>{marker}</Marker>
+          <h2 className="max-w-[20ch] text-d2 text-text">
             {heading}
             {accent && (
               <>
                 {" "}
-                <span className="text-accent-bright">{accent}</span>
+                <span className="text-accent-ink">{accent}</span>
               </>
             )}
           </h2>
-          <p className="measure mt-6 text-lead text-balance text-ontext-2">{body}</p>
+          <p className="measure mt-6 text-lead text-balance text-text-2">{body}</p>
 
           <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <Button href={primary.href} variant="onDark" size="lg" arrow block>
+            <Button href={primary.href} variant="primary" size="lg" arrow block>
               {primary.label}
             </Button>
             {secondary && (
-              <Button href={secondary.href} variant="onDarkGhost" size="lg" block>
+              <Button href={secondary.href} variant="secondary" size="lg" block>
                 {secondary.label}
               </Button>
             )}
           </div>
 
-          <p className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-mono text-xs text-ontext-4">
+          <p className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-mono text-xs text-text-4">
             <span>Prefer to message?</span>
             <a
               href={CONTACT.whatsapp.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-signal underline decoration-signal/35 underline-offset-4 transition-colors hover:decoration-signal"
+              className="text-accent-ink underline decoration-accent/35 underline-offset-4 transition-colors hover:decoration-accent"
             >
               WhatsApp {CONTACT.whatsapp.display}
             </a>

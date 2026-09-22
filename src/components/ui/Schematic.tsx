@@ -22,7 +22,7 @@ export function SchematicGround({
       className={cn(
         "pointer-events-none absolute inset-0 -z-10",
         mask === "radial" && "mask-radial",
-        mask === "bottom" && "mask-b",
+        mask === "bottom" && "mask-bottom",
         className,
       )}
     >

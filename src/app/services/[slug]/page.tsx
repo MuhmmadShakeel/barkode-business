@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 
 import { PageHero } from "@/components/sections/PageHero";
@@ -7,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { ClientCaseCard } from "@/components/ui/CaseCard";
 import { Pending } from "@/components/ui/Pending";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Registration, TraceRule } from "@/components/ui/Schematic";
+import { Registration } from "@/components/ui/Schematic";
 import { Section, SectionHead } from "@/components/ui/Section";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 
@@ -32,14 +33,14 @@ const SERVICE_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
   "internal-business-systems": { src: "/images/services/internal-systems.webp", alt: "Abstract visual representing connected internal business systems" },
   "cloud-devops-maintenance": { src: "/images/services/cloud-devops.webp", alt: "Abstract visual representing cloud infrastructure and DevOps" },
   "ui-ux-product-design": { src: "/images/services/product-design.webp", alt: "Abstract visual representing product design" },
-  "blockchain-development": { src: "/images/services/detail/blockchain-development.jpg", alt: "Abstract visual representing secure blockchain engineering" },
-  "digital-transformation": { src: "/images/services/detail/digital-transformation.jpg", alt: "Abstract visual representing connected digital transformation" },
-  "internet-of-things": { src: "/images/services/detail/internet-of-things.jpg", alt: "Abstract visual representing connected Internet of Things devices" },
-  "it-project-management": { src: "/images/services/detail/it-project-management.jpg", alt: "Abstract visual representing structured IT project delivery" },
-  "prompt-engineering": { src: "/images/services/detail/prompt-engineering.jpg", alt: "Abstract visual representing AI prompt engineering" },
-  "quality-assurance": { src: "/images/services/detail/quality-assurance.jpg", alt: "Abstract visual representing product quality assurance" },
-  "staff-augmentation": { src: "/images/services/detail/staff-augmentation.jpg", alt: "Abstract visual representing an integrated delivery team" },
-  "vibe-code": { src: "/images/services/detail/vibe-code.jpg", alt: "Abstract visual representing rapid product validation" },
+  "blockchain-development": { src: "/images/services/detail/blockchain-development.webp", alt: "Abstract visual representing secure blockchain engineering" },
+  "digital-transformation": { src: "/images/services/detail/digital-transformation.webp", alt: "Abstract visual representing connected digital transformation" },
+  "internet-of-things": { src: "/images/services/detail/internet-of-things.webp", alt: "Abstract visual representing connected Internet of Things devices" },
+  "it-project-management": { src: "/images/services/detail/it-project-management.webp", alt: "Abstract visual representing structured IT project delivery" },
+  "prompt-engineering": { src: "/images/services/detail/prompt-engineering.webp", alt: "Abstract visual representing AI prompt engineering" },
+  "quality-assurance": { src: "/images/services/detail/quality-assurance.webp", alt: "Abstract visual representing product quality assurance" },
+  "staff-augmentation": { src: "/images/services/detail/staff-augmentation.webp", alt: "Abstract visual representing an integrated delivery team" },
+  "vibe-code": { src: "/images/services/detail/vibe-code.webp", alt: "Abstract visual representing rapid product validation" },
 };
 
 export function generateStaticParams() {
@@ -115,7 +116,7 @@ export default async function ServiceDetailPage({
             </Reveal>
             <RevealGroup as="ul" className="service-detail-list grid gap-x-8 sm:grid-cols-2">
               {page.audience.map((a) => (
-                <RevealItem key={a} as="li" className="flex items-start gap-3 border-b border-black/10 py-4">
+                <RevealItem key={a} as="li" className="flex items-start gap-3 py-3">
                   <Check
                     aria-hidden
                     className="mt-[0.1875rem] size-4 shrink-0 text-accent"
@@ -130,7 +131,7 @@ export default async function ServiceDetailPage({
       </Section>
 
       {/* ═══ PROBLEM ════════════════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="problem-heading" className="service-panel service-detail-panel service-detail-problem border-t border-rule">
+      <Section surface="paper" tight aria-labelledby="problem-heading" className="service-panel service-detail-panel service-detail-problem">
         <div className="shell relative">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
             <Reveal>
@@ -148,8 +149,8 @@ export default async function ServiceDetailPage({
             >
               {page.problem.items.map((p) => (
                 <RevealItem key={p} as="li">
-                  <div className="flex h-full items-start gap-3 border-b border-black/10 px-5 py-4 sm:odd:border-r">
-                    <span aria-hidden className="mt-[0.5625rem] size-1 shrink-0 rounded-full bg-danger/70" />
+                  <div className="flex h-full items-start gap-3 px-2 py-3 sm:px-4">
+                    <span aria-hidden className="mt-[0.5625rem] size-1.5 shrink-0 rounded-full bg-accent" />
                     <span className="text-sm leading-relaxed text-text-2">{p}</span>
                   </div>
                 </RevealItem>
@@ -160,24 +161,37 @@ export default async function ServiceDetailPage({
       </Section>
 
       {/* ═══ WHAT WE BUILD + EXTRAS ═════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="builds-heading" className="service-panel service-detail-panel service-detail-builds border-t border-rule">
+      <Section surface="paper" tight aria-labelledby="builds-heading" className="service-panel service-detail-panel service-detail-builds">
         <div className="shell relative">
-          <Reveal>
-            <span className="service-detail-kicker">03 / Capability</span>
-            <div className="flex items-center gap-4">
-              <span className="grid size-12 shrink-0 place-items-center rounded-[var(--radius-sm)] border border-accent/25 text-accent">
-                <ServiceIcon name={service.icon} className="size-5" />
-              </span>
-              <TraceRule className="w-16" />
-            </div>
-            <h2 id="builds-heading" className="mt-6 max-w-[18ch] text-d2 text-text">
-              {page.builds.heading}
-            </h2>
-          </Reveal>
+          <div className="service-detail-capability-top">
+            <Reveal>
+              <div className="flex items-center gap-4">
+                <span className="grid size-12 shrink-0 place-items-center rounded-[var(--radius-sm)] border border-accent/25 text-accent">
+                  <ServiceIcon name={service.icon} className="size-5" />
+                </span>
+              </div>
+              <h2 id="builds-heading" className="mt-6 max-w-[18ch] text-d2 text-text">
+                {page.builds.heading}
+              </h2>
+              <p className="mt-5 max-w-[42ch] text-text-2">
+                Designed as connected parts of one durable product system—not a pile of disconnected features.
+              </p>
+            </Reveal>
+            <Reveal className="service-detail-sculpture">
+              <Image
+                src="/images/services/generated/connected-product-sculpture.webp"
+                alt="Connected desktop, laptop, and mobile product interfaces arranged as a software system"
+                fill
+                sizes="(min-width: 1024px) 48vw, 100vw"
+                className="object-cover"
+              />
+              <span aria-hidden className="service-detail-sculpture__frame" />
+            </Reveal>
+          </div>
 
           <RevealGroup
             as="ul"
-            className="mt-10 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3"
+            className="service-detail-capabilities mt-10 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3"
            
           >
             {page.builds.items.map((b) => (
@@ -193,7 +207,7 @@ export default async function ServiceDetailPage({
           {page.extra?.map((block) => (
             <div key={block.heading} className="mt-16">
               <Reveal>
-                <div className="grid gap-x-14 gap-y-4 border-t border-black/10 pt-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+                <div className="grid gap-x-14 gap-y-4 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
                   <div>
                     <h3 className="text-d3 text-text">{block.heading}</h3>
                     {block.note && (
@@ -218,7 +232,7 @@ export default async function ServiceDetailPage({
       </Section>
 
       {/* ═══ PROCESS ════════════════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="proc-heading" className="service-panel service-detail-panel service-detail-process border-t border-rule">
+      <Section surface="paper" tight aria-labelledby="proc-heading" className="service-panel service-detail-panel service-detail-process">
         <div className="shell relative">
           <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
             <Reveal>
@@ -237,7 +251,7 @@ export default async function ServiceDetailPage({
             <RevealGroup as="ol" className="grid gap-x-8 md:grid-cols-2">
               {page.process.steps.map((step, i) => (
                 <RevealItem key={step} as="div">
-                  <div className="flex items-center gap-5 border-b border-rule py-5 first:border-t">
+                  <div className="flex items-center gap-5 py-4">
                     <span className="grid size-9 shrink-0 place-items-center rounded-full border border-black/15 font-mono text-xs text-black/60 tabular-nums">
                       {String(i + 1).padStart(2, "0")}
                     </span>
@@ -284,7 +298,7 @@ export default async function ServiceDetailPage({
       </Section>
 
       {/* ═══ ENGAGEMENT ═════════════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="eng-heading" className="service-panel service-detail-panel service-detail-engagement border-t border-rule">
+      <Section surface="paper" tight aria-labelledby="eng-heading" className="service-panel service-detail-panel service-detail-engagement">
         <div className="shell">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
             <Reveal>
@@ -309,7 +323,7 @@ export default async function ServiceDetailPage({
                     <p className="mt-2.5 flex-1 text-sm leading-relaxed text-text-3">
                       {m.bestFor}
                     </p>
-                    <dl className="mt-5 flex flex-col gap-2 border-t border-rule pt-4 text-xs">
+                    <dl className="mt-5 flex flex-col gap-2 pt-1 text-xs">
                       <div className="flex justify-between gap-3">
                         <dt className="text-text-4">Timeline</dt>
                         <dd className="text-right text-text-2">{m.timeline}</dd>
