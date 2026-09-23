@@ -3,7 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   // Build only the runtime files that production needs.
-  output: "standalone",
+  // Vercel packages Next.js itself. Standalone output is retained for
+  // self-hosted builds, but conflicts with Vercel's Next.js 16.3 adapter.
+  output: process.env.VERCEL ? undefined : "standalone",
   turbopack: {
     // Keep file watching and cache invalidation inside this project.
     root: process.cwd(),
