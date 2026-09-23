@@ -37,7 +37,7 @@ const CONTACT_FAQS = [
   },
   {
     q: "Can I share a project brief?",
-    a: "Yes — attach it to the form. PDFs, documents, wireframes, and screenshots all help us give you a more specific answer.",
+    a: "Yes — include a link to the brief, document, wireframe, or screenshot in your WhatsApp message so we can give you a more specific answer.",
   },
   {
     q: "Can you sign an NDA?",
@@ -189,12 +189,12 @@ export default function ContactPage() {
                   Would rather just talk it through?
                 </h3>
                 <p className="mt-2.5 text-sm text-black/70">
-                  Your free 30-minute discovery call covers what you are building, your key
-                  constraints, and the most practical next step — with no obligation.
+                  Request a free 30-minute discovery call. Tell us what you are building and your
+                  key constraints; we will confirm a suitable time within one business day.
                 </p>
                 {CONTACT.bookingUrl ? (
                   <Button href={CONTACT.bookingUrl} size="md" className="mt-5" arrow block>
-                    Book a Free Project Discovery Call
+                    Request a Free Project Discovery Call
                   </Button>
                 ) : (
                   <div className="mt-5">
@@ -202,8 +202,8 @@ export default function ContactPage() {
                       Request a Free Discovery Call
                     </Button>
                     <p className="mt-3 text-xs text-text-3">
-                      Or choose &ldquo;Google Meet / Zoom&rdquo; on the form and share your availability.
-                      We will confirm a suitable time.
+                      This is a request, not an instant calendar booking. We will confirm the time
+                      and video-call details after reviewing your project.
                     </p>
                   </div>
                 )}

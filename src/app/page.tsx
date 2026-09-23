@@ -65,6 +65,28 @@ export default function HomePage() {
     <>
       <Hero />
 
+      <Section surface="paper" tight aria-labelledby="proof-heading" className="border-b border-rule">
+        <div className="shell">
+          <Reveal>
+            <div className="grid items-center gap-6 rounded-[var(--radius-lg)] border border-rule bg-paper-raised p-6 shadow-e1 sm:p-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-12">
+              <div>
+                <p className="font-mono text-marker font-medium tracking-[0.16em] text-accent-ink uppercase">Verified delivery result</p>
+                <h2 id="proof-heading" className="mt-3 max-w-[24ch] text-d3 text-text">
+                  70% faster application response time for a business replacing its legacy system.
+                </h2>
+                <p className="mt-4 max-w-2xl text-text-2">
+                  Gman now manages configuration independently across customers, orders, inventory,
+                  billing, and accounting without waiting on a developer for routine changes.
+                </p>
+              </div>
+              <Button href="/case-studies/gman-stitching-platform" variant="secondary" size="md" arrow>
+                Read the Gman case study
+              </Button>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
       {/* ═══ 2 · TRUST SIGNAL ═══════════════════════════════════════════════ */}
       <Section surface="paper" aria-labelledby="trust-heading" className="trust-reveal overflow-hidden">
         <div className="shell relative">

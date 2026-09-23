@@ -967,13 +967,16 @@
 /* Service dropdown pages: technical editorial layout, distinct from the index. */
 .service-detail-page .service-detail-panel {
   position: relative;
-  background: transparent !important;
+  /* Light service sections read as one calm canvas. Individual cards retain
+     their own white surface, but the page never alternates through tinted
+     bands between decisions. */
+  background: #fff !important;
 }
 
 .service-detail-page .service-panel {
   height: auto;
   min-height: 0;
-  padding-block: clamp(3rem, 5vw, 5.25rem);
+  padding-block: clamp(2rem, 3vw, 3.25rem);
   overflow: visible;
 }
 
@@ -994,6 +997,162 @@
   display: grid;
   align-items: center;
   text-align: center;
+}
+
+/* Consultancy is an editorial decision space rather than a catalogue. Every
+   section owns a complete viewport while its content retains natural overflow
+   on shorter screens. The existing Reveal observer provides the scroll-entry
+   choreography without adding a second animation runtime. */
+.consultancy-page > section,
+.consultancy-detail-page > section {
+  min-height: 0;
+  display: block;
+  position: relative;
+  overflow: visible;
+}
+
+.consultancy-page > section > .shell,
+.consultancy-detail-page > section > .shell {
+  width: 100%;
+}
+
+.consultancy-page > section[aria-labelledby="areas-heading"] {
+  background: #fff;
+}
+
+.consultancy-page [aria-labelledby="areas-heading"] .shell {
+  padding-block: clamp(1.75rem, 3vw, 3rem);
+}
+
+.consultancy-page [aria-labelledby="areas-heading"] [data-reveal-group] {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: clamp(.75rem, 1.25vw, 1.25rem);
+  margin-top: clamp(1.25rem, 2.5vw, 2.25rem);
+}
+
+.consultancy-page [aria-labelledby="areas-heading"] a {
+  min-height: clamp(13.5rem, 17vw, 17rem);
+  padding: clamp(1.35rem, 2vw, 2rem);
+  border-color: rgb(10 12 15 / .13);
+  background: #fff;
+  box-shadow: 0 1.25rem 3rem rgb(22 20 14 / .08);
+  transition:
+    transform .45s var(--ease-expo),
+    box-shadow .45s var(--ease-expo),
+    border-color .3s ease,
+    background-color .3s ease;
+}
+
+.consultancy-page [aria-labelledby="areas-heading"] a::before {
+  content: "";
+  width: 2.75rem;
+  height: 1px;
+  background: var(--color-accent);
+  opacity: .7;
+  transition: width .4s var(--ease-expo);
+}
+
+.consultancy-page [aria-labelledby="areas-heading"] a:hover {
+  transform: translate3d(0, -.5rem, 0);
+  border-color: rgb(200 146 42 / .52);
+  background: #fff;
+  box-shadow: 0 1.75rem 3.5rem rgb(56 44 18 / .16);
+}
+
+.consultancy-page [aria-labelledby="areas-heading"] a:hover::before {
+  width: 5rem;
+}
+
+.consultancy-page [aria-labelledby="areas-heading"] a > svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: .4rem;
+  border-radius: var(--radius-xs);
+  background: var(--color-accent-soft);
+}
+
+.consultancy-page [aria-labelledby="areas-heading"] a h2 {
+  margin-top: auto;
+  max-width: 14ch;
+  font-size: clamp(1.1rem, 1.35vw, 1.35rem);
+  letter-spacing: -.025em;
+}
+
+.consultancy-page [aria-labelledby="areas-heading"] a p {
+  max-width: 31ch;
+}
+
+.consultancy-detail-page > section:not(.consultancy-detail-hero) {
+  background: #fff;
+}
+
+.consultancy-detail-page > section:nth-of-type(even):not(.consultancy-detail-hero) {
+  background: #fff;
+}
+
+.consultancy-detail-page > section[data-surface="dark"] {
+  background: #090b0e !important;
+}
+
+.consultancy-detail-page > section > .shell {
+  padding-block: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+.consultancy-page > section.py-section,
+.consultancy-detail-page > section.py-section {
+  padding-block: clamp(1.125rem, 1.75vw, 1.75rem);
+}
+
+.consultancy-page > section.py-section-tight,
+.consultancy-detail-page > section.py-section-tight {
+  padding-block: clamp(.875rem, 1.25vw, 1.25rem);
+}
+
+.consultancy-detail-page [aria-labelledby] h2 {
+  text-wrap: balance;
+}
+
+.consultancy-detail-page [data-reveal-group] > li > div,
+.consultancy-detail-page [data-reveal-group] > li > a {
+  transition:
+    transform .4s var(--ease-expo),
+    border-color .28s ease,
+    box-shadow .4s var(--ease-expo);
+}
+
+.consultancy-detail-page [data-reveal-group] > li > div:hover,
+.consultancy-detail-page [data-reveal-group] > li > a:hover {
+  transform: translate3d(0, -.35rem, 0);
+  border-color: rgb(200 146 42 / .5);
+  box-shadow: 0 1.25rem 2.5rem rgb(49 38 16 / .12);
+}
+
+/* The final connected-decision row is one aligned object. Shorter summaries
+   must never make a card end early beside a longer neighbouring summary. */
+.consultancy-detail-page > section:last-of-type [data-reveal-group] {
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+}
+
+.consultancy-detail-page > section:last-of-type [data-reveal-item],
+.consultancy-detail-page > section:last-of-type [data-reveal-item] > a {
+  height: 100%;
+}
+
+@media (width < 64rem) {
+  .consultancy-page > section,
+  .consultancy-detail-page > section {
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .consultancy-page [aria-labelledby="areas-heading"] [data-reveal-group] {
+    grid-template-columns: 1fr;
+  }
+
+  .consultancy-page [aria-labelledby="areas-heading"] a {
+    min-height: 12rem;
+  }
 }
 
 /* The detail hero does not use PageHero, so it must reserve room below the
@@ -1204,7 +1363,7 @@
 @media (max-width: 63.99rem) {
   .service-detail-page .service-panel {
     min-height: auto;
-    padding-block: clamp(2.75rem, 8vw, 4rem);
+    padding-block: clamp(1.75rem, 6vw, 2.5rem);
   }
 
 }
@@ -1448,7 +1607,20 @@
 }
 
 .ai-service-page .service-panel {
-  padding-block: clamp(2.75rem, 5vw, 4.75rem);
+  padding-block: clamp(2rem, 3vw, 3.25rem);
+}
+
+/* Every light service section uses the same clean white canvas. Dark sections
+   stay intentionally black, preserving their role as visual anchors. */
+.ai-service-page > section:not([data-surface]),
+.ai-service-page > section[data-surface="light"],
+.services-page > section[data-surface="light"] {
+  background: #fff !important;
+}
+
+.ai-service-page > section[data-surface="light"] .schematic-grid,
+.ai-service-page > section[data-surface="light"] .schematic-nodes {
+  display: none;
 }
 
 .ai-service-page .ai-intro-section {
@@ -1459,11 +1631,10 @@
 @media (min-width: 64rem) {
   .ai-service-page .service-panel {
     height: auto;
-    min-height: calc(100svh - 5.25rem);
+    min-height: 0;
     align-items: flex-start;
     overflow: visible;
-    padding-top: clamp(1.5rem, 2.25vw, 2.25rem);
-    padding-bottom: clamp(2.5rem, 4vw, 4rem);
+    padding-block: clamp(2rem, 3vw, 3.25rem);
   }
 
   .ai-service-page .service-panel > .shell,
@@ -1485,14 +1656,14 @@
 .ai-service-page .service-panel .mt-7,
 .ai-service-page .service-panel .mt-6 { margin-top: 1.25rem; }
 
-/* Services overview: editorial, full-viewport stories within the site system. */
+/* Services overview: compact editorial stories within the site system. */
 .services-main-hero [data-hero-media] { opacity: .72; }
 
 .services-overview,
 .services-story,
 .services-cycle,
 .services-models {
-  min-height: calc(100svh - 5.25rem);
+  min-height: 0;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -1501,11 +1672,12 @@
 .services-overview > .shell,
 .services-story > .shell,
 .services-cycle > .shell,
-.services-models > .shell { width: 100%; }
+.services-models > .shell {
+  width: 100%;
+  padding-block: clamp(2rem, 3vw, 3.5rem) !important;
+}
 
-/* On desktop, service stories are one aligned two-column composition. The
-   image fills its column rather than floating around a vertically centred copy
-   block, so both columns begin and end together. */
+/* On desktop, service stories remain one aligned two-column composition. */
 @media (min-width: 64rem) {
   .services-story > .shell {
     align-items: stretch;
@@ -1547,6 +1719,63 @@
 @keyframes services-image-breathe {
   from { transform: scale(1.005); }
   to { transform: scale(1.045); }
+}
+
+/* Persistent WhatsApp contact — visual only, with no client-side script. */
+.whatsapp-float {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 90;
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  place-items: center;
+  border: 1px solid rgb(232 191 84 / .72);
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-ink-950);
+  box-shadow: 0 10px 28px rgb(0 0 0 / .36);
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+  background: var(--color-accent-bright);
+  color: var(--color-ink-950);
+  box-shadow: 0 14px 34px rgb(0 0 0 / .38);
+  transform: translateY(-2px);
+}
+
+.whatsapp-float:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 3px;
+}
+
+.whatsapp-float__pulse {
+  position: absolute;
+  inset: -.32rem;
+  border: 1px solid rgb(232 191 84 / .65);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .whatsapp-float__pulse {
+    animation: whatsapp-contact-pulse 2.35s cubic-bezier(.2, .7, .2, 1) infinite;
+  }
+}
+
+@keyframes whatsapp-contact-pulse {
+  0%, 22% { opacity: .6; transform: scale(1); }
+  62%, 100% { opacity: 0; transform: scale(1.38); }
+}
+
+@media (max-width: 39.99rem) {
+  .whatsapp-float {
+    width: 3rem;
+    height: 3rem;
+  }
 }
 
 @media (max-width: 63.99rem) {

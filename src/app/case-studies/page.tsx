@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-import { AnimatedAIGlobe } from "@/components/sections/AnimatedAIGlobe";
 import { CaseStudyBrowser } from "@/components/sections/CaseStudyBrowser";
 import { ClientReviewsCarousel } from "@/components/sections/ClientReviewsCarousel";
 import { Reveal } from "@/components/ui/Reveal";
@@ -33,11 +32,6 @@ export default function CaseStudiesPage() {
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(215,169,63,.1),transparent_42%),linear-gradient(180deg,#090b0e_0%,#050607_100%)]" />
         <div aria-hidden className="absolute inset-0 opacity-15 [background-image:linear-gradient(rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:linear-gradient(to_bottom,transparent,#000_25%,#000_82%,transparent)]" />
 
-        <div aria-hidden className="pointer-events-none absolute inset-0 grid place-items-center overflow-hidden opacity-55">
-          <div className="w-full max-w-6xl scale-[1.2] sm:scale-[1.4] lg:scale-[1.65]">
-            <AnimatedAIGlobe />
-          </div>
-        </div>
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(5,6,7,.24)_0%,rgba(5,6,7,.55)_48%,rgba(5,6,7,.88)_100%)]" />
 
         <div className="shell relative flex min-h-[100svh] w-full flex-col justify-center pt-28 pb-8 sm:pt-28 sm:pb-9 lg:h-full lg:min-h-0 lg:pt-20 lg:pb-5">

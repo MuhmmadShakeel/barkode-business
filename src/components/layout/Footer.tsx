@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, MapPin, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, MessageCircle } from "lucide-react";
 import {
   CONTACT,
   FOOTER_COPY,
@@ -10,7 +10,6 @@ import {
 } from "@/lib/site";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Mark";
-import { Pending } from "@/components/ui/Pending";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 
 const FOOTER_SERVICES = SERVICES_MENU.slice(0, 6);
@@ -20,7 +19,7 @@ export function Footer() {
     <footer data-surface="dark" className="relative isolate overflow-hidden bg-ink-950 text-ontext">
 
       <div className="shell-wide relative pt-[clamp(2.75rem,2rem+3vw,4rem)] pb-8">
-        <div className="grid gap-x-10 gap-y-8 lg:grid-cols-[minmax(0,1.35fr)_repeat(3,minmax(0,1fr))_minmax(0,1.05fr)]">
+        <div className="grid gap-x-10 gap-y-8 md:grid-cols-2 xl:grid-cols-[minmax(16rem,1.15fr)_repeat(3,minmax(9rem,.8fr))_minmax(18rem,1.25fr)]">
           {/* ── Column 1 — identity + CTA ─────────────────────────────────── */}
           <div>
             <Logo tone="dark" />
@@ -68,18 +67,19 @@ export function Footer() {
 
           {/* ── Column 5 — contact ────────────────────────────────────────── */}
           <FooterColumn title="Contact">
-            <li>
-              {CONTACT.email ? (
+            {CONTACT.email && (
+              <li className="min-w-0">
                 <a
                   href={`mailto:${CONTACT.email}`}
-                  className="text-sm text-ontext-2 transition-colors duration-200 hover:text-white"
+                  className="group/email inline-flex min-w-0 items-center gap-2 text-sm text-ontext-2 transition-colors duration-200 hover:text-white"
                 >
-                  {CONTACT.email}
+                  <Mail aria-hidden className="size-3.5 shrink-0 text-signal" strokeWidth={1.7} />
+                  <span className="break-all underline-offset-4 group-hover/email:underline xl:break-normal">
+                    {CONTACT.email}
+                  </span>
                 </a>
-              ) : (
-                <Pending tone="dark">[Add official email]</Pending>
-              )}
-            </li>
+              </li>
+            )}
             <li>
               <a
                 href={CONTACT.whatsapp.href}
@@ -98,6 +98,9 @@ export function Footer() {
             <li className="flex items-start gap-2 text-sm text-ontext-2">
               <MapPin aria-hidden className="mt-1 size-3.5 shrink-0 text-signal" strokeWidth={1.7} />
               <span>{SITE.location}</span>
+            </li>
+            <li className="text-xs leading-relaxed text-ontext-3">
+              Send a short project brief on WhatsApp. We reply within one business day.
             </li>
             <li className="pt-3">
               <ul className="flex flex-wrap gap-2">

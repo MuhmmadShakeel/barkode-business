@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { AlertCircle, Loader2, Paperclip } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { PENDING } from "@/lib/site";
+import { CONTACT } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /**
@@ -16,9 +16,8 @@ import { cn } from "@/lib/utils";
  * that needs attention. Nothing is validated on blur before the visitor has
  * had a chance to finish typing.
  *
- * With no form endpoint configured (`PENDING.formEndpoint`), submission is
- * intercepted and the visitor is routed to the thank-you page with a clear
- * note — rather than silently dropping their message.
+ * On submit, the verified company WhatsApp channel opens with the visitor's
+ * details prefilled, so no inquiry is ever sent to an unconfigured endpoint.
  */
 
 const PROJECT_TYPES = [
@@ -75,7 +74,6 @@ const PREFILL: Record<string, string> = {
 type Errors = Partial<Record<string, string>>;
 
 export function ContactForm() {
-  const router = useRouter();
   const params = useSearchParams();
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
@@ -89,20 +87,15 @@ export function ContactForm() {
     const next: Errors = {};
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
-    const country = String(data.get("country") ?? "").trim();
     const description = String(data.get("description") ?? "").trim();
-    const website = String(data.get("website") ?? "").trim();
 
     if (!name) next.name = "Add your name so we know who we are replying to.";
     if (!email) next.email = "Add a work email — that is where our reply goes.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))
       next.email = "That email looks incomplete. Check for a missing @ or domain.";
-    if (!country) next.country = "Add your country so we can plan around your time zone.";
     if (!description) next.description = "Tell us what you want to build — a few lines is enough.";
     else if (description.length < 20)
       next.description = "A little more detail helps: what is the product or workflow?";
-    if (website && !/^https?:\/\/|^[\w-]+\.[\w.-]+/.test(website))
-      next.website = "Use a full address, like example.com or https://example.com.";
     return next;
   };
 
@@ -122,21 +115,23 @@ export function ContactForm() {
 
     setSubmitting(true);
 
-    if (!PENDING.formEndpoint) {
-      // No endpoint configured yet — do not pretend the message was sent.
-      router.push("/contact/thank-you?delivery=pending");
-      return;
-    }
+    const message = [
+      "Hello Barakode, I would like to discuss a project.",
+      `Name: ${String(data.get("name") ?? "").trim()}`,
+      `Email: ${String(data.get("email") ?? "").trim()}`,
+      data.get("company") ? `Company: ${String(data.get("company")).trim()}` : "",
+      data.get("project_type") ? `Project type: ${String(data.get("project_type")).trim()}` : "",
+      "",
+      "Project details:",
+      String(data.get("description") ?? "").trim(),
+    ].filter(Boolean).join("\n");
 
-    form.submit();
+    window.location.assign(`${CONTACT.whatsapp.href}?text=${encodeURIComponent(message)}`);
   };
 
   return (
     <form
       onSubmit={onSubmit}
-      action={PENDING.formEndpoint ?? undefined}
-      method="post"
-      encType="multipart/form-data"
       noValidate
       className="rounded-[var(--radius-lg)] border border-black/10 bg-white p-6 text-black shadow-e2 sm:p-8"
     >
@@ -169,24 +164,9 @@ export function ContactForm() {
         <Field
           label="Company name"
           name="company"
+          optional
           autoComplete="organization"
           placeholder="Company or project name"
-        />
-        <Field
-          label="Website"
-          name="website"
-          optional
-          autoComplete="url"
-          placeholder="example.com"
-          error={errors.website}
-        />
-        <Field
-          label="Country"
-          name="country"
-          required
-          autoComplete="country-name"
-          placeholder="Where you are based"
-          error={errors.country}
         />
         <SelectField
           label="Project type"
@@ -194,8 +174,6 @@ export function ContactForm() {
           defaultValue={presetType}
           options={PROJECT_TYPES}
         />
-        <SelectField label="Budget range" name="budget" options={BUDGETS} />
-        <SelectField label="Timeline" name="timeline" options={TIMELINES} />
       </div>
 
       <div className="mt-5">
@@ -212,24 +190,12 @@ export function ContactForm() {
       </div>
 
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
-        <SelectField
-          label="Preferred contact method"
-          name="contact_method"
-          options={CONTACT_METHODS}
-        />
         <Field
           label="LinkedIn profile"
           name="linkedin"
           optional
           placeholder="linkedin.com/in/…"
         />
-        <Field
-          label="Existing product link"
-          name="product_link"
-          optional
-          placeholder="If you already have something running"
-        />
-        <SelectField label="How did you hear about us?" name="source" options={SOURCES} />
       </div>
 
       {/* ── File upload ────────────────────────────────────────────────────── */}
@@ -276,14 +242,13 @@ export function ContactForm() {
               Sending…
             </>
           ) : (
-            "Send Project Details"
+            "Continue in WhatsApp"
           )}
         </Button>
 
         <p className="mt-4 text-xs leading-relaxed text-black/60">
-          We review every inquiry carefully and respond with practical next steps. If your project is
-          not the right fit, we will still try to point you in the right direction. We can sign an
-          NDA where required.
+          Your details open in a WhatsApp message to Barakode — nothing is sent until you press
+          send there. We reply within one business day and can sign an NDA where required.
         </p>
       </div>
     </form>

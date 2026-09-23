@@ -59,6 +59,37 @@ export default function ProcessPage() {
         </div>
       </section>
 
+      <Section surface="paper" tight aria-labelledby="timing-heading" className="border-b border-rule">
+        <div className="shell">
+          <Reveal>
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] lg:items-end">
+              <div>
+                <h2 id="timing-heading" className="max-w-[16ch] text-d3 text-text">
+                  A route to a decision before a long build begins.
+                </h2>
+                <p className="measure mt-5 text-text-2">
+                  Discovery turns the problem into scope, assumptions, priorities, and a practical
+                  recommendation. The delivery range is then agreed against the work that actually
+                  needs to happen.
+                </p>
+              </div>
+              <dl className="grid gap-3 sm:grid-cols-3">
+                {[
+                  ["AI automation sprint", "2–6 weeks"],
+                  ["Focused MVP", "4–10 weeks"],
+                  ["Custom product build", "8–20+ weeks"],
+                ].map(([label, range]) => (
+                  <div key={label} className="border-t border-rule pt-4">
+                    <dt className="text-sm text-text-2">{label}</dt>
+                    <dd className="mt-1 font-display text-xl font-semibold text-accent-ink">{range}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
       {/* ═══ WHY PROCESS MATTERS ════════════════════════════════════════════ */}
       <Section surface="paper" tight aria-labelledby="why-heading" className="!pt-10 !pb-8 sm:!pt-12 sm:!pb-10">
         <div className="shell">

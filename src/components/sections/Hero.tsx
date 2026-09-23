@@ -41,7 +41,14 @@ export function Hero() {
               </p>
             </Reveal>
 
-            <Reveal index={2} className="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+            <Reveal index={2}>
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-ontext-3 sm:text-base">
+                Turn manual operations into a system your team can run — or take a new product from
+                focused scope to launch with a delivery plan you can review.
+              </p>
+            </Reveal>
+
+            <Reveal index={3} className="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
               <Button href={CTA.primary.href} variant="onDark" size="lg" className="w-full sm:w-auto" arrow>
                 <span className="max-[359px]:hidden">{CTA.primary.label}</span>
                 <span className="hidden max-[359px]:inline">Free Discovery Call</span>
@@ -49,6 +56,11 @@ export function Hero() {
               <Button href={CTA.secondary.href} variant="onDarkGhost" size="lg" className="w-full sm:w-auto">
                 {CTA.secondary.label}
               </Button>
+            </Reveal>
+            <Reveal index={4}>
+              <p className="mt-4 text-xs text-ontext-3">
+                Tell us what you are solving. We reply within one business day with the most practical next step.
+              </p>
             </Reveal>
           </div>
         </div>

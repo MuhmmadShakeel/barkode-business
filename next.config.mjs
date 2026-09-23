@@ -15,6 +15,10 @@ const nextConfig = {
   images: {
     // WebP avoids AVIF's expensive first-request encoding on the server.
     formats: ["image/webp"],
+    // Service and case-study imagery is versioned with each deployment. Keep
+    // derivative sizes at the CDN/browser edge longer so repeat visits do not
+    // trigger fresh optimization work on the application server.
+    minimumCacheTTL: 60 * 60 * 24 * 30,
     deviceSizes: [360, 480, 640, 768, 1024, 1280, 1536, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512],
   },

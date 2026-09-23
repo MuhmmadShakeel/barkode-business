@@ -14,8 +14,8 @@ export type Pending = null;
 
 /** Fields awaiting verified values. Fill these in to remove the annotations. */
 export const PENDING = {
-  /** No public email address exists anywhere in the supplied source. */
-  email: null as string | Pending,
+  /** Public inbox supplied by the business. */
+  email: "barakodetechnologies@gmail.com" as string | Pending,
   /** Organisation schema records only `addressCountry: PK`. */
   streetAddress: null as string | Pending,
   city: null as string | Pending,
@@ -43,14 +43,14 @@ export const SITE = {
 export const CONTACT = {
   email: PENDING.email,
   whatsapp: {
-    display: "+92 332 2060667",
-    e164: "+923322060667",
-    href: "https://wa.me/923322060667",
+    display: "+92 300 8698044",
+    e164: "+923008698044",
+    href: "https://wa.me/923008698044",
   },
-  phoneSchema: "+92-332-2060667",
+  phoneSchema: "+92-300-8698044",
   location: SITE.location,
   responsePromise:
-    "We review every inquiry carefully and respond with practical next steps. If your project is not the right fit, we will still try to point you in the right direction.",
+    "Send a short brief and we will reply within one business day with practical next steps. If the project is not the right fit, we will still try to point you in the right direction.",
   bookingUrl: PENDING.bookingUrl,
 } as const;
 
@@ -95,8 +95,8 @@ export const SOCIAL: SocialLink[] = [
   },
   {
     label: "WhatsApp",
-    handle: "+92 332 2060667",
-    href: "https://wa.me/923322060667",
+    handle: "+92 300 8698044",
+    href: "https://wa.me/923008698044",
     icon: "whatsapp",
   },
 ];
@@ -106,8 +106,8 @@ export const SOCIAL: SocialLink[] = [
    ══════════════════════════════════════════════════════════════════════════ */
 
 export const CTA = {
-  header: { label: "Free Discovery Call", href: "/contact?intent=strategy-call" },
-  primary: { label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" },
+  header: { label: "Book a Demo", href: "/contact?intent=strategy-call" },
+  primary: { label: "Request a Project Discovery Call", href: "/contact?intent=strategy-call" },
   secondary: { label: "View Our Work", href: "/case-studies" },
   supporting: { label: "Send Project Details", href: "/contact" },
 } as const;
@@ -125,7 +125,6 @@ export type ServiceNavItem = {
 };
 
 export const SERVICES_MENU: ServiceNavItem[] = [
-  { label: "Artificial Intelligence", href: "/ai-automation", description: "AI systems and automation.", icon: "BrainCircuit" },
   { label: "Blockchain", href: "/services/blockchain-development", description: "Reliable decentralized products.", icon: "Blocks" },
   { label: "Design", href: "/services/ui-ux-product-design", description: "Clear product experiences.", icon: "Palette" },
   { label: "Development", href: "/services/custom-web-mobile-app-development", description: "Web and mobile products.", icon: "Code2" },
@@ -147,12 +146,6 @@ export const SERVICES_MENU: ServiceNavItem[] = [
     href: "/services/custom-web-mobile-app-development",
     description: "Purpose-built digital products.",
     icon: "AppWindow",
-  },
-  {
-    label: "AI Automation",
-    href: "/ai-automation",
-    description: "Smarter, faster workflows.",
-    icon: "BrainCircuit",
   },
   {
     label: "Internal Systems",

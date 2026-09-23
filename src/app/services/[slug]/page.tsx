@@ -6,7 +6,6 @@ import { ArrowRight, Check } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui/Button";
 import { ClientCaseCard } from "@/components/ui/CaseCard";
-import { Pending } from "@/components/ui/Pending";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Registration } from "@/components/ui/Schematic";
 import { Section, SectionHead } from "@/components/ui/Section";
@@ -160,7 +159,7 @@ export default async function ServiceDetailPage({
         </div>
       </Section>
 
-      {/* ═══ WHAT WE BUILD + EXTRAS ═════════════════════════════════════════ */}
+      {/* ═══ WHAT WE BUILD ══════════════════════════════════════════════════ */}
       <Section surface="paper" tight aria-labelledby="builds-heading" className="service-panel service-detail-panel service-detail-builds">
         <div className="shell relative">
           <div className="service-detail-capability-top">
@@ -203,22 +202,28 @@ export default async function ServiceDetailPage({
               </RevealItem>
             ))}
           </RevealGroup>
+        </div>
+      </Section>
 
-          {page.extra?.map((block) => (
-            <div key={block.heading} className="mt-16">
-              <Reveal>
-                <div className="grid gap-x-14 gap-y-4 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+      {page.extra && page.extra.length > 0 && (
+        <Section surface="ink-deep" tight className="service-panel service-detail-deliverables">
+          <div className="shell space-y-12">
+            {page.extra.map((block, index) => (
+              <Reveal key={block.heading}>
+                <div className="grid gap-x-14 gap-y-5 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
                   <div>
-                    <h3 className="text-d3 text-text">{block.heading}</h3>
+                    <h3 id={index === 0 ? "deliverables-heading" : undefined} className="text-d3 text-white">
+                      {block.heading}
+                    </h3>
                     {block.note && (
-                      <p className="measure mt-3 text-sm text-text-3">{block.note}</p>
+                      <p className="measure mt-3 text-sm text-ontext-3">{block.note}</p>
                     )}
                   </div>
                   <ul className="flex flex-wrap gap-2 self-start">
                     {block.items.map((item) => (
                       <li
                         key={item}
-                        className="rounded-[var(--radius-xs)] border border-black/10 px-3 py-1.5 text-sm text-text-2"
+                        className="rounded-[var(--radius-xs)] border border-white/15 bg-white/[0.04] px-3 py-1.5 text-sm text-ontext-2"
                       >
                         {item}
                       </li>
@@ -226,10 +231,10 @@ export default async function ServiceDetailPage({
                   </ul>
                 </div>
               </Reveal>
-            </div>
-          ))}
-        </div>
-      </Section>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* ═══ PROCESS ════════════════════════════════════════════════════════ */}
       <Section surface="paper" tight aria-labelledby="proc-heading" className="service-panel service-detail-panel service-detail-process">
@@ -287,12 +292,9 @@ export default async function ServiceDetailPage({
           </RevealGroup>
 
           <Reveal className="mt-8">
-            <div className="flex flex-wrap items-center gap-3">
-              <Pending>[Add verified case study result for this service]</Pending>
-              <Button href="/case-studies" variant="ghost" size="sm" arrow>
-                All case studies
-              </Button>
-            </div>
+            <Button href="/case-studies" variant="ghost" size="sm" arrow>
+              Explore all case studies
+            </Button>
           </Reveal>
         </div>
       </Section>

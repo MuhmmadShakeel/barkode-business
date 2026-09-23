@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { RevealObserver } from "@/components/layout/RevealObserver";
 import { JsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+        <WhatsAppFloat />
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </body>
     </html>

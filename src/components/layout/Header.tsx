@@ -93,7 +93,10 @@ export function Header() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-100 border-b border-white/10 bg-ink-950/96 shadow-e3 backdrop-blur-xl backdrop-saturate-150 transition-[box-shadow] duration-300",
+          // The header is already visually opaque. Avoid a permanent
+          // full-width backdrop filter, which forces expensive repaints while
+          // the page scrolls without changing the navigation's appearance.
+          "fixed inset-x-0 top-0 z-100 border-b border-white/10 bg-ink-950 shadow-e3 transition-[box-shadow] duration-300",
           "[transition-timing-function:var(--ease-expo)]",
           scrolled && "shadow-e4",
         )}
@@ -111,12 +114,13 @@ export function Header() {
           <div
             ref={navRef}
             onBlur={onNavBlur}
-            className="hidden min-w-0 items-center gap-0.5 xl:flex"
+            className="ml-5 mr-auto hidden shrink-0 items-center gap-2 xl:flex"
           >
             {NAV.map((item) =>
               item.children ? (
                 <div
                   key={item.href}
+                  className="shrink-0"
                   onMouseEnter={() => openMega(item.href)}
                   onMouseLeave={scheduleClose}
                 >
@@ -126,7 +130,7 @@ export function Header() {
                     aria-haspopup="true"
                     onFocus={() => openMega(item.href)}
                     className={cn(
-                      "inline-flex shrink-0 items-center gap-0.5 whitespace-nowrap rounded-[var(--radius-xs)] px-2.5 py-2 text-[0.875rem] font-medium",
+                      "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[var(--radius-xs)] px-2.5 py-2 text-[0.875rem] font-medium",
                       "transition-colors duration-200",
                       overHero
                         ? (item.href === "/services" ? servicesActive : consultancyActive)
@@ -178,11 +182,11 @@ export function Header() {
             )}
           </div>
 
-          <div className="hidden shrink-0 xl:block">
+          <div className="ml-auto hidden shrink-0 xl:block">
             <Button
               href={CTA.header.href}
               variant={overHero ? "onDark" : "primary"}
-              size="md"
+              size="sm"
               arrow
             >
               {CTA.header.label}
