@@ -1801,3 +1801,165 @@
   [data-print-hide] { display: none !important; }
   body { background: #fff; color: #000; }
 }
+
+/* Consultancy overview redesign. */
+.consultancy-page--redesign { background: var(--color-paper); }
+.consultancy-landing-hero { position: relative; min-height: clamp(38rem, 54vw, 48rem); isolation: isolate; border-bottom: 1px solid rgb(232 191 84 / .34); }
+.consultancy-landing-hero::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(112deg, rgb(255 255 255 / .045), transparent 38%, rgb(200 146 42 / .07)); content: ""; }
+.consultancy-landing-hero__inner { display: grid; min-height: inherit; align-items: end; grid-template-columns: minmax(0, 1fr) 12.5rem; gap: 4rem; padding-top: 11rem; padding-bottom: clamp(3rem, 6vw, 6.5rem); }
+.consultancy-landing-hero__word { position: absolute; z-index: -1; top: 7%; left: -1.2vw; color: rgb(255 255 255 / .035); font-family: var(--font-display); font-size: clamp(7rem, 17.5vw, 19rem); font-weight: 700; letter-spacing: -.085em; line-height: .75; white-space: nowrap; user-select: none; }
+.consultancy-landing-hero__content { max-width: 60rem; }
+.consultancy-landing-hero__index, .consultancy-landing-intro__label, .consultancy-landing-areas__label { color: var(--color-accent-bright); font-family: var(--font-mono); font-size: .7rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+.consultancy-landing-hero__title { max-width: 13ch; margin-top: 1.35rem; color: #fff; font-family: var(--font-display); font-size: clamp(3.6rem, 7.1vw, 7.5rem); font-weight: 600; letter-spacing: -.065em; line-height: .91; text-wrap: balance; }
+.consultancy-landing-hero__title span, .consultancy-landing-areas__head h2 span { color: var(--color-accent-bright); }
+.consultancy-landing-hero__lead { max-width: 45rem; margin-top: 2rem; color: var(--color-ontext-2); font-size: clamp(1.05rem, 1vw + .75rem, 1.28rem); line-height: 1.62; }
+.consultancy-landing-hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2.5rem; }
+.consultancy-landing-hero__ledger { align-self: stretch; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: .2rem; border-left: 1px solid rgb(255 255 255 / .2); }
+.consultancy-landing-hero__ledger span { padding: 1.1rem 0 1.1rem 1.25rem; border-top: 1px solid rgb(255 255 255 / .2); color: var(--color-ontext-2); font-size: .78rem; }.consultancy-landing-hero__ledger span:last-child { color: var(--color-accent-bright); }
+.consultancy-landing-intro { padding-block: clamp(5rem, 10vw, 10rem) !important; }.consultancy-landing-intro__grid { display: grid; gap: clamp(2.5rem, 7vw, 9rem); grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }.consultancy-landing-intro h2 { max-width: 12ch; margin-top: 1.25rem; font-family: var(--font-display); font-size: clamp(2.55rem, 4.1vw, 4.8rem); font-weight: 600; letter-spacing: -.055em; line-height: .98; }.consultancy-landing-intro__copy { max-width: 42rem; padding-top: 1.9rem; border-top: 1px solid var(--color-rule-strong); }
+.consultancy-landing-principles { display: grid; grid-template-columns: minmax(13rem, .7fr) minmax(0, 1.3fr); gap: 2rem; margin-top: clamp(4rem, 8vw, 8rem); padding: clamp(2rem, 4vw, 3.5rem) 0; border-top: 1px solid var(--color-text); border-bottom: 1px solid var(--color-text); }.consultancy-landing-principles > p { max-width: 13ch; color: var(--color-text); font-family: var(--font-display); font-size: clamp(1.5rem, 2vw, 2.2rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.1; }.consultancy-landing-principles ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }.consultancy-landing-principles li { position: relative; padding-left: 1.15rem; color: var(--color-text-2); font-size: .9rem; line-height: 1.55; }.consultancy-landing-principles li + li { border-left: 1px solid var(--color-rule-strong); }.consultancy-landing-principles li::before { position: absolute; top: .58rem; left: 0; width: .42rem; height: .42rem; border-radius: 50%; background: var(--color-accent); content: ""; }
+.consultancy-landing-areas { padding-block: clamp(5rem, 9vw, 9rem) !important; background: var(--color-ink-950); }.consultancy-landing-areas__head { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(15rem, .85fr); column-gap: clamp(2rem, 7vw, 8rem); align-items: end; }.consultancy-landing-areas__head h2 { grid-column: 1; max-width: 15ch; margin-top: 1.25rem; color: #fff; font-family: var(--font-display); font-size: clamp(2.7rem, 4.6vw, 5.25rem); font-weight: 600; letter-spacing: -.06em; line-height: .96; }.consultancy-landing-areas__head > p:last-child { grid-column: 2; grid-row: 1 / span 2; max-width: 31rem; padding-bottom: .35rem; color: var(--color-ontext-2); font-size: 1rem; line-height: 1.65; }
+.consultancy-landing-areas__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(4rem, 8vw, 7rem); border-top: 1px solid rgb(255 255 255 / .2); border-left: 1px solid rgb(255 255 255 / .2); }.consultancy-area-card { display: flex; min-height: 21rem; flex-direction: column; padding: 1.5rem; border-right: 1px solid rgb(255 255 255 / .2); border-bottom: 1px solid rgb(255 255 255 / .2); transition: background-color .3s var(--ease-expo); }.consultancy-area-card:hover { background: var(--color-accent); }.consultancy-area-card__top { display: flex; align-items: center; justify-content: space-between; color: var(--color-accent-bright); font-family: var(--font-mono); font-size: .72rem; }.consultancy-area-card__title { display: block; max-width: 16ch; margin-top: auto; color: #fff; font-family: var(--font-display); font-size: clamp(1.3rem, 1.75vw, 1.8rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.08; }.consultancy-area-card__copy { display: block; min-height: 4.3rem; margin-top: 1rem; color: var(--color-ontext-2); font-size: .875rem; line-height: 1.5; }.consultancy-area-card__cta { display: flex; align-items: center; gap: .6rem; margin-top: 1.5rem; color: var(--color-accent-bright); font-size: .8rem; font-weight: 600; }.consultancy-area-card:hover .consultancy-area-card__top, .consultancy-area-card:hover .consultancy-area-card__title, .consultancy-area-card:hover .consultancy-area-card__copy, .consultancy-area-card:hover .consultancy-area-card__cta { color: var(--color-ink-950); }.consultancy-area-card__cta svg { transition: transform .3s var(--ease-expo); }.consultancy-area-card:hover .consultancy-area-card__cta svg { transform: translateX(.3rem); }
+@media (max-width: 63.99rem) { .consultancy-landing-hero__inner { grid-template-columns: 1fr; }.consultancy-landing-hero__ledger { display: grid; grid-template-columns: repeat(3, 1fr); border-left: 0; }.consultancy-landing-hero__ledger span { padding-left: 0; }.consultancy-landing-intro__grid, .consultancy-landing-areas__head { grid-template-columns: 1fr; }.consultancy-landing-areas__head > p:last-child { grid-column: auto; grid-row: auto; margin-top: 1.75rem; }.consultancy-landing-areas__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 39.99rem) { .consultancy-landing-hero { min-height: 40rem; }.consultancy-landing-hero__inner { gap: 2.5rem; padding-top: 8rem; padding-bottom: 3rem; }.consultancy-landing-hero__word { top: 9%; font-size: 8.4rem; }.consultancy-landing-hero__title { font-size: clamp(3rem, 13vw, 4.1rem); }.consultancy-landing-hero__lead { margin-top: 1.5rem; font-size: 1rem; }.consultancy-landing-hero__actions { display: grid; margin-top: 2rem; }.consultancy-landing-hero__actions > * { width: 100%; }.consultancy-landing-hero__ledger { grid-template-columns: 1fr; }.consultancy-landing-hero__ledger span { padding: .75rem 0; }.consultancy-landing-intro { padding-block: 4rem !important; }.consultancy-landing-principles { grid-template-columns: 1fr; gap: 2rem; margin-top: 4rem; }.consultancy-landing-principles ul { grid-template-columns: 1fr; gap: 1.25rem; }.consultancy-landing-principles li + li { padding-top: 1.25rem; border-top: 1px solid var(--color-rule-strong); border-left: 0; }.consultancy-landing-areas { padding-block: 4rem !important; }.consultancy-landing-areas__grid { grid-template-columns: 1fr; margin-top: 3rem; }.consultancy-area-card { min-height: 18rem; } }
+
+/* Consultancy: an editorial advisory index and decision-brief detail pages. */
+.consultancy-index__list { border-top: 1px solid var(--color-rule); }
+.consultancy-index__item { display: grid; grid-template-columns: 2.25rem 2.75rem minmax(0, 1fr) auto; gap: 1rem; align-items: center; min-height: 9.5rem; padding: 1.75rem .25rem; border-bottom: 1px solid var(--color-rule); transition: color .3s var(--ease-expo), padding .35s var(--ease-expo); }
+.consultancy-index__item:hover { padding-right: .75rem; padding-left: .75rem; color: var(--color-accent-ink); }
+.consultancy-index__number, .consultancy-outcomes__item > span { font-family: var(--font-mono); font-size: .6875rem; color: var(--color-accent-ink); }
+.consultancy-index__icon { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border: 1px solid rgb(185 139 37 / .3); border-radius: 50%; color: var(--color-accent); }
+.consultancy-index__arrow { color: var(--color-accent-ink); transition: transform .3s var(--ease-expo); }
+.consultancy-index__item:hover .consultancy-index__arrow { transform: translateX(.35rem); }
+.consultancy-detail-hero__visual { border: 1px solid rgb(255 255 255 / .16); box-shadow: 1.25rem 1.25rem 0 rgb(185 139 37 / .14); }
+.consultancy-outcomes__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--color-rule); }
+.consultancy-outcomes__item { min-height: 11rem; padding: 1.5rem 1.25rem 1.5rem 0; border-right: 1px solid var(--color-rule); }
+.consultancy-outcomes__item h3 { max-width: 14ch; margin-top: 3.5rem; font-family: var(--font-display); font-size: 1.125rem; line-height: 1.25; font-weight: 600; color: var(--color-text); }
+@media (max-width: 63.99rem) { .consultancy-outcomes__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } .consultancy-outcomes__item:nth-child(2n) { padding-left: 1.25rem; border-right: 0; } }
+@media (max-width: 39.99rem) { .consultancy-index__item { grid-template-columns: 1.75rem 2.5rem minmax(0, 1fr); gap: .75rem; min-height: 8rem; } .consultancy-index__arrow { display: none; } .consultancy-outcomes__list { grid-template-columns: 1fr; } .consultancy-outcomes__item, .consultancy-outcomes__item:nth-child(2n) { min-height: auto; padding: 1.25rem 0; border-right: 0; border-bottom: 1px solid var(--color-rule); } .consultancy-outcomes__item h3 { margin-top: 1.25rem; } }
+
+/* Parent consultancy brief, matching the advisory detail-page structure. */
+.consultancy-page__brief { min-height: 100%; padding: clamp(1.75rem, 3vw, 3rem); border: 1px solid var(--color-rule); background: var(--color-paper-raised); box-shadow: var(--shadow-e2); }
+.consultancy-page__brief li { position: relative; padding-left: 1.25rem; }
+.consultancy-page__brief li::before { position: absolute; top: .55rem; left: 0; width: .4rem; height: .4rem; border-radius: 50%; background: var(--color-accent); content: ""; }
+
+/* Consultancy detail pages: the reference-led advisory composition. The
+   content is deliberately data-driven above; these rules only establish its
+   shared editorial rhythm across every advisory route. */
+.consultancy-detail-page .consultancy-detail-hero {
+  min-height: clamp(32rem, 46vw, 40rem);
+  padding-bottom: clamp(4.5rem, 8vw, 7.5rem);
+}
+
+.consultancy-detail-page .consultancy-detail-hero h1 { max-width: 18ch; }
+.consultancy-detail-page .consultancy-detail-hero .text-d1 {
+  font-size: clamp(3rem, 5.2vw, 5.6rem);
+  letter-spacing: -.055em;
+  line-height: .95;
+}
+
+.consultancy-detail-page > section > .shell {
+  padding-block: clamp(3.5rem, 6.25vw, 7rem);
+}
+
+/* Advisory labels are orientation, not decoration: each one distinguishes a
+   different decision stage in an otherwise intentionally spare page. */
+.consultancy-detail-page span.font-mono.text-marker {
+  display: block;
+  color: var(--color-accent-ink);
+}
+.consultancy-detail-page [data-surface="dark"] span.font-mono.text-marker { color: var(--color-accent-bright); }
+
+.consultancy-detail-page .consultancy-outcomes__list { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
+.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-group] { grid-auto-rows: minmax(10rem, 1fr); }
+.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-item] > div {
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-item] > div > span:first-child { display: block; }
+.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-item] h3 { max-width: 13ch; }
+
+.consultancy-detail-page [aria-labelledby="focus-heading"] [data-reveal-group] > li > div {
+  box-shadow: none;
+  transform: none;
+}
+.consultancy-detail-page [aria-labelledby="focus-heading"] [data-reveal-group] > li > div:hover {
+  transform: translateX(.25rem);
+  box-shadow: none;
+}
+
+.consultancy-detail-page > section:last-of-type [data-reveal-group] { gap: 1rem; }
+
+@media (max-width: 63.99rem) {
+  .consultancy-detail-page .consultancy-detail-hero { min-height: 34rem; }
+  .consultancy-detail-page > section > .shell { padding-block: clamp(3rem, 9vw, 4.5rem); }
+}
+
+@media (max-width: 39.99rem) {
+  .consultancy-detail-page .consultancy-detail-hero {
+    min-height: 33rem;
+    padding-top: 7.25rem;
+    padding-bottom: 4rem;
+  }
+  .consultancy-detail-page .consultancy-detail-hero .text-d1 { font-size: clamp(2.6rem, 12vw, 3.4rem); }
+  .consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-item] > div { min-height: 8.5rem; }
+}
+
+/* Guided case-study CTA and WhatsApp assistant. */
+.case-study-guide { position: relative; display: flex; min-height: 8.5rem; align-items: center; justify-content: flex-end; }
+.case-study-guide__unit { position: relative; display: flex; align-items: center; justify-content: flex-end; padding-left: clamp(8.5rem, 13vw, 11.5rem); transform-origin: 70% 70%; }
+.case-study-guide__bot { position: absolute; z-index: 2; bottom: -2.7rem; left: 0; width: clamp(8.5rem, 14vw, 11.75rem); pointer-events: none; transform-origin: 50% 100%; }
+.case-study-guide__bot img, .whatsapp-assistant__bot img { display: block; width: 100%; height: auto; }
+@media (prefers-reduced-motion: no-preference) { .case-study-guide__unit { animation: case-study-guide-float 4.8s ease-in-out 1.2s infinite; } }
+@keyframes case-study-guide-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-.4rem); } }
+.whatsapp-assistant { position: fixed; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 90; width: 4rem; height: 4rem; transform-origin: right bottom; }
+.whatsapp-assistant .whatsapp-float { position: absolute; right: 0; bottom: 0; z-index: 1; width: 4rem; height: 4rem; }
+.whatsapp-float__ring { position: absolute; inset: -.28rem; border-radius: inherit; pointer-events: none; }
+.whatsapp-float__ring--black { border: 1px solid rgb(9 10 11 / .78); }
+.whatsapp-float__ring--gold { inset: -.62rem; border: 1px solid rgb(232 191 84 / .7); }
+@media (prefers-reduced-motion: no-preference) { .whatsapp-float__ring--gold { animation: whatsapp-contact-pulse 2.35s cubic-bezier(.2, .7, .2, 1) infinite; } }
+.whatsapp-assistant__bot { position: absolute; right: .1rem; bottom: 3.1rem; z-index: 2; width: 4.9rem; opacity: 0; transform: translateY(1rem) scale(.78); transform-origin: 75% 100%; pointer-events: none; transition: opacity .18s ease, transform .2s var(--ease-expo); }
+.whatsapp-assistant__hand { position: absolute; inset: 0; display: block; overflow: hidden; clip-path: inset(39% 63% 38% 10%); transform-origin: 27% 61%; }
+.whatsapp-assistant__messages { position: absolute; right: 3.55rem; bottom: 3.9rem; display: grid; justify-items: end; gap: .34rem; width: max-content; max-width: 9rem; pointer-events: none; }
+.whatsapp-assistant__messages span { position: relative; border: 1px solid rgb(232 191 84 / .42); border-radius: 1rem 1rem .25rem 1rem; background: var(--color-ink-950); padding: .43rem .64rem; color: #fff; font: 600 .625rem/1 var(--font-display); letter-spacing: .01em; opacity: 0; box-shadow: 0 .625rem 1.5rem rgb(0 0 0 / .24); transform: translateX(.8rem) translateY(.4rem) scale(.82); transition: opacity .18s ease, transform .2s var(--ease-expo); }
+.whatsapp-assistant__messages span::after { position: absolute; right: -.22rem; bottom: .18rem; width: .42rem; height: .42rem; border-right: 1px solid rgb(232 191 84 / .42); border-bottom: 1px solid rgb(232 191 84 / .42); background: var(--color-ink-950); content: ""; transform: rotate(-45deg); }
+.whatsapp-assistant--ready .whatsapp-assistant__bot { opacity: 1; transform: translateY(0) scale(1); }
+.whatsapp-assistant--ready .whatsapp-assistant__messages span { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+.whatsapp-assistant--ready .whatsapp-assistant__messages span:nth-child(2) { transition-delay: .12s; }
+.whatsapp-assistant--ready .whatsapp-assistant__messages span:nth-child(3) { transition-delay: .24s; }
+@media (prefers-reduced-motion: no-preference) { .whatsapp-assistant--ready { animation: whatsapp-assistant-unit-arrival .8s var(--ease-expo) both; } .whatsapp-assistant--ready .whatsapp-assistant__bot { animation: whatsapp-bot-arrival .95s var(--ease-expo) both; } .whatsapp-assistant--ready .whatsapp-assistant__hand { animation: whatsapp-hand-wave .8s ease-in-out .2s 2; } }
+@keyframes whatsapp-assistant-unit-arrival { 0% { transform: translateY(.6rem) scale(.94); } 62% { transform: translateY(-.16rem) scale(1.025); } 100% { transform: translateY(0) scale(1); } }
+@keyframes whatsapp-bot-arrival { 0% { opacity: 0; transform: translateY(1rem) scale(.78); } 65% { opacity: 1; transform: translateY(-.14rem) scale(1.03); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes whatsapp-hand-wave { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(16deg); } 50% { transform: rotate(-8deg); } 75% { transform: rotate(13deg); } }
+@media (max-width: 39.99rem) {
+  .case-study-guide { min-height: 7rem; }
+  .case-study-guide__unit { padding-left: 7.25rem; }
+  .case-study-guide__bot { bottom: -1.7rem; width: 8rem; }
+  .whatsapp-assistant, .whatsapp-assistant .whatsapp-float { width: 3.5rem; height: 3.5rem; }
+  .whatsapp-assistant__bot { width: 4.1rem; bottom: 2.7rem; }
+  .whatsapp-assistant__messages { right: 2.8rem; bottom: 3.25rem; max-width: 7.3rem; }
+}
+
+/* Keep the overview's dark decision grid independent of generic link styles. */
+.consultancy-landing-areas .consultancy-landing-areas__grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.consultancy-landing-areas .consultancy-area-card { background: transparent !important; }
+.consultancy-landing-areas .consultancy-area-card:hover { background: var(--color-accent) !important; }
+
+/* Final consultation invitation: a small 3D decision object, built from
+   architectural planes rather than a decorative stock illustration. */
+.consultancy-next-section { padding-block: clamp(5rem, 10vw, 10rem) !important; overflow: hidden; }
+.consultancy-next-section__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(20rem, 1.1fr); align-items: center; gap: clamp(3rem, 9vw, 10rem); }
+.consultancy-next-section h2 { max-width: 10ch; font-family: var(--font-display); font-size: clamp(3rem, 5.2vw, 5.8rem); font-weight: 600; letter-spacing: -.06em; line-height: .94; }
+.consultancy-decision-object { display: grid; min-height: clamp(24rem, 38vw, 34rem); place-items: center; perspective: 1100px; }
+.consultancy-decision-object__scene { position: relative; width: min(26rem, 80vw); height: min(26rem, 80vw); transform: rotateX(62deg) rotateZ(-38deg); transform-style: preserve-3d; }
+.consultancy-decision-object__plane { position: absolute; inset: 16%; border: 1px solid rgb(138 91 8 / .34); background: rgb(248 237 215 / .42); box-shadow: 1.1rem 1.7rem 2.5rem rgb(12 12 12 / .09); transform-style: preserve-3d; }
+.consultancy-decision-object__plane--top { transform: translateZ(5rem); }.consultancy-decision-object__plane--middle { inset: 23%; background: rgb(255 255 255 / .92); transform: translateZ(2.5rem); }.consultancy-decision-object__plane--base { inset: 9%; background: rgb(232 191 84 / .18); transform: translateZ(0); }
+.consultancy-decision-object__core { position: absolute; top: 50%; left: 50%; width: 5.5rem; height: 5.5rem; border: 1px solid var(--color-accent-ink); background: var(--color-ink-950); box-shadow: 0 1.25rem 2.5rem rgb(12 12 12 / .28); transform: translate(-50%, -50%) translateZ(7rem) rotateZ(45deg); }
+.consultancy-decision-object__core::after { position: absolute; inset: 1.15rem; border: 1px solid var(--color-accent-bright); content: ""; }
+.consultancy-decision-object__axis { position: absolute; top: 50%; left: 50%; width: 15rem; height: 1px; background: rgb(138 91 8 / .45); transform-origin: left center; }.consultancy-decision-object__axis--x { transform: translateZ(7.1rem) rotate(0); }.consultancy-decision-object__axis--y { transform: translateZ(7.1rem) rotate(90deg); }
+@media (prefers-reduced-motion: no-preference) { .consultancy-decision-object__scene { animation: consultancy-object-turn 12s cubic-bezier(.4, 0, .2, 1) infinite alternate; }.consultancy-decision-object__core { animation: consultancy-core-float 4.2s ease-in-out infinite alternate; } }
+@keyframes consultancy-object-turn { from { transform: rotateX(62deg) rotateZ(-38deg) rotateY(0); } to { transform: rotateX(62deg) rotateZ(-20deg) rotateY(10deg); } }
+@keyframes consultancy-core-float { from { transform: translate(-50%, -50%) translateZ(6.1rem) rotateZ(45deg); } to { transform: translate(-50%, -50%) translateZ(8rem) rotateZ(45deg); } }
+@media (max-width: 63.99rem) { .consultancy-next-section__grid { grid-template-columns: 1fr; gap: 1.5rem; }.consultancy-decision-object { min-height: 25rem; } }
+@media (max-width: 39.99rem) { .consultancy-next-section { padding-block: 4rem !important; }.consultancy-next-section h2 { max-width: 11ch; }.consultancy-decision-object { min-height: 18rem; }.consultancy-decision-object__scene { width: 18rem; height: 18rem; }.consultancy-decision-object__axis { width: 11rem; } }
