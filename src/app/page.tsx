@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 
 import { Hero } from "@/components/sections/Hero";
+import { CaseStudyGuide } from "@/components/sections/CaseStudyGuide";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { BeforeAfterWorkflow } from "@/components/sections/WorkflowDiagram";
 import { AnimatedAIGlobe } from "@/components/sections/AnimatedAIGlobe";
@@ -79,9 +80,7 @@ export default function HomePage() {
                   billing, and accounting without waiting on a developer for routine changes.
                 </p>
               </div>
-              <Button href="/case-studies/gman-stitching-platform" variant="secondary" size="md" arrow>
-                Read the Gman case study
-              </Button>
+              <CaseStudyGuide />
             </div>
           </Reveal>
         </div>

@@ -69,7 +69,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={inter.variable}
       suppressHydrationWarning
     >
-      <body>
+      {/* Browser extensions can attach attributes to the document shell before
+          React hydrates. Keep that external mutation from producing a noisy
+          warning, while component markup remains fully checked. */}
+      <body suppressHydrationWarning>
         <a href="#main" className="skip-link">
           Skip to content
         </a>
