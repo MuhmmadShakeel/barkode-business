@@ -8,15 +8,13 @@ import { Marker, Section, SectionHead } from "@/components/ui/Section";
 import { PROCESS } from "@/lib/content";
 import { JsonLd, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
+import { getLocale } from "next-intl/server";
+import { PROCESS_AR } from "@/i18n/process-ar";
 
-export const metadata = buildMetadata({
-  title: "Our Process — From idea to launch and long-term support",
-  description:
-    "A structured product engineering process that reduces confusion, controls scope, improves communication, and delivers software that supports real business goals.",
-  path: "/process",
-});
+export async function generateMetadata() { const ar = (await getLocale()) === "ar"; return buildMetadata({ title: ar ? "منهجية عملنا من الفكرة إلى الإطلاق والدعم" : "Our Process — From idea to launch and long-term support", description: ar ? "منهجية منظمة لتطوير المنتجات بمساعدة الذكاء الاصطناعي ومراجعة بشرية، تحدد النطاق وتحسن التواصل وتنتج برمجيات تدعم أهداف العمل." : "A structured product engineering process that reduces confusion, controls scope, improves communication, and delivers software that supports real business goals.", path: "/process" }); }
 
-export default function ProcessPage() {
+export default async function ProcessPage() {
+  const ar = (await getLocale()) === "ar";
   return (
     <>
       <section
@@ -29,19 +27,18 @@ export default function ProcessPage() {
               id="process-hero-heading"
               className="site-hero-heading max-w-[14ch] font-display font-semibold text-text"
             >
-              A clear product engineering process from{" "}
-              <span className="text-accent-ink">idea to launch.</span>
+              {ar ? "منهجية واضحة لتطوير المنتجات من " : "A clear product engineering process from "}
+              <span className="text-accent-ink">{ar ? "الفكرة إلى الإطلاق." : "idea to launch."}</span>
             </h1>
             <p className="mt-5 max-w-xl text-[clamp(.9375rem,1.35vw,1.125rem)] leading-relaxed text-text-2">
-              We follow a structured process that helps reduce confusion, control scope, improve
-              communication, and deliver software that supports real business goals.
+              {ar ? "نتبع منهجية منظمة تقلل الالتباس وتضبط النطاق وتحسن التواصل، لنقدم برمجيات تخدم أهداف العمل الحقيقية. نعمل بمساعدة الذكاء الاصطناعي في البحث والتصميم والتطوير والاختبار، مع مراجعة فريقنا لكل خطوة ومسؤوليته عن النتيجة النهائية." : "We follow a structured process that helps reduce confusion, control scope, improve communication, and deliver software that supports real business goals."}
             </p>
             <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
               <Button href="/contact" size="md" className="w-full sm:w-auto" arrow>
-                Start Your Project
+                {ar ? "ابدأ مشروعك" : "Start Your Project"}
               </Button>
               <Button href="/contact?intent=strategy-call" variant="secondary" size="md" className="w-full sm:w-auto">
-                Book a Free Project Discovery Call
+                {ar ? "احجز مكالمة تعريفية مجانية" : "Book a Free Project Discovery Call"}
               </Button>
             </div>
           </Reveal>
@@ -49,7 +46,7 @@ export default function ProcessPage() {
           <Reveal kind="right" className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] opacity-20 lg:pointer-events-auto lg:relative lg:inset-auto lg:h-[min(58svh,39rem)] lg:opacity-100">
             <Image
               src="/images/process/business-process-hero.webp"
-              alt="Business and product leaders reviewing a structured product engineering workflow"
+              alt={ar ? "قادة الأعمال والمنتجات يراجعون خطة منظمة لتطوير المنتج" : "Business and product leaders reviewing a structured product engineering workflow"}
               fill
               priority
               sizes="58vw"
@@ -65,19 +62,17 @@ export default function ProcessPage() {
             <div className="grid gap-6 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] lg:items-end">
               <div>
                 <h2 id="timing-heading" className="max-w-[16ch] text-d3 text-text">
-                  A route to a decision before a long build begins.
+                  {ar ? "قرار واضح قبل بدء مرحلة بناء طويلة." : "A route to a decision before a long build begins."}
                 </h2>
                 <p className="measure mt-5 text-text-2">
-                  Discovery turns the problem into scope, assumptions, priorities, and a practical
-                  recommendation. The delivery range is then agreed against the work that actually
-                  needs to happen.
+                  {ar ? "تحول مرحلة الاستكشاف التحدي إلى نطاق وافتراضات وأولويات وتوصية عملية. ثم نتفق على مدة التنفيذ بناءً على العمل المطلوب فعلًا." : "Discovery turns the problem into scope, assumptions, priorities, and a practical recommendation. The delivery range is then agreed against the work that actually needs to happen."}
                 </p>
               </div>
               <dl className="grid gap-3 sm:grid-cols-3">
                 {[
-                  ["AI automation sprint", "2–6 weeks"],
-                  ["Focused MVP", "4–10 weeks"],
-                  ["Custom product build", "8–20+ weeks"],
+                  [ar ? "مرحلة أتمتة بالذكاء الاصطناعي" : "AI automation sprint", ar ? "من أسبوعين إلى 6 أسابيع" : "2–6 weeks"],
+                  [ar ? "منتج أولي مركز" : "Focused MVP", ar ? "من 4 إلى 10 أسابيع" : "4–10 weeks"],
+                  [ar ? "بناء منتج مخصص" : "Custom product build", ar ? "من 8 إلى 20 أسبوعًا أو أكثر" : "8–20+ weeks"],
                 ].map(([label, range]) => (
                   <div key={label} className="border-t border-rule pt-4">
                     <dt className="text-sm text-text-2">{label}</dt>
@@ -95,17 +90,15 @@ export default function ProcessPage() {
         <div className="shell">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
             <Reveal>
-              <Marker>Why it matters</Marker>
+              <Marker>{ar ? "لماذا يهم ذلك" : "Why it matters"}</Marker>
               <h2 id="why-heading" className="mt-5 max-w-[16ch] text-d2 text-text">
-                Good software needs more than{" "}
-                <span className="text-accent-ink">development.</span>
+                {ar ? "البرمجيات الجيدة تحتاج إلى أكثر من " : "Good software needs more than "}
+                <span className="text-accent-ink">{ar ? "التطوير." : "development."}</span>
               </h2>
             </Reveal>
             <Reveal kind="right">
               <p className="measure text-lead text-text-2">
-                A successful product needs clear requirements, user-focused design, technical
-                planning, structured development, testing, deployment, and ongoing improvement. Our
-                process keeps the project clear from the first conversation to the final launch.
+                {ar ? "يحتاج المنتج الناجح إلى متطلبات واضحة وتصميم يراعي المستخدم وتخطيط تقني وتطوير منظم واختبارات ونشر وتحسين مستمر. نبقي المشروع واضحًا من أول حديث حتى الإطلاق وما بعده." : "A successful product needs clear requirements, user-focused design, technical planning, structured development, testing, deployment, and ongoing improvement. Our process keeps the project clear from the first conversation to the final launch."}
               </p>
             </Reveal>
           </div>
@@ -118,9 +111,9 @@ export default function ProcessPage() {
           <Reveal>
             <SectionHead
               id="timeline-heading"
-              marker="The full route"
-              lead="Eight steps, and what"
-              accent="you get from each"
+              marker={ar ? "المسار الكامل" : "The full route"}
+              lead={ar ? "ثماني مراحل وما" : "Eight steps, and what"}
+              accent={ar ? "تتسلمه في كل منها" : "you get from each"}
               align="center"
               size="d1"
               className="process-route-heading mx-auto max-w-6xl"
@@ -137,21 +130,21 @@ export default function ProcessPage() {
       <JsonLd
         data={[
           breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Process", path: "/process" },
+            { name: ar ? "الرئيسية" : "Home", path: "/" },
+            { name: ar ? "منهجية العمل" : "Process", path: "/process" },
           ]),
           {
             "@context": "https://schema.org",
             "@type": "HowTo",
-            name: "Barakode product engineering process",
+            name: ar ? "منهجية باراكود لتطوير المنتجات" : "Barakode product engineering process",
             description:
-              "The structured route Barakode Technologies follows from discovery through to long-term support.",
+              ar ? "منهجية باراكود المنظمة من استكشاف الاحتياجات إلى الدعم طويل الأمد." : "The structured route Barakode Technologies follows from discovery through to long-term support.",
             url: `${SITE.url}/process`,
             step: PROCESS.map((s, i) => ({
               "@type": "HowToStep",
               position: i + 1,
-              name: s.title,
-              text: s.what,
+              name: ar ? PROCESS_AR[i].title : s.title,
+              text: ar ? PROCESS_AR[i].what : s.what,
             })),
           },
         ]}

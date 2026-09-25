@@ -11,11 +11,46 @@ import { Registration } from "@/components/ui/Schematic";
 import { Section, SectionHead } from "@/components/ui/Section";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 
-import { SERVICE_PAGES, getServicePage } from "@/lib/service-pages";
-import { getService } from "@/lib/services";
+import { SERVICE_PAGES, getServicePage, type ServicePage } from "@/lib/service-pages";
+import { getService, SERVICES } from "@/lib/services";
 import { ENGAGEMENT_MODELS } from "@/lib/content";
 import { CLIENT_CASES, clientCaseInTrack, type TrackId } from "@/lib/case-studies";
 import { JsonLd, breadcrumbSchema, buildMetadata, faqSchema, serviceSchema } from "@/lib/seo";
+import { getLocale, getMessages } from "next-intl/server";
+
+type ArabicMessages = typeof import("@/i18n/messages/ar.json");
+
+function localizeServicePage(page: ServicePage, messages: ArabicMessages): ServicePage {
+  const serviceIndex = SERVICES.findIndex((item) => item.slug === page.slug);
+  const pageIndex = SERVICE_PAGES.findIndex((item) => item.slug === page.slug);
+  const card = [...messages.home.services.cards, ...messages.homeRecoveredServices][serviceIndex];
+  const common = messages.serviceDetailCommon;
+  const specific = messages.serviceDetailPrimary[pageIndex];
+  const generic = common.generic;
+  const copy = specific ?? generic;
+  const body = specific?.body ?? messages.serviceListing.cards[serviceIndex].delivers;
+  return {
+    ...page,
+    metaTitle: `${card.title} | باراكود تكنولوجيز`,
+    metaDescription: `${body} ${messages.servicePositioning.hero}`,
+    hero: {
+      ...page.hero,
+      marker: card.title,
+      heading: copy.heading,
+      accent: specific?.accent ?? messages.serviceListing.cards[serviceIndex].short,
+      body: `${body} ${messages.servicePositioning.hero}`,
+      primary: { ...page.hero.primary, label: copy.primary },
+      secondary: { ...page.hero.secondary, label: copy.secondary },
+    },
+    audience: copy.audience,
+    problem: specific?.problem ?? { ...generic.problem, body: messages.serviceListing.cards[serviceIndex].problem },
+    builds: copy.builds,
+    extra: copy.extra,
+    process: copy.process,
+    engagement: { ...page.engagement, note: copy.engagement },
+    faqs: copy.faqs,
+  };
+}
 
 /** Which case-study track each service page should surface as proof. */
 const PROOF_TRACK: Record<string, TrackId> = {
@@ -48,11 +83,15 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const page = getServicePage(slug);
+  const source = getServicePage(slug);
+  const locale = await getLocale();
+  const messages = await getMessages();
+  const page = source && locale === "ar" ? localizeServicePage(source, messages as unknown as ArabicMessages) : source;
   if (!page) return {};
+  const position = messages.servicePositioning as { hero: string };
   return buildMetadata({
     title: page.metaTitle,
-    description: page.metaDescription,
+    description: locale === "ar" ? page.metaDescription : `${page.metaDescription} ${position.hero}`,
     path: `/services/${page.slug}`,
   });
 }
@@ -63,14 +102,27 @@ export default async function ServiceDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const page = getServicePage(slug);
+  const source = getServicePage(slug);
   const service = getService(slug);
-  if (!page || !service) notFound();
+  if (!source || !service) notFound();
+  const locale = await getLocale();
+  const messages = await getMessages();
+  const ar = locale === "ar" ? messages as unknown as ArabicMessages : null;
+  const page = ar ? localizeServicePage(source, ar) : source;
+  const common = ar?.serviceDetailCommon;
+  const position = messages.servicePositioning as { hero: string; overview: string; process: string };
+  const listing = ar?.serviceListing;
+  const serviceIndex = SERVICES.findIndex((item) => item.slug === slug);
 
   const models = ENGAGEMENT_MODELS.filter((m) => page.engagement.models.includes(m.slug));
+  const modelText = (model: (typeof ENGAGEMENT_MODELS)[number]) => {
+    const index = ENGAGEMENT_MODELS.findIndex((item) => item.slug === model.slug);
+    return ar ? { ...model, ...listing!.models[index], pricing: common!.modelPricing[index] } : model;
+  };
   const track = PROOF_TRACK[page.slug] ?? "all";
   const proof = CLIENT_CASES.filter((c) => clientCaseInTrack(c, track)).slice(0, 2);
-  const heroImage = SERVICE_HERO_IMAGES[page.slug];
+  const originalHeroImage = SERVICE_HERO_IMAGES[page.slug];
+  const heroImage = ar && originalHeroImage ? { ...originalHeroImage, alt: `صورة توضيحية لخدمة ${page.hero.marker}` } : originalHeroImage;
 
   return (
     <div className="service-detail-page">
@@ -79,20 +131,20 @@ export default async function ServiceDetailPage({
         heading={page.hero.heading}
         accent={page.hero.accent}
         trail={page.hero.trail}
-        body={page.hero.body}
+        body={ar ? page.hero.body : `${page.hero.body} ${position.hero}`}
         primary={page.hero.primary}
         secondary={page.hero.secondary}
         crumbs={[
-          { name: "Home", path: "/" },
-          { name: "Services", path: "/services" },
-          { name: service.shortTitle, path: `/services/${page.slug}` },
+          { name: common?.home ?? "Home", path: "/" },
+          { name: common?.services ?? "Services", path: "/services" },
+          { name: page.hero.marker, path: `/services/${page.slug}` },
         ]}
         meta={[
-          { label: "Delivered as", value: models.map((m) => m.name).join(" · ") },
-          { label: "Typical timeline", value: models[0]?.timeline ?? "Scoped after discovery" },
+          { label: common?.deliveredAs ?? "Delivered as", value: models.map((m) => modelText(m).name).join(" · ") },
+          { label: common?.typicalTimeline ?? "Typical timeline", value: models[0] ? modelText(models[0]).timeline : common?.scopedTimeline ?? "Scoped after discovery" },
           {
-            label: "Pricing",
-            value: "Custom quote after discovery — no fixed packages.",
+            label: common?.pricing ?? "Pricing",
+            value: common?.customPricing ?? "Custom quote after discovery, with no fixed packages.",
           },
         ]}
         showMarker={false}
@@ -108,9 +160,9 @@ export default async function ServiceDetailPage({
         <div className="shell">
           <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)]">
             <Reveal>
-              <span className="service-detail-kicker">01 / Fit</span>
+              <span className="service-detail-kicker">{common?.fitKicker ?? "01 / Fit"}</span>
               <h2 id="who-heading" className="max-w-[14ch] text-d2 text-text">
-                Who this is <span className="text-accent-ink">for.</span>
+                {common?.fitHeading ?? "Who this is"} <span className="text-accent-ink">{common?.fitAccent ?? "for."}</span>
               </h2>
             </Reveal>
             <RevealGroup as="ul" className="service-detail-list grid gap-x-8 sm:grid-cols-2">
@@ -134,7 +186,7 @@ export default async function ServiceDetailPage({
         <div className="shell relative">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
             <Reveal>
-              <span className="service-detail-kicker">02 / Challenge</span>
+              <span className="service-detail-kicker">{common?.challengeKicker ?? "02 / Challenge"}</span>
               <h2 id="problem-heading" className="max-w-[17ch] text-d2 text-text">
                 {page.problem.heading}{" "}
                 <span className="text-accent-ink">{page.problem.accent}.</span>
@@ -173,13 +225,13 @@ export default async function ServiceDetailPage({
                 {page.builds.heading}
               </h2>
               <p className="mt-5 max-w-[42ch] text-text-2">
-                Designed as connected parts of one durable product system—not a pile of disconnected features.
+                {common?.buildsIntro ?? "Designed as connected parts of one durable product system, not a pile of disconnected features."}
               </p>
             </Reveal>
             <Reveal className="service-detail-sculpture">
               <Image
                 src="/images/services/generated/connected-product-sculpture.webp"
-                alt="Connected desktop, laptop, and mobile product interfaces arranged as a software system"
+                alt={common?.sculptureAlt ?? "Connected desktop, laptop, and mobile product interfaces arranged as a software system"}
                 fill
                 sizes="(min-width: 1024px) 48vw, 100vw"
                 className="object-cover"
@@ -241,15 +293,15 @@ export default async function ServiceDetailPage({
         <div className="shell relative">
           <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
             <Reveal>
-              <span className="service-detail-kicker">04 / Delivery</span>
+              <span className="service-detail-kicker">{common?.deliveryKicker ?? "04 / Delivery"}</span>
               <h2 id="proc-heading" className="max-w-[14ch] text-d2 text-text">
                 {page.process.heading}
               </h2>
               <p className="measure mt-6 text-text-2">
-                The same structured route every engagement follows, scoped to this service.
+                {common?.deliveryIntro ?? position.process}
               </p>
               <Button href="/process" variant="secondary" size="md" className="mt-8" arrow>
-                See the full process
+                {common?.fullProcess ?? "See the full process"}
               </Button>
             </Reveal>
 
@@ -276,24 +328,29 @@ export default async function ServiceDetailPage({
           <Reveal>
             <SectionHead
               id="proof-heading"
-              marker="05 / Evidence"
-              lead="Related"
-              accent="work"
-              intro="Real engagements with real screenshots, timelines, and stacks. Nothing here is a stand-in."
+              marker={common?.evidenceMarker ?? "05 / Evidence"}
+              lead={common?.evidenceHeading ?? "Related"}
+              accent={common?.evidenceAccent ?? "work"}
+              intro={common?.evidenceIntro ?? "Real engagements with real screenshots, timelines, and stacks. Nothing here is a stand-in."}
             />
           </Reveal>
 
           <RevealGroup className="mt-12 grid gap-6 lg:grid-cols-2" as="ul">
-            {proof.map((c) => (
+            {proof.map((c) => {
+              const index = CLIENT_CASES.findIndex((item) => item.slug === c.slug);
+              const caseCopy = ar ? [...ar.home.work.cards, ...ar.homeErpCards][index] : null;
+              const study = ar && caseCopy ? { ...c, name: ar.homeCaseNames[index], clientType: caseCopy.clientType, industry: caseCopy.industry, summary: caseCopy.summary, results: [caseCopy.result], coverAlt: caseCopy.coverAlt, timeline: ar.homeTimelines[index] } : c;
+              return (
               <RevealItem key={c.slug} as="li" className="h-full">
-                <ClientCaseCard study={c} className="h-full" />
+                <ClientCaseCard study={study} className="h-full" labels={ar?.home.work} stackLabels={ar?.homeStackLabels[index]} />
               </RevealItem>
-            ))}
+              );
+            })}
           </RevealGroup>
 
           <Reveal className="mt-8">
             <Button href="/case-studies" variant="ghost" size="sm" arrow>
-              Explore all case studies
+              {common?.allCases ?? "Explore all case studies"}
             </Button>
           </Reveal>
         </div>
@@ -304,9 +361,9 @@ export default async function ServiceDetailPage({
         <div className="shell">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
             <Reveal>
-              <span className="service-detail-kicker">06 / Structure</span>
+              <span className="service-detail-kicker">{common?.structureKicker ?? "06 / Structure"}</span>
               <h2 id="eng-heading" className="max-w-[15ch] text-d2 text-text">
-                How this work is <span className="text-accent-ink">structured.</span>
+                {common?.structureHeading ?? "How this work is"} <span className="text-accent-ink">{common?.structureAccent ?? "structured."}</span>
               </h2>
               <p className="measure mt-6 text-text-2">{page.engagement.note}</p>
             </Reveal>
@@ -320,23 +377,23 @@ export default async function ServiceDetailPage({
                   >
                     <Registration />
                     <h3 className="font-display text-[1.0625rem] font-semibold text-text">
-                      {m.name}
+                      {modelText(m).name}
                     </h3>
                     <p className="mt-2.5 flex-1 text-sm leading-relaxed text-text-3">
-                      {m.bestFor}
+                      {modelText(m).bestFor}
                     </p>
                     <dl className="mt-5 flex flex-col gap-2 pt-1 text-xs">
                       <div className="flex justify-between gap-3">
-                        <dt className="text-text-4">Timeline</dt>
-                        <dd className="text-right text-text-2">{m.timeline}</dd>
+                        <dt className="text-text-4">{common?.timeline ?? "Timeline"}</dt>
+                        <dd className="text-right text-text-2">{modelText(m).timeline}</dd>
                       </div>
                       <div className="flex justify-between gap-3">
-                        <dt className="text-text-4">Pricing</dt>
-                        <dd className="text-right text-text-2">{m.pricing}</dd>
+                        <dt className="text-text-4">{common?.pricing ?? "Pricing"}</dt>
+                        <dd className="text-right text-text-2">{modelText(m).pricing}</dd>
                       </div>
                     </dl>
                     <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent-ink">
-                      Details
+                      {common?.details ?? "Details"}
                       <ArrowRight
                         aria-hidden
                         className="size-3.5 transition-transform duration-300 [transition-timing-function:var(--ease-expo)] group-hover/em:translate-x-1"
@@ -353,14 +410,14 @@ export default async function ServiceDetailPage({
       <JsonLd
         data={[
           serviceSchema({
-            name: service.title,
-            description: page.metaDescription,
+            name: page.hero.marker,
+            description: ar ? page.metaDescription : `${page.metaDescription} ${position.hero}`,
             path: `/services/${page.slug}`,
           }),
           breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Services", path: "/services" },
-            { name: service.shortTitle, path: `/services/${page.slug}` },
+            { name: common?.home ?? "Home", path: "/" },
+            { name: common?.services ?? "Services", path: "/services" },
+            { name: page.hero.marker, path: `/services/${page.slug}` },
           ]),
           faqSchema(page.faqs),
         ]}

@@ -5,6 +5,8 @@ import { Check, ChevronDown } from "lucide-react";
 
 import { HOW_WE_WORK } from "@/lib/content";
 import { cn } from "@/lib/utils";
+import { useLocale } from "next-intl";
+import { workflowAr, workflowDetailsAr } from "@/i18n/about-ar";
 
 const STEP_DETAILS = [
   "We begin with the outcome the business needs, the people involved, and the constraints that shape the right solution.",
@@ -17,12 +19,13 @@ const STEP_DETAILS = [
 ];
 
 export function AboutWorkFlow() {
+  const ar = useLocale() === "ar";
   const [open, setOpen] = useState(0);
 
   return (
     <ol className="relative">
       <span aria-hidden className="absolute top-7 bottom-7 left-[1.375rem] w-px bg-rule-strong" />
-      {HOW_WE_WORK.map((label, index) => {
+      {(ar ? workflowAr : HOW_WE_WORK).map((label, index) => {
         const active = open === index;
         const panelId = `about-work-step-${index}`;
 
@@ -60,7 +63,7 @@ export function AboutWorkFlow() {
                 <div className="overflow-hidden">
                   <div className="flex gap-3 pb-6 pr-10 text-sm leading-relaxed text-text-2 sm:text-[.9375rem]">
                     <Check aria-hidden className="mt-1 size-4 shrink-0 text-accent" strokeWidth={2.2} />
-                    <p className="max-w-2xl">{STEP_DETAILS[index]}</p>
+                    <p className="max-w-2xl">{ar ? workflowDetailsAr[index] : STEP_DETAILS[index]}</p>
                   </div>
                 </div>
               </div>

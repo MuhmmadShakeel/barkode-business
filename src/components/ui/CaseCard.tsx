@@ -16,12 +16,16 @@ export function ClientCaseCard({
   compact = false,
   subtle = false,
   className,
+  labels,
+  stackLabels,
 }: {
   study: ClientCase;
   priority?: boolean;
   compact?: boolean;
   subtle?: boolean;
   className?: string;
+  labels?: { engagement: string; delivered: string; services: string; timeline: string; view: string };
+  stackLabels?: string[];
 }) {
   return (
     <article
@@ -50,7 +54,7 @@ export function ClientCaseCard({
         />
         <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-[var(--radius-xs)] border border-white/22 bg-ink-950/72 px-2.5 py-1 font-mono text-[0.625rem] tracking-[0.1em] text-white uppercase backdrop-blur-sm">
           <span aria-hidden className="size-1 rounded-full bg-signal" />
-          Client engagement
+          {labels?.engagement ?? "Client engagement"}
         </span>
       </div>
 
@@ -72,11 +76,11 @@ export function ClientCaseCard({
 
         <dl className={cn("grid gap-x-6 gap-y-3 border-t border-rule text-xs sm:grid-cols-2", compact ? "mt-4 pt-4" : "mt-5 pt-5")}>
           <div>
-            <dt className="font-mono tracking-[0.1em] text-text-4 uppercase">Delivered</dt>
-            <dd className="mt-1.5 text-text-2">{study.servicesDelivered.length} services</dd>
+            <dt className="font-mono tracking-[0.1em] text-text-4 uppercase">{labels?.delivered ?? "Delivered"}</dt>
+            <dd className="mt-1.5 text-text-2">{study.servicesDelivered.length} {labels?.services ?? "services"}</dd>
           </div>
           <div>
-            <dt className="font-mono tracking-[0.1em] text-text-4 uppercase">Timeline</dt>
+            <dt className="font-mono tracking-[0.1em] text-text-4 uppercase">{labels?.timeline ?? "Timeline"}</dt>
             <dd className="mt-1.5 text-text-2 tabular-nums">{study.timeline}</dd>
           </div>
         </dl>
@@ -85,12 +89,12 @@ export function ClientCaseCard({
           {study.stack
             .flatMap((g) => g.items)
             .slice(0, 5)
-            .map((t) => (
+            .map((t, index) => (
               <li
                 key={t}
                 className="rounded-[var(--radius-xs)] border border-rule bg-paper-sunken px-2 py-0.5 font-mono text-[0.6875rem] text-text-3"
               >
-                {t}
+                {stackLabels?.[index] ?? t}
               </li>
             ))}
         </ul>
@@ -106,7 +110,7 @@ export function ClientCaseCard({
         )}
 
         <span className={cn("mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-accent-ink", compact ? "pt-4" : "pt-6")}>
-          View case study
+          {labels?.view ?? "View case study"}
           <ArrowUpRight
             aria-hidden
             className="size-4 transition-transform duration-300 [transition-timing-function:var(--ease-expo)] group-hover/cc:translate-x-0.5 group-hover/cc:-translate-y-0.5"

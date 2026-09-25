@@ -15,6 +15,18 @@ import {
 } from "@/lib/case-studies";
 import { EASE_EXPO } from "@/lib/motion";
 import { cn } from "@/lib/utils";
+import { useLocale } from "next-intl";
+import { localizeClientCase, localizeResearchStudy } from "@/i18n/case-studies-ar";
+
+const tracksAr = [
+  { label: "جميع الأعمال", blurb: "كل المشاريع والدراسات." },
+  { label: "منصات SaaS والمنتجات الأولية", blurb: "منتجات انتقلت من الفكرة إلى منصة قابلة للإطلاق والاشتراك." },
+  { label: "تطبيقات الويب والجوال", blurb: "تطبيقات موجهة للمستخدمين حول احتياج عملي." },
+  { label: "الأتمتة الذكية والمساعدون", blurb: "مساعدون معرفيون وأتمتة للدعم ومعالجة دلالية." },
+  { label: "الأنظمة الداخلية", blurb: "أنظمة تساعد الفرق على إدارة أعمالها بنفسها." },
+  { label: "أبحاث الذكاء الاصطناعي", blurb: "أبحاث النماذج والرؤية واللغة والذكاء التوليدي." },
+  { label: "الأنظمة والهندسة منخفضة المستوى", blurb: "أعمال هندسية قريبة من بنية الأنظمة." },
+];
 
 /**
  * The filterable work grid. Client engagements lead; engineering studies follow
@@ -31,6 +43,7 @@ export function CaseStudyBrowser({
   compactClients?: boolean;
   subtleCards?: boolean;
 }) {
+  const ar = useLocale() === "ar";
   const [track, setTrack] = useState<TrackId>("all");
   const counts = useMemo(() => trackCounts(), []);
 
@@ -68,7 +81,7 @@ export function CaseStudyBrowser({
       {/* ── Filters ──────────────────────────────────────────────────────── */}
       {showFilters && <div className="border-b border-rule pb-6">
         <h2 className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
-          Filter by category
+          {ar ? "تصفية حسب الفئة" : "Filter by category"}
         </h2>
         <ul role="list" className="mt-5 flex flex-wrap gap-2">
           {TRACKS.map((t) => {
@@ -90,7 +103,7 @@ export function CaseStudyBrowser({
                       : "border-rule bg-paper-raised text-text-2 shadow-e1 hover:border-accent/40 hover:text-accent-ink",
                   )}
                 >
-                  {t.label}
+                  {ar ? tracksAr[TRACKS.indexOf(t)].label : t.label}
                   <span
                     className={cn(
                       "font-mono text-[0.6875rem] tabular-nums",
@@ -105,9 +118,9 @@ export function CaseStudyBrowser({
           })}
         </ul>
         <p aria-live="polite" className="mt-5 text-sm text-text-3">
-          {active.blurb}{" "}
+          {ar ? tracksAr[TRACKS.indexOf(active)].blurb : active.blurb}{" "}
           <span className="text-text-4">
-            Showing {clients.length + research.length} of {counts.all}.
+            {ar ? `عرض ${clients.length + research.length} من ${counts.all}.` : `Showing ${clients.length + research.length} of ${counts.all}.`}
           </span>
         </p>
       </div>}
@@ -115,11 +128,11 @@ export function CaseStudyBrowser({
       {empty && (
         <PendingPanel
           className="mt-10"
-          heading="Detailed case studies are being prepared."
-          body="We are currently organizing selected project stories with verified screenshots, technology details, and delivery context. In the meantime, you can contact us to discuss relevant work examples based on your project type."
+          heading={ar ? "نعمل على إعداد دراسات حالة مفصلة." : "Detailed case studies are being prepared."}
+          body={ar ? "ننظم قصص مشاريع مختارة مع صور موثقة وتفاصيل تقنية وسياق التنفيذ. يمكنك التواصل معنا لمناقشة أمثلة تناسب نوع مشروعك." : "We are currently organizing selected project stories with verified screenshots, technology details, and delivery context. In the meantime, you can contact us to discuss relevant work examples based on your project type."}
           action={
             <Button href="/contact" size="md" arrow>
-              Ask for Relevant Work Examples
+              {ar ? "اطلب أمثلة أعمال مناسبة" : "Ask for Relevant Work Examples"}
             </Button>
           }
         />
@@ -132,7 +145,7 @@ export function CaseStudyBrowser({
             id="clients-heading"
             className="font-mono text-marker font-medium tracking-[0.16em] text-accent-ink uppercase"
           >
-            Client engagements
+            {ar ? "مشاريع العملاء" : "Client engagements"}
           </h2>
           <motion.ul
             layout
@@ -150,10 +163,11 @@ export function CaseStudyBrowser({
                   className="h-full"
                 >
                   <ClientCaseCard
-                    study={c}
+                    study={ar ? localizeClientCase(c) : c}
                     compact={compactClients}
                     subtle={subtleCards}
                     className="h-full"
+                    labels={ar ? { engagement: "مشروع عميل", delivered: "ما أُنجز", services: "خدمات", timeline: "المدة", view: "عرض دراسة الحالة" } : undefined}
                   />
                 </motion.li>
               ))}
@@ -170,11 +184,10 @@ export function CaseStudyBrowser({
               id="research-heading"
               className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase"
             >
-              Engineering & AI R&D
+              {ar ? "دراسات الهندسة والذكاء الاصطناعي" : "Engineering & AI R&D"}
             </h2>
             <p className="measure text-sm text-text-3">
-              Internal and academic engineering work — not client projects. Each study ships with
-              its full technical report.
+              {ar ? "أعمال هندسية داخلية وأكاديمية، وليست مشاريع عملاء. تتوفر التقارير التقنية لكل دراسة." : "Internal and academic engineering work — not client projects. Each study ships with its full technical report."}
             </p>
           </div>
 
@@ -190,7 +203,7 @@ export function CaseStudyBrowser({
                   transition={{ duration: 0.4, ease: EASE_EXPO }}
                   className="h-full"
                 >
-                  <ResearchCard study={s} className="h-full" />
+                  <ResearchCard study={ar ? localizeResearchStudy(s) : s} className="h-full" />
                 </motion.li>
               ))}
             </AnimatePresence>

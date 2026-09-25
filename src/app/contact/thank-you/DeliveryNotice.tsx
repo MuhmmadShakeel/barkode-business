@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { AlertCircle } from "lucide-react";
 import { CONTACT } from "@/lib/site";
+import { useLocale } from "next-intl";
 
 /**
  * Honest failure state.
@@ -14,6 +15,7 @@ import { CONTACT } from "@/lib/site";
  * never renders.
  */
 export function DeliveryNotice() {
+  const ar = useLocale() === "ar";
   const pending = useSearchParams().get("delivery") === "pending";
   if (!pending) return null;
 
@@ -25,11 +27,10 @@ export function DeliveryNotice() {
       <AlertCircle aria-hidden className="mt-0.5 size-4 shrink-0 text-signal" strokeWidth={1.9} />
       <div>
         <p className="text-sm leading-relaxed text-white">
-          Your details were <strong className="font-semibold">not sent</strong> — this site&rsquo;s
-          form delivery is not connected yet.
+          {ar ? <>لم <strong className="font-semibold">تُرسل</strong> بياناتك، لأن خدمة إرسال النموذج غير متصلة حاليًا.</> : <>Your details were <strong className="font-semibold">not sent</strong> — this site&rsquo;s form delivery is not connected yet.</>}
         </p>
         <p className="mt-2 text-sm leading-relaxed text-ontext-2">
-          Please reach us directly on{" "}
+          {ar ? "يرجى التواصل معنا مباشرة عبر " : "Please reach us directly on "}{" "}
           <a
             href={CONTACT.whatsapp.href}
             target="_blank"
@@ -41,7 +42,7 @@ export function DeliveryNotice() {
           {CONTACT.email ? (
             <>
               {" "}
-              or{" "}
+              {ar ? "أو " : "or "}
               <a
                 href={`mailto:${CONTACT.email}`}
                 className="text-signal underline decoration-signal/40 underline-offset-4"
@@ -50,7 +51,7 @@ export function DeliveryNotice() {
               </a>
             </>
           ) : null}
-          , and we will pick it up from there.
+          {ar ? "، وسنتابع معك من هناك." : ", and we will pick it up from there."}
         </p>
       </div>
     </div>

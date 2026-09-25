@@ -11,16 +11,14 @@ import { Marker, Section } from "@/components/ui/Section";
 import { CLIENT_CASES, FEATURED_CASE, RESEARCH_STUDIES } from "@/lib/case-studies";
 import { CLIENT_REVIEWS } from "@/lib/client-reviews";
 import { JsonLd, breadcrumbSchema, buildMetadata } from "@/lib/seo";
+import { getLocale } from "next-intl/server";
+import { localizeClientCase } from "@/i18n/case-studies-ar";
 
-export const metadata = buildMetadata({
-  title: "Case Studies — Real project stories",
-  description:
-    "Selected projects showing what was built, why it was needed, how Barakode approached the solution, and what was delivered. Verified project details, real screenshots, accurate outcomes.",
-  path: "/case-studies",
-});
+export async function generateMetadata() { const ar = (await getLocale()) === "ar"; return buildMetadata({ title: ar ? "دراسات الحالة وقصص المشاريع الحقيقية" : "Case Studies — Real project stories", description: ar ? "مشاريع مختارة توضح ما بُني ولماذا وكيف عملت باراكود وما أُنجز، مع تفاصيل موثقة وصور حقيقية ونتائج دقيقة." : "Selected projects showing what was built, why it was needed, how Barakode approached the solution, and what was delivered. Verified project details, real screenshots, accurate outcomes.", path: "/case-studies" }); }
 
-export default function CaseStudiesPage() {
-  const f = FEATURED_CASE;
+export default async function CaseStudiesPage() {
+  const ar = (await getLocale()) === "ar";
+  const f = ar ? localizeClientCase(FEATURED_CASE) : FEATURED_CASE;
 
   return (
     <>
@@ -36,27 +34,25 @@ export default function CaseStudiesPage() {
 
         <div className="shell relative flex min-h-[100svh] w-full flex-col justify-center pt-28 pb-8 sm:pt-28 sm:pb-9 lg:h-full lg:min-h-0 lg:pt-20 lg:pb-5">
           <Reveal className="mx-auto flex max-w-4xl flex-col items-center text-center">
-            <Marker tone="dark">Case Studies</Marker>
+            <Marker tone="dark">{ar ? "دراسات الحالة" : "Case Studies"}</Marker>
             <h1 id="case-studies-hero-heading" className="site-hero-heading mt-4 max-w-[19ch] font-display font-semibold text-white">
-              Real project stories, built around{" "}
-              <span className="text-accent-bright">business problems.</span>
+              {ar ? "قصص مشاريع حقيقية تنطلق من " : "Real project stories, built around "}
+              <span className="text-accent-bright">{ar ? "تحديات العمل." : "business problems."}</span>
             </h1>
             <p className="mt-5 max-w-2xl text-[clamp(.9375rem,1.4vw,1.125rem)] leading-relaxed text-ontext-2">
-              Explore selected projects showing what was built, why it was needed, how Barakode
-              approached the solution, and what was delivered. Every case study is based on verified
-              project details, real screenshots, and accurate outcomes.
+              {ar ? "اكتشف مشاريع مختارة توضح ما بنيناه ولماذا احتاجه العميل وكيف تعاملت باراكود مع التحدي وما سلمته. تعتمد كل دراسة على تفاصيل مشروع موثقة وصور فعلية ونتائج دقيقة. نستخدم الذكاء الاصطناعي لمساعدة فريقنا في البحث والبناء والمراجعة، مع بقاء مسؤولية العمل والقرار لدينا." : "Explore selected projects showing what was built, why it was needed, how Barakode approached the solution, and what was delivered. Every case study is based on verified project details, real screenshots, and accurate outcomes."}
             </p>
             <Button href="/contact" variant="onDark" size="md" className="mt-6 w-full sm:w-auto" arrow>
-              Discuss a Similar Project
+              {ar ? "ناقش مشروعًا مشابهًا" : "Discuss a Similar Project"}
             </Button>
           </Reveal>
 
           <Reveal index={1} className="mt-7 sm:mt-9">
             <dl className="mx-auto grid max-w-5xl grid-cols-1 border-t border-rule-dark pt-3 text-center sm:grid-cols-3 sm:pt-5">
               {[
-                { label: "Client engagements", value: `${CLIENT_CASES.length} documented in full` },
-                { label: "Engineering studies", value: `${RESEARCH_STUDIES.length}, each with its report` },
-                { label: "Invented metrics", value: "None. Verified outcomes only." },
+                { label: ar ? "مشاريع العملاء" : "Client engagements", value: ar ? `${CLIENT_CASES.length} مشاريع موثقة بالتفصيل` : `${CLIENT_CASES.length} documented in full` },
+                { label: ar ? "دراسات هندسية" : "Engineering studies", value: ar ? `${RESEARCH_STUDIES.length} دراسة مع تقاريرها` : `${RESEARCH_STUDIES.length}, each with its report` },
+                { label: ar ? "أرقام مختلقة" : "Invented metrics", value: ar ? "لا شيء. النتائج الموثقة فقط." : "None. Verified outcomes only." },
               ].map((item) => (
                 <div key={item.label} className="border-b border-rule-dark px-2 py-2 last:border-b-0 sm:border-r sm:border-b-0 sm:px-6 sm:py-0 sm:last:border-r-0">
                   <dt className="font-mono text-[.5rem] tracking-[.1em] text-ontext-4 uppercase sm:text-[.625rem] sm:tracking-[.14em]">
@@ -75,7 +71,7 @@ export default function CaseStudiesPage() {
         <div className="shell">
           <article className="grid items-center gap-10 lg:grid-cols-[minmax(0,.88fr)_minmax(0,1.12fr)] lg:gap-16 xl:gap-24">
             <Reveal className="max-w-xl">
-              <Marker>Featured engagement</Marker>
+              <Marker>{ar ? "مشروع بارز" : "Featured engagement"}</Marker>
               <p className="mt-6 font-mono text-[0.6875rem] tracking-[0.1em] text-text-4 uppercase">
                 {f.clientType} · {f.industry}
               </p>
@@ -87,7 +83,7 @@ export default function CaseStudiesPage() {
                 href={`/case-studies/${f.slug}`}
                 className="group/link mt-8 inline-flex items-center gap-2 border-b border-accent/40 pb-1 text-sm font-semibold text-accent-ink transition-colors hover:border-accent hover:text-accent"
               >
-                Read the case study
+                {ar ? "اقرأ دراسة الحالة" : "Read the case study"}
                 <ArrowUpRight
                   aria-hidden
                   className="size-4 transition-transform duration-300 [transition-timing-function:var(--ease-expo)] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
@@ -113,7 +109,7 @@ export default function CaseStudiesPage() {
       </Section>
 
       {/* ═══ FILTERABLE GRID ════════════════════════════════════════════════ */}
-      <Section surface="paper" aria-label="All work">
+      <Section surface="paper" aria-label={ar ? "جميع الأعمال" : "All work"}>
         <div className="shell">
           <CaseStudyBrowser showFilters={false} compactClients subtleCards />
         </div>
@@ -122,12 +118,12 @@ export default function CaseStudiesPage() {
       <Section surface="paper" aria-labelledby="client-reviews-heading">
         <div className="shell">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <Marker>Client reviews</Marker>
+            <Marker>{ar ? "آراء العملاء" : "Client reviews"}</Marker>
             <h2 id="client-reviews-heading" className="mt-5 text-d2 text-text">
-              Real delivery, shared through <span className="text-accent-ink">client experience.</span>
+              {ar ? "عمل حقيقي ترويه " : "Real delivery, shared through "}<span className="text-accent-ink">{ar ? "تجارب العملاء." : "client experience."}</span>
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-text-2">
-              A selection of client feedback from mobile product, Flutter, React Native, and AI-enabled delivery work.
+              {ar ? "مختارات من آراء العملاء حول مشاريع الجوال وFlutter وReact Native والمنتجات المدعومة بالذكاء الاصطناعي." : "A selection of client feedback from mobile product, Flutter, React Native, and AI-enabled delivery work."}
             </p>
           </Reveal>
           <Reveal className="mt-10 sm:mt-12">
@@ -138,8 +134,8 @@ export default function CaseStudiesPage() {
 
       <JsonLd
         data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Case Studies", path: "/case-studies" },
+          { name: ar ? "الرئيسية" : "Home", path: "/" },
+          { name: ar ? "دراسات الحالة" : "Case Studies", path: "/case-studies" },
         ])}
       />
     </>

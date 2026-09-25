@@ -20,28 +20,26 @@ import {
   DO_NOT_AUTOMATE,
 } from "@/lib/ai-automation";
 import { JsonLd, breadcrumbSchema, buildMetadata, faqSchema, serviceSchema } from "@/lib/seo";
+import { getLocale } from "next-intl/server";
+import { aiAgentsAr, aiFaqsAr, aiProblemsAr, aiProcessAr, aiUseCasesAr, documentTypesAr, doNotAutomateAr } from "@/i18n/ai-automation-ar";
 
-export const metadata = buildMetadata({
-  title: "AI Automation & AI Integration",
-  description:
-    "Practical AI automation for real business workflows. Barakode builds AI assistants, RAG chatbots, document processing, CRM automation, and reporting automation — with human review, data privacy, and clear limits.",
-  path: "/ai-automation",
-});
+export async function generateMetadata() { const ar = (await getLocale()) === "ar"; return buildMetadata({ title: ar ? "أتمتة الذكاء الاصطناعي ودمجه" : "AI Automation & AI Integration", description: ar ? "أتمتة عملية لسير العمل الحقيقي، بمساعدة الذكاء الاصطناعي ومراجعة بشرية وضوابط واضحة للخصوصية والبيانات." : "Practical AI automation for real business workflows. Barakode builds AI assistants, RAG chatbots, document processing, CRM automation, and reporting automation — with human review, data privacy, and clear limits.", path: "/ai-automation" }); }
 
-export default function AiAutomationPage() {
+export default async function AiAutomationPage() {
+  const ar = (await getLocale()) === "ar";
   return (
     <div className="ai-service-page">
       <PageHero
-        marker="AI Automation & AI Integration"
-        heading="Practical AI automation for"
-        accent="real business workflows"
+        marker={ar ? "أتمتة الذكاء الاصطناعي ودمجه" : "AI Automation & AI Integration"}
+        heading={ar ? "أتمتة ذكية وعملية" : "Practical AI automation for"}
+        accent={ar ? "لسير العمل الحقيقي" : "real business workflows"}
         trail="."
-        body="We turn the repetitive parts of everyday operations into reliable workflows: sorting requests, reading documents, finding the right information, and updating the systems your team already uses."
-        primary={{ label: "Book a Free Project Discovery Call", mobileLabel: "Free AI Discovery Call", href: "/contact?intent=ai-automation" }}
-        secondary={{ label: "Explore Use Cases", href: "#use-cases" }}
+        body={ar ? "نحول الأجزاء المتكررة من العمل اليومي إلى مسارات موثوقة، من فرز الطلبات وقراءة المستندات إلى الوصول للمعلومات وتحديث الأنظمة التي يستخدمها فريقك. نبني بمساعدة الذكاء الاصطناعي ونبقي المراجعة والقرار بيد الأشخاص." : "We turn the repetitive parts of everyday operations into reliable workflows: sorting requests, reading documents, finding the right information, and updating the systems your team already uses."}
+        primary={{ label: ar ? "احجز مكالمة تعريفية مجانية" : "Book a Free Project Discovery Call", mobileLabel: ar ? "مكالمة تعريفية مجانية" : "Free AI Discovery Call", href: "/contact?intent=ai-automation" }}
+        secondary={{ label: ar ? "اكتشف حالات الاستخدام" : "Explore Use Cases", href: "#use-cases" }}
         crumbs={[
-          { name: "Home", path: "/" },
-          { name: "AI Automation", path: "/ai-automation" },
+          { name: ar ? "الرئيسية" : "Home", path: "/" },
+          { name: ar ? "أتمتة الذكاء الاصطناعي" : "AI Automation", path: "/ai-automation" },
         ]}
         showMarker={false}
         minimalBackdrop
@@ -49,15 +47,15 @@ export default function AiAutomationPage() {
         className="ai-service-hero"
         backgroundImage={{
           src: "/images/services/ai-automation-hero-v2.webp",
-          alt: "A business team collaborating around practical AI automation workflows",
+          alt: ar ? "فريق عمل يتعاون على مسارات أتمتة عملية بالذكاء الاصطناعي" : "A business team collaborating around practical AI automation workflows",
         }}
         below={
           <RevealGroup as="ol" className="mx-auto grid max-w-5xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { label: "Business input", note: "Forms, messages, files and events" },
-              { label: "AI workflow", note: "Classify, retrieve, extract and draft" },
-              { label: "Human review", note: "A clear approval gate where needed" },
-              { label: "Business output", note: "Update systems and deliver the result" },
+              { label: ar ? "مدخلات العمل" : "Business input", note: ar ? "نماذج ورسائل وملفات وأحداث" : "Forms, messages, files and events" },
+              { label: ar ? "مسار العمل الذكي" : "AI workflow", note: ar ? "تصنيف وبحث واستخراج وصياغة" : "Classify, retrieve, extract and draft" },
+              { label: ar ? "مراجعة بشرية" : "Human review", note: ar ? "موافقة واضحة عند الحاجة" : "A clear approval gate where needed" },
+              { label: ar ? "مخرجات العمل" : "Business output", note: ar ? "تحديث الأنظمة وتسليم النتيجة" : "Update systems and deliver the result" },
             ].map((item, index) => (
               <RevealItem key={item.label} as="li" index={index} className="h-full">
                 <div className="flex h-full items-start gap-3 rounded-[var(--radius-sm)] border border-white/12 bg-white/[0.045] p-4 text-left backdrop-blur-sm transition-[border-color,background-color,transform] duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.07]">
@@ -84,25 +82,23 @@ export default function AiAutomationPage() {
           <div className="grid gap-8 lg:grid-cols-[minmax(0,.95fr)_minmax(0,1.05fr)] lg:gap-16 xl:gap-24">
             <Reveal className="lg:pr-6">
               <h2 id="means-heading" className="max-w-[14ch] text-d2 text-text">
-                Make routine work <span className="text-accent-ink">move.</span>
+                {ar ? "اجعل العمل المتكرر " : "Make routine work "}<span className="text-accent-ink">{ar ? "أسهل وأسرع." : "move."}</span>
               </h2>
             </Reveal>
 
             <Reveal kind="right" className="flex flex-col justify-center lg:pl-12 xl:pl-16">
               <p className="max-w-2xl text-lead text-text-2">
-                We connect AI to your existing rules, tools, and approval steps so repetitive,
-                information-heavy work moves faster without becoming a black box.
+                {ar ? "نربط الذكاء الاصطناعي بقواعد عملك وأدواتك وخطوات الموافقة القائمة، ليتقدم العمل المتكرر والغني بالمعلومات بسرعة أكبر من دون أن يصبح نظامًا غامضًا." : "We connect AI to your existing rules, tools, and approval steps so repetitive, information-heavy work moves faster without becoming a black box."}
               </p>
               <p className="mt-4 max-w-2xl text-text-3">
-                The result is a faster, more consistent team—without losing judgment, accountability,
-                or human control.
+                {ar ? "النتيجة فريق أسرع وأكثر اتساقًا، مع بقاء الحكم والمسؤولية والتحكم بيد الأشخاص." : "The result is a faster, more consistent team—without losing judgment, accountability, or human control."}
               </p>
 
               <div className="mt-7 grid gap-px overflow-hidden rounded-[var(--radius-md)] border border-rule bg-rule sm:grid-cols-3">
                 {[
-                  ["01", "Reduce", "Manual work"],
-                  ["02", "Connect", "Business systems"],
-                  ["03", "Keep", "Human oversight"],
+                  ["01", ar ? "تقليل" : "Reduce", ar ? "العمل اليدوي" : "Manual work"],
+                  ["02", ar ? "ربط" : "Connect", ar ? "أنظمة الأعمال" : "Business systems"],
+                  ["03", ar ? "الحفاظ على" : "Keep", ar ? "الإشراف البشري" : "Human oversight"],
                 ].map(([number, action, outcome]) => (
                   <div key={number} className="bg-paper-raised p-4 transition-[box-shadow,transform] duration-300 [transition-timing-function:var(--ease-expo)] hover:-translate-y-0.5 hover:shadow-e1 sm:p-5">
                     <span className="font-mono text-[.625rem] text-accent-ink">{number}</span>
@@ -121,10 +117,10 @@ export default function AiAutomationPage() {
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,.75fr)_minmax(0,1.25fr)]">
             <Reveal>
               <h2 id="ai-3d-heading" className="max-w-[13ch] text-d2 text-white">
-                One connected workflow, <span className="text-accent-bright">built around control.</span>
+                {ar ? "مسار عمل مترابط " : "One connected workflow, "}<span className="text-accent-bright">{ar ? "تتحكم به بوضوح." : "built around control."}</span>
               </h2>
               <p className="measure mt-5 text-ontext-2">
-                Business inputs move through a defined AI layer, pause for human review where it matters, and finish as a useful system update or business output.
+                {ar ? "تمر مدخلات العمل عبر طبقة ذكاء اصطناعي محددة، وتتوقف للمراجعة البشرية حيث يلزم، ثم تتحول إلى تحديث مفيد للنظام أو مخرج عملي." : "Business inputs move through a defined AI layer, pause for human review where it matters, and finish as a useful system update or business output."}
               </p>
             </Reveal>
             <Reveal kind="right">
@@ -145,25 +141,23 @@ export default function AiAutomationPage() {
         <div className="shell relative py-14 sm:py-16 lg:py-20">
           <div className="grid items-end gap-7 pb-9 lg:grid-cols-[minmax(0,.9fr)_minmax(22rem,.62fr)] lg:gap-16 lg:pb-11">
             <Reveal>
-              <Marker>Automation opportunities</Marker>
+              <Marker>{ar ? "فرص الأتمتة" : "Automation opportunities"}</Marker>
               <h2 id="probs-heading" className="mt-5 max-w-[18ch] text-d2 text-text">
-                Problems AI can <span className="text-accent-ink">help solve.</span>
+                {ar ? "تحديات يساعد الذكاء الاصطناعي " : "Problems AI can "}<span className="text-accent-ink">{ar ? "على حلها." : "help solve."}</span>
               </h2>
             </Reveal>
             <Reveal kind="right">
               <p className="max-w-xl text-lead text-text-2 lg:ml-auto">
-                If these jobs keep landing back on the same people every week, there is usually a
-                sensible way to automate the routine parts.
+                {ar ? "إذا عادت المهام نفسها إلى الأشخاص أنفسهم كل أسبوع، فغالبًا توجد طريقة مناسبة لأتمتة أجزائها الروتينية." : "If these jobs keep landing back on the same people every week, there is usually a sensible way to automate the routine parts."}
               </p>
               <p className="mt-3 max-w-xl text-sm leading-relaxed text-text-3 lg:ml-auto">
-                We start with the operational bottleneck—not the technology—and keep people in
-                control wherever judgment matters.
+                {ar ? "نبدأ بعنق الزجاجة في العمل، لا بالتقنية، ونبقي الأشخاص أصحاب القرار حيث تكون خبرتهم ضرورية." : "We start with the operational bottleneck—not the technology—and keep people in control wherever judgment matters."}
               </p>
             </Reveal>
           </div>
 
           <RevealGroup as="ul" className="ai-problem-list mt-8 grid sm:grid-cols-2 lg:grid-cols-4">
-            {AI_PROBLEMS.map((problem, index) => (
+            {(ar ? aiProblemsAr : AI_PROBLEMS).map((problem, index) => (
               <RevealItem key={problem} as="li" index={index}>
                 <div className="group/problem flex min-h-32 flex-col justify-between py-5 pr-5 transition-transform duration-300 [transition-timing-function:var(--ease-expo)] hover:translate-x-1">
                   <span className="font-mono text-[.625rem] tracking-[.12em] text-accent-ink uppercase">
@@ -182,21 +176,21 @@ export default function AiAutomationPage() {
 
       {/* ═══ USE CASES ══════════════════════════════════════════════════════ */}
       <Section surface="ink-deep" tight id="use-cases" aria-labelledby="uc-heading" className="service-panel service-panel--visual service-panel--centered">
-        <Image src="/images/services/ai-automation.webp" alt="Structured data and documents flowing through an intelligent automation system" fill sizes="100vw" className="service-panel__image object-cover grayscale" />
+        <Image src="/images/services/ai-automation.webp" alt={ar ? "بيانات ومستندات تمر عبر نظام أتمتة ذكي" : "Structured data and documents flowing through an intelligent automation system"} fill sizes="100vw" className="service-panel__image object-cover grayscale" />
         <div className="absolute inset-0 bg-ink-950/88" />
         <div className="shell relative">
           <Reveal>
             <SectionHead
               id="uc-heading"
               tone="dark"
-              lead="What we"
-              accent="actually build"
-              intro="Seven patterns cover most of the AI work businesses need. Each one connects to the tools you already run."
+              lead={ar ? "ما نبنيه" : "What we"}
+              accent={ar ? "لمؤسستك فعلًا" : "actually build"}
+              intro={ar ? "سبعة استخدامات تغطي كثيرًا من احتياجات الأعمال، وكل منها يرتبط بالأدوات التي يعمل بها فريقك بالفعل." : "Seven patterns cover most of the AI work businesses need. Each one connects to the tools you already run."}
             />
           </Reveal>
 
           <RevealGroup className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3" as="ul">
-            {AI_USE_CASES.map((u, i) => (
+            {AI_USE_CASES.map((source, i) => { const u = ar ? { ...source, ...aiUseCasesAr[i] } : source; return (
               <RevealItem
                 key={u.title}
                 as="li"
@@ -217,7 +211,7 @@ export default function AiAutomationPage() {
                   <p className="mt-3 text-[0.9375rem] leading-relaxed text-ontext-2">{u.body}</p>
                 </article>
               </RevealItem>
-            ))}
+            ); })}
           </RevealGroup>
         </div>
       </Section>
@@ -228,14 +222,13 @@ export default function AiAutomationPage() {
           <div className="grid gap-x-14 gap-y-14 lg:grid-cols-2">
             <Reveal>
               <h2 id="agents-heading" className="max-w-[14ch] text-d2 text-text">
-                AI agents for <span className="text-accent-ink">defined work.</span>
+                {ar ? "مساعدون أذكياء " : "AI agents for "}<span className="text-accent-ink">{ar ? "لمهام محددة." : "defined work."}</span>
               </h2>
               <p className="measure mt-6 text-text-2">
-                An AI agent is a workflow assistant that can understand a task, use available tools,
-                follow defined rules, and complete steps with human oversight where needed.
+                {ar ? "المساعد الذكي يفهم المهمة ويستخدم الأدوات المتاحة ويتبع قواعد محددة وينجز الخطوات المطلوبة، مع إشراف بشري عند الحاجة." : "An AI agent is a workflow assistant that can understand a task, use available tools, follow defined rules, and complete steps with human oversight where needed."}
               </p>
               <ul className="mt-8 flex flex-wrap gap-2">
-                {AI_AGENTS.map((a) => (
+                {(ar ? aiAgentsAr : AI_AGENTS).map((a) => (
                   <li
                     key={a}
                     className="rounded-[var(--radius-xs)] border border-rule bg-paper-sunken px-3 py-1.5 text-sm text-text-2"
@@ -248,24 +241,23 @@ export default function AiAutomationPage() {
 
             <Reveal kind="right">
               <h2 className="max-w-[14ch] text-d2 text-text">
-                AI grounded in <span className="text-accent-ink">your knowledge.</span>
+                {ar ? "ذكاء اصطناعي يستند إلى " : "AI grounded in "}<span className="text-accent-ink">{ar ? "معرفتك." : "your knowledge."}</span>
               </h2>
               <p className="measure mt-6 text-text-2">
-                RAG allows an AI assistant to answer based on selected business knowledge instead of
-                only relying on general model knowledge.
+                {ar ? "يتيح أسلوب توليد الإجابات المعزز بالاسترجاع للمساعد أن يجيب انطلاقًا من مصادر عملك المحددة، لا من معرفة النموذج العامة وحدها." : "RAG allows an AI assistant to answer based on selected business knowledge instead of only relying on general model knowledge."}
               </p>
               <div className="mt-8 rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-6">
                 <p className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
-                  Grounded in
+                  {ar ? "يستند إلى" : "Grounded in"}
                 </p>
                 <ul className="mt-4 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
                   {[
-                    "Company FAQs",
-                    "Product documentation",
-                    "Training manuals",
-                    "Policies",
-                    "Client documents",
-                    "Internal SOPs",
+                    ar ? "الأسئلة الشائعة للشركة" : "Company FAQs",
+                    ar ? "وثائق المنتج" : "Product documentation",
+                    ar ? "أدلة التدريب" : "Training manuals",
+                    ar ? "السياسات" : "Policies",
+                    ar ? "مستندات العملاء" : "Client documents",
+                    ar ? "إجراءات العمل الداخلية" : "Internal SOPs",
                   ].map((k) => (
                     <li key={k} className="flex items-start gap-2.5 text-sm text-text-2">
                       <Check
@@ -288,21 +280,20 @@ export default function AiAutomationPage() {
         <div className="shell">
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,.78fr)_minmax(0,1.22fr)] lg:gap-16 xl:gap-20">
             <Reveal className="lg:pr-4">
-              <Marker>Document intelligence</Marker>
+              <Marker>{ar ? "معالجة المستندات بذكاء" : "Document intelligence"}</Marker>
               <h2 id="doc-heading" className="mt-5 max-w-[17ch] text-d2 text-text">
-                Turn document-heavy work into{" "}
-                <span className="text-accent-ink">structured workflows.</span>
+                {ar ? "حوّل العمل القائم على المستندات إلى " : "Turn document-heavy work into "}
+                <span className="text-accent-ink">{ar ? "مسارات منظمة." : "structured workflows."}</span>
               </h2>
               <p className="mt-6 max-w-lg text-lead text-text-2">
-                Extract the information your team needs, apply clear validation rules, and move
-                approved data into the systems where work continues.
+                {ar ? "استخرج المعلومات التي يحتاجها فريقك، وطبق قواعد تحقق واضحة، ثم انقل البيانات المعتمدة إلى الأنظمة التي يواصل فيها فريقك عمله." : "Extract the information your team needs, apply clear validation rules, and move approved data into the systems where work continues."}
               </p>
               <div className="mt-8 flex items-center gap-3 pt-2 font-mono text-[.6875rem] tracking-[.12em] text-text-4 uppercase">
-                <span>Input</span>
+                <span>{ar ? "إدخال" : "Input"}</span>
                 <ArrowRight aria-hidden className="size-3.5 text-accent" />
-                <span>Extract</span>
+                <span>{ar ? "استخراج" : "Extract"}</span>
                 <ArrowRight aria-hidden className="size-3.5 text-accent" />
-                <span>Structure</span>
+                <span>{ar ? "تنظيم" : "Structure"}</span>
               </div>
             </Reveal>
 
@@ -310,20 +301,20 @@ export default function AiAutomationPage() {
               <div className="relative aspect-[16/8.5] overflow-hidden bg-ink-950">
                 <Image
                   src="/images/services/ai-automation.webp"
-                  alt="Documents being transformed into structured data and business outputs"
+                  alt={ar ? "مستندات تتحول إلى بيانات منظمة ومخرجات للعمل" : "Documents being transformed into structured data and business outputs"}
                   fill
                   sizes="(max-width: 1024px) 100vw, 58vw"
                   className="object-cover transition-transform duration-700 [transition-timing-function:var(--ease-expo)] hover:scale-[1.025]"
                 />
                 <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
                 <div className="absolute inset-x-5 bottom-4 flex items-center justify-between gap-4 text-white sm:inset-x-6 sm:bottom-5">
-                  <span className="font-mono text-[.625rem] tracking-[.14em] text-signal uppercase">Controlled processing</span>
-                  <span className="hidden text-xs text-white/70 sm:block">Human review where confidence matters</span>
+                  <span className="font-mono text-[.625rem] tracking-[.14em] text-signal uppercase">{ar ? "معالجة مضبوطة" : "Controlled processing"}</span>
+                  <span className="hidden text-xs text-white/70 sm:block">{ar ? "مراجعة بشرية عند الحاجة إلى التحقق" : "Human review where confidence matters"}</span>
                 </div>
               </div>
 
               <ul className="grid gap-2 sm:grid-cols-2">
-                {DOCUMENT_TYPES.map((d) => (
+                {(ar ? documentTypesAr : DOCUMENT_TYPES).map((d) => (
                   <li
                     key={d}
                     className="group/doc flex min-h-14 items-center gap-3 rounded-[var(--radius-sm)] bg-white px-4 py-3 text-sm text-text-2 transition-colors duration-300 hover:bg-accent-soft sm:px-5"
@@ -344,18 +335,17 @@ export default function AiAutomationPage() {
         <div className="shell relative">
           <Reveal className="mx-auto max-w-3xl text-center">
               <h2 id="limits-heading" className="mx-auto max-w-[16ch] text-d2 text-white">
-                Not every process <span className="text-accent-bright">should be automated.</span>
+                {ar ? "ليست كل عملية " : "Not every process "}<span className="text-accent-bright">{ar ? "مناسبة للأتمتة." : "should be automated."}</span>
               </h2>
               <p className="measure mx-auto mt-7 text-ontext-2">
-                We will tell you when AI is the wrong answer. These are the categories we do not
-                automate blindly, regardless of what is technically possible.
+                {ar ? "نوضح لك متى لا يكون الذكاء الاصطناعي الخيار المناسب. هذه فئات لا نؤتمتها بلا تمحيص، حتى لو كان ذلك ممكنًا تقنيًا." : "We will tell you when AI is the wrong answer. These are the categories we do not automate blindly, regardless of what is technically possible."}
               </p>
           </Reveal>
 
           <div className="mt-12 grid gap-8 lg:grid-cols-2 lg:gap-12">
             <Reveal>
               <ul className="flex flex-col gap-px overflow-hidden rounded-[var(--radius-md)] border border-rule-dark bg-rule-dark">
-                {DO_NOT_AUTOMATE.map((d) => (
+                {(ar ? doNotAutomateAr : DO_NOT_AUTOMATE).map((d) => (
                   <li key={d} className="flex items-start gap-3 bg-ink-900 px-5 py-3.5">
                     <AlertTriangle
                       aria-hidden
@@ -373,24 +363,22 @@ export default function AiAutomationPage() {
                 <Registration tone="dark" size={18} />
                 <ShieldCheck aria-hidden className="size-7 text-signal" strokeWidth={1.5} />
                 <h3 className="mt-5 text-d3 text-white">
-                  AI should be useful, controlled, and responsible.
+                  {ar ? "يجب أن يكون الذكاء الاصطناعي مفيدًا ومنضبطًا ومسؤولًا." : "AI should be useful, controlled, and responsible."}
                 </h3>
                 <p className="measure mt-5 text-ontext-2">
-                  AI systems should be designed with clear limits, human oversight, data privacy,
-                  permission controls, review workflows, and fallback options.
+                  {ar ? "نصمم الأنظمة الذكية بحدود واضحة وإشراف بشري وحماية للبيانات وضوابط للصلاحيات وخطوات مراجعة وبدائل عند الحاجة." : "AI systems should be designed with clear limits, human oversight, data privacy, permission controls, review workflows, and fallback options."}
                 </p>
                 <p className="measure mt-4 text-ontext-3">
-                  Barakode presents AI as a tool for improving operations, not replacing all human
-                  decision-making.
+                  {ar ? "نستخدم الذكاء الاصطناعي لمساعدة فريقنا وتحسين عمليات عملائنا، لا لإلغاء دور الأشخاص في اتخاذ القرارات." : "Barakode presents AI as a tool for improving operations, not replacing all human decision-making."}
                 </p>
                 <ul className="mt-7 flex flex-wrap gap-2">
                   {[
-                    "Defined limits",
-                    "Human oversight",
-                    "Data privacy",
-                    "Permission controls",
-                    "Review workflows",
-                    "Fallback options",
+                    ar ? "حدود واضحة" : "Defined limits",
+                    ar ? "إشراف بشري" : "Human oversight",
+                    ar ? "خصوصية البيانات" : "Data privacy",
+                    ar ? "ضوابط الصلاحيات" : "Permission controls",
+                    ar ? "خطوات مراجعة" : "Review workflows",
+                    ar ? "خيارات بديلة" : "Fallback options",
                   ].map((t) => (
                     <li
                       key={t}
@@ -412,14 +400,14 @@ export default function AiAutomationPage() {
           <Reveal>
             <SectionHead
               id="aiproc-heading"
-              lead="From opportunity to"
-              accent="production"
-              intro="Eight steps. The prototype runs on your real inputs, not a demo dataset."
+              lead={ar ? "من الفرصة إلى" : "From opportunity to"}
+              accent={ar ? "التشغيل الفعلي" : "production"}
+              intro={ar ? "ثماني خطوات، نختبر فيها النموذج الأولي على مدخلاتك الحقيقية لا على بيانات عرض تجريبي." : "Eight steps. The prototype runs on your real inputs, not a demo dataset."}
             />
           </Reveal>
 
           <RevealGroup as="ol" className="mt-12 grid gap-px overflow-hidden rounded-[var(--radius-md)] border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
-            {AI_PROCESS.map((p, i) => (
+            {(ar ? aiProcessAr : AI_PROCESS).map((p, i) => (
               <RevealItem key={p.step} as="div">
                 <div className="flex h-full flex-col gap-3 bg-paper-raised p-6">
                   <TraceRule className="w-9" />
@@ -444,14 +432,14 @@ export default function AiAutomationPage() {
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
             <Reveal className="lg:sticky lg:top-28 lg:self-start">
               <h2 id="aifaq-heading" className="max-w-[14ch] text-d2 text-text">
-                About <span className="text-accent-ink">AI automation.</span>
+                {ar ? "حول " : "About "}<span className="text-accent-ink">{ar ? "الأتمتة الذكية." : "AI automation."}</span>
               </h2>
               <Button href="/faq" variant="secondary" size="md" className="mt-8" arrow>
-                All FAQs
+                {ar ? "جميع الأسئلة الشائعة" : "All FAQs"}
               </Button>
             </Reveal>
             <Reveal kind="right">
-              <Accordion items={AI_FAQS} defaultOpen={0} />
+              <Accordion items={ar ? aiFaqsAr : AI_FAQS} defaultOpen={0} />
             </Reveal>
           </div>
         </div>
@@ -460,16 +448,16 @@ export default function AiAutomationPage() {
       <JsonLd
         data={[
           serviceSchema({
-            name: "AI Automation & AI Integration",
+            name: ar ? "أتمتة الذكاء الاصطناعي ودمجه" : "AI Automation & AI Integration",
             description:
-              "Practical AI automation for real business workflows — AI assistants, RAG chatbots, document processing, CRM automation, and reporting automation with human review.",
+              ar ? "أتمتة عملية لسير العمل، تشمل المساعدين الأذكياء ومعالجة المستندات وإدارة العملاء والتقارير، مع مراجعة بشرية." : "Practical AI automation for real business workflows — AI assistants, RAG chatbots, document processing, CRM automation, and reporting automation with human review.",
             path: "/ai-automation",
           }),
           breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "AI Automation", path: "/ai-automation" },
+            { name: ar ? "الرئيسية" : "Home", path: "/" },
+            { name: ar ? "أتمتة الذكاء الاصطناعي" : "AI Automation", path: "/ai-automation" },
           ]),
-          faqSchema(AI_FAQS),
+          faqSchema(ar ? aiFaqsAr : AI_FAQS),
         ]}
       />
     </div>
