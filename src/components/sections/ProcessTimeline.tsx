@@ -5,6 +5,8 @@ import { useRef } from "react";
 import { motion, useInView, useScroll, useSpring, useTransform } from "framer-motion";
 import { PROCESS } from "@/lib/content";
 import { cn } from "@/lib/utils";
+import { useLocale } from "next-intl";
+import { PROCESS_AR } from "@/i18n/process-ar";
 
 const PROCESS_IMAGES = [
   ["/images/process/discovery.webp", "Business discovery and requirement planning session"],
@@ -33,13 +35,16 @@ export function ProcessTimeline({
   detailed = false,
   containedScroll = false,
   className,
+  previewCopy,
 }: {
   /** Full "what happens / you receive / why" treatment, for the Process page. */
   detailed?: boolean;
   /** Uses this list as its own scroll viewport for compact homepage layouts. */
   containedScroll?: boolean;
   className?: string;
+  previewCopy?: { aria: string; steps: { title: string; short: string }[] };
 }) {
+  const ar = useLocale() === "ar";
   const ref = useRef<HTMLOListElement>(null);
   const inView = useInView(ref, { margin: "240px 0px" });
   const drag = useRef({ active: false, y: 0, scrollTop: 0 });
@@ -60,7 +65,7 @@ export function ProcessTimeline({
         className,
       )}
       tabIndex={containedScroll ? 0 : undefined}
-      aria-label={containedScroll ? "Scrollable product delivery process" : undefined}
+      aria-label={containedScroll ? (previewCopy?.aria ?? "Scrollable product delivery process") : undefined}
       onPointerDown={containedScroll ? (event) => {
         if (event.button !== 0) return;
         drag.current = { active: true, y: event.clientY, scrollTop: event.currentTarget.scrollTop };
@@ -101,7 +106,7 @@ export function ProcessTimeline({
         className={cn("absolute top-2 w-px bg-gradient-to-b from-accent via-accent to-signal", detailed ? "left-1/2 hidden -translate-x-1/2 lg:block" : "left-[1.4375rem] sm:left-[1.6875rem]")}
       />
 
-      {PROCESS.map((step, i) => (
+      {PROCESS.map((source, i) => { const step = ar ? { ...source, ...PROCESS_AR[i] } : source; return (
         <li
           key={step.id}
           data-reveal="rise"
@@ -126,20 +131,20 @@ export function ProcessTimeline({
           {detailed ? (
             <>
               <div className={cn("relative aspect-[16/10] overflow-hidden rounded-[var(--radius-lg)] bg-ink-900 shadow-e3", i % 2 === 1 && "lg:order-2")}>
-                <Image src={PROCESS_IMAGES[i][0]} alt={PROCESS_IMAGES[i][1]} fill sizes="(max-width: 1024px) 100vw, 46vw" className="object-cover transition-transform duration-700 [transition-timing-function:var(--ease-expo)] hover:scale-[1.025]" />
+                <Image src={PROCESS_IMAGES[i][0]} alt={ar ? `صورة توضيحية لمرحلة ${step.title}` : PROCESS_IMAGES[i][1]} fill sizes="(max-width: 1024px) 100vw, 46vw" className="object-cover transition-transform duration-700 [transition-timing-function:var(--ease-expo)] hover:scale-[1.025]" />
                 <div aria-hidden className="absolute inset-0 ring-1 ring-inset ring-black/10" />
               </div>
               <div className={cn("mt-7 lg:mt-0", i % 2 === 1 && "lg:order-1 lg:text-right")}>
                 <div className={cn("flex items-center gap-3", i % 2 === 1 && "lg:justify-end")}>
                   <span className="grid size-8 place-items-center rounded-full bg-accent-soft font-mono text-xs font-medium text-accent-ink">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="font-mono text-[.625rem] tracking-[.14em] text-text-4 uppercase">Process stage</span>
+                  <span className="font-mono text-[.625rem] tracking-[.14em] text-text-4 uppercase">{ar ? "مرحلة العمل" : "Process stage"}</span>
                 </div>
                 <h3 className="mt-4 text-d3 text-text">{step.title}</h3>
                 <p className="measure text-text-2">{step.what}</p>
                 <p className={cn("measure mt-4 border-accent/40 text-sm text-text-3 italic", i % 2 === 1 ? "lg:ml-auto lg:border-r lg:pr-4" : "border-l pl-4")}>
                   {step.why}
                 </p>
-                <p className="mt-6 font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">You receive</p>
+                <p className="mt-6 font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">{ar ? "ما تتسلمه" : "You receive"}</p>
                 <ul className={cn("mt-3 flex flex-wrap gap-2", i % 2 === 1 && "lg:justify-end")}>
                   {step.receives.map((r) => (
                     <li key={r} className="rounded-full border border-rule bg-white px-3 py-1.5 text-xs text-text-2 shadow-e1">{r}</li>
@@ -148,10 +153,10 @@ export function ProcessTimeline({
               </div>
             </>
           ) : (
-            <div><h3 className="text-d4 text-text">{step.title}</h3><p className="measure mt-2.5 text-text-2">{step.short}</p></div>
+            <div><h3 className="text-d4 text-text">{previewCopy?.steps[i]?.title ?? step.title}</h3><p className="measure mt-2.5 text-text-2">{previewCopy?.steps[i]?.short ?? step.short}</p></div>
           )}
         </li>
-      ))}
+      ); })}
     </ol>
   );
 }

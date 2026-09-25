@@ -22,6 +22,8 @@ import {
 } from "@/lib/case-studies";
 import { JsonLd, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
+import { getLocale } from "next-intl/server";
+import { localizeClientCase, localizeResearchStudy } from "@/i18n/case-studies-ar";
 
 export function generateStaticParams() {
   return allCaseSlugs().map((slug) => ({ slug }));
@@ -29,20 +31,23 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const client = getClientCase(slug);
+  const ar = (await getLocale()) === "ar";
+  const sourceClient = getClientCase(slug);
+  const client = sourceClient && ar ? localizeClientCase(sourceClient) : sourceClient;
   if (client) {
     return buildMetadata({
-      title: `${client.name} — Case Study`,
+      title: `${client.name} — ${ar ? "دراسة حالة" : "Case Study"}`,
       description: client.summary,
       path: `/case-studies/${slug}`,
       image: client.cover,
       type: "article",
     });
   }
-  const study = getResearchStudy(slug);
+  const sourceStudy = getResearchStudy(slug);
+  const study = sourceStudy && ar ? localizeResearchStudy(sourceStudy) : sourceStudy;
   if (study) {
     return buildMetadata({
-      title: `${study.title} — Engineering Study`,
+      title: `${study.title} — ${ar ? "دراسة هندسية" : "Engineering Study"}`,
       description: study.tagline,
       path: `/case-studies/${slug}`,
       image: study.cover ?? undefined,
@@ -54,11 +59,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const client = getClientCase(slug);
-  if (client) return <ClientCaseView study={client} />;
+  const ar = (await getLocale()) === "ar";
+  const sourceClient = getClientCase(slug);
+  if (sourceClient) return <ClientCaseView study={ar ? localizeClientCase(sourceClient) : sourceClient} ar={ar} />;
 
-  const study = getResearchStudy(slug);
-  if (study) return <ResearchView study={study} />;
+  const sourceStudy = getResearchStudy(slug);
+  if (sourceStudy) return <ResearchView study={ar ? localizeResearchStudy(sourceStudy) : sourceStudy} ar={ar} />;
 
   notFound();
 }
@@ -67,20 +73,21 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
    CLIENT ENGAGEMENT — the brief's Individual Case Study Template
    ══════════════════════════════════════════════════════════════════════════ */
 
-function ClientCaseView({ study }: { study: ClientCase }) {
+function ClientCaseView({ study, ar }: { study: ClientCase; ar: boolean }) {
+  const t = (en: string, arabic: string) => ar ? arabic : en;
   return (
     <>
       <PageHero
-        marker="Case Study"
+        marker={t("Case Study", "دراسة حالة")}
         heading={study.headline}
         body={study.summary}
-        primary={{ label: "Discuss a Similar Project", href: "/contact" }}
+        primary={{ label: t("Discuss a Similar Project", "ناقش مشروعًا مشابهًا"), href: "/contact" }}
         secondary={
-          study.liveUrl ? { label: "View Live Product", href: study.liveUrl } : undefined
+          study.liveUrl ? { label: t("View Live Product", "عرض المنتج المباشر"), href: study.liveUrl } : undefined
         }
         crumbs={[
-          { name: "Home", path: "/" },
-          { name: "Case Studies", path: "/case-studies" },
+          { name: t("Home", "الرئيسية"), path: "/" },
+          { name: t("Case Studies", "دراسات الحالة"), path: "/case-studies" },
           { name: study.name, path: `/case-studies/${study.slug}` },
         ]}
         minimalBackdrop
@@ -91,19 +98,19 @@ function ClientCaseView({ study }: { study: ClientCase }) {
         <div className="shell">
           <Reveal>
             <h2 id="overview-heading" className="sr-only">
-              Project overview
+              {t("Project overview", "نظرة عامة على المشروع")}
             </h2>
             <div className="relative rounded-[var(--radius-lg)] border border-rule bg-paper-raised p-7 shadow-e2 sm:p-9">
               <Registration size={18} />
               <dl className="grid gap-x-10 gap-y-7 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  { k: "Project", v: study.name },
-                  { k: "Client type", v: study.clientType },
-                  { k: "Industry", v: study.industry },
-                  { k: "Timeline", v: study.timeline },
-                  { k: "Engagement model", v: study.engagementModel },
+                  { k: t("Project", "المشروع"), v: study.name },
+                  { k: t("Client type", "نوع العميل"), v: study.clientType },
+                  { k: t("Industry", "القطاع"), v: study.industry },
+                  { k: t("Timeline", "المدة"), v: study.timeline },
+                  { k: t("Engagement model", "نموذج التعاون"), v: study.engagementModel },
                   {
-                    k: "Live product",
+                    k: t("Live product", "المنتج المباشر"),
                     v: study.liveUrl ? (
                       <a
                         href={study.liveUrl}
@@ -115,11 +122,11 @@ function ClientCaseView({ study }: { study: ClientCase }) {
                         <ExternalLink aria-hidden className="size-3.5" strokeWidth={1.7} />
                       </a>
                     ) : (
-                      <Pending>[Not publicly listed]</Pending>
+                      <Pending>{t("[Not publicly listed]", "[غير منشور للعامة]")}</Pending>
                     ),
                   },
                   {
-                    k: "Services",
+                    k: t("Services", "الخدمات"),
                     v: study.servicesDelivered.join(" · "),
                     span: true,
                   },
@@ -163,29 +170,29 @@ function ClientCaseView({ study }: { study: ClientCase }) {
         <SchematicGround grid={34} nodes={136} mask="radial" />
         <div className="shell relative">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <Marker tone="dark">The impact story</Marker>
+            <Marker tone="dark">{t("The impact story", "قصة الأثر")}</Marker>
             <h2 id="impact-story-heading" className="mt-5 text-d2 text-white">
-              From business problem to{" "}
-              <span className="text-accent-bright">measurable outcome.</span>
+              {t("From business problem to ", "من تحدٍ في العمل إلى ")}
+              <span className="text-accent-bright">{t("measurable outcome.", "نتيجة قابلة للتحقق.")}</span>
             </h2>
           </Reveal>
 
           <RevealGroup as="ol" className="mt-10 grid overflow-hidden rounded-[var(--radius-lg)] border border-rule-dark bg-rule-dark shadow-dark-e2 md:grid-cols-3">
             {[
               {
-                label: "Problem",
-                title: "What held the business back",
+                label: t("Problem", "التحدي"),
+                title: t("What held the business back", "ما الذي أعاق العمل"),
                 body: study.challenge[0],
               },
               {
-                label: "Solution",
-                title: "What Barakode changed",
+                label: t("Solution", "الحل"),
+                title: t("What Barakode changed", "ما الذي غيرته باراكود"),
                 body: study.solution[0],
               },
               {
-                label: "Business outcome",
-                title: "What changed after delivery",
-                body: study.results?.[0] ?? "Verified business outcome pending.",
+                label: t("Business outcome", "نتيجة العمل"),
+                title: t("What changed after delivery", "ما الذي تغير بعد التسليم"),
+                body: study.results?.[0] ?? t("Verified business outcome pending.", "بانتظار نتيجة موثقة."),
               },
             ].map((item, index) => (
               <RevealItem key={item.label} as="li" index={index} className="h-full">
@@ -214,9 +221,9 @@ function ClientCaseView({ study }: { study: ClientCase }) {
         <div className="shell relative">
           <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
             <Reveal>
-              <Marker>The challenge</Marker>
+              <Marker>{t("The challenge", "التحدي")}</Marker>
               <h2 id="challenge-heading" className="mt-5 max-w-[16ch] text-d2 text-text">
-                What was not <span className="text-accent-ink">working.</span>
+                {t("What was not ", "ما الذي لم يكن ")}<span className="text-accent-ink">{t("working.", "يعمل جيدًا.")}</span>
               </h2>
               <div className="mt-7 flex flex-col gap-5">
                 {study.challenge.map((c) => (
@@ -230,7 +237,7 @@ function ClientCaseView({ study }: { study: ClientCase }) {
             <Reveal kind="right" className="lg:pt-16">
               <div className="rounded-[var(--radius-md)] border border-rule bg-paper-raised p-7 shadow-e1">
                 <h3 className="font-mono text-marker font-medium tracking-[0.16em] text-accent-ink uppercase">
-                  Goals
+                  {t("Goals", "الأهداف")}
                 </h3>
                 <ul className="mt-6 flex flex-col gap-4">
                   {study.goals.map((g, i) => (
@@ -257,9 +264,9 @@ function ClientCaseView({ study }: { study: ClientCase }) {
           <Reveal>
             <SectionHead
               id="solution-heading"
-              marker="The solution"
-              lead="What Barakode"
-              accent="delivered"
+              marker={t("The solution", "الحل")}
+              lead={t("What Barakode", "ما قدمته")}
+              accent={t("delivered", "باراكود")}
             />
           </Reveal>
 
@@ -275,7 +282,7 @@ function ClientCaseView({ study }: { study: ClientCase }) {
             <Reveal kind="right" className="flex flex-col gap-6">
               <div className="rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-6">
                 <h3 className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
-                  Features delivered
+                  {t("Features delivered", "الميزات المنجزة")}
                 </h3>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {study.featuresDelivered.map((f) => (
@@ -291,7 +298,7 @@ function ClientCaseView({ study }: { study: ClientCase }) {
 
               <div className="rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-6">
                 <h3 className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
-                  Barakode&rsquo;s role
+                  {t("Barakode’s role", "دور باراكود")}
                 </h3>
                 <ul className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
                   {study.role.map((r) => (
@@ -316,9 +323,9 @@ function ClientCaseView({ study }: { study: ClientCase }) {
         <SchematicGround grid={38} nodes={152} mask="radial" />
         <div className="shell relative">
           <Reveal>
-            <Marker tone="dark">Tech stack</Marker>
+            <Marker tone="dark">{t("Tech stack", "التقنيات المستخدمة")}</Marker>
             <h2 id="stack-heading" className="mt-5 max-w-[16ch] text-d3 text-white">
-              What it is <span className="text-accent-bright">built with.</span>
+              {t("What it is ", "التقنيات التي ")}<span className="text-accent-bright">{t("built with.", "بُني بها المنتج.")}</span>
             </h2>
           </Reveal>
 
@@ -353,10 +360,10 @@ function ClientCaseView({ study }: { study: ClientCase }) {
             <Reveal>
               <SectionHead
                 id="shots-heading"
-                marker="Screenshots"
-                lead="Inside the"
-                accent="product"
-                intro="Screens from the delivered system. No mockups standing in for real work."
+                marker={t("Screenshots", "صور من المنتج")}
+                lead={t("Inside the", "من داخل")}
+                accent={t("product", "المنتج")}
+                intro={t("Screens from the delivered system. No mockups standing in for real work.", "صور من النظام الذي سُلّم بالفعل، وليست نماذج تحل محل العمل الحقيقي.")}
               />
             </Reveal>
 
@@ -391,13 +398,12 @@ function ClientCaseView({ study }: { study: ClientCase }) {
         <div className="shell">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
             <Reveal>
-              <Marker>Results</Marker>
+              <Marker>{t("Results", "النتائج")}</Marker>
               <h2 id="results-heading" className="mt-5 max-w-[14ch] text-d2 text-text">
-                What actually <span className="text-accent-ink">changed.</span>
+                {t("What actually ", "ما الذي تغير ")}<span className="text-accent-ink">{t("changed.", "فعلًا.")}</span>
               </h2>
               <p className="measure mt-6 text-sm text-text-3">
-                Only outcomes recorded in the project record appear here. Where a number is not
-                verified, it is not published.
+                {t("Only outcomes recorded in the project record appear here. Where a number is not verified, it is not published.", "نعرض النتائج المسجلة في وثائق المشروع فقط. ولا ننشر أي رقم لم يتم التحقق منه.")}
               </p>
             </Reveal>
 
@@ -420,7 +426,7 @@ function ClientCaseView({ study }: { study: ClientCase }) {
                   ))}
                 </ul>
               ) : (
-                <Pending block>[Add verified result only]</Pending>
+                <Pending block>{t("[Add verified result only]", "[تضاف النتائج الموثقة فقط]")}</Pending>
               )}
             </Reveal>
           </div>
@@ -437,7 +443,7 @@ function ClientCaseView({ study }: { study: ClientCase }) {
                 id="lessons-heading"
                 className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase"
               >
-                What made the project work
+                {t("What made the project work", "ما الذي ساعد على نجاح المشروع")}
               </h2>
             </div>
           </Reveal>
@@ -458,26 +464,26 @@ function ClientCaseView({ study }: { study: ClientCase }) {
       </Section>
 
       {/* ═══ MORE WORK ══════════════════════════════════════════════════════ */}
-      <Section surface="sunken" aria-label="More work">
+      <Section surface="sunken" aria-label={t("More work", "المزيد من الأعمال")}>
         <div className="shell">
           <CaseStudyBrowser excludeSlug={study.slug} />
         </div>
       </Section>
 
       <FinalCta
-        marker="Next step"
-        heading="Have a similar product or"
-        accent="workflow to build?"
-        body="Tell us what you are working on and we will help you identify the right technical direction."
-        primary={{ label: "Discuss Your Project", href: "/contact" }}
-        secondary={{ label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" }}
+        marker={t("Next step", "الخطوة التالية")}
+        heading={t("Have a similar product or", "هل لديك منتج أو")}
+        accent={t("workflow to build?", "مسار عمل مشابه؟")}
+        body={t("Tell us what you are working on and we will help you identify the right technical direction.", "أخبرنا بما تعمل عليه، وسنساعدك على تحديد الاتجاه التقني المناسب، مع عمل مدعوم بالذكاء الاصطناعي ومراجعة فريقنا في كل مرحلة.")}
+        primary={{ label: t("Discuss Your Project", "ناقش مشروعك معنا"), href: "/contact" }}
+        secondary={{ label: t("Book a Free Project Discovery Call", "احجز مكالمة تعريفية مجانية"), href: "/contact?intent=strategy-call" }}
       />
 
       <JsonLd
         data={[
           breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Case Studies", path: "/case-studies" },
+            { name: t("Home", "الرئيسية"), path: "/" },
+            { name: t("Case Studies", "دراسات الحالة"), path: "/case-studies" },
             { name: study.name, path: `/case-studies/${study.slug}` },
           ]),
           {
@@ -500,35 +506,36 @@ function ClientCaseView({ study }: { study: ClientCase }) {
    ENGINEERING STUDY
    ══════════════════════════════════════════════════════════════════════════ */
 
-function ResearchView({ study }: { study: ResearchStudy }) {
+function ResearchView({ study, ar }: { study: ResearchStudy; ar: boolean }) {
+  const t = (en: string, arabic: string) => ar ? arabic : en;
   const blocks: { title: string; items: string[] }[] = [
-    { title: "Objectives", items: study.objectives },
-    { title: "Process", items: study.process },
-    { title: "Results", items: study.results },
-    { title: "What we took from it", items: study.learnings },
+    { title: t("Objectives", "الأهداف"), items: study.objectives },
+    { title: t("Process", "المنهجية"), items: study.process },
+    { title: t("Results", "النتائج"), items: study.results },
+    { title: t("What we took from it", "ما تعلمناه"), items: study.learnings },
   ].filter((b) => b.items.length > 0);
 
   return (
     <>
       <PageHero
-        marker="Engineering study"
+        marker={t("Engineering study", "دراسة هندسية")}
         heading={study.title}
         body={study.tagline}
-        primary={{ label: "Discuss a Similar Project", href: "/contact" }}
-        secondary={study.pdf ? { label: "Open full report (PDF)", href: study.pdf } : undefined}
+        primary={{ label: t("Discuss a Similar Project", "ناقش مشروعًا مشابهًا"), href: "/contact" }}
+        secondary={study.pdf ? { label: t("Open full report (PDF)", "افتح التقرير الكامل PDF"), href: study.pdf } : undefined}
         crumbs={[
-          { name: "Home", path: "/" },
-          { name: "Case Studies", path: "/case-studies" },
+          { name: t("Home", "الرئيسية"), path: "/" },
+          { name: t("Case Studies", "دراسات الحالة"), path: "/case-studies" },
           { name: study.title, path: `/case-studies/${study.slug}` },
         ]}
         meta={[
-          { label: "Domain", value: study.domain },
-          { label: "Year", value: study.year },
+          { label: t("Domain", "المجال"), value: study.domain },
+          { label: t("Year", "السنة"), value: study.year },
           {
-            label: "Type",
+            label: t("Type", "النوع"),
             value: study.isResearchReport
-              ? "Research report — internal engineering work"
-              : "Applied build — internal engineering work",
+              ? t("Research report — internal engineering work", "تقرير بحثي من عمل هندسي داخلي")
+              : t("Applied build — internal engineering work", "تطبيق عملي من عمل هندسي داخلي"),
           },
         ]}
         minimalBackdrop
@@ -541,9 +548,7 @@ function ResearchView({ study }: { study: ResearchStudy }) {
             <div className="flex items-start gap-4 rounded-[var(--radius-md)] border border-rule bg-paper-sunken px-6 py-5">
               <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
               <p className="measure-wide text-sm text-text-2">
-                This is internal engineering and R&amp;D work, not a client project. It is published
-                to show technical depth — the modelling, evaluation, and tooling behind the AI
-                automation we build for clients. No client is associated with it.
+                {t("This is internal engineering and R&D work, not a client project. It is published to show technical depth — the modelling, evaluation, and tooling behind the AI automation we build for clients. No client is associated with it.", "هذا عمل هندسي وبحثي داخلي، وليس مشروعًا لعميل. ننشره لإظهار عمق العمل التقني في النمذجة والتقييم والأدوات التي تدعم حلول الأتمتة الذكية لعملائنا. لا يرتبط هذا العمل بأي عميل.")}
               </p>
             </div>
           </Reveal>
@@ -555,7 +560,7 @@ function ResearchView({ study }: { study: ResearchStudy }) {
         <div className="shell">
           <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
             <Reveal>
-              <Marker>Overview</Marker>
+              <Marker>{t("Overview", "نظرة عامة")}</Marker>
               <div className="mt-6 flex flex-col gap-5">
                 {study.overview.map((o) => (
                   <p key={o} className="measure text-lead text-text-2">
@@ -568,7 +573,7 @@ function ResearchView({ study }: { study: ResearchStudy }) {
             <Reveal kind="right">
               <div className="rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-6">
                 <h2 className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
-                  Tools & methods
+                  {t("Tools & methods", "الأدوات والأساليب")}
                 </h2>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {(study.tools.length ? study.tools : study.tags).map((t) => (
@@ -590,7 +595,7 @@ function ResearchView({ study }: { study: ResearchStudy }) {
                     block
                   >
                     <Download aria-hidden className="size-4" strokeWidth={1.8} />
-                    Full technical report
+                    {t("Full technical report", "التقرير التقني الكامل")}
                   </Button>
                 )}
               </div>
@@ -600,7 +605,7 @@ function ResearchView({ study }: { study: ResearchStudy }) {
       </Section>
 
       {/* ═══ DETAIL BLOCKS ══════════════════════════════════════════════════ */}
-      <Section surface="sunken" aria-label="Study detail">
+      <Section surface="sunken" aria-label={t("Study detail", "تفاصيل الدراسة")}>
         <SchematicGround grid={30} nodes={false} mask="radial" className="opacity-60" />
         <div className="shell relative">
           <RevealGroup as="div" className="grid gap-6 md:grid-cols-2">
@@ -635,9 +640,9 @@ function ResearchView({ study }: { study: ResearchStudy }) {
             <Reveal>
               <SectionHead
                 id="figs-heading"
-                marker="Figures"
-                lead="From the"
-                accent="report"
+                marker={t("Figures", "الرسوم التوضيحية")}
+                lead={t("From the", "من داخل")}
+                accent={t("report", "التقرير")}
               />
             </Reveal>
 
@@ -647,7 +652,7 @@ function ResearchView({ study }: { study: ResearchStudy }) {
             >
               {(study.figures.length > 0
                 ? study.figures
-                : [{ src: study.cover as string, alt: `${study.title} overview` }]
+                : [{ src: study.cover as string, alt: `${study.title} ${t("overview", "نظرة عامة")}` }]
               ).map((f) => (
                 <RevealItem key={f.src} as="li">
                   <figure className="overflow-hidden rounded-[var(--radius-md)] border border-rule bg-white shadow-e1">
@@ -671,25 +676,25 @@ function ResearchView({ study }: { study: ResearchStudy }) {
       )}
 
       {/* ═══ MORE WORK ══════════════════════════════════════════════════════ */}
-      <Section surface="sunken" aria-label="More work">
+      <Section surface="sunken" aria-label={t("More work", "المزيد من الأعمال")}>
         <div className="shell">
           <CaseStudyBrowser excludeSlug={study.slug} />
         </div>
       </Section>
 
       <FinalCta
-        marker="Next step"
-        heading="Need this kind of capability in"
-        accent="a real product?"
-        body="Tell us the workflow you want to automate and we will map the practical version of it — grounded, reviewable, and connected to the tools you already run."
-        primary={{ label: "Book a Free Project Discovery Call", href: "/contact?intent=ai-automation" }}
-        secondary={{ label: "Explore AI Automation", href: "/ai-automation" }}
+        marker={t("Next step", "الخطوة التالية")}
+        heading={t("Need this kind of capability in", "هل تحتاج هذه القدرة في")}
+        accent={t("a real product?", "منتج حقيقي؟")}
+        body={t("Tell us the workflow you want to automate and we will map the practical version of it — grounded, reviewable, and connected to the tools you already run.", "أخبرنا بسير العمل الذي تريد أتمتته، وسنحدد له تطبيقًا عمليًا يمكن مراجعته ويرتبط بأدواتك الحالية، مع إشراف فريقنا على كل خطوة.")}
+        primary={{ label: t("Book a Free Project Discovery Call", "احجز مكالمة تعريفية مجانية"), href: "/contact?intent=ai-automation" }}
+        secondary={{ label: t("Explore AI Automation", "اكتشف الأتمتة الذكية"), href: "/ai-automation" }}
       />
 
       <JsonLd
         data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Case Studies", path: "/case-studies" },
+          { name: t("Home", "الرئيسية"), path: "/" },
+          { name: t("Case Studies", "دراسات الحالة"), path: "/case-studies" },
           { name: study.title, path: `/case-studies/${study.slug}` },
         ])}
       />

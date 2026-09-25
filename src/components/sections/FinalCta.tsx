@@ -2,13 +2,14 @@ import { Button } from "@/components/ui/Button";
 import { Marker } from "@/components/ui/Section";
 import { CONTACT } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import { getTranslations } from "next-intl/server";
 
 /**
  * The closing conversion block. Every page ends on one, with copy specific to
  * that page's reader — never a generic repeated banner.
  */
-export function FinalCta({
-  marker = "Next step",
+export async function FinalCta({
+  marker,
   heading,
   accent,
   body,
@@ -24,6 +25,7 @@ export function FinalCta({
   secondary?: { label: string; href: string };
   className?: string;
 }) {
+  const t = await getTranslations("cta");
   return (
     <section
       data-surface="light"
@@ -31,7 +33,7 @@ export function FinalCta({
     >
       <div className="shell relative">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <Marker>{marker}</Marker>
+          <Marker>{marker ?? t("nextStep")}</Marker>
           <h2 className="max-w-[20ch] text-d2 text-text">
             {heading}
             {accent && (
@@ -55,7 +57,7 @@ export function FinalCta({
           </div>
 
           <p className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-mono text-xs text-text-4">
-            <span>Prefer to message?</span>
+            <span>{t("preferMessage")}</span>
             <a
               href={CONTACT.whatsapp.href}
               target="_blank"

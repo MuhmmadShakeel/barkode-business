@@ -9,15 +9,12 @@ import { DeliveryNotice } from "./DeliveryNotice";
 
 import { CONTACT } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
+import { getLocale } from "next-intl/server";
 
-export const metadata = buildMetadata({
-  title: "Thank you — we have your project details",
-  description: "We will review your inquiry and respond with the best next step.",
-  path: "/contact/thank-you",
-  noIndex: true,
-});
+export async function generateMetadata() { const ar = (await getLocale()) === "ar"; return buildMetadata({ title: ar ? "شكرًا لمشاركة تفاصيل مشروعك" : "Thank you — we have your project details", description: ar ? "سنراجع استفسارك ونرد بخطوة عملية مناسبة." : "We will review your inquiry and respond with the best next step.", path: "/contact/thank-you", noIndex: true }); }
 
-export default function ThankYouPage() {
+export default async function ThankYouPage() {
+  const ar = (await getLocale()) === "ar";
   return (
     <section
       data-surface="dark"
@@ -36,17 +33,16 @@ export default function ThankYouPage() {
           </span>
 
           <div className="mt-8 flex justify-center">
-            <Marker tone="dark">Inquiry received</Marker>
+            <Marker tone="dark">{ar ? "استلمنا استفسارك" : "Inquiry received"}</Marker>
           </div>
 
           <h1 className="site-hero-heading mt-5 text-white">
-            Thank you for sharing your{" "}
-            <span className="text-accent-bright">project details.</span>
+            {ar ? "شكرًا لمشاركة " : "Thank you for sharing your "}
+            <span className="text-accent-bright">{ar ? "تفاصيل مشروعك." : "project details."}</span>
           </h1>
 
           <p className="measure mx-auto mt-6 text-lead text-balance text-ontext-2">
-            We will review your inquiry and respond with the best next step. You can also book a
-            free project discovery call if you are ready to discuss the project.
+            {ar ? "سنراجع استفسارك ونرد بخطوة مناسبة. وإذا كنت مستعدًا لمناقشة المشروع، يمكنك طلب مكالمة تعريفية مجانية. نستعين بالذكاء الاصطناعي في دراسة الخيارات، ويشرف فريقنا على التوصية التي نقدمها لك." : "We will review your inquiry and respond with the best next step. You can also book a free project discovery call if you are ready to discuss the project."}
           </p>
 
           <Suspense fallback={null}>
@@ -56,21 +52,21 @@ export default function ThankYouPage() {
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
             {CONTACT.bookingUrl ? (
               <Button href={CONTACT.bookingUrl} variant="onDark" size="lg" arrow>
-                Book a Free Project Discovery Call
+                {ar ? "احجز مكالمة تعريفية مجانية" : "Book a Free Project Discovery Call"}
               </Button>
             ) : (
               <Button href={CONTACT.whatsapp.href} variant="onDark" size="lg" arrow>
-                Message us on WhatsApp
+                {ar ? "راسلنا عبر WhatsApp" : "Message us on WhatsApp"}
               </Button>
             )}
             <Button href="/case-studies" variant="onDarkGhost" size="lg">
-              View Our Work
+              {ar ? "شاهد أعمالنا" : "View Our Work"}
             </Button>
           </div>
 
           {!CONTACT.bookingUrl && (
             <div className="mt-8 flex justify-center">
-              <Pending tone="dark">[Add booking link for the free discovery-call button]</Pending>
+              <Pending tone="dark">{ar ? "[رابط الحجز المباشر غير متاح حاليًا]" : "[Add booking link for the free discovery-call button]"}</Pending>
             </div>
           )}
         </div>

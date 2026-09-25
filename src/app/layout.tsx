@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Noto_Kufi_Arabic } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import "@/styles/globals.css";
 
 import { Header } from "@/components/layout/Header";
@@ -9,12 +11,15 @@ import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { RevealObserver } from "@/components/layout/RevealObserver";
 import { JsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
 import { SITE } from "@/lib/site";
+import { getTranslations } from "next-intl/server";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
+
+const notoKufiArabic = Noto_Kufi_Arabic({ subsets: ["arabic"], variable: "--font-arabic", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -62,19 +67,24 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+  const common = await getTranslations("common");
   return (
     <html
-      lang="en"
-      className={inter.variable}
+      lang={locale}
+      dir={locale === "ar" ? "rtl" : "ltr"}
+      className={`${inter.variable} ${notoKufiArabic.variable}`}
       suppressHydrationWarning
     >
       {/* Browser extensions can attach attributes to the document shell before
           React hydrates. Keep that external mutation from producing a noisy
           warning, while component markup remains fully checked. */}
       <body suppressHydrationWarning>
+        <NextIntlClientProvider locale={locale} messages={{ language: messages.language, common: messages.common, header: messages.header }}>
         <a href="#main" className="skip-link">
-          Skip to content
+          {common("skip")}
         </a>
         <SmoothScroll />
         <RevealObserver />
@@ -85,6 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <WhatsAppFloat />
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

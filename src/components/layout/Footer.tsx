@@ -11,10 +11,16 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Mark";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { getTranslations, getLocale } from "next-intl/server";
+import { localizeNavigationLabel } from "@/i18n/navigation";
 
 const FOOTER_SERVICES = SERVICES_MENU.slice(0, 6);
 
-export function Footer() {
+export async function Footer() {
+  const t = await getTranslations("footer");
+  const common = await getTranslations("common");
+  const locale = await getLocale();
+  const label = (value: string) => localizeNavigationLabel(value, locale);
   return (
     <footer data-surface="dark" className="relative isolate overflow-hidden bg-ink-950 text-ontext">
 
@@ -24,49 +30,49 @@ export function Footer() {
           <div>
             <Logo tone="dark" />
             <p className="mt-5 max-w-[34ch] text-sm leading-relaxed text-ontext-2">
-              {FOOTER_COPY.description}
+              {t("description")}
             </p>
 
             <div className="mt-6 rounded-[var(--radius-md)] border border-rule-dark bg-white/[0.03] p-4">
               <p className="font-display text-[1.0625rem] leading-snug font-semibold text-white">
-                {FOOTER_COPY.ctaHeading}
+                {t("ctaHeading")}
               </p>
               <Button href="/contact" variant="onDark" size="sm" className="mt-3" arrow block>
-                {FOOTER_COPY.ctaLabel}
+                {t("ctaLabel")}
               </Button>
             </div>
           </div>
 
           {/* ── Column 2 — services ───────────────────────────────────────── */}
-          <FooterColumn title="Services">
+          <FooterColumn title={common("services")}>
             {FOOTER_SERVICES.map((s) => (
               <FooterLink key={s.href} href={s.href}>
-                {s.label}
+                {label(s.label)}
               </FooterLink>
             ))}
-            <FooterLink href="/services">All services</FooterLink>
+            <FooterLink href="/services">{common("allServices")}</FooterLink>
           </FooterColumn>
 
           {/* ── Column 3 — company ────────────────────────────────────────── */}
-          <FooterColumn title={FOOTER_NAV.company.title}>
+          <FooterColumn title={t("company")}>
             {FOOTER_NAV.company.links.map((l) => (
               <FooterLink key={l.href} href={l.href}>
-                {l.label}
+                {label(l.label)}
               </FooterLink>
             ))}
           </FooterColumn>
 
           {/* ── Column 4 — resources ──────────────────────────────────────── */}
-          <FooterColumn title={FOOTER_NAV.resources.title}>
+          <FooterColumn title={t("resources")}>
             {FOOTER_NAV.resources.links.map((l) => (
               <FooterLink key={l.href} href={l.href}>
-                {l.label}
+                {label(l.label)}
               </FooterLink>
             ))}
           </FooterColumn>
 
           {/* ── Column 5 — contact ────────────────────────────────────────── */}
-          <FooterColumn title="Contact">
+          <FooterColumn title={common("contact")}>
             {CONTACT.email && (
               <li className="min-w-0">
                 <a
@@ -97,10 +103,10 @@ export function Footer() {
             </li>
             <li className="flex items-start gap-2 text-sm text-ontext-2">
               <MapPin aria-hidden className="mt-1 size-3.5 shrink-0 text-signal" strokeWidth={1.7} />
-              <span>{SITE.location}</span>
+              <span>{t("location")}</span>
             </li>
             <li className="text-xs leading-relaxed text-ontext-3">
-              Send a short project brief on WhatsApp. We reply within one business day.
+              {t("message")}
             </li>
             <li className="pt-3">
               <ul className="flex flex-wrap gap-2">
@@ -110,7 +116,7 @@ export function Footer() {
                       href={s.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`${SITE.shortName} on ${s.label}`}
+                      aria-label={t("onSocial", {platform: s.label})}
                       title={s.handle}
                       className="grid size-9 place-items-center rounded-[var(--radius-xs)] border border-rule-dark text-ontext-3 transition-[color,border-color,background-color,transform] duration-200 [transition-timing-function:var(--ease-expo)] hover:-translate-y-0.5 hover:border-accent-bright/50 hover:bg-white/6 hover:text-white"
                     >
@@ -125,17 +131,17 @@ export function Footer() {
 
         {/* ── Bottom bar ──────────────────────────────────────────────────── */}
         <div className="mt-10 flex flex-col gap-4 border-t border-rule-dark pt-6 text-xs text-ontext-4 sm:flex-row sm:items-center sm:justify-between">
-          <p>{FOOTER_COPY.copyright}</p>
-          <nav aria-label="Legal">
+          <p>{t("copyright", {year: new Date().getFullYear()})}</p>
+          <nav aria-label={common("legal")}>
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
               <li>
                 <Link href="/privacy-policy" className="transition-colors duration-200 hover:text-white">
-                  Privacy Policy
+                  {common("privacy")}
                 </Link>
               </li>
               <li>
                 <Link href="/terms-of-service" className="transition-colors duration-200 hover:text-white">
-                  Terms of Service
+                  {common("terms")}
                 </Link>
               </li>
               <li className="font-mono tracking-[0.1em] uppercase">{SITE.positioning}</li>

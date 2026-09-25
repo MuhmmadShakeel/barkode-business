@@ -9,9 +9,17 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Mark";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { useLocale, useTranslations } from "next-intl";
+import { localizeNavigationLabel } from "@/i18n/navigation";
+import { localizeMenuItem } from "@/i18n/consultancy-ar";
 
 export function Header() {
   const pathname = usePathname();
+  const locale = useLocale();
+  const headerText = useTranslations("header");
+  const commonText = useTranslations("common");
+  const label = (value: string) => localizeNavigationLabel(value, locale);
   const [scrolled, setScrolled] = useState(false);
   const [megaMenu, setMegaMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -141,7 +149,7 @@ export function Header() {
                           : "text-text-2 hover:text-text",
                     )}
                   >
-                    {item.label}
+                    {label(item.label)}
                     <ChevronDown
                       aria-hidden
                       className={cn(
@@ -167,7 +175,7 @@ export function Header() {
                         : "text-text-2 hover:text-text",
                   )}
                 >
-                  {item.label}
+                  {label(item.label)}
                   {isActive(item.href) && (
                     <span
                       aria-hidden
@@ -182,14 +190,15 @@ export function Header() {
             )}
           </div>
 
-          <div className="ml-auto hidden shrink-0 xl:block">
+          <div className="ml-auto hidden shrink-0 items-center gap-3 xl:flex">
+            <LanguageSwitcher compact />
             <Button
               href={CTA.header.href}
               variant={overHero ? "onDark" : "primary"}
               size="sm"
               arrow
             >
-              {CTA.header.label}
+              {label(CTA.header.label)}
             </Button>
           </div>
 
@@ -207,7 +216,7 @@ export function Header() {
             )}
           >
             <span className="sr-only">
-              {mobileOpen ? "Close menu" : "Open menu"}
+              {mobileOpen ? headerText("closeMenu") : headerText("openMenu")}
             </span>
             <span className="transition-transform duration-200">
               {mobileOpen ? (
@@ -231,7 +240,7 @@ export function Header() {
                   {activeMegaMenu.children.map((s, index) => (
                     <MegaItem
                       key={`${activeMegaMenu.href}-${s.label}`}
-                      item={s}
+                      item={localizeMenuItem(s, locale)}
                       active={pathname === s.href}
                       index={index}
                       dark
@@ -242,11 +251,10 @@ export function Header() {
                   className="w-[16rem] shrink-0 self-start rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-5"
                 >
                   <p className="font-display text-[1.0625rem] leading-snug font-semibold text-text">
-                    Not sure where to start?
+                    {headerText("unsure")}
                   </p>
                   <p className="mt-2.5 text-sm text-text-3">
-                    Describe the workflow or product. We will point you at the
-                    right starting scope — or tell you it is not a fit.
+                    {headerText("guidance")}
                   </p>
                   <Button
                     href="/contact"
@@ -256,7 +264,7 @@ export function Header() {
                     arrow
                     block
                   >
-                    Send Project Details
+                    {headerText("sendDetails")}
                   </Button>
                 </div>
               </div>
@@ -285,14 +293,14 @@ export function Header() {
                         servicesActive ? "text-accent-ink" : "text-text",
                       )}
                     >
-                      Services
+                      {commonText("services")}
                     </Link>
                     <button
                       type="button"
                       onClick={() => setMobileServices((v) => !v)}
                       aria-expanded={mobileServices}
                       aria-controls="mobile-services-menu"
-                      aria-label={mobileServices ? "Collapse services menu" : "Expand services menu"}
+                      aria-label={mobileServices ? headerText("collapseServices") : headerText("expandServices")}
                       className="grid size-11 shrink-0 place-items-center rounded-[var(--radius-xs)] border border-rule bg-paper-raised text-text-3 transition-[color,border-color,background-color] hover:border-accent/40 hover:text-accent-ink"
                     >
                       <ChevronDown
@@ -309,7 +317,7 @@ export function Header() {
                         id="mobile-services-menu"
                         className="overflow-hidden motion-safe:animate-[menu-reveal_.24s_var(--ease-expo)]"
                       >
-                        {SERVICES_MENU.map((s) => (
+                        {SERVICES_MENU.map((source) => { const s = localizeMenuItem(source, locale); return (
                           <li key={s.href}>
                             <Link
                               href={s.href}
@@ -321,7 +329,7 @@ export function Header() {
                               />
                               <span>
                                 <span className="block text-[0.9375rem] font-medium text-text">
-                                  {s.label}
+                                  {label(s.label)}
                                 </span>
                                 <span className="mt-0.5 block text-xs text-text-3">
                                   {s.description}
@@ -329,7 +337,7 @@ export function Header() {
                               </span>
                             </Link>
                           </li>
-                        ))}
+                        ); })}
                         <li className="h-2" />
                       </ul>
                   )}
@@ -345,14 +353,14 @@ export function Header() {
                         consultancyActive ? "text-accent-ink" : "text-text",
                       )}
                     >
-                      Consultancy
+                      {commonText("consultancy")}
                     </Link>
                     <button
                       type="button"
                       onClick={() => setMobileConsultancy((value) => !value)}
                       aria-expanded={mobileConsultancy}
                       aria-controls="mobile-consultancy-menu"
-                      aria-label={mobileConsultancy ? "Collapse consultancy menu" : "Expand consultancy menu"}
+                      aria-label={mobileConsultancy ? headerText("collapseConsultancy") : headerText("expandConsultancy")}
                       className="grid size-11 shrink-0 place-items-center rounded-[var(--radius-xs)] border border-rule bg-paper-raised text-text-3 transition-[color,border-color,background-color] hover:border-accent/40 hover:text-accent-ink"
                     >
                       <ChevronDown aria-hidden className={cn("size-4 transition-transform duration-300 [transition-timing-function:var(--ease-expo)]", mobileConsultancy && "rotate-180")} />
@@ -360,14 +368,14 @@ export function Header() {
                   </div>
                   {mobileConsultancy && (
                     <ul id="mobile-consultancy-menu" className="overflow-hidden motion-safe:animate-[menu-reveal_.24s_var(--ease-expo)]">
-                      {CONSULTANCY_MENU.map((item) => (
+                      {CONSULTANCY_MENU.map((source) => { const item = localizeMenuItem(source, locale); return (
                         <li key={item.href}>
                           <Link href={item.href} className="flex gap-3 py-2.5 pl-4">
                             <ServiceIcon name={item.icon} className="mt-0.5 size-4 shrink-0 text-accent" />
-                            <span><span className="block text-[0.9375rem] font-medium text-text">{item.label}</span><span className="mt-0.5 block text-xs text-text-3">{item.description}</span></span>
+                            <span><span className="block text-[0.9375rem] font-medium text-text">{label(item.label)}</span><span className="mt-0.5 block text-xs text-text-3">{item.description}</span></span>
                           </Link>
                         </li>
-                      ))}
+                      ); })}
                       <li className="h-2" />
                     </ul>
                   )}
@@ -383,15 +391,16 @@ export function Header() {
                         isActive(item.href) ? "text-accent-ink" : "text-text",
                       )}
                     >
-                      {item.label}
+                      {label(item.label)}
                     </Link>
                   </li>
                 ))}
               </ul>
 
               <div className="mt-auto flex flex-col gap-3 pt-9 pb-4">
+                <LanguageSwitcher />
                 <Button href={CTA.header.href} size="lg" arrow block>
-                  {CTA.header.label}
+                  {label(CTA.header.label)}
                 </Button>
                 <Button
                   href={CTA.secondary.href}
@@ -399,7 +408,7 @@ export function Header() {
                   size="lg"
                   block
                 >
-                  {CTA.secondary.label}
+                  {label(CTA.secondary.label)}
                 </Button>
               </div>
             </nav>
@@ -410,6 +419,7 @@ export function Header() {
 }
 
 function MegaItem({ item, active, dark = false }: { item: ServiceNavItem; active: boolean; index?: number; dark?: boolean }) {
+  const locale = useLocale();
   return (
     <li>
       <Link
@@ -438,7 +448,7 @@ function MegaItem({ item, active, dark = false }: { item: ServiceNavItem; active
                 : active ? "text-accent-ink" : "text-text group-hover/mi:text-accent-ink",
             )}
           >
-            {item.label}
+            {localizeNavigationLabel(item.label, locale)}
           </span>
           <span className={cn("mt-1 block text-xs leading-relaxed", dark ? "text-white/55" : "text-text-3")}>
             {item.description}

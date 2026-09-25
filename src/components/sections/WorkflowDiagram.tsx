@@ -73,22 +73,22 @@ export function WorkflowDiagram({
  * The before/after the brief asks for on the homepage: a manual process on one
  * side, the same process with an AI layer and a review gate on the other.
  */
-export function BeforeAfterWorkflow({ tone = "dark" }: { tone?: "light" | "dark" }) {
+export function BeforeAfterWorkflow({ tone = "dark", copy }: { tone?: "light" | "dark"; copy?: {manual:string; assisted:string; before:string[]; after:string[]; gate:string} }) {
   const dark = tone === "dark";
-  const before = [
+  const before = copy?.before ?? [
     "Request arrives",
     "Someone reads it",
     "Someone searches",
     "Someone types a reply",
     "Someone logs it",
   ];
-  const after = [
-    { label: "Business input" },
-    { label: "AI workflow layer" },
-    { label: "Human review", human: true },
-    { label: "System update" },
-    { label: "Business output" },
-  ];
+  const after = (copy?.after ?? [
+    "Business input",
+    "AI workflow layer",
+    "Human review",
+    "System update",
+    "Business output",
+  ]).map((label, index) => ({ label, human: index === 2 }));
 
   return (
     <div className="grid items-start gap-4 sm:grid-cols-2">
@@ -105,7 +105,7 @@ export function BeforeAfterWorkflow({ tone = "dark" }: { tone?: "light" | "dark"
             dark ? "text-ontext-4" : "text-text-4",
           )}
         >
-          Manual process
+          {copy?.manual ?? "Manual process"}
         </p>
         <ol className="mt-6 flex flex-col gap-3.5">
           {before.map((s, i) => (
@@ -141,7 +141,7 @@ export function BeforeAfterWorkflow({ tone = "dark" }: { tone?: "light" | "dark"
             dark ? "text-accent-bright" : "text-accent-ink",
           )}
         >
-          With an AI workflow layer
+          {copy?.assisted ?? "With an AI workflow layer"}
         </p>
         <ol className="mt-6 flex flex-col gap-3.5">
           {after.map((s, i) => (
@@ -182,7 +182,7 @@ export function BeforeAfterWorkflow({ tone = "dark" }: { tone?: "light" | "dark"
                     dark ? "bg-signal/14 text-signal" : "bg-signal/12 text-signal-ink",
                   )}
                 >
-                  Gate
+                  {copy?.gate ?? "Gate"}
                 </span>
               )}
             </li>

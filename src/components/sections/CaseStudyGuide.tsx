@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 
-export function CaseStudyGuide() {
+export function CaseStudyGuide({ label }: { label: string }) {
   return (
     <div className="case-study-guide">
       <div className="case-study-guide__unit">
@@ -18,7 +18,7 @@ export function CaseStudyGuide() {
           />
         </div>
         <Button href="/case-studies/gman-stitching-platform" variant="secondary" size="md" arrow>
-          Read the Gman case study
+          {label}
         </Button>
       </div>
     </div>

@@ -14,13 +14,11 @@ import { SocialIcon } from "@/components/ui/SocialIcon";
 import { SERVICES } from "@/lib/services";
 import { CONTACT, SITE, SOCIAL } from "@/lib/site";
 import { JsonLd, breadcrumbSchema, buildMetadata, faqSchema } from "@/lib/seo";
+import { getLocale } from "next-intl/server";
+import { contactFaqsAr, contactGuidanceAr } from "@/i18n/contact-ar";
+import { localizeMenuItem } from "@/i18n/consultancy-ar";
 
-export const metadata = buildMetadata({
-  title: "Contact — Tell us what you want to build",
-  description:
-    "Share a few details about your project and we will respond with the best next step — a free project discovery call, technical review, MVP plan, or automation discovery.",
-  path: "/contact",
-});
+export async function generateMetadata() { const ar = (await getLocale()) === "ar"; return buildMetadata({ title: ar ? "تواصل مع باراكود بشأن مشروعك" : "Contact — Tell us what you want to build", description: ar ? "شاركنا تفاصيل مشروعك لنقترح خطوة عملية في بناء المنتج أو مراجعة التقنية أو أتمتة سير العمل بمساعدة الذكاء الاصطناعي." : "Share a few details about your project and we will respond with the best next step — a free project discovery call, technical review, MVP plan, or automation discovery.", path: "/contact" }); }
 
 const CONTACT_FAQS = [
   {
@@ -68,18 +66,21 @@ const GUIDANCE = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const ar = (await getLocale()) === "ar";
+  const faqs = ar ? contactFaqsAr : CONTACT_FAQS;
+  const guidance = ar ? contactGuidanceAr : GUIDANCE;
   return (
     <>
       <PageHero
-        marker="Contact Barakode"
-        heading="Tell us what you want to build, automate, or"
-        accent="improve"
+        marker={ar ? "تواصل مع باراكود" : "Contact Barakode"}
+        heading={ar ? "أخبرنا بما تريد بناءه أو أتمتته أو" : "Tell us what you want to build, automate, or"}
+        accent={ar ? "تحسينه" : "improve"}
         trail="."
-        body="Share a few details about your project and we will respond with the best next step, whether that is a free project discovery call, technical review, MVP plan, or automation discovery."
+        body={ar ? "شاركنا بعض تفاصيل مشروعك لنقترح خطوة مناسبة، سواء كانت مكالمة تعريفية مجانية أو مراجعة تقنية أو خطة منتج أولي أو استكشاف فرصة للأتمتة. نعمل بمساعدة الذكاء الاصطناعي مع مراجعة بشرية في كل مرحلة." : "Share a few details about your project and we will suggest a practical next step, whether that is a discovery call, technical review, MVP plan, or automation opportunity. AI assists our work, and our team reviews every recommendation."}
         crumbs={[
-          { name: "Home", path: "/" },
-          { name: "Contact", path: "/contact" },
+          { name: ar ? "الرئيسية" : "Home", path: "/" },
+          { name: ar ? "تواصل معنا" : "Contact", path: "/contact" },
         ]}
         showMarker={false}
         minimalBackdrop
@@ -91,7 +92,7 @@ export default function ContactPage() {
       <Section surface="paper" aria-labelledby="form-heading">
         <div className="shell">
           <h2 id="form-heading" className="sr-only">
-            Project inquiry form
+            {ar ? "نموذج الاستفسار عن المشروع" : "Project inquiry form"}
           </h2>
 
           <div className="grid gap-x-12 gap-y-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start">
@@ -99,7 +100,7 @@ export default function ContactPage() {
               <Suspense
                 fallback={
                   <div className="rounded-[var(--radius-lg)] border border-black/10 bg-white p-8 text-black shadow-e2">
-                    <p className="text-sm text-text-3">Loading form…</p>
+                    <p className="text-sm text-text-3">{ar ? "جارٍ تحميل النموذج…" : "Loading form…"}</p>
                   </div>
                 }
               >
@@ -111,13 +112,13 @@ export default function ContactPage() {
             <Reveal kind="right" className="flex flex-col gap-6 lg:sticky lg:top-28">
               <div className="rounded-[var(--radius-md)] border border-black/10 bg-white p-6 text-black shadow-e1">
                 <h3 className="font-mono text-marker font-medium tracking-[0.16em] text-black/65 uppercase">
-                  Direct channels
+                  {ar ? "قنوات التواصل المباشر" : "Direct channels"}
                 </h3>
                 <ul className="mt-5 flex flex-col gap-4">
                   <li className="flex items-start gap-3">
                     <Mail aria-hidden className="mt-0.5 size-4 shrink-0 text-accent" strokeWidth={1.7} />
                     <div className="min-w-0">
-                      <p className="text-xs text-black/55">Email</p>
+                      <p className="text-xs text-black/55">{ar ? "البريد الإلكتروني" : "Email"}</p>
                       {CONTACT.email ? (
                         <a
                           href={`mailto:${CONTACT.email}`}
@@ -127,7 +128,7 @@ export default function ContactPage() {
                         </a>
                       ) : (
                         <div className="mt-1">
-                          <Pending>[Add official email]</Pending>
+                          <Pending>{ar ? "[البريد الرسمي غير متاح حاليًا]" : "[Add official email]"}</Pending>
                         </div>
                       )}
                     </div>
@@ -140,7 +141,7 @@ export default function ContactPage() {
                       strokeWidth={1.7}
                     />
                     <div className="min-w-0">
-                      <p className="text-xs text-black/55">Phone / WhatsApp</p>
+                      <p className="text-xs text-black/55">{ar ? "الهاتف وWhatsApp" : "Phone / WhatsApp"}</p>
                       <a
                         href={CONTACT.whatsapp.href}
                         target="_blank"
@@ -155,14 +156,14 @@ export default function ContactPage() {
                   <li className="flex items-start gap-3">
                     <MapPin aria-hidden className="mt-0.5 size-4 shrink-0 text-accent" strokeWidth={1.7} />
                     <div className="min-w-0">
-                      <p className="text-xs text-black/55">Location</p>
-                      <p className="text-sm text-black/75">{SITE.location}</p>
+                      <p className="text-xs text-black/55">{ar ? "الموقع" : "Location"}</p>
+                      <p className="text-sm text-black/75">{ar ? "باكستان، ونخدم عملاء من أنحاء العالم" : SITE.location}</p>
                     </div>
                   </li>
                 </ul>
 
                 <div className="mt-6 border-t border-rule pt-5">
-                  <p className="text-xs text-black/55">Social</p>
+                  <p className="text-xs text-black/55">{ar ? "المنصات الاجتماعية" : "Social"}</p>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {SOCIAL.map((s) => (
                       <li key={s.label}>
@@ -170,7 +171,7 @@ export default function ContactPage() {
                           href={s.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          aria-label={`${SITE.shortName} on ${s.label}`}
+                          aria-label={ar ? `${SITE.shortName} على ${s.label}` : `${SITE.shortName} on ${s.label}`}
                           title={s.handle}
                           className="grid size-9 place-items-center rounded-[var(--radius-xs)] border border-black/10 bg-white text-black/65 shadow-e1 transition-[color,border-color,transform,box-shadow] duration-200 [transition-timing-function:var(--ease-expo)] hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent-ink hover:shadow-e2"
                         >
@@ -186,24 +187,22 @@ export default function ContactPage() {
               <div className="rounded-[var(--radius-md)] border border-black/10 bg-white p-6 text-black shadow-e1">
                 <CalendarClock aria-hidden className="size-5 text-accent-ink" strokeWidth={1.7} />
                 <h3 className="mt-4 font-display text-[1.0625rem] leading-snug font-semibold text-black">
-                  Would rather just talk it through?
+                  {ar ? "تفضل مناقشة الفكرة مباشرة؟" : "Would rather just talk it through?"}
                 </h3>
                 <p className="mt-2.5 text-sm text-black/70">
-                  Request a free 30-minute discovery call. Tell us what you are building and your
-                  key constraints; we will confirm a suitable time within one business day.
+                  {ar ? "اطلب مكالمة تعريفية مجانية لمدة 30 دقيقة. أخبرنا بما تريد بناءه وأهم القيود لديك، وسنؤكد موعدًا مناسبًا خلال يوم عمل واحد." : "Request a free 30-minute discovery call. Tell us what you are building and your key constraints; we will confirm a suitable time within one business day."}
                 </p>
                 {CONTACT.bookingUrl ? (
                   <Button href={CONTACT.bookingUrl} size="md" className="mt-5" arrow block>
-                    Request a Free Project Discovery Call
+                    {ar ? "اطلب مكالمة تعريفية مجانية" : "Request a Free Project Discovery Call"}
                   </Button>
                 ) : (
                   <div className="mt-5">
                     <Button href={CONTACT.whatsapp.href} size="md" arrow block>
-                      Request a Free Discovery Call
+                      {ar ? "اطلب مكالمة تعريفية مجانية" : "Request a Free Discovery Call"}
                     </Button>
                     <p className="mt-3 text-xs text-text-3">
-                      This is a request, not an instant calendar booking. We will confirm the time
-                      and video-call details after reviewing your project.
+                      {ar ? "هذا طلب مكالمة وليس حجزًا فوريًا. سنؤكد الموعد وتفاصيل الاتصال بعد مراجعة مشروعك." : "This is a request, not an instant calendar booking. We will confirm the time and video-call details after reviewing your project."}
                     </p>
                   </div>
                 )}
@@ -211,7 +210,7 @@ export default function ContactPage() {
 
               <div className="flex items-start gap-4">
                 <TraceRule className="mt-3 w-10 shrink-0" />
-                <p className="text-sm text-text-3">{CONTACT.responsePromise}</p>
+                <p className="text-sm text-text-3">{ar ? "نرد على رسالتك خلال يوم عمل واحد بخطوة مناسبة لمشروعك." : CONTACT.responsePromise}</p>
               </div>
             </Reveal>
           </div>
@@ -222,15 +221,15 @@ export default function ContactPage() {
       <Section surface="paper" className="border-t border-black/8" aria-labelledby="guidance-heading">
         <div className="shell">
           <Reveal>
-            <Marker>What to send us</Marker>
+            <Marker>{ar ? "ما الذي ترسله لنا" : "What to send us"}</Marker>
             <h2 id="guidance-heading" className="mt-5 max-w-[17ch] text-d2 text-text">
-              A better brief gets a{" "}
-              <span className="text-accent-ink">better answer.</span>
+              {ar ? "كلما اتضح وصف مشروعك " : "A better brief gets a "}
+              <span className="text-accent-ink">{ar ? "كان ردنا أدق." : "better answer."}</span>
             </h2>
           </Reveal>
 
           <RevealGroup as="ul" className="mt-12 grid gap-5 sm:grid-cols-2">
-            {GUIDANCE.map((g) => (
+            {guidance.map((g) => (
               <RevealItem key={g.heading} as="li" className="h-full">
                 <div className="flex h-full flex-col rounded-[var(--radius-md)] border border-rule bg-paper-raised p-6 shadow-e1">
                   <h3 className="font-display text-[1.0625rem] leading-snug font-semibold text-text">
@@ -240,7 +239,7 @@ export default function ContactPage() {
                     {g.body}
                   </p>
                   <p className="mt-5 border-t border-rule pt-4 font-mono text-[0.6875rem] tracking-[0.06em] text-text-4">
-                    Choose:{" "}
+                    {ar ? "اختر: " : "Choose: "}
                     <span className="text-accent-ink">{g.tag}</span>
                   </p>
                 </div>
@@ -250,7 +249,7 @@ export default function ContactPage() {
 
           <Reveal className="mt-10">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-text-3">
-              <span>Not sure which service applies?</span>
+              <span>{ar ? "لست متأكدًا من الخدمة المناسبة؟" : "Not sure which service applies?"}</span>
               <ul className="flex flex-wrap gap-2">
                 {SERVICES.map((s) => (
                   <li key={s.slug}>
@@ -258,7 +257,7 @@ export default function ContactPage() {
                       href={s.href}
                       className="rounded-[var(--radius-xs)] border border-rule bg-paper-raised px-2.5 py-1 text-xs text-text-2 shadow-e1 transition-[border-color,color] duration-200 hover:border-accent/40 hover:text-accent-ink"
                     >
-                      {s.shortTitle}
+                      {ar ? localizeMenuItem({ href: s.href, label: s.shortTitle, description: "" }, "ar").label : s.shortTitle}
                     </a>
                   </li>
                 ))}
@@ -273,16 +272,16 @@ export default function ContactPage() {
         <div className="shell">
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
             <Reveal className="lg:sticky lg:top-28 lg:self-start">
-              <Marker>Before you send</Marker>
+              <Marker>{ar ? "قبل الإرسال" : "Before you send"}</Marker>
               <h2 id="cfaq-heading" className="mt-5 max-w-[14ch] text-d2 text-text">
-                What happens <span className="text-accent-ink">next.</span>
+                {ar ? "ماذا يحدث " : "What happens "}<span className="text-accent-ink">{ar ? "بعد ذلك." : "next."}</span>
               </h2>
               <Button href="/faq" variant="secondary" size="md" className="mt-8" arrow>
-                All FAQs
+                {ar ? "جميع الأسئلة الشائعة" : "All FAQs"}
               </Button>
             </Reveal>
             <Reveal kind="right">
-              <Accordion items={CONTACT_FAQS} defaultOpen={0} />
+              <Accordion items={faqs} defaultOpen={0} />
             </Reveal>
           </div>
         </div>
@@ -291,14 +290,14 @@ export default function ContactPage() {
       <JsonLd
         data={[
           breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Contact", path: "/contact" },
+            { name: ar ? "الرئيسية" : "Home", path: "/" },
+            { name: ar ? "تواصل معنا" : "Contact", path: "/contact" },
           ]),
-          faqSchema(CONTACT_FAQS),
+          faqSchema(faqs),
           {
             "@context": "https://schema.org",
             "@type": "ContactPage",
-            name: `Contact ${SITE.name}`,
+            name: ar ? "تواصل مع باراكود تكنولوجيز" : `Contact ${SITE.name}`,
             url: `${SITE.url}/contact`,
             mainEntity: { "@id": `${SITE.url}/#organization` },
           },
