@@ -7,6 +7,7 @@ import "@/styles/globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { ProjectEstimatorFloat } from "@/components/layout/ProjectEstimatorFloat";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { RevealObserver } from "@/components/layout/RevealObserver";
 import { JsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
@@ -93,6 +94,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {children}
         </main>
         <Footer />
+        <ProjectEstimatorFloat />
         <WhatsAppFloat />
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         </NextIntlClientProvider>

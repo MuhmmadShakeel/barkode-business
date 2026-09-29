@@ -11,7 +11,7 @@ export async function Hero() {
   return (
     <section
       data-surface="dark"
-      className="home-hero relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ink-950 pt-[5rem] text-ontext lg:pt-[5.25rem]"
+      className="home-hero relative isolate flex h-[100svh] items-center overflow-hidden bg-ink-950 pt-[5rem] text-ontext lg:pt-[5.25rem]"
     >
       <HomeFlowLines />
 

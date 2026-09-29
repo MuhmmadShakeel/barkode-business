@@ -127,7 +127,7 @@ export const CLIENT_CASES: ClientCase[] = [
       "Cloud, DevOps & Product Maintenance",
     ],
     summary:
-      "A video-interview SaaS where a candidate uploads a résumé and gets back a recruiter-ready profile — video introduction, availability, and one shareable link — in under three minutes. Barakode built the full product: résumé parsing, video pipeline, shareable profiles, and Stripe-backed subscriptions.",
+      "OpenInterview is a video interview platform that turns a candidate résumé into a recruiter ready profile with a video introduction availability details and one shareable link. Barakode built the product from résumé parsing and video processing to public profiles and Stripe subscriptions.",
     challenge: [
       "Candidates disappear into application piles. The founders wanted to replace the back-and-forth of résumé attachments, scheduling emails, and screening calls with a single link a candidate could send a recruiter directly.",
       "That meant the product had to do real work in the background — parse an arbitrary résumé, generate profile data from it, accept and serve video, and do all of it fast enough that a first-time user finishes in one sitting with zero technical setup.",
@@ -213,7 +213,7 @@ export const CLIENT_CASES: ClientCase[] = [
       "Cloud, DevOps & Product Maintenance",
     ],
     summary:
-      "A bilingual (Arabic/English, RTL and LTR) property marketplace for the Libyan market — verified listings, live search filters, secure accounts, and an admin panel agents use to manage their own inventory. Built to cover residential and commercial property nationwide.",
+      "Beyut Libya is a bilingual property marketplace for Libya. Buyers can find verified homes with live filters while agents manage their inventory through a secure admin panel. The platform supports residential and commercial property across the country.",
     challenge: [
       "Property discovery in Libya ran on informal networks and unverified listings. There was no reliable, digital-first place for a buyer to search real inventory or for a seller to list with any credibility attached.",
       "Serving the market properly meant the platform had to be genuinely bilingual — full RTL for Arabic and LTR for English, not a translated afterthought — and had to give agents self-service tooling so the operator was not the bottleneck on every listing.",

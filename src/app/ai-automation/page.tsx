@@ -2,11 +2,10 @@ import Image from "next/image";
 import { AlertTriangle, ArrowRight, Check, ShieldCheck } from "lucide-react";
 
 import { PageHero } from "@/components/sections/PageHero";
-import { AiWorkflow3D } from "@/components/sections/AiWorkflow3D";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Glow, Registration, SchematicGround, TraceRule } from "@/components/ui/Schematic";
+import { Registration, TraceRule } from "@/components/ui/Schematic";
 import { Marker, Section, SectionHead } from "@/components/ui/Section";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 
@@ -34,7 +33,7 @@ export default async function AiAutomationPage() {
         heading={ar ? "أتمتة ذكية وعملية" : "Practical AI automation for"}
         accent={ar ? "لسير العمل الحقيقي" : "real business workflows"}
         trail="."
-        body={ar ? "نحول الأجزاء المتكررة من العمل اليومي إلى مسارات موثوقة، من فرز الطلبات وقراءة المستندات إلى الوصول للمعلومات وتحديث الأنظمة التي يستخدمها فريقك. نبني بمساعدة الذكاء الاصطناعي ونبقي المراجعة والقرار بيد الأشخاص." : "We turn the repetitive parts of everyday operations into reliable workflows: sorting requests, reading documents, finding the right information, and updating the systems your team already uses."}
+        body={ar ? "نحول الأجزاء المتكررة من العمل اليومي إلى مسارات موثوقة من فرز الطلبات وقراءة المستندات إلى الوصول للمعلومات وتحديث الأنظمة التي يستخدمها فريقك. نبني بمساعدة الذكاء الاصطناعي ونبقي المراجعة والقرار بيد الأشخاص." : "We turn repetitive daily work into reliable workflows. This includes sorting requests reading documents finding the right information and updating the systems your team already uses."}
         primary={{ label: ar ? "احجز مكالمة تعريفية مجانية" : "Book a Free Project Discovery Call", mobileLabel: ar ? "مكالمة تعريفية مجانية" : "Free AI Discovery Call", href: "/contact?intent=ai-automation" }}
         secondary={{ label: ar ? "اكتشف حالات الاستخدام" : "Explore Use Cases", href: "#use-cases" }}
         crumbs={[
@@ -78,7 +77,7 @@ export default async function AiAutomationPage() {
         aria-labelledby="means-heading"
         className="bg-white"
       >
-        <div className="shell py-12 sm:py-14 lg:py-16">
+        <div className="shell pt-12 pb-0 sm:pt-14 lg:pt-16">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,.95fr)_minmax(0,1.05fr)] lg:gap-16 xl:gap-24">
             <Reveal className="lg:pr-6">
               <h2 id="means-heading" className="max-w-[14ch] text-d2 text-text">
@@ -88,10 +87,10 @@ export default async function AiAutomationPage() {
 
             <Reveal kind="right" className="flex flex-col justify-center lg:pl-12 xl:pl-16">
               <p className="max-w-2xl text-lead text-text-2">
-                {ar ? "نربط الذكاء الاصطناعي بقواعد عملك وأدواتك وخطوات الموافقة القائمة، ليتقدم العمل المتكرر والغني بالمعلومات بسرعة أكبر من دون أن يصبح نظامًا غامضًا." : "We connect AI to your existing rules, tools, and approval steps so repetitive, information-heavy work moves faster without becoming a black box."}
+                {ar ? "نربط الذكاء الاصطناعي بقواعد عملك وأدواتك وخطوات الموافقة القائمة ليتقدم العمل المتكرر والغني بالمعلومات بسرعة أكبر من دون أن يصبح نظامًا غامضًا." : "We connect AI to your existing rules tools and approval steps. Repetitive information heavy work can move faster without becoming a black box."}
               </p>
               <p className="mt-4 max-w-2xl text-text-3">
-                {ar ? "النتيجة فريق أسرع وأكثر اتساقًا، مع بقاء الحكم والمسؤولية والتحكم بيد الأشخاص." : "The result is a faster, more consistent team—without losing judgment, accountability, or human control."}
+                {ar ? "النتيجة فريق أسرع وأكثر اتساقًا مع بقاء الحكم والمسؤولية والتحكم بيد الأشخاص." : "The result is a faster and more consistent team with judgment accountability and control still in human hands."}
               </p>
 
               <div className="mt-7 grid gap-px overflow-hidden rounded-[var(--radius-md)] border border-rule bg-rule sm:grid-cols-3">
@@ -112,24 +111,6 @@ export default async function AiAutomationPage() {
         </div>
       </section>
 
-      <Section surface="ink-deep" tight aria-labelledby="ai-3d-heading" className="service-panel ai-3d-section">
-        <div className="shell">
-          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,.75fr)_minmax(0,1.25fr)]">
-            <Reveal>
-              <h2 id="ai-3d-heading" className="max-w-[13ch] text-d2 text-white">
-                {ar ? "مسار عمل مترابط " : "One connected workflow, "}<span className="text-accent-bright">{ar ? "تتحكم به بوضوح." : "built around control."}</span>
-              </h2>
-              <p className="measure mt-5 text-ontext-2">
-                {ar ? "تمر مدخلات العمل عبر طبقة ذكاء اصطناعي محددة، وتتوقف للمراجعة البشرية حيث يلزم، ثم تتحول إلى تحديث مفيد للنظام أو مخرج عملي." : "Business inputs move through a defined AI layer, pause for human review where it matters, and finish as a useful system update or business output."}
-              </p>
-            </Reveal>
-            <Reveal kind="right">
-              <AiWorkflow3D />
-            </Reveal>
-          </div>
-        </div>
-      </Section>
-
       {/* ═══ PROBLEMS AI CAN SOLVE ══════════════════════════════════════════ */}
       <Section
         surface="paper"
@@ -137,8 +118,7 @@ export default async function AiAutomationPage() {
         aria-labelledby="probs-heading"
         className="overflow-hidden bg-[linear-gradient(180deg,var(--color-paper-sunken)_0%,var(--color-paper)_22rem)]"
       >
-        <SchematicGround grid={34} nodes={false} mask="radial" className="opacity-45" />
-        <div className="shell relative py-14 sm:py-16 lg:py-20">
+        <div className="shell relative pt-0 pb-14 sm:pb-16 lg:pb-20">
           <div className="grid items-end gap-7 pb-9 lg:grid-cols-[minmax(0,.9fr)_minmax(22rem,.62fr)] lg:gap-16 lg:pb-11">
             <Reveal>
               <Marker>{ar ? "فرص الأتمتة" : "Automation opportunities"}</Marker>
@@ -148,10 +128,10 @@ export default async function AiAutomationPage() {
             </Reveal>
             <Reveal kind="right">
               <p className="max-w-xl text-lead text-text-2 lg:ml-auto">
-                {ar ? "إذا عادت المهام نفسها إلى الأشخاص أنفسهم كل أسبوع، فغالبًا توجد طريقة مناسبة لأتمتة أجزائها الروتينية." : "If these jobs keep landing back on the same people every week, there is usually a sensible way to automate the routine parts."}
+                {ar ? "إذا عادت المهام نفسها إلى الأشخاص أنفسهم كل أسبوع فغالبًا توجد طريقة مناسبة لأتمتة أجزائها الروتينية." : "If the same jobs return to the same people every week there is usually a sensible way to automate the routine parts."}
               </p>
               <p className="mt-3 max-w-xl text-sm leading-relaxed text-text-3 lg:ml-auto">
-                {ar ? "نبدأ بعنق الزجاجة في العمل، لا بالتقنية، ونبقي الأشخاص أصحاب القرار حيث تكون خبرتهم ضرورية." : "We start with the operational bottleneck—not the technology—and keep people in control wherever judgment matters."}
+                {ar ? "نبدأ بعنق الزجاجة في العمل لا بالتقنية ونبقي الأشخاص أصحاب القرار حيث تكون خبرتهم ضرورية." : "We begin with the operational bottleneck and keep people in control wherever judgment matters."}
               </p>
             </Reveal>
           </div>
@@ -185,7 +165,7 @@ export default async function AiAutomationPage() {
               tone="dark"
               lead={ar ? "ما نبنيه" : "What we"}
               accent={ar ? "لمؤسستك فعلًا" : "actually build"}
-              intro={ar ? "سبعة استخدامات تغطي كثيرًا من احتياجات الأعمال، وكل منها يرتبط بالأدوات التي يعمل بها فريقك بالفعل." : "Seven patterns cover most of the AI work businesses need. Each one connects to the tools you already run."}
+              intro={ar ? "سبعة استخدامات تغطي كثيرًا من احتياجات الأعمال وكل منها يرتبط بالأدوات التي يعمل بها فريقك بالفعل." : "These seven patterns cover the AI work most businesses need. Each connects to tools your team already uses."}
             />
           </Reveal>
 
@@ -225,7 +205,7 @@ export default async function AiAutomationPage() {
                 {ar ? "مساعدون أذكياء " : "AI agents for "}<span className="text-accent-ink">{ar ? "لمهام محددة." : "defined work."}</span>
               </h2>
               <p className="measure mt-6 text-text-2">
-                {ar ? "المساعد الذكي يفهم المهمة ويستخدم الأدوات المتاحة ويتبع قواعد محددة وينجز الخطوات المطلوبة، مع إشراف بشري عند الحاجة." : "An AI agent is a workflow assistant that can understand a task, use available tools, follow defined rules, and complete steps with human oversight where needed."}
+                {ar ? "المساعد الذكي يفهم المهمة ويستخدم الأدوات المتاحة ويتبع قواعد محددة وينجز الخطوات المطلوبة مع إشراف بشري عند الحاجة." : "An AI agent is a workflow assistant that understands a task uses approved tools follows defined rules and stops for human oversight when needed."}
               </p>
               <ul className="mt-8 flex flex-wrap gap-2">
                 {(ar ? aiAgentsAr : AI_AGENTS).map((a) => (
@@ -244,7 +224,7 @@ export default async function AiAutomationPage() {
                 {ar ? "ذكاء اصطناعي يستند إلى " : "AI grounded in "}<span className="text-accent-ink">{ar ? "معرفتك." : "your knowledge."}</span>
               </h2>
               <p className="measure mt-6 text-text-2">
-                {ar ? "يتيح أسلوب توليد الإجابات المعزز بالاسترجاع للمساعد أن يجيب انطلاقًا من مصادر عملك المحددة، لا من معرفة النموذج العامة وحدها." : "RAG allows an AI assistant to answer based on selected business knowledge instead of only relying on general model knowledge."}
+                {ar ? "يتيح أسلوب توليد الإجابات المعزز بالاسترجاع للمساعد أن يجيب انطلاقًا من مصادر عملك المحددة لا من معرفة النموذج العامة وحدها." : "RAG gives an assistant answers based on selected business knowledge instead of general model knowledge alone."}
               </p>
               <div className="mt-8 rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-6">
                 <p className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase">
@@ -286,7 +266,7 @@ export default async function AiAutomationPage() {
                 <span className="text-accent-ink">{ar ? "مسارات منظمة." : "structured workflows."}</span>
               </h2>
               <p className="mt-6 max-w-lg text-lead text-text-2">
-                {ar ? "استخرج المعلومات التي يحتاجها فريقك، وطبق قواعد تحقق واضحة، ثم انقل البيانات المعتمدة إلى الأنظمة التي يواصل فيها فريقك عمله." : "Extract the information your team needs, apply clear validation rules, and move approved data into the systems where work continues."}
+                {ar ? "استخرج المعلومات التي يحتاجها فريقك وطبق قواعد تحقق واضحة ثم انقل البيانات المعتمدة إلى الأنظمة التي يواصل فيها فريقك عمله." : "Extract the information your team needs. Apply clear validation rules then move approved data into the systems where work continues."}
               </p>
               <div className="mt-8 flex items-center gap-3 pt-2 font-mono text-[.6875rem] tracking-[.12em] text-text-4 uppercase">
                 <span>{ar ? "إدخال" : "Input"}</span>
@@ -338,7 +318,7 @@ export default async function AiAutomationPage() {
                 {ar ? "ليست كل عملية " : "Not every process "}<span className="text-accent-bright">{ar ? "مناسبة للأتمتة." : "should be automated."}</span>
               </h2>
               <p className="measure mx-auto mt-7 text-ontext-2">
-                {ar ? "نوضح لك متى لا يكون الذكاء الاصطناعي الخيار المناسب. هذه فئات لا نؤتمتها بلا تمحيص، حتى لو كان ذلك ممكنًا تقنيًا." : "We will tell you when AI is the wrong answer. These are the categories we do not automate blindly, regardless of what is technically possible."}
+                {ar ? "نوضح لك متى لا يكون الذكاء الاصطناعي الخيار المناسب. هذه فئات لا نؤتمتها بلا تمحيص حتى لو كان ذلك ممكنًا تقنيًا." : "We will tell you when AI is the wrong answer. These are categories we do not automate blindly even when it is technically possible."}
               </p>
           </Reveal>
 
@@ -363,13 +343,13 @@ export default async function AiAutomationPage() {
                 <Registration tone="dark" size={18} />
                 <ShieldCheck aria-hidden className="size-7 text-signal" strokeWidth={1.5} />
                 <h3 className="mt-5 text-d3 text-white">
-                  {ar ? "يجب أن يكون الذكاء الاصطناعي مفيدًا ومنضبطًا ومسؤولًا." : "AI should be useful, controlled, and responsible."}
+                  {ar ? "يجب أن يكون الذكاء الاصطناعي مفيدًا ومنضبطًا ومسؤولًا." : "AI should be useful controlled and responsible."}
                 </h3>
                 <p className="measure mt-5 text-ontext-2">
-                  {ar ? "نصمم الأنظمة الذكية بحدود واضحة وإشراف بشري وحماية للبيانات وضوابط للصلاحيات وخطوات مراجعة وبدائل عند الحاجة." : "AI systems should be designed with clear limits, human oversight, data privacy, permission controls, review workflows, and fallback options."}
+                  {ar ? "نصمم الأنظمة الذكية بحدود واضحة وإشراف بشري وحماية للبيانات وضوابط للصلاحيات وخطوات مراجعة وبدائل عند الحاجة." : "AI systems need clear limits human oversight data privacy permission controls review workflows and fallback options."}
                 </p>
                 <p className="measure mt-4 text-ontext-3">
-                  {ar ? "نستخدم الذكاء الاصطناعي لمساعدة فريقنا وتحسين عمليات عملائنا، لا لإلغاء دور الأشخاص في اتخاذ القرارات." : "Barakode presents AI as a tool for improving operations, not replacing all human decision-making."}
+                  {ar ? "نستخدم الذكاء الاصطناعي لمساعدة فريقنا وتحسين عمليات عملائنا لا لإلغاء دور الأشخاص في اتخاذ القرارات." : "Barakode uses AI to improve operations while people retain responsibility for decisions."}
                 </p>
                 <ul className="mt-7 flex flex-wrap gap-2">
                   {[
@@ -402,7 +382,7 @@ export default async function AiAutomationPage() {
               id="aiproc-heading"
               lead={ar ? "من الفرصة إلى" : "From opportunity to"}
               accent={ar ? "التشغيل الفعلي" : "production"}
-              intro={ar ? "ثماني خطوات، نختبر فيها النموذج الأولي على مدخلاتك الحقيقية لا على بيانات عرض تجريبي." : "Eight steps. The prototype runs on your real inputs, not a demo dataset."}
+              intro={ar ? "ثماني خطوات نختبر فيها النموذج الأولي على مدخلاتك الحقيقية لا على بيانات عرض تجريبي." : "Eight steps. The prototype uses your real inputs rather than a demo dataset."}
             />
           </Reveal>
 

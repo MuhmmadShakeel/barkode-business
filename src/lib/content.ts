@@ -76,18 +76,18 @@ export const PROCESS: ProcessStep[] = [
     why: "The product becomes real through structured development and regular progress reviews.",
   },
   {
-    id: "ai-integration",
-    title: "AI / Automation Integration",
-    short: "Where it earns its place: AI workflows, automation rules, integrations.",
-    what: "Where needed, we add AI workflows, automation rules, third-party integrations, or intelligent features.",
+    id: "systems-integration",
+    title: "Systems Integration",
+    short: "Connect the product to the tools and workflows that keep the business moving.",
+    what: "We connect the product to approved business tools and define reliable handoffs between systems.",
     receives: [
-      "AI workflow",
+      "Workflow mapping",
       "Integrations",
-      "Automation logic",
+      "Integration rules",
       "Admin controls",
       "Testing flow",
     ],
-    why: "AI and automation should improve actual operations, not create unnecessary complexity.",
+    why: "Every integration should make daily work simpler and easier to trust.",
   },
   {
     id: "qa-deployment",
@@ -407,7 +407,7 @@ export type TeamMember = {
 export const TEAM: TeamMember[] = [
   {
     slug: "safdar-iqbal",
-    name: "Safdar Iqbal",
+    name: "Muhammad Safdar Iqbal",
     role: "Chief Executive Officer & Founder",
     photo: "/images/team/safdar.webp",
     shortBio:
@@ -446,7 +446,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     slug: "burhan-tariq",
-    name: "Burhan Tariq",
+    name: "Muhammad Burhan Tariq",
     role: "Business Development Manager",
     photo: "/images/team/burhan.webp",
     shortBio:
@@ -476,8 +476,8 @@ export const BELIEFS = [
     body: "A strong project starts with understanding the business problem, the users, the workflows, and the expected outcome.",
   },
   {
-    title: "AI should be practical",
-    body: "AI should support real work, improve efficiency, and fit into existing systems. It should not be added for hype.",
+    title: "People stay close to the work",
+    body: "The people responsible for the work should understand the problem, make informed decisions, and stay accountable for the outcome.",
   },
   {
     title: "Good software needs structure",

@@ -1,13 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
 import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Marker, Section, SectionHead } from "@/components/ui/Section";
+import { Marker, Section } from "@/components/ui/Section";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
-import { ENGAGEMENT_MODELS } from "@/lib/content";
 import { SERVICES } from "@/lib/services";
 import { JsonLd, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 import { getLocale, getMessages } from "next-intl/server";
@@ -47,7 +45,6 @@ export default async function ServicesPage() {
   const locale = await getLocale();
   const messages = await getMessages();
   const ar = locale === "ar" ? messages.serviceListing as ArabicListing : null;
-  const position = messages.servicePositioning as { hero: string; overview: string; process: string };
   const homeCards = locale === "ar" ? [...(messages.home as (typeof import("@/i18n/messages/ar.json"))["home"]).services.cards, ...(messages.homeRecoveredServices as (typeof import("@/i18n/messages/ar.json"))["homeRecoveredServices"])] : [];
   return (
     <div className="services-page">
@@ -56,7 +53,7 @@ export default async function ServicesPage() {
         heading={ar?.heroHeading ?? "Software product development and"}
         accent={ar?.heroAccent ?? "AI automation services"}
         trail="."
-        body={ar?.heroBody ?? `Barakode helps startups, SaaS companies, growing businesses, and enterprises build scalable products, improve existing systems, and automate manual workflows through structured product engineering. ${position.hero}`}
+        body={ar?.heroBody ?? "Barakode helps startups and growing businesses define, build, and improve digital products, internal systems, and practical automation."}
         primary={{ label: ar?.primary ?? "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" }}
         secondary={{ label: ar?.secondary ?? "View Our Work", href: "/case-studies" }}
         crumbs={[{ name: ar?.home ?? "Home", path: "/" }, { name: ar?.services ?? "Services", path: "/services" }]}
@@ -93,7 +90,7 @@ export default async function ServicesPage() {
               {ar?.overviewHeading ?? "From idea to launch, automation, and"} <span className="text-accent-ink">{ar?.overviewAccent ?? "long-term support."}</span>
             </h2>
             <p className="measure mt-6 text-lead text-text-2">
-              {ar?.overviewBody ?? `Whether you are building a new MVP, scaling an existing platform, replacing manual operations, or adding AI into your workflow, Barakode helps you plan, design, build, deploy, and improve the right software system. ${position.overview}`}
+              {ar?.overviewBody ?? "Whether you are building a new MVP, improving an existing platform, or replacing manual work, we help you choose the right technical path before moving into delivery."}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/process" variant="secondary" size="md" arrow>{ar?.processLink ?? "See our process"}</Button>
@@ -113,90 +110,33 @@ export default async function ServicesPage() {
       </Section>
 
       <div aria-label={ar?.detailsLabel ?? "Service details"}>
-        {SERVICES.map((service, index) => {
-          const dark = index === 2 || index === 4;
-          const reversed = index % 2 === 1;
-          const image = SERVICE_IMAGES[service.slug] ?? FALLBACK_SERVICE_IMAGE;
-          return (
-            <Section key={service.slug} id={service.slug} surface={dark ? "ink" : "paper"} flush className={`services-story scroll-mt-20 ${dark ? "services-story--dark" : "border-t border-black/8"}`}>
-              <article className="shell grid items-center gap-10 py-section lg:grid-cols-2 lg:gap-16">
-                <Reveal kind={reversed ? "right" : "left"} className={reversed ? "lg:order-2" : undefined}>
-                  <div className="group relative aspect-[4/3] overflow-hidden rounded-[var(--radius-lg)] border border-black/10 bg-paper-sunken shadow-e2">
-                    <Image src={image.src} alt={ar ? `${ar.serviceNumber} ${homeCards[index].title}` : image.alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="services-story__image object-cover transition-transform duration-1000 [transition-timing-function:var(--ease-expo)] group-hover:scale-[1.035]" />
-                    <div className={`absolute inset-0 ${dark ? "bg-gradient-to-t from-black/55 via-transparent to-black/10" : "bg-gradient-to-t from-black/20 via-transparent to-white/5"}`} />
-                    <span className="absolute top-5 left-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/45 px-3 py-2 font-mono text-[0.6875rem] tracking-[0.1em] text-white backdrop-blur-md uppercase">
-                      <ServiceIcon name={service.icon} className="size-3.5 text-accent" /> {ar?.serviceNumber ?? "Service"} {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                </Reveal>
-                <Reveal kind={reversed ? "left" : "right"} className={reversed ? "lg:order-1" : undefined}>
-                  <span className={`font-mono text-marker font-medium tracking-[0.16em] uppercase ${dark ? "text-signal" : "text-accent-ink"}`}>{ar?.cards[index].short ?? service.shortTitle}</span>
-                  <h2 className={`mt-4 max-w-[16ch] text-d3 ${dark ? "text-white" : "text-text"}`}>{ar ? homeCards[index].title : service.title}</h2>
-                  <p className={`measure mt-5 text-base leading-relaxed ${dark ? "text-ontext-2" : "text-text-2"}`}>{ar?.cards[index].delivers ?? `${service.delivers} ${position.hero}`}</p>
-                  <dl className={`mt-7 grid gap-5 border-y py-6 sm:grid-cols-2 ${dark ? "border-white/12" : "border-black/10"}`}>
-                    <div>
-                      <dt className={`font-mono text-[0.6875rem] tracking-[0.12em] uppercase ${dark ? "text-white/45" : "text-text-4"}`}>{ar?.audienceLabel ?? "Who it is for"}</dt>
-                      <dd className={`mt-2 text-sm leading-relaxed ${dark ? "text-white/70" : "text-text-2"}`}>{ar?.cards[index].audience ?? service.audience}</dd>
-                    </div>
-                    <div>
-                      <dt className={`font-mono text-[0.6875rem] tracking-[0.12em] uppercase ${dark ? "text-white/45" : "text-text-4"}`}>{ar?.problemLabel ?? "Problem it solves"}</dt>
-                      <dd className={`mt-2 text-sm leading-relaxed ${dark ? "text-white/70" : "text-text-2"}`}>{ar?.cards[index].problem ?? service.problem}</dd>
-                    </div>
-                  </dl>
-                  <ul className="mt-6 flex flex-wrap gap-2">
-                    {(ar?.cards[index].features ?? service.features).map((feature) => (
-                      <li key={feature} className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs ${dark ? "border-white/12 bg-white/[.045] text-white/75" : "border-black/10 bg-white text-black/70 shadow-e1"}`}>
-                        <Check aria-hidden className="size-3 text-accent" strokeWidth={2.4} /> {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button href={service.href} size="md" variant={dark ? "onDark" : "primary"} className="mt-7" arrow>{ar ? homeCards[index].cta : service.cta}</Button>
-                </Reveal>
-              </article>
-            </Section>
-          );
-        })}
+            {SERVICES.map((service, index) => {
+              const dark = index === 2 || index === 4;
+              const reversed = index % 2 === 1;
+              const image = SERVICE_IMAGES[service.slug] ?? FALLBACK_SERVICE_IMAGE;
+              return (
+                <Section key={service.slug} id={service.slug} surface={dark ? "ink" : "paper"} flush className={`services-story scroll-mt-20 ${dark ? "services-story--dark" : "border-t border-black/8"}`}>
+                  <article className="shell grid items-center gap-10 py-section lg:grid-cols-2 lg:gap-16">
+                    <Reveal kind={reversed ? "right" : "left"} className={reversed ? "lg:order-2" : undefined}>
+                      <div className="group relative aspect-[4/3] overflow-hidden rounded-[var(--radius-lg)] border border-black/10 bg-paper-sunken shadow-e2">
+                        <Image src={image.src} alt={ar ? `${ar.serviceNumber} ${homeCards[index].title}` : image.alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="services-story__image object-cover transition-transform duration-1000 [transition-timing-function:var(--ease-expo)] group-hover:scale-[1.035]" />
+                        <div className={`absolute inset-0 ${dark ? "bg-gradient-to-t from-black/55 via-transparent to-black/10" : "bg-gradient-to-t from-black/20 via-transparent to-white/5"}`} />
+                        <span className="absolute top-5 left-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/45 px-3 py-2 font-mono text-[0.6875rem] tracking-[0.1em] text-white backdrop-blur-md uppercase"><ServiceIcon name={service.icon} className="size-3.5 text-accent" /> {ar?.serviceNumber ?? "Service"} {String(index + 1).padStart(2, "0")}</span>
+                      </div>
+                    </Reveal>
+                    <Reveal kind={reversed ? "left" : "right"} className={reversed ? "lg:order-1" : undefined}>
+                      <span className={`font-mono text-marker font-medium tracking-[0.16em] uppercase ${dark ? "text-signal" : "text-accent-ink"}`}>{ar?.cards[index].short ?? service.shortTitle}</span>
+                      <h2 className={`mt-4 max-w-[16ch] text-d3 ${dark ? "text-white" : "text-text"}`}>{ar ? homeCards[index].title : service.title}</h2>
+                      <p className={`measure mt-5 text-base leading-relaxed ${dark ? "text-ontext-2" : "text-text-2"}`}>{ar?.cards[index].delivers ?? service.delivers}</p>
+                      <dl className={`mt-7 grid gap-5 border-y py-6 sm:grid-cols-2 ${dark ? "border-white/12" : "border-black/10"}`}><div><dt className={`font-mono text-[0.6875rem] tracking-[0.12em] uppercase ${dark ? "text-white/45" : "text-text-4"}`}>{ar?.audienceLabel ?? "Who it is for"}</dt><dd className={`mt-2 text-sm leading-relaxed ${dark ? "text-white/70" : "text-text-2"}`}>{ar?.cards[index].audience ?? service.audience}</dd></div><div><dt className={`font-mono text-[0.6875rem] tracking-[0.12em] uppercase ${dark ? "text-white/45" : "text-text-4"}`}>{ar?.problemLabel ?? "Problem it solves"}</dt><dd className={`mt-2 text-sm leading-relaxed ${dark ? "text-white/70" : "text-text-2"}`}>{ar?.cards[index].problem ?? service.problem}</dd></div></dl>
+                      <ul className="mt-6 flex flex-wrap gap-2">{(ar?.cards[index].features ?? service.features).map((feature) => <li key={feature} className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs ${dark ? "border-white/12 bg-white/[.045] text-white/75" : "border-black/10 bg-white text-black/70 shadow-e1"}`}><Check aria-hidden className="size-3 text-accent" strokeWidth={2.4} /> {feature}</li>)}</ul>
+                      <Button href={service.href} size="md" variant={dark ? "onDark" : "primary"} className="mt-7" arrow>{ar ? homeCards[index].cta : service.cta}</Button>
+                    </Reveal>
+                  </article>
+                </Section>
+              );
+            })}
       </div>
-
-      <Section surface="ink" flush className="services-cycle" aria-labelledby="together-heading">
-        <div className="shell py-section">
-          <Reveal>
-            <SectionHead id="together-heading" tone="dark" align="center" marker={ar?.cycleMarker ?? "One partner"} lead={ar?.cycleHeading ?? "One product engineering partner for"} accent={ar?.cycleAccent ?? "the full build cycle"} intro={ar?.cycleIntro ?? `Barakode can support one part of the project or the full lifecycle, from product planning and design to development, AI automation, deployment, maintenance, and scaling. ${position.process}`} />
-          </Reveal>
-          <RevealGroup as="ol" className="mt-10 grid gap-3 md:grid-cols-4">
-            {(ar?.cycleSteps ?? [
-              { title: "Plan", body: "Discovery, scope, architecture, and the roadmap that follows." },
-              { title: "Design", body: "Flows, wireframes, UI, and a prototype you can click through." },
-              { title: "Build", body: "Frontend, backend, mobile, AI workflows, integrations, and QA." },
-              { title: "Operate", body: "Deployment, monitoring, maintenance, and continuous growth." },
-            ]).map((step, index) => (
-              <RevealItem key={step.title} as="li" index={index} className="group relative overflow-hidden rounded-[var(--radius-md)] border border-white/10 bg-white/[.045] p-6 transition-[border-color,background-color,transform] duration-500 hover:-translate-y-1 hover:border-accent/40 hover:bg-white/[.07]">
-                <span className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</span>
-                <h3 className="mt-8 font-display text-xl font-semibold text-white">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ontext-3">{step.body}</p>
-                <span className="absolute right-5 bottom-5 size-1.5 rounded-full bg-accent opacity-50 transition-transform duration-500 group-hover:scale-[2]" />
-              </RevealItem>
-            ))}
-          </RevealGroup>
-        </div>
-      </Section>
-
-      <Section surface="paper" flush className="services-models" aria-labelledby="models-heading">
-        <div className="shell py-section">
-          <Reveal><SectionHead id="models-heading" marker={ar?.modelsMarker ?? "How we work together"} lead={ar?.modelsHeading ?? "Suggested"} accent={ar?.modelsAccent ?? "engagement models"} intro={ar?.modelsIntro ?? "Pick the shape of the engagement first, then we can agree on scope and delivery."} /></Reveal>
-          <RevealGroup className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3" as="ul">
-            {ENGAGEMENT_MODELS.map((model, index) => (
-              <RevealItem key={model.slug} as="li" className="h-full">
-                <Link href={`/engagement-models#${model.slug}`} className="group flex h-full flex-col rounded-[var(--radius-md)] border border-black/10 bg-white p-6 shadow-e1 transition-[border-color,box-shadow,transform] duration-400 [transition-timing-function:var(--ease-expo)] hover:-translate-y-1 hover:border-accent/40 hover:shadow-e2">
-                  <h3 className="font-display text-[1.0625rem] font-semibold text-black">{ar?.models[index].name ?? model.name}</h3>
-                  <p className="mt-2.5 flex-1 text-sm leading-relaxed text-black/60">{ar?.models[index].bestFor ?? model.bestFor}</p>
-                  <span className="mt-5 flex items-center justify-between gap-3 border-t border-black/10 pt-4"><span className="font-mono text-[0.6875rem] text-black/45">{ar?.models[index].timeline ?? model.timeline}</span><ArrowRight aria-hidden className="size-4 text-accent transition-transform duration-300 group-hover:translate-x-1" /></span>
-                </Link>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-        </div>
-      </Section>
 
       <JsonLd data={breadcrumbSchema([{ name: ar?.home ?? "Home", path: "/" }, { name: ar?.services ?? "Services", path: "/services" }])} />
     </div>

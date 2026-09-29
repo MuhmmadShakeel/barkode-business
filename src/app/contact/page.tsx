@@ -18,7 +18,7 @@ import { getLocale } from "next-intl/server";
 import { contactFaqsAr, contactGuidanceAr } from "@/i18n/contact-ar";
 import { localizeMenuItem } from "@/i18n/consultancy-ar";
 
-export async function generateMetadata() { const ar = (await getLocale()) === "ar"; return buildMetadata({ title: ar ? "تواصل مع باراكود بشأن مشروعك" : "Contact — Tell us what you want to build", description: ar ? "شاركنا تفاصيل مشروعك لنقترح خطوة عملية في بناء المنتج أو مراجعة التقنية أو أتمتة سير العمل بمساعدة الذكاء الاصطناعي." : "Share a few details about your project and we will respond with the best next step — a free project discovery call, technical review, MVP plan, or automation discovery.", path: "/contact" }); }
+export async function generateMetadata() { const ar = (await getLocale()) === "ar"; return buildMetadata({ title: ar ? "تواصل مع باراكود بشأن مشروعك" : "Contact — Tell us what you want to build", description: ar ? "شاركنا تفاصيل مشروعك لنقترح خطوة عملية في بناء المنتج أو مراجعة التقنية أو تحسين سير العمل." : "Share a few details about your project and we will respond with the best next step — a free project discovery call, technical review, MVP plan, or workflow review.", path: "/contact" }); }
 
 const CONTACT_FAQS = [
   {
@@ -51,8 +51,8 @@ const GUIDANCE = [
   },
   {
     heading: "If you have a manual workflow",
-    body: "Describe how the work gets done today, including the exceptions. That is what tells us whether AI automation is worth doing.",
-    tag: "AI automation",
+    body: "Describe how the work gets done today, including the exceptions. That is what helps us identify a practical way to simplify it.",
+    tag: "Workflow improvement",
   },
   {
     heading: "If you already have a product",
@@ -77,15 +77,15 @@ export default async function ContactPage() {
         heading={ar ? "أخبرنا بما تريد بناءه أو أتمتته أو" : "Tell us what you want to build, automate, or"}
         accent={ar ? "تحسينه" : "improve"}
         trail="."
-        body={ar ? "شاركنا بعض تفاصيل مشروعك لنقترح خطوة مناسبة، سواء كانت مكالمة تعريفية مجانية أو مراجعة تقنية أو خطة منتج أولي أو استكشاف فرصة للأتمتة. نعمل بمساعدة الذكاء الاصطناعي مع مراجعة بشرية في كل مرحلة." : "Share a few details about your project and we will suggest a practical next step, whether that is a discovery call, technical review, MVP plan, or automation opportunity. AI assists our work, and our team reviews every recommendation."}
+        body={ar ? "شاركنا بعض تفاصيل مشروعك لنقترح خطوة مناسبة، سواء كانت مكالمة تعريفية مجانية أو مراجعة تقنية أو خطة منتج أولي أو تحسين لسير العمل. يراجع فريقنا كل توصية ويضعها في سياق عملك." : "Share a few details about your project and we will suggest a practical next step, whether that is a discovery call, technical review, MVP plan, or workflow improvement. Our team reviews every recommendation in the context of your business."}
         crumbs={[
           { name: ar ? "الرئيسية" : "Home", path: "/" },
           { name: ar ? "تواصل معنا" : "Contact", path: "/contact" },
         ]}
         showMarker={false}
         minimalBackdrop
-        headingClassName="ai-hero-heading"
-        className="ai-service-hero"
+        backgroundImage={{ src: "/images/hero/contact-consultation-hero.png", alt: ar ? "مساحة استشارية جاهزة لبدء حوار حول المشروع" : "Consultation space ready for a project conversation" }}
+        solidOverlay
       />
 
       {/* ═══ FORM + DETAILS ═════════════════════════════════════════════════ */}

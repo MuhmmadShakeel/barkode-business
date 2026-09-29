@@ -15,7 +15,7 @@ export async function generateMetadata() { const ar = (await getLocale()) === "a
 const MODEL_IMAGES = [
   { src: "/images/contact/roadmap.webp", alt: "Product roadmap and planning workspace" },
   { src: "/images/projects/originals/beyut-cover.webp", alt: "Custom digital product presented on multiple devices" },
-  { src: "/images/home/ai-business-leader.webp", alt: "Business leader reviewing an AI-enabled workflow" },
+  { src: "/images/engagement/ai-automation-sprint-team.png", alt: "Product team reviewing an automation workflow" },
   { src: "/images/home/glass-company-headquarters.webp", alt: "Modern technology company headquarters" },
   { src: "/images/process/support-growth.webp", alt: "Ongoing product support and growth planning" },
 ];
@@ -51,13 +51,11 @@ export default async function EngagementModelsPage() {
       <section className="engagement-hero relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-ink-950 py-28 text-center text-white sm:py-32 lg:h-[100svh] lg:min-h-[38rem] lg:py-0" data-surface="dark">
         <Image src="/images/hero/engagement-models-hero-v2.webp" alt={ar ? "قادة الأعمال والتقنية يتعاونون في اجتماع تخطيط" : "Business and technology leaders collaborating in a modern boardroom"} fill priority sizes="100vw" className="engagement-hero-image object-cover object-center" />
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,8,10,.64)_0%,rgba(4,8,10,.46)_36%,rgba(4,8,10,.72)_100%)]" />
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,7,9,.16)_42%,rgba(3,7,9,.66)_100%)]" />
-        <div aria-hidden className="engagement-grid absolute inset-0 opacity-20" />
 
         <div className="shell relative z-10 flex h-full flex-col items-center justify-center lg:pt-20">
           <Reveal className="flex max-w-[58rem] flex-col items-center">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/25 px-4 py-2 backdrop-blur-md">
-              <span className="size-1.5 rounded-full bg-accent-bright shadow-[0_0_14px_rgba(226,184,92,.9)]" />
+            <div className="inline-flex items-center gap-3 border-y border-white/20 px-4 py-2">
+              <span className="size-1.5 rounded-full bg-accent-bright" />
               <span className="font-mono text-[.6875rem] tracking-[.16em] text-white/80 uppercase">{ar ? "نماذج التعاون" : "Engagement Models"}</span>
             </div>
             <h1 className="site-hero-heading mt-7 max-w-[15ch] text-d1 text-white drop-shadow-[0_4px_30px_rgba(0,0,0,.5)]">{ar ? "الشراكة المناسبة " : "The right partnership for your "}<span className="text-accent-bright">{ar ? "لخطوتك التالية." : "next move."}</span></h1>
@@ -74,7 +72,7 @@ export default async function EngagementModelsPage() {
         <div className="shell w-full">
           <Reveal className="grid items-end gap-8 lg:grid-cols-[1fr_auto]">
             <div><Marker>{ar ? "اختر نقطة البداية" : "Choose your starting point"}</Marker><h2 id="navigator-heading" className="mt-5 max-w-[15ch] text-d2 text-text">{ar ? "ابدأ باحتياج العمل. " : "Start with the business need. "}<span className="text-accent-ink">{ar ? "ثم نحدد طريقة التعاون." : "The model follows."}</span></h2></div>
-            <p className="max-w-md text-text-3">{ar ? "خمس طرق واضحة للعمل معنا، من اختبار فكرة واحدة إلى توسيع فريق منتجك. في كل منها يساعد الذكاء الاصطناعي فريقنا في البحث والبناء والمراجعة، ويتولى الأشخاص القرارات والتسليم." : "Five clear ways to work together, from validating one idea to extending your product team. AI assists our research, build, and review work; our people remain responsible for decisions and delivery."}</p>
+            <p className="max-w-md text-text-3">{ar ? "خمس طرق واضحة للعمل معنا من اختبار فكرة واحدة إلى توسيع فريق منتجك. يقود فريقنا البحث والبناء والمراجعة ويتولى القرارات والتسليم." : "Five clear ways to work together from validating one idea to extending your product team. Our people lead the research build review decisions and delivery."}</p>
           </Reveal>
           <RevealGroup as="ol" className="mt-10 grid border-y border-rule sm:mt-14 sm:grid-cols-2 lg:grid-cols-5">
             {models.map((model, i) => (
@@ -126,10 +124,9 @@ export default async function EngagementModelsPage() {
         if (i === 2) return (
           <section key={model.slug} id={model.slug} data-surface="dark" className="engagement-model engagement-control-room flex scroll-mt-20 items-center overflow-hidden bg-ink-950 py-20">
             <div className="shell w-full"><div className="grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
-              <Reveal kind="left" className="relative min-h-[23rem] [perspective:1200px] sm:min-h-[30rem] lg:min-h-[34rem]">
-                <div className="absolute inset-4 overflow-hidden rounded-full border border-accent/30 shadow-[0_0_90px_rgba(200,146,42,.18)] sm:inset-8"><Image src={image.src} alt={ar ? "مراجعة مسار عمل مدعوم بالذكاء الاصطناعي" : image.alt} fill sizes="(max-width: 1024px) 90vw, 48vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" /></div>
-                {(ar ? ["استكشاف", "نموذج أولي", "تكامل", "مراجعة"] : ["Discover", "Prototype", "Integrate", "Review"]).map((step, n) => <span key={step} className={`engagement-satellite engagement-satellite-${n + 1}`}>0{n + 1} · {step}</span>)}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-accent/30 bg-ink-950 px-5 py-2 text-center text-xs text-signal shadow-e3">{model.timeline}</div>
+              <Reveal kind="left" className="relative min-h-[23rem] sm:min-h-[30rem] lg:min-h-[34rem]">
+                <div className="absolute inset-4 overflow-hidden rounded-[var(--radius-lg)] border border-accent/30 shadow-e3 sm:inset-8"><Image src={image.src} alt={ar ? "فريق يراجع مسار عمل للأتمتة" : image.alt} fill quality={90} sizes="(max-width: 1024px) 90vw, 48vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10" /></div>
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 border border-accent/30 bg-ink-950 px-5 py-2 text-center text-xs text-signal shadow-e3">{model.timeline}</div>
               </Reveal>
               <ModelCopy model={model} index={i} dark ar={ar} />
             </div></div>
@@ -139,10 +136,13 @@ export default async function EngagementModelsPage() {
           <section key={model.slug} id={model.slug} className="engagement-model engagement-team flex scroll-mt-20 items-center overflow-hidden bg-paper py-20">
             <div className="shell w-full"><div className="grid items-center gap-10 lg:grid-cols-[.92fr_1.08fr] lg:gap-16">
               <ModelCopy model={model} index={i} ar={ar} />
-              <Reveal kind="right" className="grid h-[24rem] grid-cols-5 grid-rows-5 gap-2.5 sm:h-[30rem] sm:gap-4 lg:h-[35rem]">
-                <div className="relative col-span-3 row-span-5 overflow-hidden rounded-[1.5rem] shadow-e4"><Image src={image.src} alt={ar ? "فريق تقني يعمل على المنتج" : image.alt} fill sizes="32vw" className="object-cover" /></div>
-                <div className="relative col-span-2 row-span-3 overflow-hidden rounded-[1.5rem] shadow-e3"><Image src={SECONDARY_IMAGES[i]} alt={ar ? "مهندسو المنتجات يعملون معًا" : "Product engineers working together"} fill sizes="20vw" className="object-cover" /></div>
-                <div className="col-span-2 row-span-2 flex flex-col justify-between rounded-[1.25rem] bg-accent p-3 text-ink-950 shadow-e3 sm:rounded-[1.5rem] sm:p-6"><Layers3 className="size-6 sm:size-8" /><div><span className="font-mono text-[.5rem] uppercase sm:text-[.625rem]">{ar ? "وتيرة الفريق" : "Team rhythm"}</span><p className="mt-1 font-display text-xs font-semibold sm:text-lg">{model.timeline}</p></div></div>
+              <Reveal kind="right" className="relative aspect-[16/10] overflow-hidden rounded-[var(--radius-lg)] bg-ink-950 shadow-e4">
+                <Image src={image.src} alt={ar ? "فريق تقني يعمل على المنتج" : image.alt} fill quality={100} sizes="(max-width: 1024px) 100vw, 52vw" className="object-cover" />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/68 via-black/5 to-transparent" />
+                <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-5 border-t border-white/25 pt-4 text-white sm:inset-x-7 sm:bottom-7">
+                  <div><span className="font-mono text-[.625rem] tracking-[.12em] text-white/70 uppercase">{ar ? "وتيرة الفريق" : "Team rhythm"}</span><p className="mt-1 font-display text-base font-semibold sm:text-lg">{model.timeline}</p></div>
+                  <Layers3 aria-hidden className="size-7 shrink-0 text-accent-bright sm:size-8" />
+                </div>
               </Reveal>
             </div></div>
           </section>

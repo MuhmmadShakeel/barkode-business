@@ -8,7 +8,7 @@ import { CaseStudyBrowser } from "@/components/sections/CaseStudyBrowser";
 import { Button } from "@/components/ui/Button";
 import { Pending } from "@/components/ui/Pending";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Registration, SchematicGround, TraceRule } from "@/components/ui/Schematic";
+import { Registration, TraceRule } from "@/components/ui/Schematic";
 import { Marker, Section, SectionHead } from "@/components/ui/Section";
 
 import {
@@ -167,7 +167,6 @@ function ClientCaseView({ study, ar }: { study: ClientCase; ar: boolean }) {
 
       {/* ═══ PROBLEM → SOLUTION → OUTCOME ═══════════════════════════════════ */}
       <Section surface="ink-deep" aria-labelledby="impact-story-heading">
-        <SchematicGround grid={34} nodes={136} mask="radial" />
         <div className="shell relative">
           <Reveal className="mx-auto max-w-3xl text-center">
             <Marker tone="dark">{t("The impact story", "قصة الأثر")}</Marker>
@@ -217,7 +216,6 @@ function ClientCaseView({ study, ar }: { study: ClientCase; ar: boolean }) {
 
       {/* ═══ CHALLENGE + GOALS ══════════════════════════════════════════════ */}
       <Section surface="sunken" aria-labelledby="challenge-heading">
-        <SchematicGround grid={30} nodes={false} mask="radial" className="opacity-60" />
         <div className="shell relative">
           <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
             <Reveal>
@@ -320,7 +318,6 @@ function ClientCaseView({ study, ar }: { study: ClientCase; ar: boolean }) {
 
       {/* ═══ TECH STACK ═════════════════════════════════════════════════════ */}
       <Section surface="ink" tight aria-labelledby="stack-heading">
-        <SchematicGround grid={38} nodes={152} mask="radial" />
         <div className="shell relative">
           <Reveal>
             <Marker tone="dark">{t("Tech stack", "التقنيات المستخدمة")}</Marker>
@@ -606,7 +603,6 @@ function ResearchView({ study, ar }: { study: ResearchStudy; ar: boolean }) {
 
       {/* ═══ DETAIL BLOCKS ══════════════════════════════════════════════════ */}
       <Section surface="sunken" aria-label={t("Study detail", "تفاصيل الدراسة")}>
-        <SchematicGround grid={30} nodes={false} mask="radial" className="opacity-60" />
         <div className="shell relative">
           <RevealGroup as="div" className="grid gap-6 md:grid-cols-2">
             {blocks.map((b) => (

@@ -109,7 +109,7 @@ export function Header() {
           scrolled && "shadow-e4",
         )}
       >
-        <div className="shell-wide flex h-[4.75rem] items-center justify-between gap-4 xl:h-[5.25rem]">
+        <div className="shell-wide flex h-[4.75rem] items-center justify-between gap-2 xl:h-[5.25rem]">
           <Link
             href="/"
             className="-ml-1 shrink-0 rounded-[var(--radius-xs)] px-1 py-1"
@@ -122,7 +122,7 @@ export function Header() {
           <div
             ref={navRef}
             onBlur={onNavBlur}
-            className="ml-5 mr-auto hidden shrink-0 items-center gap-2 xl:flex"
+            className="ml-2 mr-auto hidden min-w-0 flex-1 items-center justify-between gap-0 lg:flex xl:ml-4 xl:gap-1"
           >
             {NAV.map((item) =>
               item.children ? (
@@ -138,7 +138,7 @@ export function Header() {
                     aria-haspopup="true"
                     onFocus={() => openMega(item.href)}
                     className={cn(
-                      "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[var(--radius-xs)] px-2.5 py-2 text-[0.875rem] font-medium",
+                      "inline-flex shrink-0 items-center gap-0.5 whitespace-nowrap rounded-[var(--radius-xs)] px-1 py-2 text-[0.625rem] font-medium min-[1150px]:gap-1 min-[1150px]:px-1.5 min-[1150px]:text-[0.6875rem] min-[1280px]:px-2 min-[1280px]:text-[0.75rem] min-[1536px]:gap-1.5 min-[1536px]:px-2.5 min-[1536px]:text-[0.875rem]",
                       "transition-colors duration-200",
                       overHero
                         ? (item.href === "/services" ? servicesActive : consultancyActive)
@@ -164,8 +164,8 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className={cn(
-                    "relative shrink-0 whitespace-nowrap rounded-[var(--radius-xs)] px-2.5 py-2 text-[0.875rem] font-medium transition-colors duration-200",
+                    className={cn(
+                      "relative shrink-0 whitespace-nowrap rounded-[var(--radius-xs)] px-1 py-2 text-[0.625rem] font-medium transition-colors duration-200 min-[1150px]:px-1.5 min-[1150px]:text-[0.6875rem] min-[1280px]:px-2 min-[1280px]:text-[0.75rem] min-[1536px]:px-2.5 min-[1536px]:text-[0.875rem]",
                     overHero
                       ? isActive(item.href)
                         ? "text-accent-bright"
@@ -190,7 +190,7 @@ export function Header() {
             )}
           </div>
 
-          <div className="ml-auto hidden shrink-0 items-center gap-3 xl:flex">
+          <div className="ml-auto hidden shrink-0 items-center gap-2 min-[1280px]:flex xl:gap-3">
             <LanguageSwitcher compact />
             <Button
               href={CTA.header.href}
@@ -209,7 +209,8 @@ export function Header() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
             className={cn(
-              "-mr-1 grid size-11 place-items-center rounded-[var(--radius-sm)] border shadow-e1 transition-colors duration-300 xl:hidden",
+              "-mr-1 grid size-11 place-items-center rounded-[var(--radius-sm)] border shadow-e1 transition-colors duration-300",
+              "lg:hidden",
               overHero
                 ? "border-white/20 bg-white/8 text-white backdrop-blur-sm"
                 : "border-rule bg-paper-raised text-text",
@@ -233,10 +234,13 @@ export function Header() {
             <div
               onMouseEnter={() => openMega(activeMegaMenu.href)}
               onMouseLeave={scheduleClose}
-              className="absolute inset-x-0 top-full hidden origin-top border-t border-white/10 bg-ink-950/98 shadow-e4 backdrop-blur-xl xl:block"
+              className={cn(
+                "absolute inset-x-0 top-full hidden origin-top border-t border-white/10 bg-ink-950/98 shadow-e4 backdrop-blur-xl",
+                "lg:block",
+              )}
             >
-              <div className="shell-wide grid grid-cols-[1fr_auto] gap-10 py-7">
-                <ul className="grid grid-cols-3 gap-x-8 gap-y-1">
+              <div className="shell-wide grid grid-cols-1 gap-6 py-7 min-[1280px]:grid-cols-[1fr_auto] min-[1280px]:gap-10">
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-1 min-[1280px]:grid-cols-3 min-[1280px]:gap-x-8">
                   {activeMegaMenu.children.map((s, index) => (
                     <MegaItem
                       key={`${activeMegaMenu.href}-${s.label}`}
@@ -248,7 +252,7 @@ export function Header() {
                   ))}
                 </ul>
                 <div
-                  className="w-[16rem] shrink-0 self-start rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-5"
+                  className="w-full shrink-0 self-start rounded-[var(--radius-md)] border border-rule bg-paper-sunken p-5 min-[1280px]:w-[16rem]"
                 >
                   <p className="font-display text-[1.0625rem] leading-snug font-semibold text-text">
                     {headerText("unsure")}
@@ -279,7 +283,10 @@ export function Header() {
       {mobileOpen && (
           <div
             id="mobile-nav"
-            className="fixed inset-x-0 top-[4.75rem] bottom-0 z-100 overflow-y-auto overscroll-contain border-t border-rule bg-paper xl:hidden"
+            className={cn(
+              "fixed inset-x-0 top-[4.75rem] bottom-0 z-100 overflow-y-auto overscroll-contain border-t border-rule bg-paper",
+              "lg:hidden",
+            )}
           >
             <nav className="shell flex min-h-full flex-col py-7">
               <ul className="flex flex-col">

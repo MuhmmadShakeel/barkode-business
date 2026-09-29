@@ -32,13 +32,13 @@ function localizeServicePage(page: ServicePage, messages: ArabicMessages): Servi
   return {
     ...page,
     metaTitle: `${card.title} | باراكود تكنولوجيز`,
-    metaDescription: `${body} ${messages.servicePositioning.hero}`,
+    metaDescription: body,
     hero: {
       ...page.hero,
       marker: card.title,
       heading: copy.heading,
       accent: specific?.accent ?? messages.serviceListing.cards[serviceIndex].short,
-      body: `${body} ${messages.servicePositioning.hero}`,
+      body,
       primary: { ...page.hero.primary, label: copy.primary },
       secondary: { ...page.hero.secondary, label: copy.secondary },
     },
@@ -88,10 +88,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const messages = await getMessages();
   const page = source && locale === "ar" ? localizeServicePage(source, messages as unknown as ArabicMessages) : source;
   if (!page) return {};
-  const position = messages.servicePositioning as { hero: string };
   return buildMetadata({
     title: page.metaTitle,
-    description: locale === "ar" ? page.metaDescription : `${page.metaDescription} ${position.hero}`,
+    description: page.metaDescription,
     path: `/services/${page.slug}`,
   });
 }
@@ -131,7 +130,7 @@ export default async function ServiceDetailPage({
         heading={page.hero.heading}
         accent={page.hero.accent}
         trail={page.hero.trail}
-        body={ar ? page.hero.body : `${page.hero.body} ${position.hero}`}
+        body={page.hero.body}
         primary={page.hero.primary}
         secondary={page.hero.secondary}
         crumbs={[
@@ -411,7 +410,7 @@ export default async function ServiceDetailPage({
         data={[
           serviceSchema({
             name: page.hero.marker,
-            description: ar ? page.metaDescription : `${page.metaDescription} ${position.hero}`,
+            description: page.metaDescription,
             path: `/services/${page.slug}`,
           }),
           breadcrumbSchema([

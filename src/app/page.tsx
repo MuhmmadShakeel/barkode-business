@@ -64,6 +64,7 @@ export default async function HomePage() {
   const homeTimelines = messages.homeTimelines as string[];
   const caseNames = messages.homeCaseNames as string[];
   const stackLabels = messages.homeStackLabels as string[][];
+  const aiPrinciples = messages.homeAiPrinciples as { title: string; detail: string }[];
   const serviceCards = [...home.services.cards, ...(messages.homeRecoveredServices as HomeMessages["services"]["cards"])];
   const caseCards = [...home.work.cards, ...(messages.homeErpCards as HomeMessages["work"]["cards"])];
   const faqItems = home.faq.items;
@@ -271,9 +272,8 @@ export default async function HomePage() {
       {/* ═══ 5 · AI AUTOMATION HIGHLIGHT ════════════════════════════════════ */}
       <Section surface="paper" aria-labelledby="ai-heading" className="ai-reveal overflow-hidden">
         <div className="shell relative">
-          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-10">
-            <Reveal className="flex flex-col">
-              <div className="relative min-h-52 overflow-hidden rounded-[var(--radius-lg)] shadow-e2 sm:min-h-60">
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-x-10 lg:gap-y-8">
+            <Reveal className="relative min-h-52 overflow-hidden rounded-[var(--radius-lg)] shadow-e2 sm:min-h-60 lg:col-start-1 lg:row-start-1 lg:h-full">
                 <Image
                   src="/images/home/ai-business-leader.webp"
                   alt={home.ai.imageAlt}
@@ -282,8 +282,11 @@ export default async function HomePage() {
                   className="object-cover object-[62%_center]"
                 />
                 <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
-              </div>
-              <div className="flex flex-col pt-7 sm:pt-8">
+            </Reveal>
+            <Reveal kind="right" className="rounded-[var(--radius-lg)] border border-rule-dark bg-ink-950 p-4 shadow-e4 sm:p-6 lg:col-start-2 lg:row-start-1 lg:p-8">
+              <BeforeAfterWorkflow tone="dark" copy={home.ai.workflow} />
+            </Reveal>
+            <Reveal className="flex flex-col lg:col-start-1 lg:row-start-2">
                 <Marker>{home.ai.marker}</Marker>
                 <h2 id="ai-heading" className="mt-5 max-w-[16ch] text-d3 text-text">
                   {home.ai.heading}{" "}
@@ -298,17 +301,10 @@ export default async function HomePage() {
                 <Button href="/ai-automation" variant="primary" size="lg" className="mt-8 self-start" arrow>
                   {home.ai.cta}
                 </Button>
-              </div>
             </Reveal>
-
-            <div className="grid content-start gap-4">
-              <Reveal kind="right" className="rounded-[var(--radius-lg)] border border-rule-dark bg-ink-950 p-4 shadow-e4 sm:p-6 lg:p-8">
-                <BeforeAfterWorkflow tone="dark" copy={home.ai.workflow} />
-              </Reveal>
-              <Reveal kind="right" index={1}>
-                <AnimatedAIGlobe copy={home.ai.globe} />
-              </Reveal>
-            </div>
+            <Reveal kind="right" index={1} className="lg:col-start-2 lg:row-start-2">
+              <AnimatedAIGlobe copy={home.ai.globe} principles={aiPrinciples} />
+            </Reveal>
           </div>
 
           <RevealGroup className="mt-5 grid gap-4 sm:grid-cols-2 lg:mt-6 lg:grid-cols-4" as="ul">
@@ -500,7 +496,7 @@ export default async function HomePage() {
       </Section>
 
       {/* ═══ 11 · FAQ PREVIEW ═══════════════════════════════════════════════ */}
-      <Section surface="paper" tight aria-labelledby="faq-heading" className="faq-reveal">
+      <Section surface="paper" tight aria-labelledby="faq-heading" className="faq-reveal !pb-[clamp(0.875rem,0.65rem+1vw,1.375rem)]">
         <div className="shell w-full">
           <Reveal>
             <div className="flex flex-col items-start justify-between gap-5 border-b border-rule pb-6 sm:flex-row sm:items-end">

@@ -11,7 +11,7 @@ import { SITE } from "@/lib/site";
 import { getLocale } from "next-intl/server";
 import { PROCESS_AR } from "@/i18n/process-ar";
 
-export async function generateMetadata() { const ar = (await getLocale()) === "ar"; return buildMetadata({ title: ar ? "منهجية عملنا من الفكرة إلى الإطلاق والدعم" : "Our Process — From idea to launch and long-term support", description: ar ? "منهجية منظمة لتطوير المنتجات بمساعدة الذكاء الاصطناعي ومراجعة بشرية، تحدد النطاق وتحسن التواصل وتنتج برمجيات تدعم أهداف العمل." : "A structured product engineering process that reduces confusion, controls scope, improves communication, and delivers software that supports real business goals.", path: "/process" }); }
+export async function generateMetadata() { const ar = (await getLocale()) === "ar"; return buildMetadata({ title: ar ? "منهجية عملنا من الفكرة إلى الإطلاق والدعم" : "Our Process — From idea to launch and long-term support", description: ar ? "منهجية منظمة لتطوير المنتجات تحدد النطاق وتحسن التواصل وتنتج برمجيات تدعم أهداف العمل." : "A structured product engineering process that reduces confusion controls scope improves communication and delivers software that supports real business goals.", path: "/process" }); }
 
 export default async function ProcessPage() {
   const ar = (await getLocale()) === "ar";
@@ -31,7 +31,7 @@ export default async function ProcessPage() {
               <span className="text-accent-ink">{ar ? "الفكرة إلى الإطلاق." : "idea to launch."}</span>
             </h1>
             <p className="mt-5 max-w-xl text-[clamp(.9375rem,1.35vw,1.125rem)] leading-relaxed text-text-2">
-              {ar ? "نتبع منهجية منظمة تقلل الالتباس وتضبط النطاق وتحسن التواصل، لنقدم برمجيات تخدم أهداف العمل الحقيقية. نعمل بمساعدة الذكاء الاصطناعي في البحث والتصميم والتطوير والاختبار، مع مراجعة فريقنا لكل خطوة ومسؤوليته عن النتيجة النهائية." : "We follow a structured process that helps reduce confusion, control scope, improve communication, and deliver software that supports real business goals."}
+              {ar ? "نتبع منهجية منظمة تقلل الالتباس وتضبط النطاق وتحسن التواصل لنقدم برمجيات تخدم أهداف العمل الحقيقية. يراجع فريقنا كل خطوة ويبقى مسؤولًا عن النتيجة النهائية." : "We follow a clear working rhythm that reduces confusion controls scope and improves communication. Our team reviews each step and stays accountable for the outcome."}
             </p>
             <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
               <Button href="/contact" size="md" className="w-full sm:w-auto" arrow>
@@ -70,7 +70,7 @@ export default async function ProcessPage() {
               </div>
               <dl className="grid gap-3 sm:grid-cols-3">
                 {[
-                  [ar ? "مرحلة أتمتة بالذكاء الاصطناعي" : "AI automation sprint", ar ? "من أسبوعين إلى 6 أسابيع" : "2–6 weeks"],
+                  [ar ? "مرحلة تحسين سير العمل" : "Workflow improvement sprint", ar ? "من أسبوعين إلى 6 أسابيع" : "2–6 weeks"],
                   [ar ? "منتج أولي مركز" : "Focused MVP", ar ? "من 4 إلى 10 أسابيع" : "4–10 weeks"],
                   [ar ? "بناء منتج مخصص" : "Custom product build", ar ? "من 8 إلى 20 أسبوعًا أو أكثر" : "8–20+ weeks"],
                 ].map(([label, range]) => (

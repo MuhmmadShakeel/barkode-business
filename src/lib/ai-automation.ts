@@ -24,37 +24,37 @@ export type AiUseCase = {
 export const AI_USE_CASES: AiUseCase[] = [
   {
     title: "AI customer support assistant",
-    body: "Answers routine questions from your own knowledge base, drafts replies for review, and hands anything sensitive straight to a person.",
+    body: "Answers routine questions from your own knowledge base then prepares replies for review and sends sensitive matters to a person.",
     icon: "MessageSquare",
   },
   {
     title: "RAG chatbot",
-    body: "Answers from selected business knowledge — FAQs, product docs, manuals, policies, SOPs — instead of guessing from general model knowledge.",
+    body: "Answers from selected business knowledge such as FAQs product documents manuals policies and SOPs instead of guessing from general model knowledge.",
     icon: "Search",
   },
   {
     title: "Document processing",
-    body: "Extracts structured fields from invoices, contracts, forms, reports and résumés, then routes the exceptions to a human.",
+    body: "Extracts structured fields from invoices contracts forms reports and résumés then routes exceptions to a person.",
     icon: "FileStack",
   },
   {
     title: "CRM automation",
-    body: "Scores leads, updates records, drafts follow-ups, summarises calls, and moves deals through the pipeline without manual data entry.",
+    body: "Scores leads updates records prepares follow ups summarises calls and moves deals through the pipeline without manual data entry.",
     icon: "Workflow",
   },
   {
     title: "Reporting automation",
-    body: "Collects the data, summarises what changed, updates the dashboard, and raises an alert when something needs attention.",
+    body: "Collects data summarises changes updates the dashboard and highlights what needs attention.",
     icon: "BarChart3",
   },
   {
     title: "Internal AI agents",
-    body: "Task-scoped assistants that follow defined rules, use the tools they are given, and stop for human sign-off where it matters.",
+    body: "Task focused assistants that follow defined rules use approved tools and stop for human sign off when it matters.",
     icon: "Bot",
   },
   {
     title: "SaaS AI features",
-    body: "AI capability built into your existing product — search, summarisation, drafting, classification — with admin controls and audit logs.",
+    body: "AI capabilities built into your existing product for search summarisation drafting and classification with admin controls and audit logs.",
     icon: "Sparkles",
   },
 ];
@@ -130,7 +130,7 @@ export const DOCUMENT_TYPES = [
   "Reports",
   "Résumés",
   "PDFs",
-  "Scanned documents, if OCR quality is good",
+  "Scanned documents when OCR quality is good",
 ];
 
 export const SUPPORT_AUTOMATABLE = [
@@ -177,39 +177,39 @@ export const DO_NOT_AUTOMATE = [
 ];
 
 export const AI_PROCESS = [
-  { step: "AI opportunity discovery", detail: "Where does the time actually go, and which of it is repeatable?" },
-  { step: "Workflow mapping", detail: "The current process, written down honestly, including the exceptions." },
-  { step: "Data and knowledge review", detail: "What the model can be grounded in, and how good that source really is." },
-  { step: "AI architecture planning", detail: "Models, retrieval, tools, permissions, review gates, fallbacks." },
-  { step: "Prototype", detail: "One workflow, end to end, on real inputs." },
-  { step: "Production build", detail: "Integrations, admin controls, audit logs, error handling." },
-  { step: "QA and safety checks", detail: "Edge cases, refusal behaviour, and what happens when the model is wrong." },
-  { step: "Launch and improve", detail: "Measured against the manual baseline, then tuned." },
+  { step: "AI opportunity discovery", detail: "Find where time goes and identify the work that can repeat safely." },
+  { step: "Workflow mapping", detail: "Document the current process honestly including its exceptions." },
+  { step: "Data and knowledge review", detail: "Review the source material and confirm that it is reliable enough to use." },
+  { step: "AI architecture planning", detail: "Set the models retrieval tools permissions review gates and fallback steps." },
+  { step: "Prototype", detail: "Test one complete workflow on real inputs." },
+  { step: "Production build", detail: "Add integrations admin controls audit logs and error handling." },
+  { step: "QA and safety checks", detail: "Test edge cases refusal behaviour and the response when the model is wrong." },
+  { step: "Launch and improve", detail: "Compare the workflow with the manual baseline then improve it." },
 ];
 
 export const AI_FAQS = [
   {
     q: "Can AI automate our whole business process?",
-    a: "Rarely, and usually it should not. We look for the parts of a process that are repeatable and well-defined, automate those, and keep human judgment where the cost of being wrong is high.",
+    a: "Rarely. We identify the repeatable well defined parts then automate those while keeping human judgment where the cost of being wrong is high.",
   },
   {
     q: "Can you build an AI chatbot for our website?",
-    a: "Yes — grounded in your own content so it answers from your knowledge rather than guessing, with a defined escalation path to a person.",
+    a: "Yes. It can use your own content so answers come from your knowledge with a clear path to a person when needed.",
   },
   {
     q: "Can AI read documents and extract data?",
-    a: "Yes. Invoices, contracts, forms, reports and résumés are common. Scanned documents work where OCR quality is good enough to trust — we verify that before committing.",
+    a: "Yes. Invoices contracts forms reports and résumés are common. We verify scanned document quality before committing to a workflow.",
   },
   {
     q: "Can you connect AI with our CRM?",
-    a: "Yes, where the CRM exposes an API. Lead scoring, record updates, call summaries, drafted follow-ups, and pipeline movement are all standard.",
+    a: "Yes when the CRM exposes an API. Lead scoring record updates call summaries drafted follow ups and pipeline movement are all standard.",
   },
   {
     q: "Do you build AI into existing software?",
-    a: "Yes. Adding a retrieval assistant, summarisation, or classification into a product you already run is one of the most common requests we get.",
+    a: "Yes. Retrieval summarisation and classification can be added to the product you already run.",
   },
   {
     q: "How do you keep AI safe and reliable?",
-    a: "Clear limits on what the workflow may decide, human review on anything consequential, permission controls, audit logs, data-privacy boundaries, and a defined fallback when the model is not confident.",
+    a: "We set clear decision limits add human review for consequential work and use permission controls audit logs data privacy boundaries and a defined fallback.",
   },
 ];

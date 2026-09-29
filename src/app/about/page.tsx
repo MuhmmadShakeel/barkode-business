@@ -3,17 +3,18 @@ import { ArrowUpRight, Globe2, MessageSquareText, Clock3, FileText } from "lucid
 
 import { PageHero } from "@/components/sections/PageHero";
 import { AboutWorkFlow } from "@/components/sections/AboutWorkFlow";
+import { ClientReviewsCarousel } from "@/components/sections/ClientReviewsCarousel";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Registration, SchematicGround } from "@/components/ui/Schematic";
 import { Marker, Section, SectionHead } from "@/components/ui/Section";
 
 import { BELIEFS, TEAM } from "@/lib/content";
+import { CLIENT_REVIEWS } from "@/lib/client-reviews";
 import { SITE } from "@/lib/site";
 import { JsonLd, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 import { getLocale } from "next-intl/server";
 import { beliefsAr, deliveryTraitsAr, localizeTeamMember } from "@/i18n/about-ar";
 
-export async function generateMetadata() { const ar = (await getLocale()) === "ar"; return buildMetadata({ title: ar ? "عن باراكود تكنولوجيز" : "About — Born in Pakistan, building software for the world", description: ar ? "باراكود شركة لتطوير المنتجات والأتمتة، يعمل فريقها بمساعدة الذكاء الاصطناعي مع مراجعة بشرية لبناء منتجات وأنظمة وحلول عملية قابلة للنمو." : "Barakode Technologies is a product engineering and AI automation company helping startups and growing businesses build scalable digital products, internal systems, and practical AI-powered workflows.", path: "/about" }); }
+export async function generateMetadata() { const ar = (await getLocale()) === "ar"; return buildMetadata({ title: ar ? "عن باراكود تكنولوجيز" : "About — Born in Pakistan, building software for the world", description: ar ? "باراكود شريك في هندسة المنتجات، يساعد الشركات على بناء منتجات رقمية وأنظمة داخلية وسير عمل عملي قابل للنمو." : "Barakode Technologies is a product engineering partner helping startups and growing businesses build scalable digital products, internal systems, and practical workflows.", path: "/about" }); }
 
 const ABOUT_PHOTOS = [
   { src: "/images/about/Barakode_brochure_updated.webp", alt: "Barakode Technologies company brochure" },
@@ -53,7 +54,7 @@ export default async function AboutPage() {
         heading={ar ? "من باكستان نبني برمجيات" : "Born in Pakistan, building software"}
         accent={ar ? "للعالم" : "for the world"}
         trail="."
-        body={ar ? "باراكود شريك في تطوير المنتجات والأتمتة للشركات الناشئة ومنصات SaaS والشركات النامية والمؤسسات. نعمل بمساعدة الذكاء الاصطناعي في البحث والتصميم والتطوير والاختبار، مع قيادة بشرية ومراجعة لكل مخرج، لبناء منتجات رقمية وحلول عمل قابلة للنمو." : "Barakode Technologies partners with startups, SaaS companies, growing businesses, and enterprises to build digital products and practical AI workflows. AI assists our research, design, development, and testing; our team reviews the work and owns the result."}
+        body={ar ? "باراكود شريك في تطوير المنتجات للشركات الناشئة ومنصات SaaS والشركات النامية والمؤسسات. يقود فريقنا البحث والتصميم والتطوير والاختبار، ويبني منتجات رقمية وحلول عمل قابلة للنمو." : "Barakode Technologies partners with startups, SaaS companies, growing businesses, and enterprises to build digital products and practical workflows. Our people lead the research, design, development, testing, and every delivery decision."}
         primary={{ label: ar ? "اعمل معنا" : "Work With Us", href: "/contact" }}
         secondary={{ label: ar ? "شاهد أعمالنا" : "View Our Work", href: "/case-studies" }}
         crumbs={[
@@ -62,8 +63,8 @@ export default async function AboutPage() {
         ]}
         showMarker={false}
         minimalBackdrop
-        headingClassName="ai-hero-heading"
-        className="ai-service-hero"
+        backgroundImage={{ src: "/images/hero/about-team-hero.png", alt: ar ? "فريق باراكود يتعاون في جلسة تخطيط للمنتج" : "Barakode team collaborating in a product planning session" }}
+        solidOverlay
       />
 
       {/* ═══ COMPANY STORY ══════════════════════════════════════════════════ */}
@@ -83,7 +84,7 @@ export default async function AboutPage() {
                 {ar ? "بدأت باراكود من قناعة بسيطة: لا تحدد الجغرافيا قدرة فريق البرمجيات على تقديم عمل ممتاز. من باكستان نتعاون مع شركات تحتاج إلى تفكير واضح وهندسة موثوقة وحلول تقنية عملية." : "Barakode was created with a simple belief: strong software teams do not need to be limited by geography. From Pakistan, we work with businesses that need clear thinking, reliable engineering, and practical technology solutions."}
               </p>
               <p className="measure text-text-3">
-                {ar ? "لا نسعى إلى تقديم كل خدمة رقمية ممكنة. نركز على بناء المنتجات وأتمتة سير العمل وصيانة الأنظمة التي تدعم نمو الأعمال الحقيقي. يستخدم فريقنا الذكاء الاصطناعي للمساعدة في العمل اليومي، ويظل مسؤولًا عن القرارات والجودة والتسليم." : "We focus on products, automated workflows, and systems that support real business growth. Our team uses AI to assist the work, while people remain accountable for the decisions, quality, and delivery."}
+                {ar ? "لا نسعى إلى تقديم كل خدمة رقمية ممكنة. نركز على بناء المنتجات وسير العمل وصيانة الأنظمة التي تدعم نمو الأعمال الحقيقي. فريقنا مسؤول عن القرارات والجودة والتسليم في كل مرحلة." : "We focus on products, workflows, and systems that support real business growth. Our team is accountable for the decisions, quality, and delivery at every stage."}
               </p>
             </Reveal>
           </div>
@@ -108,7 +109,6 @@ export default async function AboutPage() {
 
       {/* ═══ MISSION & VISION ═══════════════════════════════════════════════ */}
       <Section surface="ink" aria-labelledby="mv-heading">
-        <SchematicGround grid={38} nodes={152} mask="radial" />
         <div className="shell relative">
           <h2 id="mv-heading" className="sr-only">
             {ar ? "المهمة والرؤية" : "Mission and vision"}
@@ -117,7 +117,7 @@ export default async function AboutPage() {
             {[
               {
                 label: ar ? "مهمتنا" : "Mission",
-                body: ar ? "مساعدة الشركات على بناء منتجات برمجية قابلة للنمو وسير عمل ذكي يحل تحديات تشغيلية حقيقية، بالاستفادة من الذكاء الاصطناعي مع إشراف مهني واضح." : "To help businesses build scalable software products and AI-enabled workflows that solve real operational problems.",
+                body: ar ? "مساعدة الشركات على بناء منتجات برمجية قابلة للنمو وسير عمل واضح يحل تحديات تشغيلية حقيقية." : "To help businesses build scalable software products and practical workflows that solve real operational problems.",
               },
               {
                 label: ar ? "رؤيتنا" : "Vision",
@@ -126,7 +126,6 @@ export default async function AboutPage() {
             ].map((m, i) => (
               <Reveal key={m.label} kind={i === 0 ? "left" : "right"}>
                 <div className="relative h-full rounded-[var(--radius-lg)] border border-rule-dark bg-white/[0.025] p-8 sm:p-10">
-                  <Registration tone="dark" size={18} />
                   <p className="font-mono text-marker font-medium tracking-[0.16em] text-signal uppercase">
                     {m.label}
                   </p>
@@ -182,7 +181,7 @@ export default async function AboutPage() {
                 {ar ? "سبع خطوات " : "Seven steps, "}<span className="text-accent-ink">{ar ? "في كل مشروع." : "every time."}</span>
               </h2>
               <p className="mt-6 max-w-md text-text-3">
-                {ar ? "يحافظ إيقاع العمل المنظم على وضوح القرارات وإمكانية قياس التقدم وربط كل مرحلة بهدف العمل. تساعد أدوات الذكاء الاصطناعي فريقنا في التنفيذ، بينما يراجع الأشخاص ما ننجزه." : "A repeatable delivery rhythm keeps decisions visible, progress measurable, and every stage connected to the business goal."}
+                {ar ? "يحافظ إيقاع العمل المنظم على وضوح القرارات وإمكانية قياس التقدم وربط كل مرحلة بهدف العمل. يقود الأشخاص العمل ويراجعون ما ينجزونه معك." : "A repeatable delivery rhythm keeps decisions visible, progress measurable, and every stage connected to the business goal. People lead the work and review progress with you."}
               </p>
             </Reveal>
 
@@ -264,9 +263,24 @@ export default async function AboutPage() {
         </div>
       </Section>
 
+      <Section surface="paper" aria-labelledby="client-feedback-heading">
+        <div className="shell">
+          <Reveal className="max-w-3xl">
+            <h2 id="client-feedback-heading" className="max-w-[16ch] text-d2 text-text">
+              {ar ? "كلمات من أشخاص عملنا معهم." : "In the words of people we have worked with."}
+            </h2>
+            <p className="measure mt-5 text-text-2">
+              {ar ? "آراء مختارة من عملاء حول التسليم والتواصل وبناء المنتجات." : "Selected client feedback about delivery, communication, and product work."}
+            </p>
+          </Reveal>
+          <Reveal className="mt-10 sm:mt-12">
+            <ClientReviewsCarousel items={CLIENT_REVIEWS} />
+          </Reveal>
+        </div>
+      </Section>
+
       {/* ═══ GLOBAL DELIVERY ════════════════════════════════════════════════ */}
       <Section surface="sunken" aria-labelledby="global-heading">
-        <SchematicGround grid={30} nodes={false} mask="radial" className="opacity-60" />
         <div className="shell relative">
           <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
             <Reveal>

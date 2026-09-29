@@ -3,13 +3,11 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 import { CaseStudyBrowser } from "@/components/sections/CaseStudyBrowser";
-import { ClientReviewsCarousel } from "@/components/sections/ClientReviewsCarousel";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { Marker, Section } from "@/components/ui/Section";
 
 import { CLIENT_CASES, FEATURED_CASE, RESEARCH_STUDIES } from "@/lib/case-studies";
-import { CLIENT_REVIEWS } from "@/lib/client-reviews";
 import { JsonLd, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 import { getLocale } from "next-intl/server";
 import { localizeClientCase } from "@/i18n/case-studies-ar";
@@ -27,24 +25,20 @@ export default async function CaseStudiesPage() {
         aria-labelledby="case-studies-hero-heading"
         className="hero-reveal relative isolate min-h-[100svh] overflow-hidden bg-ink-950 text-ontext lg:h-[100svh]"
       >
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(215,169,63,.1),transparent_42%),linear-gradient(180deg,#090b0e_0%,#050607_100%)]" />
-        <div aria-hidden className="absolute inset-0 opacity-15 [background-image:linear-gradient(rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:linear-gradient(to_bottom,transparent,#000_25%,#000_82%,transparent)]" />
-
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(5,6,7,.24)_0%,rgba(5,6,7,.55)_48%,rgba(5,6,7,.88)_100%)]" />
+        <Image src="/images/case-studies/case-studies-hero.png" alt={ar ? "فريق منتج يراجع مشروع برمجي" : "A product team reviewing a software project"} fill priority sizes="100vw" className="object-cover object-center" />
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,.94)_0%,rgba(5,6,7,.76)_43%,rgba(5,6,7,.42)_100%)]" />
 
         <div className="shell relative flex min-h-[100svh] w-full flex-col justify-center pt-28 pb-8 sm:pt-28 sm:pb-9 lg:h-full lg:min-h-0 lg:pt-20 lg:pb-5">
           <Reveal className="mx-auto flex max-w-4xl flex-col items-center text-center">
             <Marker tone="dark">{ar ? "دراسات الحالة" : "Case Studies"}</Marker>
             <h1 id="case-studies-hero-heading" className="site-hero-heading mt-4 max-w-[19ch] font-display font-semibold text-white">
-              {ar ? "قصص مشاريع حقيقية تنطلق من " : "Real project stories, built around "}
+              {ar ? "قصص مشاريع حقيقية تنطلق من " : "Real project stories built around "}
               <span className="text-accent-bright">{ar ? "تحديات العمل." : "business problems."}</span>
             </h1>
             <p className="mt-5 max-w-2xl text-[clamp(.9375rem,1.4vw,1.125rem)] leading-relaxed text-ontext-2">
-              {ar ? "اكتشف مشاريع مختارة توضح ما بنيناه ولماذا احتاجه العميل وكيف تعاملت باراكود مع التحدي وما سلمته. تعتمد كل دراسة على تفاصيل مشروع موثقة وصور فعلية ونتائج دقيقة. نستخدم الذكاء الاصطناعي لمساعدة فريقنا في البحث والبناء والمراجعة، مع بقاء مسؤولية العمل والقرار لدينا." : "Explore selected projects showing what was built, why it was needed, how Barakode approached the solution, and what was delivered. Every case study is based on verified project details, real screenshots, and accurate outcomes."}
+              {ar ? "اكتشف مشاريع مختارة توضح ما بنيناه ولماذا احتاجه العميل وكيف تعاملت باراكود مع التحدي وما سلمته. تعتمد كل دراسة على تفاصيل مشروع موثقة وصور فعلية ونتائج دقيقة." : "Explore selected projects that show what we built why it mattered and what the team delivered. Each story uses verified project details real screenshots and accurate outcomes."}
             </p>
-            <Button href="/contact" variant="onDark" size="md" className="mt-6 w-full sm:w-auto" arrow>
-              {ar ? "ناقش مشروعًا مشابهًا" : "Discuss a Similar Project"}
-            </Button>
+            <Button href="/contact" variant="onDark" size="md" className="mt-6 w-full sm:w-auto" arrow>{ar ? "ناقش مشروعًا مشابهًا" : "Discuss a Similar Project"}</Button>
           </Reveal>
 
           <Reveal index={1} className="mt-7 sm:mt-9">
@@ -102,6 +96,9 @@ export default async function CaseStudiesPage() {
                   className="object-cover transition-transform duration-700 [transition-timing-function:var(--ease-expo)] group-hover/image:scale-[1.025]"
                 />
                 <div aria-hidden className="absolute inset-0 ring-1 ring-inset ring-white/10" />
+                <Link href="/project-cost-estimator" className="absolute right-4 bottom-4 inline-flex min-h-12 items-center rounded-[var(--radius-sm)] border border-white/20 bg-accent px-5 text-sm font-semibold text-ink-950 shadow-e3 transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-accent-bright sm:right-5 sm:bottom-5">
+                  {ar ? "حاسبة تكلفة المشروع" : "Auto Calculator"}
+                </Link>
               </div>
             </Reveal>
           </article>
@@ -112,23 +109,6 @@ export default async function CaseStudiesPage() {
       <Section surface="paper" aria-label={ar ? "جميع الأعمال" : "All work"}>
         <div className="shell">
           <CaseStudyBrowser showFilters={false} compactClients subtleCards />
-        </div>
-      </Section>
-
-      <Section surface="paper" aria-labelledby="client-reviews-heading">
-        <div className="shell">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <Marker>{ar ? "آراء العملاء" : "Client reviews"}</Marker>
-            <h2 id="client-reviews-heading" className="mt-5 text-d2 text-text">
-              {ar ? "عمل حقيقي ترويه " : "Real delivery, shared through "}<span className="text-accent-ink">{ar ? "تجارب العملاء." : "client experience."}</span>
-            </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-text-2">
-              {ar ? "مختارات من آراء العملاء حول مشاريع الجوال وFlutter وReact Native والمنتجات المدعومة بالذكاء الاصطناعي." : "A selection of client feedback from mobile product, Flutter, React Native, and AI-enabled delivery work."}
-            </p>
-          </Reveal>
-          <Reveal className="mt-10 sm:mt-12">
-            <ClientReviewsCarousel items={CLIENT_REVIEWS} />
-          </Reveal>
         </div>
       </Section>
 
