@@ -24,7 +24,7 @@ const FEATURE_KEYS = [
 const COPY = {
   en: {
     eyebrow: "Plan your project",
-    title: "Project cost",
+    title: "Cost",
     titleAccent: "estimator.",
     intro: "Make a clear first plan for the work ahead. Select the shape of the project and receive an indicative delivery range in seconds.",
     configure: "Configure the project",
@@ -83,8 +83,8 @@ const COPY = {
   },
   ar: {
     eyebrow: "خطط لمشروعك",
-    title: "حاسبة تكلفة",
-    titleAccent: "المشروع.",
+    title: "مُقدّر",
+    titleAccent: "التكلفة.",
     intro: "ضع تصورًا واضحًا للمرحلة القادمة. اختر ملامح مشروعك واحصل على نطاق تقديري للتنفيذ خلال ثوانٍ.",
     configure: "إعداد المشروع",
     projectType: "نوع المشروع",
@@ -212,7 +212,7 @@ export function ProjectCostEstimator() {
               <span className="flex items-center gap-2 text-xs text-accent-bright"><span className="size-2 rounded-full bg-accent-bright" />{c.updates}</span>
             </div>
             <p className="mt-9 font-mono text-xs tracking-[.12em] text-ontext-3 uppercase">{c.investment}</p>
-            <p className="mt-3 text-[clamp(2rem,4vw,3.6rem)] leading-none font-semibold tracking-[-.05em] text-accent-bright">{format(estimate.low)} <span className="text-ontext-3">{c.to}</span> {format(estimate.high)}</p>
+            <p className="tnum mt-3 text-[clamp(1.75rem,3vw,3rem)] leading-none font-semibold tracking-[-.035em] text-accent-bright">{format(estimate.low)} <span className="text-ontext-3">{c.to}</span> {format(estimate.high)}</p>
             <dl className="mt-9 border-t border-rule-dark">
               {summary.map(({ Icon, label, value }) => (
                 <div key={label} className="flex items-center gap-3 border-b border-rule-dark py-4">

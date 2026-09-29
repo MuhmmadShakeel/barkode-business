@@ -25,7 +25,7 @@ export default async function CaseStudiesPage() {
         aria-labelledby="case-studies-hero-heading"
         className="hero-reveal relative isolate min-h-[100svh] overflow-hidden bg-ink-950 text-ontext lg:h-[100svh]"
       >
-        <Image src="/images/case-studies/case-studies-hero.png" alt={ar ? "فريق منتج يراجع مشروع برمجي" : "A product team reviewing a software project"} fill priority sizes="100vw" className="object-cover object-center" />
+        <Image src="/images/case-studies/case-studies-hero.webp" alt={ar ? "فريق منتج يراجع مشروع برمجي" : "A product team reviewing a software project"} fill priority sizes="100vw" className="object-cover object-center" />
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,.94)_0%,rgba(5,6,7,.76)_43%,rgba(5,6,7,.42)_100%)]" />
 
         <div className="shell relative flex min-h-[100svh] w-full flex-col justify-center pt-28 pb-8 sm:pt-28 sm:pb-9 lg:h-full lg:min-h-0 lg:pt-20 lg:pb-5">

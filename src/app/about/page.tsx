@@ -63,7 +63,7 @@ export default async function AboutPage() {
         ]}
         showMarker={false}
         minimalBackdrop
-        backgroundImage={{ src: "/images/hero/about-team-hero.png", alt: ar ? "فريق باراكود يتعاون في جلسة تخطيط للمنتج" : "Barakode team collaborating in a product planning session" }}
+        backgroundImage={{ src: "/images/hero/about-team-hero.webp", alt: ar ? "فريق باراكود يتعاون في جلسة تخطيط للمنتج" : "Barakode team collaborating in a product planning session" }}
         solidOverlay
       />
 

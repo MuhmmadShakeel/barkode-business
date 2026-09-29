@@ -84,7 +84,7 @@ export default async function ContactPage() {
         ]}
         showMarker={false}
         minimalBackdrop
-        backgroundImage={{ src: "/images/hero/contact-consultation-hero.png", alt: ar ? "مساحة استشارية جاهزة لبدء حوار حول المشروع" : "Consultation space ready for a project conversation" }}
+        backgroundImage={{ src: "/images/hero/contact-consultation-hero.webp", alt: ar ? "مساحة استشارية جاهزة لبدء حوار حول المشروع" : "Consultation space ready for a project conversation" }}
         solidOverlay
       />
 

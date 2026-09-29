@@ -15,7 +15,7 @@ export async function generateMetadata() { const ar = (await getLocale()) === "a
 const MODEL_IMAGES = [
   { src: "/images/contact/roadmap.webp", alt: "Product roadmap and planning workspace" },
   { src: "/images/projects/originals/beyut-cover.webp", alt: "Custom digital product presented on multiple devices" },
-  { src: "/images/engagement/ai-automation-sprint-team.png", alt: "Product team reviewing an automation workflow" },
+  { src: "/images/engagement/ai-automation-sprint-team.webp", alt: "Product team reviewing an automation workflow" },
   { src: "/images/home/glass-company-headquarters.webp", alt: "Modern technology company headquarters" },
   { src: "/images/process/support-growth.webp", alt: "Ongoing product support and growth planning" },
 ];
