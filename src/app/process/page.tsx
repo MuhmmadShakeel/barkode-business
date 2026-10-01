@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/StableImage";
 
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { Button } from "@/components/ui/Button";

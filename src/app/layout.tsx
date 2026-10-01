@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Noto_Kufi_Arabic } from "next/font/google";
+import localFont from "next/font/local";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import "@/styles/globals.css";
@@ -14,13 +14,19 @@ import { JsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import { getTranslations } from "next-intl/server";
 
-const inter = Inter({
-  subsets: ["latin"],
+const inter = localFont({
+  src: "./fonts/inter-latin-variable.woff2",
+  weight: "100 900",
   variable: "--font-inter",
   display: "swap",
 });
 
-const notoKufiArabic = Noto_Kufi_Arabic({ subsets: ["arabic"], variable: "--font-arabic", display: "swap" });
+const notoKufiArabic = localFont({
+  src: "./fonts/noto-kufi-arabic-variable.woff2",
+  weight: "100 900",
+  variable: "--font-arabic",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),

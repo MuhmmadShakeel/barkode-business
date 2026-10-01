@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/StableImage";
 import Link from "next/link";
 import { ArrowUpRight, FileText } from "lucide-react";
 import type { ClientCase, ResearchStudy } from "@/lib/case-studies";

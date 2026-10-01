@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/StableImage";
 import { ArrowUpRight, Globe2, MessageSquareText, Clock3, FileText } from "lucide-react";
 
 import { PageHero } from "@/components/sections/PageHero";

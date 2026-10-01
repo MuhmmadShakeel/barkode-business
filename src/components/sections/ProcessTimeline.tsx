@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/StableImage";
 import { useRef } from "react";
 import { motion, useInView, useScroll, useSpring, useTransform } from "framer-motion";
 import { PROCESS } from "@/lib/content";

@@ -409,7 +409,7 @@ export const TEAM: TeamMember[] = [
     slug: "safdar-iqbal",
     name: "Muhammad Safdar Iqbal",
     role: "Chief Executive Officer & Founder",
-    photo: "/images/team/safdar.webp",
+    photo: "/images/team/safdar-portrait.webp",
     shortBio:
       "Sets the company's direction, owns its most important client relationships, and protects the standard every engagement is held to.",
     bio: "Safdar founded Barakode on a single conviction: that world-class software shouldn't be bound by geography. As CEO he sets the company's direction, owns its most important client relationships, and protects the standard every engagement is held to. He works where strategy meets delivery — shaping the roadmap, building the team, and making sure ambitious ideas leave the building as reliable, scalable products.",

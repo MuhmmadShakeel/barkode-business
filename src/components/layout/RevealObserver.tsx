@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 
 /**
@@ -17,20 +17,28 @@ import { usePathname } from "next/navigation";
 export function RevealObserver() {
   const pathname = usePathname();
 
-  useEffect(() => {
-    // Enable enhanced motion only after the client has mounted. Content stays
-    // visible when JavaScript is unavailable, without injecting an inline
-    // script into the server-rendered layout.
-    document.documentElement.classList.add("js-motion");
-
+  useLayoutEffect(() => {
     const nodes = Array.from(
       document.querySelectorAll<HTMLElement>("[data-reveal]:not([data-revealed])"),
     );
-    if (nodes.length === 0) return;
+    // The server rendered page is already visible. Mark everything in the
+    // first viewport before enabling reveal styles, so hydration cannot hide
+    // the page and make it appear to render for a second time.
+    const viewportHeight = window.innerHeight;
+    for (const el of nodes) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top >= viewportHeight) break;
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        el.setAttribute("data-revealed", "");
+      }
+    }
+    document.documentElement.classList.add("js-motion");
+    const pending = nodes.filter((el) => !el.hasAttribute("data-revealed"));
+    if (pending.length === 0) return;
 
     // Assign stagger positions within each group, unless one was set explicitly.
     const groups = new Map<Element, number>();
-    for (const el of nodes) {
+    for (const el of pending) {
       if (el.style.getPropertyValue("--reveal-i")) continue;
       const group = el.closest("[data-reveal-group]");
       if (!group) continue;
@@ -41,7 +49,7 @@ export function RevealObserver() {
     }
 
     if (typeof IntersectionObserver === "undefined") {
-      for (const el of nodes) el.setAttribute("data-revealed", "");
+      for (const el of pending) el.setAttribute("data-revealed", "");
       return;
     }
 
@@ -56,7 +64,7 @@ export function RevealObserver() {
       { rootMargin: "0px 0px -8% 0px", threshold: 0.01 },
     );
 
-    for (const el of nodes) io.observe(el);
+    for (const el of pending) io.observe(el);
     return () => io.disconnect();
   }, [pathname]);
 

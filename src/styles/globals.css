@@ -1790,6 +1790,21 @@ html[dir="rtl"] .language-switcher { direction: ltr; }
   .services-story,
   .services-cycle,
   .services-models { min-height: auto; }
+
+  .services-page > .services-main-hero,
+  .service-detail-page > .service-detail-hero {
+    height: auto;
+    min-height: 100svh;
+    align-items: flex-start;
+    padding-top: calc(4.75rem + clamp(1.75rem, 5vw, 2.5rem));
+    padding-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .services-page > .services-main-hero > .shell-wide,
+  .service-detail-page > .service-detail-hero > .shell-wide {
+    width: 100%;
+    min-width: 0;
+  }
 }
 
 @media (max-height: 48rem) and (min-width: 48rem) {
@@ -1948,7 +1963,8 @@ html[dir="rtl"] .whatsapp-assistant__messages span { line-height: 1.4; letter-sp
 .whatsapp-assistant--ready .whatsapp-assistant__messages span { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
 .whatsapp-assistant--ready .whatsapp-assistant__messages span:nth-child(2) { transition-delay: .12s; }
 .whatsapp-assistant--ready .whatsapp-assistant__messages span:nth-child(3) { transition-delay: .24s; }
-@media (prefers-reduced-motion: no-preference) { .whatsapp-assistant--ready { animation: whatsapp-assistant-unit-arrival .8s var(--ease-expo) both; } .whatsapp-assistant--ready .whatsapp-assistant__bot { animation: whatsapp-bot-arrival .95s var(--ease-expo) both; } .whatsapp-assistant--ready .whatsapp-assistant__hand { animation: whatsapp-hand-wave .8s ease-in-out .2s 2; } }
+/* The assistant can reappear after every scroll pause; transitions avoid
+   replaying its introductory bounce and hand wave on every stop. */
 @keyframes whatsapp-assistant-unit-arrival { 0% { transform: translateY(.6rem) scale(.94); } 62% { transform: translateY(-.16rem) scale(1.025); } 100% { transform: translateY(0) scale(1); } }
 @keyframes whatsapp-bot-arrival { 0% { opacity: 0; transform: translateY(1rem) scale(.78); } 65% { opacity: 1; transform: translateY(-.14rem) scale(1.03); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes whatsapp-hand-wave { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(16deg); } 50% { transform: rotate(-8deg); } 75% { transform: rotate(13deg); } }
@@ -2013,4 +2029,43 @@ html[dir="rtl"] .whatsapp-assistant__messages span { line-height: 1.4; letter-sp
 .consultancy-decision-object__core::after { position: absolute; inset: 1.15rem; border: 1px solid var(--color-accent-bright); content: ""; }
 .consultancy-decision-object__axis { position: absolute; top: 50%; left: 50%; width: 15rem; height: 1px; background: rgb(232 191 84 / .58); transform-origin: left center; }.consultancy-decision-object__axis--x { transform: translateZ(7.1rem) rotate(0); }.consultancy-decision-object__axis--y { transform: translateZ(7.1rem) rotate(90deg); }
 @media (max-width: 63.99rem) { .consultancy-next-section__grid { grid-template-columns: 1fr; gap: 1.5rem; }.consultancy-decision-object { min-height: 25rem; } }
-@media (max-width: 39.99rem) { .consultancy-landing-areas { padding-block: 3.75rem !important; }.consultancy-landing-areas__grid { gap: .75rem; margin-top: 2rem; }.consultancy-landing-areas .consultancy-area-card { min-height: 17rem; }.consultancy-next-section { padding-block: 4rem !important; }.consultancy-next-section h2 { max-width: 11ch; }.consultancy-decision-object { min-height: 18rem; }.consultancy-decision-object__scene { width: 18rem; height: 18rem; }.consultancy-decision-object__axis { width: 11rem; } }
+@media (max-width: 63.99rem) {
+  .consultancy-landing-hero--viewport { height: auto; min-height: 100svh; }
+  .consultancy-landing-hero__inner { min-height: 100svh; }
+  .consultancy-landing-hero__content { width: 100%; min-width: 0; }
+  .consultancy-landing-hero__word {
+    left: 50%;
+    max-width: 100%;
+    font-size: clamp(2.25rem, 10vw, 6.8rem);
+    letter-spacing: -.07em;
+    transform: translateX(-50%);
+  }
+  .consultancy-landing-areas .consultancy-landing-areas__grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .consultancy-detail-page .shell > .grid > * { min-width: 0; }
+  .consultancy-detail-page .consultancy-detail-hero { padding-inline: 0; }
+  .consultancy-detail-page .consultancy-detail-hero .shell { min-width: 0; }
+}
+@media (max-width: 39.99rem) {
+  .consultancy-landing-hero__word { top: 11%; }
+  .consultancy-landing-hero__title { max-width: 100%; font-size: clamp(2.5rem, 10.5vw, 4.1rem); letter-spacing: -.045em; line-height: 1.02; }
+  .consultancy-landing-hero__lead { max-width: 100%; }
+  .consultancy-landing-hero__actions { grid-template-columns: minmax(0, 1fr); width: 100%; }
+  .consultancy-landing-hero__actions > * { min-width: 0; height: auto; min-height: 3.25rem; white-space: normal; line-height: 1.3; }
+  .consultancy-detail-page .consultancy-detail-hero h1 { max-width: 100%; overflow-wrap: break-word; }
+  .consultancy-detail-page .consultancy-detail-hero .text-d1 { font-size: clamp(2.125rem, 9.2vw, 3.4rem); letter-spacing: -.045em; line-height: 1.04; }
+  .consultancy-detail-page .consultancy-detail-hero > .shell { padding-block: 0; }
+  .consultancy-detail-hero .shell > [data-reveal] { width: 100%; min-width: 0; }
+  .consultancy-detail-hero .shell > [data-reveal] > p:first-child { max-width: 100%; font-size: .625rem; line-height: 1.5; overflow-wrap: anywhere; }
+  .consultancy-detail-hero .shell > [data-reveal] > div:last-child { display: grid; grid-template-columns: minmax(0, 1fr); width: 100%; max-width: 24rem; margin-inline: auto; }
+  .consultancy-detail-hero .shell > [data-reveal] > div:last-child > * { width: 100%; min-width: 0; height: auto; min-height: 3.25rem; padding: .75rem 1rem; white-space: normal; line-height: 1.3; }
+  .consultancy-detail-hero .shell > [data-reveal] > div:last-child > * > span { min-width: 0; overflow-wrap: break-word; }
+  .consultancy-landing-areas { padding-block: 3.75rem !important; }
+  .consultancy-landing-areas__grid { gap: .75rem; margin-top: 2rem; }
+  .consultancy-landing-areas .consultancy-landing-areas__grid { grid-template-columns: minmax(0, 1fr) !important; }
+  .consultancy-landing-areas .consultancy-area-card { min-height: 17rem; }
+  .consultancy-next-section { padding-block: 4rem !important; }
+  .consultancy-next-section h2 { max-width: 11ch; }
+  .consultancy-decision-object { min-height: 18rem; }
+  .consultancy-decision-object__scene { width: min(18rem, 78vw); height: min(18rem, 78vw); }
+  .consultancy-decision-object__axis { width: 11rem; }
+}

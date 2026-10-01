@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/StableImage";
 import Link from "next/link";
 import { Check, Clock3, Layers3, MoveUpRight } from "lucide-react";
 

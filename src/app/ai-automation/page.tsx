@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/StableImage";
 import { AlertTriangle, ArrowRight, Check, ShieldCheck } from "lucide-react";
 
 import { PageHero } from "@/components/sections/PageHero";

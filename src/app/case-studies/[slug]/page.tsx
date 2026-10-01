@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/StableImage";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check, Download, ExternalLink } from "lucide-react";
 

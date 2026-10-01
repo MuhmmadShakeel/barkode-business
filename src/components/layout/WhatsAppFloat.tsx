@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 import { SocialIcon } from "@/components/ui/SocialIcon";
@@ -10,10 +10,28 @@ export function WhatsAppFloat() {
   const locale = useLocale();
   const t = useTranslations("common");
   const [assistantVisible, setAssistantVisible] = useState(false);
+  const visibleRef = useRef(false);
 
   useEffect(() => {
-    const reveal = window.setTimeout(() => setAssistantVisible(true), 700);
-    return () => window.clearTimeout(reveal);
+    const setVisible = (visible: boolean) => {
+      if (visibleRef.current === visible) return;
+      visibleRef.current = visible;
+      setAssistantVisible(visible);
+    };
+    const reveal = window.setTimeout(() => setVisible(true), 700);
+    let idle: number | undefined;
+    const onScroll = () => {
+      window.clearTimeout(reveal);
+      setVisible(false);
+      window.clearTimeout(idle);
+      idle = window.setTimeout(() => setVisible(true), 240);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.clearTimeout(reveal);
+      window.clearTimeout(idle);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
