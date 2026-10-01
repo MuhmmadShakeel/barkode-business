@@ -30,7 +30,7 @@ export default function InsightsPage() {
         trail="."
         body="Explore guides, ideas, and practical advice for founders and businesses building software products, improving workflows, or exploring AI automation."
         primary={{ label: "Explore Articles", href: "#articles" }}
-        secondary={{ label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" }}
+        secondary={{ label: "Book a Free Project Discovery Call", href: "/schedule" }}
         crumbs={[
           { name: "Home", path: "/" },
           { name: "Insights", path: "/insights" },
@@ -58,7 +58,6 @@ export default function InsightsPage() {
                   src={featured.cover}
                   alt={featured.coverAlt}
                   fill
-                  priority
                   sizes="(max-width: 1024px) 100vw, 600px"
                   className="object-cover transition-transform duration-700 [transition-timing-function:var(--ease-expo)] group-hover/a:scale-[1.03]"
                 />
@@ -213,7 +212,7 @@ export default function InsightsPage() {
         heading="Building a product or"
         accent="exploring automation?"
         body="Read practical insights or talk to us directly about your project."
-        primary={{ label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" }}
+        primary={{ label: "Book a Free Project Discovery Call", href: "/schedule" }}
         secondary={{ label: "Send Project Details", href: "/contact" }}
       />
 

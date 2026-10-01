@@ -556,7 +556,7 @@ export const TRUST_CATEGORIES = [
 ];
 
 /* ══════════════════════════════════════════════════════════════════════════
-   INSIGHTS — one published article (from the kit) + the brief's topic pipeline
+   INSIGHTS — published articles and the brief's topic pipeline
    ══════════════════════════════════════════════════════════════════════════ */
 
 export type ArticleBlock =
@@ -579,6 +579,101 @@ export type Article = {
 };
 
 export const ARTICLES: Article[] = [
+  {
+    slug: "agentic-ai-workflow-automation-business-operations",
+    title: "Agentic AI and Workflow Automation for Smarter Business Operations",
+    excerpt: "When work gets stuck between systems, a well designed AI workflow can help your team move it forward with clear limits and human oversight.",
+    category: "AI Automation",
+    date: "2026-10-01",
+    displayDate: "October 2026",
+    readTime: "7 min read",
+    author: "Barakode Team",
+    cover: "/images/blog/agentic-ai-workflow-cover.webp",
+    coverAlt: "Operations team reviewing a connected workflow and its approval steps",
+    tags: ["Agentic AI", "Workflow Automation", "Business Operations"],
+    body: [
+      {
+        kind: "prose",
+        heading: "The work between the work",
+        paragraphs: [
+          "Your team starts the morning with a full inbox. A customer needs an update. An invoice is waiting for approval. A promising sales enquiry has still not reached the right person.",
+          "Everyone is busy. Yet much of the day disappears into moving information between systems and chasing the next step.",
+          "Agentic AI and workflow automation offer a practical way to reduce that friction. Together they can connect routine tasks with the context needed to move work forward.",
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "What is agentic AI?",
+        paragraphs: [
+          "Agentic AI uses artificial intelligence agents to pursue a defined goal. These agents can interpret information and plan actions. With access to approved tools, they can carry out tasks and adjust their approach based on the results.",
+          "Workflow automation coordinates how work moves through a process. Traditional automation usually follows predefined rules. An agentic workflow adds the ability to respond to changing information within defined boundaries.",
+          "Think about a customer asking for an order update. A connected AI agent could check the order record, identify missing information, and prepare a response or route the issue to the right employee. Its scope depends on the systems it can access and the actions it has permission to take.",
+        ],
+      },
+      {
+        kind: "figure",
+        src: "/images/blog/agentic-ai-sales-workflow.webp",
+        alt: "Team reviewing a customer enquiry before handing it to sales",
+        caption: "A useful workflow brings context to the person making the next decision.",
+      },
+      {
+        kind: "prose",
+        heading: "How AI workflow automation works",
+        paragraphs: [
+          "An effective workflow begins with a clear trigger and a specific outcome. For a sales enquiry, the trigger might be a website form submission. The desired outcome might be a complete CRM record and a qualified enquiry ready for the sales team.",
+          "The workflow could read the request, identify the service required, check for an existing customer record, and prepare relevant questions. Once the necessary information is available, it could update the CRM and notify the assigned salesperson.",
+          "If the request involves an unusual commitment or unclear pricing, the workflow should pause for human review. Each step has a purpose and a limit. Employees can see what happened and what still needs attention.",
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "Where AI agents can help",
+        paragraphs: [
+          "Customer support: a connected workflow can bring details from several messages together and retrieve relevant information from approved records. It can prepare an answer for review or handle a routine request within its permissions. Complex cases reach a specialist with a useful summary.",
+          "Sales and CRM: incoming enquiries can be organised, matched to existing records, and prepared for follow up. Salespeople can spend more time understanding customers instead of copying details between tools.",
+          "Invoice and document processing: an AI assisted workflow can extract invoice details and compare them with a purchase order. Missing information or a mismatch can trigger review. Payment approval remains with an authorised person.",
+          "Internal operations: onboarding and service requests often involve several departments. Automation can collect required information, coordinate tasks across connected systems, and make delays visible to managers.",
+        ],
+      },
+      {
+        kind: "figure",
+        src: "/images/blog/agentic-ai-document-review.webp",
+        alt: "Finance professional reviewing an invoice against a purchase order",
+        caption: "Document checks can be automated while financial approval stays with a person.",
+      },
+      {
+        kind: "prose",
+        heading: "Start with a process you can measure",
+        paragraphs: [
+          "Choose one recurring process that creates visible frustration. Enquiries may wait too long for a response. Employees may spend hours preparing the same report. Approvals may stall because nobody knows who should act next.",
+          "Document the current process before introducing AI. Record how long it takes and how often someone needs to correct the result. Then run a limited pilot. Compare completion time and accuracy, and review the cost of operating the workflow alongside the time it saves.",
+          "A useful automation project should produce an improvement your team can recognise and measure.",
+        ],
+      },
+      {
+        kind: "figure",
+        src: "/images/blog/agentic-ai-pilot-measurement.webp",
+        alt: "Operations team assessing workflow performance together",
+        caption: "A pilot gives the team a clear way to compare effort, accuracy, and outcomes.",
+      },
+      {
+        kind: "prose",
+        heading: "Keep people in control",
+        paragraphs: [
+          "Reliable enterprise workflow automation needs clear permissions and accessible records. Decide what information the agent can read, what it can do independently, and which actions require approval. Give employees a simple way to review decisions and correct mistakes.",
+          "Plan for missing data and unavailable systems, too. When the workflow cannot proceed safely, it should explain the problem and hand the task to a person. These controls help teams trust the process as it becomes part of daily work.",
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "Build around the work that matters",
+        paragraphs: [
+          "Agentic AI becomes valuable when it addresses a real operational problem. Start with one process that consumes too much attention, connect the necessary systems, define a clear outcome, and test the workflow with the people who will use it.",
+          "The goal is straightforward: give your team more time for customers and decisions that deserve their attention. Identify one repetitive process in your business and assess where a connected AI agent could make the next step easier.",
+        ],
+      },
+    ],
+  },
   {
     slug: "why-every-project-needs-a-technical-roadmap",
     title: "Why Every Project Needs a Technical Roadmap",
@@ -655,7 +750,6 @@ export const INSIGHT_CATEGORIES = [
 export const INSIGHT_PIPELINE: { title: string; category: string }[] = [
   { title: "How to plan an MVP before hiring developers", category: "SaaS & MVP Development" },
   { title: "MVP vs full product: what should startups build first?", category: "SaaS & MVP Development" },
-  { title: "How AI automation can reduce manual business workflows", category: "AI Automation" },
   { title: "What is a RAG chatbot and when should a business use one?", category: "AI Automation" },
   { title: "How to turn spreadsheets into an internal business system", category: "Internal Systems" },
   { title: "What makes a SaaS product scalable?", category: "Product Engineering" },

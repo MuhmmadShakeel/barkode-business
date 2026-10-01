@@ -37,7 +37,7 @@ export default async function ProcessPage() {
               <Button href="/contact" size="md" className="w-full sm:w-auto" arrow>
                 {ar ? "ابدأ مشروعك" : "Start Your Project"}
               </Button>
-              <Button href="/contact?intent=strategy-call" variant="secondary" size="md" className="w-full sm:w-auto">
+              <Button href="/schedule" variant="secondary" size="md" className="w-full sm:w-auto">
                 {ar ? "احجز مكالمة تعريفية مجانية" : "Book a Free Project Discovery Call"}
               </Button>
             </div>

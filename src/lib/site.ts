@@ -19,8 +19,6 @@ export const PENDING = {
   /** Organisation schema records only `addressCountry: PK`. */
   streetAddress: null as string | Pending,
   city: null as string | Pending,
-  /** Calendly / Cal.com / SavvyCal link for the free project discovery call. */
-  bookingUrl: null as string | Pending,
   /** Endpoint that receives contact-form submissions. */
   formEndpoint: null as string | Pending,
 } as const;
@@ -51,7 +49,6 @@ export const CONTACT = {
   location: SITE.location,
   responsePromise:
     "Send a short brief and we will reply within one business day with practical next steps. If the project is not the right fit, we will still try to point you in the right direction.",
-  bookingUrl: PENDING.bookingUrl,
 } as const;
 
 export type SocialLink = {
@@ -77,14 +74,14 @@ export const SOCIAL: SocialLink[] = [
   },
   {
     label: "Instagram",
-    handle: "@barakodetechnologies",
-    href: "https://www.instagram.com/barakodetechnologies",
+    handle: "@barakodetech",
+    href: "https://www.instagram.com/barakodetech/",
     icon: "instagram",
   },
   {
     label: "YouTube",
-    handle: "@barakodetechnologies",
-    href: "https://youtube.com/@barakodetechnologies",
+    handle: "@barakodetech",
+    href: "https://youtube.com/@barakodetech",
     icon: "youtube",
   },
   {
@@ -106,8 +103,8 @@ export const SOCIAL: SocialLink[] = [
    ══════════════════════════════════════════════════════════════════════════ */
 
 export const CTA = {
-  header: { label: "Book a Demo", href: "/contact?intent=strategy-call" },
-  primary: { label: "Request a Project Discovery Call", href: "/contact?intent=strategy-call" },
+  header: { label: "Book a Demo", href: "/schedule" },
+  primary: { label: "Request a Project Discovery Call", href: "/schedule" },
   secondary: { label: "View Our Work", href: "/case-studies" },
   supporting: { label: "Send Project Details", href: "/contact" },
 } as const;

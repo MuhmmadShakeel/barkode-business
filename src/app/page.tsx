@@ -17,14 +17,16 @@ import { ServiceIcon } from "@/components/ui/ServiceIcon";
 
 import { CLIENT_CASES } from "@/lib/case-studies";
 import {
+  ARTICLES,
   ENGAGEMENT_MODELS,
   TRUST_CATEGORIES,
   VALUE_PROPS,
 } from "@/lib/content";
 import { AI_USE_CASES } from "@/lib/ai-automation";
+import { agenticArticleAr } from "@/i18n/agentic-article-ar";
 import { SERVICES } from "@/lib/services";
 import { JsonLd, buildMetadata, faqSchema } from "@/lib/seo";
-import { getMessages } from "next-intl/server";
+import { getLocale, getMessages } from "next-intl/server";
 
 type HomeMessages = (typeof import("@/i18n/messages/en.json"))["home"];
 
@@ -60,6 +62,7 @@ function ProblemCard({ groupIndex, cards }: { groupIndex: number; cards: string[
 
 export default async function HomePage() {
   const messages = await getMessages();
+  const ar = (await getLocale()) === "ar";
   const home = messages.home as HomeMessages;
   const homeTimelines = messages.homeTimelines as string[];
   const caseNames = messages.homeCaseNames as string[];
@@ -376,7 +379,7 @@ export default async function HomePage() {
       {/* ═══ 7 · CASE STUDY PREVIEW ═════════════════════════════════════════ */}
       <Section surface="paper" tight aria-labelledby="work-heading" className="selected-work-reveal !bg-transparent">
         <div className="shell w-full">
-          <Reveal>
+          <div>
             <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
               <h2 id="work-heading" className="max-w-[20ch] text-d3 text-text">
                 {home.work.heading}{" "}
@@ -386,22 +389,21 @@ export default async function HomePage() {
                 {home.work.cta}
               </Button>
             </div>
-          </Reveal>
+          </div>
 
-          <RevealGroup className="group/work mt-10 grid gap-6 pb-4 sm:mt-12 lg:grid-cols-3 lg:pb-0" as="ul">
+          <ul className="mt-10 grid gap-6 pb-4 sm:mt-12 lg:grid-cols-3 lg:pb-0">
             {CLIENT_CASES.map((c, i) => (
-              <RevealItem key={c.slug} as="li" className="h-full transition-[opacity,transform] duration-500 [transition-timing-function:var(--ease-expo)] lg:group-hover/work:scale-[0.985] lg:group-hover/work:opacity-65 lg:hover:!scale-100 lg:hover:!opacity-100">
+              <li key={c.slug} className="h-full">
                 <ClientCaseCard
                   study={{...c, name: caseNames[i], clientType: caseCards[i].clientType, industry: caseCards[i].industry, summary: caseCards[i].summary, results: [caseCards[i].result], coverAlt: caseCards[i].coverAlt, timeline: homeTimelines[i]}}
                   labels={home.work}
                   stackLabels={stackLabels[i]}
-                  priority={i === 0}
                   compact
-                  className="h-full [transform:perspective(1200px)_rotateX(0deg)_rotateY(0deg)] [transform-style:preserve-3d] hover:[transform:perspective(1200px)_rotateX(2deg)_rotateY(-2deg)_translate3d(0,-5px,16px)]"
+                  className="h-full"
                 />
-              </RevealItem>
+              </li>
             ))}
-          </RevealGroup>
+          </ul>
         </div>
       </Section>
 
@@ -491,6 +493,53 @@ export default async function HomePage() {
             <Button href="/engagement-models" variant="secondary" size="md" arrow>
               {home.models.cta}
             </Button>
+          </Reveal>
+        </div>
+      </Section>
+
+      <Section surface="paper" tight aria-labelledby="home-article-heading">
+        <div className="home-blog-grid shell grid items-stretch gap-9 lg:gap-8">
+          <Reveal kind="left" className="h-full w-full max-w-md">
+            <article className="group/article h-full overflow-hidden rounded-[var(--radius-lg)] border border-rule bg-white shadow-e2 transition-[box-shadow,transform] duration-300 hover:-translate-y-1 hover:shadow-e3">
+              <Link href={`/insights/${ARTICLES[0].slug}`} className="flex h-full flex-col focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-accent">
+                <div className="relative aspect-[16/9] overflow-hidden bg-paper-sunken">
+                  <Image
+                    src={ARTICLES[0].cover}
+                    alt={ARTICLES[0].coverAlt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 448px"
+                    className="object-cover transition-transform duration-500 group-hover/article:scale-[1.025]"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                  <h3 className="max-w-[26ch] font-display text-[clamp(1.35rem,1.8vw,1.65rem)] font-medium leading-snug text-text">
+                    {ar ? agenticArticleAr.title : ARTICLES[0].title}
+                  </h3>
+                  <p className="mt-3 max-w-[62ch] flex-1 text-[0.9375rem] leading-relaxed text-text-2">{ar ? agenticArticleAr.excerpt : ARTICLES[0].excerpt}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 font-semibold text-accent-ink">
+                    {ar ? "اقرأ المزيد" : "Read more"} <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/article:translate-x-0.5 group-hover/article:-translate-y-0.5" aria-hidden />
+                  </span>
+                </div>
+              </Link>
+            </article>
+          </Reveal>
+
+          <Reveal kind="right" className="flex h-full max-w-[35rem] flex-col">
+            <h2 id="home-article-heading" className="max-w-[18ch] font-display text-[clamp(1.9rem,3vw,2.8rem)] font-medium leading-tight text-text">
+              {ar ? "تبدأ مسارات العمل الأفضل بقرارات أوضح." : "Better workflows start with clearer decisions."}
+            </h2>
+            <p className="mt-5 max-w-[52ch] text-[1.0625rem] leading-relaxed text-text-2">
+              {ar ? "توضح مقالتنا الجديدة أين يمكن للذكاء الاصطناعي المتصل أن يخفف الأعمال المتكررة، وأين ينبغي أن يبقى الإنسان حاضرًا في القرار." : "Our latest article looks at where connected AI can ease routine handoffs, and where a person should stay involved."}
+            </p>
+            <div className="mt-5 rounded-[var(--radius-md)] border border-rule-dark bg-ink-950 p-5 text-white sm:p-6 lg:mt-auto">
+              <h3 className="font-display text-xl font-medium text-white">{ar ? "خطوة عملية للبدء" : "A useful place to begin"}</h3>
+              <p className="mt-2 text-base leading-relaxed text-ontext-2">
+                {ar ? "اختر إجراءً واحدًا يبطئ فريقك. حدد نقاط انتقال العمل، وما يمكن أتمتته، والقرارات التي تتطلب موافقة بشرية." : "Pick one process that slows your team down. Map the handoffs, decide what can be automated, and keep approval where judgment matters."}
+              </p>
+            </div>
+            <Link href="/insights" className="mt-3 inline-flex min-h-11 items-center gap-2 font-medium text-accent-ink underline underline-offset-4 hover:text-accent-deep">
+              {ar ? "استكشف جميع المقالات" : "Explore all insights"} <ArrowUpRight className="size-4" aria-hidden />
+            </Link>
           </Reveal>
         </div>
       </Section>

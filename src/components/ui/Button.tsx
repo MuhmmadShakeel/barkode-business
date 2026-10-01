@@ -38,6 +38,7 @@ const sizes: Record<Size, string> = {
 
 export type ButtonProps = {
   href?: string;
+  target?: "_blank" | "_self";
   variant?: Variant;
   size?: Size;
   children: React.ReactNode;
@@ -50,6 +51,7 @@ export type ButtonProps = {
 
 export function Button({
   href,
+  target,
   variant = "primary",
   size = "md",
   children,
@@ -82,7 +84,7 @@ export function Button({
         <a
           href={href}
           className={cls}
-          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          {...(external || target === "_blank" ? { target: target ?? "_blank", rel: "noopener noreferrer" } : {})}
           {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
           {inner}
@@ -90,7 +92,7 @@ export function Button({
       );
     }
     return (
-      <Link href={href} className={cls} {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
+      <Link href={href} className={cls} target={target} rel={target === "_blank" ? "noopener noreferrer" : undefined} {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
         {inner}
       </Link>
     );

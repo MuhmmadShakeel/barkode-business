@@ -292,6 +292,12 @@ html[dir="rtl"] .language-switcher { direction: ltr; }
     padding-inline: var(--spacing-gutter);
   }
 
+  @media (min-width: 64rem) {
+    .home-blog-grid {
+      grid-template-columns: minmax(0, 28rem) minmax(0, 1fr);
+    }
+  }
+
   /* Measure: keeps body copy at 65–75ch */
   .measure { max-width: 68ch; }
   .measure-tight { max-width: 56ch; }
@@ -921,32 +927,6 @@ html[dir="rtl"] .language-switcher { direction: ltr; }
 .service-panel--visual { background: #050607 !important; }
 .service-panel__image { opacity: .28; transform: scale(1.02); }
 
-/* Consultancy outcome tiles form one deliberate row at every desktop width.
-   The route's content can vary in length, so the grid owns their height and
-   the decorative counter is removed rather than forcing one tile taller. */
-.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-group] {
-  grid-auto-rows: minmax(12rem, 1fr);
-}
-
-.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-item] {
-  height: 100%;
-}
-
-.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-item] > div {
-  display: flex;
-  height: 100%;
-  min-height: 12rem;
-  align-items: center;
-}
-
-.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-item] > div > span:first-child {
-  display: none;
-}
-
-.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-item] h3 {
-  margin-top: 0;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .service-panel--visual .service-panel__image {
     animation: service-visual-drift 18s ease-in-out infinite alternate;
@@ -1453,22 +1433,6 @@ html[dir="rtl"] .language-switcher { direction: ltr; }
 .ai-3d-node--3 { bottom: 12%; left: 7%; transform: rotateY(10deg) translateZ(5rem); }
 .ai-3d-node--4 { right: 2%; bottom: 9%; transform: rotateY(-10deg) translateZ(2rem); }
 
-.ai-problem-list > * {
-  border-top: 1px solid var(--color-rule);
-  border-left: 1px solid var(--color-rule);
-}
-
-.ai-problem-list > *:nth-child(4n + 1) { border-left: 0; }
-
-@media (max-width: 63.99rem) {
-  .ai-problem-list > *:nth-child(4n + 1) { border-left: 1px solid var(--color-rule); }
-  .ai-problem-list > *:nth-child(2n + 1) { border-left: 0; }
-}
-
-@media (max-width: 39.99rem) {
-  .ai-problem-list > * { border-left: 0; }
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .ai-3d-core { animation: ai-3d-core-float 5s ease-in-out infinite; }
   .ai-3d-orbit { animation: ai-3d-orbit-spin 12s linear infinite; }
@@ -1914,15 +1878,30 @@ html[dir="rtl"] .language-switcher { direction: ltr; }
 }
 .consultancy-detail-page [data-surface="dark"] span.font-mono.text-marker { color: var(--color-accent-bright); }
 
-.consultancy-detail-page .consultancy-outcomes__list { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
-.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-group] { grid-auto-rows: minmax(10rem, 1fr); }
-.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-item] > div {
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: space-between;
+.consultancy-detail-page .consultancy-outcomes__list {
+  gap: clamp(.75rem, 1.5vw, 1.25rem);
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  border-top: 0;
 }
-.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-item] > div > span:first-child { display: block; }
-.consultancy-detail-page [aria-labelledby="outcomes-heading"] [data-reveal-item] h3 { max-width: 13ch; }
+.consultancy-detail-page .consultancy-outcomes__item {
+  display: flex;
+  height: 100%;
+  min-height: 12rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 2.5vw, 2.5rem);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+  background: var(--color-paper-raised);
+  text-align: center;
+  box-shadow: var(--shadow-e1);
+}
+.consultancy-detail-page .consultancy-outcomes__item > span:first-child { display: none; }
+.consultancy-detail-page .consultancy-outcomes__item h3 {
+  max-width: 20ch;
+  margin-top: 0;
+}
 
 .consultancy-detail-page [aria-labelledby="focus-heading"] [data-reveal-group] > li > div {
   box-shadow: none;
@@ -1963,6 +1942,7 @@ html[dir="rtl"] .language-switcher { direction: ltr; }
 .whatsapp-assistant__hand { position: absolute; inset: 0; display: block; overflow: hidden; clip-path: inset(39% 63% 38% 10%); transform-origin: 27% 61%; }
 .whatsapp-assistant__messages { position: absolute; right: 3.55rem; bottom: 3.9rem; display: grid; justify-items: end; gap: .34rem; width: max-content; max-width: 9rem; pointer-events: none; }
 .whatsapp-assistant__messages span { position: relative; border: 1px solid rgb(232 191 84 / .42); border-radius: 1rem 1rem .25rem 1rem; background: var(--color-ink-950); padding: .43rem .64rem; color: #fff; font: 600 .625rem/1 var(--font-display); letter-spacing: .01em; opacity: 0; box-shadow: 0 .625rem 1.5rem rgb(0 0 0 / .24); transform: translateX(.8rem) translateY(.4rem) scale(.82); transition: opacity .18s ease, transform .2s var(--ease-expo); }
+html[dir="rtl"] .whatsapp-assistant__messages span { line-height: 1.4; letter-spacing: 0; }
 .whatsapp-assistant__messages span::after { position: absolute; right: -.22rem; bottom: .18rem; width: .42rem; height: .42rem; border-right: 1px solid rgb(232 191 84 / .42); border-bottom: 1px solid rgb(232 191 84 / .42); background: var(--color-ink-950); content: ""; transform: rotate(-45deg); }
 .whatsapp-assistant--ready .whatsapp-assistant__bot { opacity: 1; transform: translateY(0) scale(1); }
 .whatsapp-assistant--ready .whatsapp-assistant__messages span { opacity: 1; transform: translateX(0) translateY(0) scale(1); }

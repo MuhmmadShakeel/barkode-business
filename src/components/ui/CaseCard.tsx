@@ -24,9 +24,11 @@ export function ClientCaseCard({
   compact?: boolean;
   subtle?: boolean;
   className?: string;
-  labels?: { engagement: string; delivered: string; services: string; timeline: string; view: string };
+  labels?: { engagement: string; concept?: string; delivered: string; services: string; timeline: string; view: string };
   stackLabels?: string[];
 }) {
+  const hospitalConcept = study.slug === "x3-hospital-erp";
+  const productScreenshot = /\/(barakah-items|ophir-purchase-orders|turner10-workspace)\./.test(study.cover);
   return (
     <article
       className={cn(
@@ -40,21 +42,23 @@ export function ClientCaseCard({
       <div
         className={cn(
           "relative overflow-hidden border-b border-rule",
-          compact ? "aspect-[16/8]" : "aspect-[16/10]",
+          compact ? (productScreenshot ? "aspect-[16/9]" : "aspect-[16/8]") : "aspect-[16/10]",
           study.tone === "light" ? "bg-paper-deep" : "bg-ink-900",
         )}
       >
-        <Image
-          src={study.cover}
-          alt={study.coverAlt}
-          fill
-          priority={priority}
-          sizes="(max-width: 768px) 100vw, (max-width: 1216px) 50vw, 580px"
-          className="object-cover transition-transform duration-700 [transition-timing-function:var(--ease-expo)] group-hover/cc:scale-[1.035]"
-        />
-        <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-[var(--radius-xs)] border border-white/22 bg-ink-950/72 px-2.5 py-1 font-mono text-[0.625rem] tracking-[0.1em] text-white uppercase backdrop-blur-sm">
+        <div className="absolute inset-0 overflow-hidden">
+          <Image
+            src={study.cover}
+            alt={study.coverAlt}
+            fill
+            priority={priority}
+            sizes="(max-width: 768px) 100vw, (max-width: 1216px) 50vw, 580px"
+            className={cn(productScreenshot ? "object-cover object-top" : hospitalConcept ? "object-cover" : "object-cover transition-transform duration-700 [transition-timing-function:var(--ease-expo)] group-hover/cc:scale-[1.025]")}
+          />
+        </div>
+        <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-[var(--radius-xs)] border border-white/22 bg-ink-950/85 px-2.5 py-1 font-mono text-[0.625rem] tracking-[0.1em] text-white uppercase">
           <span aria-hidden className="size-1 rounded-full bg-signal" />
-          {labels?.engagement ?? "Client engagement"}
+          {hospitalConcept ? labels?.concept ?? "Dashboard concept" : labels?.engagement ?? "Client engagement"}
         </span>
       </div>
 

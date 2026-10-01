@@ -50,7 +50,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       trail: ".",
       body: "Barakode helps founders and growing teams turn product ideas into scalable MVPs and SaaS platforms with clear planning, product-focused UI/UX, full-stack development, testing, launch support, and ongoing improvement.",
       primary: { label: "Plan Your MVP", href: "/contact?service=mvp-saas" },
-      secondary: { label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" },
+      secondary: { label: "Book a Free Project Discovery Call", href: "/schedule" },
     },
     audience: [
       "Startup founders",
@@ -174,7 +174,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       trail: ".",
       body: "Barakode designs and develops web and mobile applications for startups, businesses, and teams that need software built around their real operations, not generic templates.",
       primary: { label: "Build a Custom App", href: "/contact?service=web-mobile" },
-      secondary: { label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" },
+      secondary: { label: "Book a Free Project Discovery Call", href: "/schedule" },
     },
     audience: [
       "Businesses needing custom applications",
@@ -605,7 +605,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       trail: ".",
       body: "Barakode helps teams turn ideas, workflows, and product requirements into clean user flows, wireframes, prototypes, dashboards, mobile screens, and design systems ready for development.",
       primary: { label: "Design Your Product", href: "/contact?service=ui-ux" },
-      secondary: { label: "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" },
+      secondary: { label: "Book a Free Project Discovery Call", href: "/schedule" },
     },
     audience: [
       "Founders planning a product before development",
@@ -754,7 +754,7 @@ const RECOVERED_SERVICE_PAGES: ServicePage[] = [
   slug,
   metaTitle: `${title} | Barakode Technologies`,
   metaDescription: profile.body,
-  hero: { marker, heading: "Build the next step with", accent, trail: ".", body: profile.body, primary: { label: `Discuss ${title}`, href: `/contact?service=${slug}` }, secondary: { label: "Book a Strategy Call", href: "/contact?intent=strategy-call" } },
+  hero: { marker, heading: "Build the next step with", accent, trail: ".", body: profile.body, primary: { label: `Discuss ${title}`, href: `/contact?service=${slug}` }, secondary: { label: "Book a Strategy Call", href: "/schedule" } },
   audience: ["Teams with a defined business problem", "Leaders planning a technical change", "Product teams needing delivery clarity", "Operations teams improving a critical workflow"],
   problem: profile.problem,
   builds: { heading: "What we deliver", items: profile.builds },

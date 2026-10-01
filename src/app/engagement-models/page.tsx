@@ -61,7 +61,7 @@ export default async function EngagementModelsPage() {
             <h1 className="site-hero-heading mt-7 max-w-[15ch] text-d1 text-white drop-shadow-[0_4px_30px_rgba(0,0,0,.5)]">{ar ? "الشراكة المناسبة " : "The right partnership for your "}<span className="text-accent-bright">{ar ? "لخطوتك التالية." : "next move."}</span></h1>
             <div className="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
               <Button href="/contact?intent=engagement-model" size="lg" arrow>{ar ? "اختر نموذج التعاون المناسب" : "Find the Right Model"}</Button>
-              <Button href="/contact?intent=strategy-call" variant="onDarkGhost" size="lg" className="bg-black/15 backdrop-blur-md">{ar ? "احجز مكالمة تعريفية مجانية" : "Book a Free Project Discovery Call"}</Button>
+              <Button href="/schedule" variant="onDarkGhost" size="lg" className="bg-black/15 backdrop-blur-md">{ar ? "احجز مكالمة تعريفية مجانية" : "Book a Free Project Discovery Call"}</Button>
             </div>
           </Reveal>
 

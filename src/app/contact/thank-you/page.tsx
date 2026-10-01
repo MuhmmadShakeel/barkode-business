@@ -2,12 +2,10 @@ import { Suspense } from "react";
 import { CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
-import { Pending } from "@/components/ui/Pending";
 import { Glow, SchematicGround } from "@/components/ui/Schematic";
 import { Marker } from "@/components/ui/Section";
 import { DeliveryNotice } from "./DeliveryNotice";
 
-import { CONTACT } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { getLocale } from "next-intl/server";
 
@@ -50,25 +48,14 @@ export default async function ThankYouPage() {
           </Suspense>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            {CONTACT.bookingUrl ? (
-              <Button href={CONTACT.bookingUrl} variant="onDark" size="lg" arrow>
-                {ar ? "احجز مكالمة تعريفية مجانية" : "Book a Free Project Discovery Call"}
-              </Button>
-            ) : (
-              <Button href={CONTACT.whatsapp.href} variant="onDark" size="lg" arrow>
-                {ar ? "راسلنا عبر WhatsApp" : "Message us on WhatsApp"}
-              </Button>
-            )}
+            <Button href="/schedule" variant="onDark" size="lg" arrow>
+              {ar ? "اختر موعدًا" : "Choose a Meeting Time"}
+            </Button>
             <Button href="/case-studies" variant="onDarkGhost" size="lg">
               {ar ? "شاهد أعمالنا" : "View Our Work"}
             </Button>
           </div>
 
-          {!CONTACT.bookingUrl && (
-            <div className="mt-8 flex justify-center">
-              <Pending tone="dark">{ar ? "[رابط الحجز المباشر غير متاح حاليًا]" : "[Add booking link for the free discovery-call button]"}</Pending>
-            </div>
-          )}
         </div>
       </div>
     </section>

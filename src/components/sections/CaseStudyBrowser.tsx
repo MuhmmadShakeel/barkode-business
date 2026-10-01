@@ -179,35 +179,25 @@ export function CaseStudyBrowser({
       {/* ── Engineering & R&D ────────────────────────────────────────────── */}
       {research.length > 0 && (
         <section className="mt-16" aria-labelledby="research-heading">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-rule pt-10">
+          <div className="border-t border-rule pt-10">
             <h2
               id="research-heading"
-              className="font-mono text-marker font-medium tracking-[0.16em] text-text-4 uppercase"
+              className="max-w-3xl font-display text-[clamp(2rem,3.4vw,3.25rem)] leading-tight font-bold tracking-[-0.03em] text-text"
             >
               {ar ? "دراسات الهندسة والذكاء الاصطناعي" : "Engineering & AI R&D"}
             </h2>
-            <p className="measure text-sm text-text-3">
-              {ar ? "أعمال هندسية داخلية وأكاديمية، وليست مشاريع عملاء. تتوفر التقارير التقنية لكل دراسة." : "Internal and academic engineering work — not client projects. Each study ships with its full technical report."}
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-2">
+              {ar ? "هذه دراسات هندسية داخلية وأكاديمية. تتضمن كل دراسة تقريرها التقني الكامل." : "This is internal and academic engineering work. Each study includes its full technical report."}
             </p>
           </div>
 
-          <motion.ul layout className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <AnimatePresence mode="popLayout">
-              {research.map((s) => (
-                <motion.li
-                  key={s.slug}
-                  layout
-                  initial={enter(16)}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -8, filter: "blur(4px)" }}
-                  transition={{ duration: 0.4, ease: EASE_EXPO }}
-                  className="h-full"
-                >
-                  <ResearchCard study={ar ? localizeResearchStudy(s) : s} className="h-full" />
-                </motion.li>
-              ))}
-            </AnimatePresence>
-          </motion.ul>
+          <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {research.map((s) => (
+              <li key={s.slug} className="h-full">
+                <ResearchCard study={ar ? localizeResearchStudy(s) : s} className="h-full" />
+              </li>
+            ))}
+          </ul>
         </section>
       )}
     </div>

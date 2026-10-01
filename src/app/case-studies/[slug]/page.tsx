@@ -473,7 +473,7 @@ function ClientCaseView({ study, ar }: { study: ClientCase; ar: boolean }) {
         accent={t("workflow to build?", "مسار عمل مشابه؟")}
         body={t("Tell us what you are working on and we will help you identify the right technical direction.", "أخبرنا بما تعمل عليه، وسنساعدك على تحديد الاتجاه التقني المناسب، مع عمل مدعوم بالذكاء الاصطناعي ومراجعة فريقنا في كل مرحلة.")}
         primary={{ label: t("Discuss Your Project", "ناقش مشروعك معنا"), href: "/contact" }}
-        secondary={{ label: t("Book a Free Project Discovery Call", "احجز مكالمة تعريفية مجانية"), href: "/contact?intent=strategy-call" }}
+        secondary={{ label: t("Book a Free Project Discovery Call", "احجز مكالمة تعريفية مجانية"), href: "/schedule" }}
       />
 
       <JsonLd
@@ -683,7 +683,7 @@ function ResearchView({ study, ar }: { study: ResearchStudy; ar: boolean }) {
         heading={t("Need this kind of capability in", "هل تحتاج هذه القدرة في")}
         accent={t("a real product?", "منتج حقيقي؟")}
         body={t("Tell us the workflow you want to automate and we will map the practical version of it — grounded, reviewable, and connected to the tools you already run.", "أخبرنا بسير العمل الذي تريد أتمتته، وسنحدد له تطبيقًا عمليًا يمكن مراجعته ويرتبط بأدواتك الحالية، مع إشراف فريقنا على كل خطوة.")}
-        primary={{ label: t("Book a Free Project Discovery Call", "احجز مكالمة تعريفية مجانية"), href: "/contact?intent=ai-automation" }}
+        primary={{ label: t("Book a Free Project Discovery Call", "احجز مكالمة تعريفية مجانية"), href: "/schedule?topic=ai-automation" }}
         secondary={{ label: t("Explore AI Automation", "اكتشف الأتمتة الذكية"), href: "/ai-automation" }}
       />
 

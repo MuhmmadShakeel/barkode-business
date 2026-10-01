@@ -27,7 +27,7 @@ const CONTACT_FAQS = [
   },
   {
     q: "Can I book a call directly?",
-    a: "Yes. Choose 'Google Meet / Zoom' as your preferred contact method and mention your availability in the description, and we will send times that work across your time zone.",
+    a: "Yes. Visit the scheduling page, choose a 30 or 60 minute meeting, and pick an available time in your time zone.",
   },
   {
     q: "Do you work with international clients?",
@@ -190,22 +190,11 @@ export default async function ContactPage() {
                   {ar ? "تفضل مناقشة الفكرة مباشرة؟" : "Would rather just talk it through?"}
                 </h3>
                 <p className="mt-2.5 text-sm text-black/70">
-                  {ar ? "اطلب مكالمة تعريفية مجانية لمدة 30 دقيقة. أخبرنا بما تريد بناءه وأهم القيود لديك، وسنؤكد موعدًا مناسبًا خلال يوم عمل واحد." : "Request a free 30-minute discovery call. Tell us what you are building and your key constraints; we will confirm a suitable time within one business day."}
+                  {ar ? "اختر مكالمة تعريفية لمدة 30 دقيقة أو استشارة لمدة 60 دقيقة، ثم حدد موعدًا يناسبك." : "Choose a 30-minute discovery call or a 60-minute consultation, then pick a time that works for you."}
                 </p>
-                {CONTACT.bookingUrl ? (
-                  <Button href={CONTACT.bookingUrl} size="md" className="mt-5" arrow block>
-                    {ar ? "اطلب مكالمة تعريفية مجانية" : "Request a Free Project Discovery Call"}
-                  </Button>
-                ) : (
-                  <div className="mt-5">
-                    <Button href={CONTACT.whatsapp.href} size="md" arrow block>
-                      {ar ? "اطلب مكالمة تعريفية مجانية" : "Request a Free Discovery Call"}
-                    </Button>
-                    <p className="mt-3 text-xs text-text-3">
-                      {ar ? "هذا طلب مكالمة وليس حجزًا فوريًا. سنؤكد الموعد وتفاصيل الاتصال بعد مراجعة مشروعك." : "This is a request, not an instant calendar booking. We will confirm the time and video-call details after reviewing your project."}
-                    </p>
-                  </div>
-                )}
+                <Button href="/schedule" size="md" className="mt-5" arrow block>
+                  {ar ? "اختر موعدًا" : "Choose a Meeting Time"}
+                </Button>
               </div>
 
               <div className="flex items-start gap-4">

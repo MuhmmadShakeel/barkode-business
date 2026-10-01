@@ -118,7 +118,7 @@ export async function Footer() {
                       rel="noopener noreferrer"
                       aria-label={t("onSocial", {platform: s.label})}
                       title={s.handle}
-                      className="grid size-9 place-items-center rounded-[var(--radius-xs)] border border-rule-dark text-ontext-3 transition-[color,border-color,background-color,transform] duration-200 [transition-timing-function:var(--ease-expo)] hover:-translate-y-0.5 hover:border-accent-bright/50 hover:bg-white/6 hover:text-white"
+                      className="grid size-11 place-items-center rounded-[var(--radius-xs)] border border-rule-dark text-ontext-3 transition-[color,border-color,background-color] duration-200 hover:border-accent-bright/50 hover:bg-white/6 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-bright"
                     >
                       <SocialIcon name={s.icon} className="size-4" />
                     </a>

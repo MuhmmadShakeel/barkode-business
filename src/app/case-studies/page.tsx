@@ -91,7 +91,6 @@ export default async function CaseStudiesPage() {
                   src={f.cover}
                   alt={f.coverAlt}
                   fill
-                  priority
                   sizes="(max-width: 1024px) 100vw, 58vw"
                   className="object-cover transition-transform duration-700 [transition-timing-function:var(--ease-expo)] group-hover/image:scale-[1.025]"
                 />

@@ -54,7 +54,7 @@ export default async function ServicesPage() {
         accent={ar?.heroAccent ?? "AI automation services"}
         trail="."
         body={ar?.heroBody ?? "Barakode helps startups and growing businesses define, build, and improve digital products, internal systems, and practical automation."}
-        primary={{ label: ar?.primary ?? "Book a Free Project Discovery Call", href: "/contact?intent=strategy-call" }}
+        primary={{ label: ar?.primary ?? "Book a Free Project Discovery Call", href: "/schedule" }}
         secondary={{ label: ar?.secondary ?? "View Our Work", href: "/case-studies" }}
         crumbs={[{ name: ar?.home ?? "Home", path: "/" }, { name: ar?.services ?? "Services", path: "/services" }]}
         showMarker={false}

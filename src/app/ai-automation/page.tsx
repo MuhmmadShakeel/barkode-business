@@ -34,7 +34,7 @@ export default async function AiAutomationPage() {
         accent={ar ? "لسير العمل الحقيقي" : "real business workflows"}
         trail="."
         body={ar ? "نحول الأجزاء المتكررة من العمل اليومي إلى مسارات موثوقة من فرز الطلبات وقراءة المستندات إلى الوصول للمعلومات وتحديث الأنظمة التي يستخدمها فريقك. نبني بمساعدة الذكاء الاصطناعي ونبقي المراجعة والقرار بيد الأشخاص." : "We turn repetitive daily work into reliable workflows. This includes sorting requests reading documents finding the right information and updating the systems your team already uses."}
-        primary={{ label: ar ? "احجز مكالمة تعريفية مجانية" : "Book a Free Project Discovery Call", mobileLabel: ar ? "مكالمة تعريفية مجانية" : "Free AI Discovery Call", href: "/contact?intent=ai-automation" }}
+        primary={{ label: ar ? "احجز مكالمة تعريفية مجانية" : "Book a Free Project Discovery Call", mobileLabel: ar ? "مكالمة تعريفية مجانية" : "Free AI Discovery Call", href: "/schedule?topic=ai-automation" }}
         secondary={{ label: ar ? "اكتشف حالات الاستخدام" : "Explore Use Cases", href: "#use-cases" }}
         crumbs={[
           { name: ar ? "الرئيسية" : "Home", path: "/" },
@@ -136,16 +136,13 @@ export default async function AiAutomationPage() {
             </Reveal>
           </div>
 
-          <RevealGroup as="ul" className="ai-problem-list mt-8 grid sm:grid-cols-2 lg:grid-cols-4">
+          <RevealGroup as="ul" className="ai-problem-list mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
             {(ar ? aiProblemsAr : AI_PROBLEMS).map((problem, index) => (
-              <RevealItem key={problem} as="li" index={index}>
-                <div className="group/problem flex min-h-32 flex-col justify-between py-5 pr-5 transition-transform duration-300 [transition-timing-function:var(--ease-expo)] hover:translate-x-1">
-                  <span className="font-mono text-[.625rem] tracking-[.12em] text-accent-ink uppercase">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="mt-7 max-w-[18ch] text-[.9375rem] leading-snug font-medium text-text">
+              <RevealItem key={problem} as="li" index={index} className="h-full">
+                <div className="flex h-full min-h-44 items-center justify-center rounded-[var(--radius-md)] border border-rule bg-paper-raised p-6 text-center shadow-e1 sm:min-h-48 sm:p-8">
+                  <h3 className="max-w-[20ch] font-display text-lg leading-snug font-semibold text-text">
                     {problem}
-                  </span>
+                  </h3>
                 </div>
               </RevealItem>
             ))}
