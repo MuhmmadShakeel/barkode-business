@@ -2,13 +2,13 @@
   "name": "barakode-technologies",
   "version": "1.0.0",
   "private": true,
-  "description": "Barakode Technologies — Product Engineering & AI Automation Partner",
+  "description": "Barakode Technologies \u2014 Product Engineering & AI Automation Partner",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node api.js && next dev",
+    "build": "node api.js && next build",
     "images:webp": "node scripts/convert-images-to-webp.mjs",
     "dist": "npm run images:webp && next build && node scripts/package-dist.mjs",
-    "start": "next start",
+    "start": "node api.js && next start",
     "start:dist": "node dist/server.js",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
