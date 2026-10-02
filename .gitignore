@@ -2,7 +2,45 @@ node_modules/
 .next/
 out/
 build/
-.env*.local
+dist/
+
+# Local credentials and machine-specific configuration. Keep templates public.
+.env
+.env.*
+!.env.example
+!.env.sample
+.aws/
+.vercel/
+.turbo/
+
+# Local coding assistants and their generated state.
+.agent/
+.agents/
+.claude/
+.codex/
+.cursor/
+.gemini/
+.kilo/
+.docs/
+.impeccable/
+CLAUDE.md
+skills-lock.json
+
+# Local browser audits, screenshots, and logs.
+.audit-*/
+.*-chrome/
+.codex-qa*
+preview/
+shots-bot/
+audit-*.png
+*-service-check.png
+pw-*.png
+next-audit*.log
+*.log
+coverage/
+playwright-report/
+test-results/
+
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
